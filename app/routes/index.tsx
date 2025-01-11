@@ -22,7 +22,8 @@ export const FiltersSchema = z
     modes: z
       .array(EventModeSchema)
       .transform((value) => (value?.length ? value : undefined)),
-    country: z.string().optional(),
+    country: z.string(),
+    hasCfpOpen: z.boolean().transform((value) => value || undefined),
   })
   .partial();
 

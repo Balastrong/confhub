@@ -1,18 +1,18 @@
-import { EventModes, Filters, FiltersSchema } from "~/routes";
-import { Tags } from "./tags";
 import React from "react";
+import { ObjectKeysByValueType } from "~/lib/types";
+import { EventModes, Filters } from "~/routes";
 import { Button } from "../ui/button";
+import { Label } from "../ui/label";
+import { Switch } from "../ui/switch";
+import { Tags } from "./tags";
 
 type Props = {
   filters: Filters;
   onSetFilters: (newFilters: Filters) => void;
 };
 
-type FiltersArrayKeys = keyof {
-  [K in keyof Filters as Required<Filters>[K] extends unknown[]
-    ? K
-    : never]: Filters[K];
-};
+type FilterBooleanKeys = keyof ObjectKeysByValueType<Filters, boolean>;
+type FiltersArrayKeys = keyof ObjectKeysByValueType<Filters, string[]>;
 
 export const EventFilters = ({ filters, onSetFilters }: Props) => {
   const toggleArrayItem = (key: FiltersArrayKeys, item: string) => {
@@ -25,10 +25,22 @@ export const EventFilters = ({ filters, onSetFilters }: Props) => {
     onSetFilters({ ...filters, [key]: newItems });
   };
 
+  const toggleBooleanItem = (key: FilterBooleanKeys) => {
+    onSetFilters({ ...filters, [key]: filters[key] ? undefined : true });
+  };
+
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex gap-1 flex-wrap">
-        Mode:{" "}
+      <div className="flex items-center space-x-2">
+        <Label htmlFor="cfp-open-switch">Has CFP Open</Label>
+        <Switch
+          id="cfp-open-switch"
+          checked={!!filters.hasCfpOpen}
+          onCheckedChange={() => toggleBooleanItem("hasCfpOpen")}
+        />
+      </div>
+      <div className="flex gap-1 flex-wrap items-center">
+        <Label>Mode</Label>
         {EventModes.map((mode) => (
           <Button
             key={mode}
@@ -40,8 +52,9 @@ export const EventFilters = ({ filters, onSetFilters }: Props) => {
           </Button>
         ))}
       </div>
-      <div className="flex gap-1 flex-wrap">
-        Tags:{" "}
+
+      <div className="flex gap-1 flex-wrap items-center">
+        <Label>Tags</Label>
         <React.Suspense fallback={"Loading..."}>
           <Tags
             selectedTags={filters.tags ?? []}

@@ -9,7 +9,7 @@ export const Header = () => {
       </div>
       <div className="flex gap-4 items-center">
         <a
-          href="https://github.com/Balastrong/confhub"
+          href="https://github.com/Balastrong/ConfHub"
           target="_blank"
           rel="noreferrer"
         >

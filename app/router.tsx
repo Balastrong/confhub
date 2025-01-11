@@ -1,5 +1,8 @@
 import { QueryClient, notifyManager } from "@tanstack/react-query";
-import { createRouter as createTanStackRouter } from "@tanstack/react-router";
+import {
+  createRouter as createTanStackRouter,
+  ErrorComponent,
+} from "@tanstack/react-router";
 import { routerWithQueryClient } from "@tanstack/react-router-with-query";
 import { routeTree } from "./routeTree.gen";
 
@@ -21,7 +24,7 @@ export function createRouter() {
     createTanStackRouter({
       routeTree,
       defaultPreload: "intent",
-      defaultErrorComponent: () => "Error!",
+      defaultErrorComponent: ErrorComponent,
       defaultNotFoundComponent: () => "Not found!",
       context: { queryClient },
     }),

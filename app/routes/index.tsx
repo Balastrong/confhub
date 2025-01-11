@@ -5,11 +5,23 @@ import { EventCardSkeleton } from "~/components/event-card-skeleton";
 import { EventsList } from "~/components/events-list";
 import { EventFilters } from "~/components/filters/event-filters";
 
-const FiltersSchema = z
+const EventModeSchema = z.union([
+  z.literal("In person"),
+  z.literal("Hybrid"),
+  z.literal("Remote"),
+]);
+
+export const EventModes = EventModeSchema.options.map((mode) => mode.value);
+
+export const FiltersSchema = z
   .object({
     tags: z
       .array(z.string())
       .transform((value) => (value?.length ? value : undefined)),
+    modes: z
+      .array(EventModeSchema)
+      .transform((value) => (value?.length ? value : undefined)),
+    country: z.string().optional(),
   })
   .partial();
 

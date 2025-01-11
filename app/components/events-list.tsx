@@ -4,8 +4,8 @@ import { eventQueries } from "~/queries";
 import { getRouteApi } from "@tanstack/react-router";
 
 export const EventsList = () => {
-  const { tags = [] } = getRouteApi("/").useSearch();
-  const eventsQuery = useSuspenseQuery(eventQueries.list({ tags }));
+  const filters = getRouteApi("/").useSearch();
+  const eventsQuery = useSuspenseQuery(eventQueries.list(filters));
 
   return eventsQuery.data?.map((event) => (
     <EventCard key={event.id} event={event} />

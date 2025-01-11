@@ -2,9 +2,10 @@ import { createServerFn } from "@tanstack/start";
 import { z } from "zod";
 import { getSupabaseServerClient } from "~/lib/supabase";
 import { sleep } from "~/lib/utils";
+import { FiltersSchema } from "~/routes";
 
 export const getEvents = createServerFn()
-  .validator(z.array(z.string()))
+  .validator(FiltersSchema)
   .handler(async ({ data }) => {
     const supabase = getSupabaseServerClient();
 
@@ -12,8 +13,18 @@ export const getEvents = createServerFn()
 
     let query = supabase.from("events").select("*, tags!inner(id, name)");
 
-    if (data.length) {
-      query = query.in("tags.name", data);
+    if (Object.values(data).some((value) => value)) {
+      if (data.country) {
+        query = query.eq("country", data.country);
+      }
+
+      if (data.modes) {
+        query = query.in("mode", data.modes);
+      }
+
+      if (data.tags) {
+        query = query.in("tags.name", data.tags);
+      }
     }
 
     return (await query.throwOnError()).data ?? [];

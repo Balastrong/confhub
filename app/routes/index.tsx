@@ -4,6 +4,7 @@ import { z } from "zod";
 import { EventCardSkeleton } from "~/components/event-card-skeleton";
 import { EventsList } from "~/components/events-list";
 import { EventFilters } from "~/components/filters/event-filters";
+import { ErrorBoundary } from "react-error-boundary";
 
 const EventModeSchema = z.union([
   z.literal("In person"),
@@ -48,13 +49,17 @@ function Home() {
       <div className="flex flex-col gap-4 max-w-6xl w-full px-4">
         <EventFilters filters={filters} onSetFilters={setFilters} />
         <div className="flex flex-col gap-4">
-          <React.Suspense
-            fallback={skeletons.map((_, index) => (
-              <EventCardSkeleton key={index} />
-            ))}
+          <ErrorBoundary
+            fallbackRender={(props) => <div>Error: {props.error.message}</div>}
           >
-            <EventsList />
-          </React.Suspense>
+            <React.Suspense
+              fallback={skeletons.map((_, index) => (
+                <EventCardSkeleton key={index} />
+              ))}
+            >
+              <EventsList />
+            </React.Suspense>
+          </ErrorBoundary>
         </div>
       </div>
     </main>

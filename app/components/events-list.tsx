@@ -7,7 +7,7 @@ export const EventsList = () => {
   const filters = getRouteApi("/").useSearch();
   const eventsQuery = useSuspenseQuery(eventQueries.list(filters));
 
-  return eventsQuery.data?.map((event) => (
+  return eventsQuery.data.map((event) => (
     <EventCard key={event.id} event={event} />
   ));
 };

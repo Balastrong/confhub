@@ -4,5 +4,12 @@ import { getSupabaseServerClient } from "~/lib/supabase";
 export const getTags = createServerFn().handler(async () => {
   const supabase = getSupabaseServerClient();
 
-  return (await supabase.from("tags").select("*").throwOnError()).data ?? [];
+  const response = await supabase
+    .from("tags")
+    .select("*")
+    .order("category")
+    .order("name")
+    .throwOnError();
+
+  return response.data ?? [];
 });

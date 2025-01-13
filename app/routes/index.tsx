@@ -1,10 +1,15 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  ErrorComponent,
+  useNavigate,
+} from "@tanstack/react-router";
 import React from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { z } from "zod";
 import { EventCardSkeleton } from "~/components/event-card-skeleton";
 import { EventsList } from "~/components/events-list";
 import { EventFilters } from "~/components/filters/event-filters";
-import { ErrorBoundary } from "react-error-boundary";
+import { tagQueries } from "~/queries";
 
 const EventModeSchema = z.union([
   z.literal("In person"),
@@ -31,6 +36,9 @@ export const FiltersSchema = z
 export type Filters = z.infer<typeof FiltersSchema>;
 
 export const Route = createFileRoute("/")({
+  beforeLoad: ({ context }) => {
+    context.queryClient.ensureQueryData(tagQueries.list());
+  },
   component: Home,
   validateSearch: FiltersSchema,
 });
@@ -49,10 +57,14 @@ function Home() {
     <main className="flex flex-col items-center">
       <h1 className="text-2xl mt-10 mb-6">Events</h1>
       <div className="flex flex-col gap-4 max-w-6xl w-full px-4">
-        <EventFilters filters={filters} onSetFilters={setFilters} />
+        <ErrorBoundary
+          fallbackRender={(props) => <ErrorComponent error={props.error} />}
+        >
+          <EventFilters filters={filters} onSetFilters={setFilters} />
+        </ErrorBoundary>
         <div className="flex flex-col gap-4">
           <ErrorBoundary
-            fallbackRender={(props) => <div>Error: {props.error.message}</div>}
+            fallbackRender={(props) => <ErrorComponent error={props.error} />}
           >
             <React.Suspense
               fallback={skeletons.map((_, index) => (

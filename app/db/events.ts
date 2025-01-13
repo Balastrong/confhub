@@ -31,7 +31,9 @@ export const getEvents = createServerFn()
       }
     }
 
-    return (await query.throwOnError()).data ?? [];
+    const response = await query.throwOnError();
+
+    return response.data ?? [];
   });
 
 export type FullEvent = Awaited<ReturnType<typeof getEvents>>[0];

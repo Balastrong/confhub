@@ -6,8 +6,8 @@ Just a TanStack Start playground, themed as a conference list.
 
 - [x] Events list
 - [x] Tags
-- [ ] More filters
-- [ ] Save filter (aka bookmark)
+- [x] More filters
 - [ ] Auth
+- [ ] Save filter (aka bookmark)
 - [ ] Submit form
 - [ ] Edit form

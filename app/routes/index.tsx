@@ -16,6 +16,7 @@ export const EventModes = EventModeSchema.options.map((mode) => mode.value);
 
 export const FiltersSchema = z
   .object({
+    query: z.string().transform((value) => (value ? value : undefined)),
     tags: z
       .array(z.string())
       .transform((value) => (value?.length ? value : undefined)),

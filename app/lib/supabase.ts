@@ -1,7 +1,9 @@
 import { parseCookies, setCookie } from "vinxi/http";
 import { createServerClient } from "@supabase/ssr";
 import { Database } from "~/db/types.gen";
+import { createServerFn } from "@tanstack/start";
 
+// TODO: Doublecheck if this is in the client bundle
 export function getSupabaseServerClient() {
   return createServerClient<Database>(
     (import.meta as any).env.VITE_SUPABASE_URL!,
@@ -23,3 +25,13 @@ export function getSupabaseServerClient() {
     }
   );
 }
+
+export const getSupabaseSession = createServerFn().handler(async () => {
+  const supabase = getSupabaseServerClient();
+
+  const { data } = await supabase.auth.getUser();
+
+  if (data) {
+    return { email: data.user?.email };
+  }
+});

@@ -9,6 +9,7 @@ import { z } from "zod";
 import { EventCardSkeleton } from "~/components/event-card-skeleton";
 import { EventsList } from "~/components/events-list";
 import { EventFilters } from "~/components/filters/event-filters";
+import { Layout } from "~/components/layout";
 import { tagQueries } from "~/queries";
 
 const EventModeSchema = z.union([
@@ -54,9 +55,9 @@ function Home() {
   };
 
   return (
-    <main className="flex flex-col items-center">
-      <h1 className="text-2xl mt-10 mb-6">Events</h1>
-      <div className="flex flex-col gap-4 max-w-6xl w-full px-4">
+    <Layout>
+      <h1 className="text-2xl mb-4 text-center">Events</h1>
+      <div className="flex flex-col gap-4 w-full">
         <ErrorBoundary
           fallbackRender={(props) => <ErrorComponent error={props.error} />}
         >
@@ -76,6 +77,6 @@ function Home() {
           </ErrorBoundary>
         </div>
       </div>
-    </main>
+    </Layout>
   );
 }

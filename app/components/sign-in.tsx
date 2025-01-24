@@ -1,9 +1,23 @@
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "@tanstack/react-router";
 import { signIn } from "~/db/auth";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 
 export const SignIn = () => {
+  const router = useRouter();
+
+  const signInMutation = useMutation({
+    mutationFn: signIn,
+    onSuccess: () => {
+      router.navigate({ to: "/" });
+    },
+    onError: (error) => {
+      console.error(error.message);
+    },
+  });
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -11,17 +25,7 @@ export const SignIn = () => {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
 
-    try {
-      await signIn({
-        data: {
-          email,
-          password,
-        },
-      });
-    } catch (error) {
-      // TODO Handle error
-      console.log("Error", error);
-    }
+    signInMutation.mutate({ data: { email, password } });
   };
   return (
     <form className="flex flex-col gap-2 w-full" onSubmit={onSubmit}>

@@ -1,6 +1,5 @@
 import { createServerFn } from "@tanstack/start";
 import { z } from "zod";
-import { SignIn } from "~/components/sign-in";
 import { getSupabaseServerClient } from "~/lib/supabase";
 
 // TODO: Refine password === confirmPassword
@@ -51,3 +50,7 @@ export const signIn = createServerFn()
       return user.user.id;
     }
   });
+
+export const signOut = createServerFn().handler(async () => {
+  await getSupabaseServerClient().auth.signOut();
+});

@@ -11,7 +11,7 @@ export const SignIn = () => {
   const signInMutation = useMutation({
     mutationFn: signIn,
     onSuccess: () => {
-      router.navigate({ to: "/" });
+      router.invalidate();
     },
     onError: (error) => {
       console.error(error.message);
@@ -31,11 +31,19 @@ export const SignIn = () => {
     <form className="flex flex-col gap-2 w-full" onSubmit={onSubmit}>
       <Label htmlFor="email">
         Email
-        <Input id="email" name="email" />
+        <Input
+          id="email"
+          name="email"
+          defaultValue={import.meta.env.VITE_DEFAULT_USER_EMAIL}
+        />
       </Label>
       <Label htmlFor="password">
         Password
-        <Input id="password" name="password" />
+        <Input
+          id="password"
+          name="password"
+          defaultValue={import.meta.env.VITE_DEFAULT_USER_PASSWORD}
+        />
       </Label>
       <Button>Sign In</Button>
     </form>

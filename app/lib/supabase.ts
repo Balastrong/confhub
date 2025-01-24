@@ -5,8 +5,8 @@ import { Database } from "~/db/types.gen";
 // TODO: Doublecheck if this is in the client bundle
 export function getSupabaseServerClient() {
   return createServerClient<Database>(
-    (import.meta as any).env.VITE_SUPABASE_URL!,
-    (import.meta as any).env.VITE_SUPABASE_ANON_KEY!,
+    import.meta.env.VITE_SUPABASE_URL,
+    import.meta.env.VITE_SUPABASE_ANON_KEY,
     {
       cookies: {
         getAll() {

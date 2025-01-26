@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 
-export const SignUp = () => {
+export const SignUpForm = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -25,6 +25,7 @@ export const SignUp = () => {
       console.log("Error", error);
     }
   };
+
   return (
     <form className="flex flex-col gap-2 w-full" onSubmit={onSubmit}>
       <Label htmlFor="email">

@@ -1,17 +1,18 @@
 import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
+import { Loader2 } from "lucide-react";
 import { signIn } from "~/db/auth";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 
-export const SignIn = () => {
-  const router = useRouter();
+export const SignInForm = () => {
+  const navigate = useNavigate();
 
   const signInMutation = useMutation({
     mutationFn: signIn,
     onSuccess: () => {
-      router.invalidate();
+      navigate({ to: "/" });
     },
     onError: (error) => {
       console.error(error.message);
@@ -27,6 +28,7 @@ export const SignIn = () => {
 
     signInMutation.mutate({ data: { email, password } });
   };
+
   return (
     <form className="flex flex-col gap-2 w-full" onSubmit={onSubmit}>
       <Label htmlFor="email">
@@ -45,7 +47,12 @@ export const SignIn = () => {
           defaultValue={import.meta.env.VITE_DEFAULT_USER_PASSWORD}
         />
       </Label>
-      <Button>Sign In</Button>
+      <Button disabled={signInMutation.isPending}>
+        Sign In
+        {signInMutation.isPending && (
+          <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+        )}
+      </Button>
     </form>
   );
 };

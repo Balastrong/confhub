@@ -7,7 +7,7 @@ export const getEvents = createServerFn()
   .handler(async ({ data }) => {
     const supabase = getSupabaseServerClient();
 
-    let query = supabase.from("events").select("*, tags!inner(id, name)");
+    let query = supabase.from("events").select("id, tags!inner(name)");
 
     if (Object.values(data).some((value) => value)) {
       if (data.query) {
@@ -31,9 +31,15 @@ export const getEvents = createServerFn()
       }
     }
 
-    const response = await query.throwOnError();
+    const eventIds = (await query.throwOnError()).data?.map((e) => e.id) ?? [];
 
-    return response.data ?? [];
+    const eventsWithTags = supabase
+      .from("events")
+      .select("*, tags(*)")
+      .in("id", eventIds)
+      .order("name");
+
+    return (await eventsWithTags.throwOnError()).data ?? [];
   });
 
-export type FullEvent = Awaited<ReturnType<typeof getEvents>>[0];
+export type FullEvent = Awaited<ReturnType<typeof getEvents>>[number];

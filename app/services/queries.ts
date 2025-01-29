@@ -3,14 +3,14 @@ import {
   useSuspenseQuery,
   UseSuspenseQueryResult,
 } from "@tanstack/react-query"
-import { getUser } from "./db/auth"
-import { getEvents } from "./db/events"
-import { getTags } from "./db/tags"
-import { Filters } from "./routes"
+import { getUser } from "./auth.api"
+import { getEvents } from "./event.api"
+import { getTags } from "./tags.api"
+import { EventFilters } from "./event.schema"
 
 export const eventQueries = {
   all: ["events"],
-  list: (filters: Filters) =>
+  list: (filters: EventFilters) =>
     queryOptions({
       queryKey: [...eventQueries.all, "list", filters],
       queryFn: () => getEvents({ data: filters }),

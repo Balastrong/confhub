@@ -1,4 +1,4 @@
-import { signUp } from "~/db/auth"
+import { signUp } from "~/services/auth.api"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"

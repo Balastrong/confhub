@@ -9,7 +9,7 @@ import * as React from "react"
 import { Header } from "~/components/header"
 // @ts-expect-error
 import css from "~/globals.css?url"
-import { authQueries } from "~/queries"
+import { authQueries } from "~/services/queries"
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient

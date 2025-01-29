@@ -1,5 +1,5 @@
 import { Loader2, User } from "lucide-react"
-import { authQueries, useAuthenticatedUser } from "~/queries"
+import { authQueries, useAuthenticatedUser } from "~/services/queries"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import {
   Card,
@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "./ui/card"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { updateUser } from "~/db/auth"
+import { updateUser } from "~/services/auth.api"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { useState } from "react"

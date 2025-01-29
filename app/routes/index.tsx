@@ -8,40 +8,17 @@ import { ErrorBoundary } from "react-error-boundary"
 import { z } from "zod"
 import { EventCardSkeleton } from "~/components/event-card-skeleton"
 import { EventsList } from "~/components/events-list"
-import { EventFilters } from "~/components/filters/event-filters"
+import { EventFiltersBar } from "~/components/filters/event-filters-bar"
 import { Layout } from "~/components/layout"
-import { tagQueries } from "~/queries"
-
-const EventModeSchema = z.union([
-  z.literal("In person"),
-  z.literal("Hybrid"),
-  z.literal("Remote"),
-])
-
-export const EventModes = EventModeSchema.options.map((mode) => mode.value)
-
-export const FiltersSchema = z
-  .object({
-    query: z.string().transform((value) => (value ? value : undefined)),
-    tags: z
-      .array(z.string())
-      .transform((value) => (value?.length ? value : undefined)),
-    modes: z
-      .array(EventModeSchema)
-      .transform((value) => (value?.length ? value : undefined)),
-    country: z.string(),
-    hasCfpOpen: z.boolean().transform((value) => value || undefined),
-  })
-  .partial()
-
-export type Filters = z.infer<typeof FiltersSchema>
+import { tagQueries } from "~/services/queries"
+import { EventFiltersSchema, EventFilters } from "~/services/event.schema"
 
 export const Route = createFileRoute("/")({
   beforeLoad: ({ context }) => {
     context.queryClient.ensureQueryData(tagQueries.list())
   },
   component: Home,
-  validateSearch: FiltersSchema,
+  validateSearch: EventFiltersSchema,
 })
 
 const skeletons = Array.from({ length: 2 })
@@ -50,7 +27,7 @@ function Home() {
   const navigate = useNavigate()
   const filters = Route.useSearch()
 
-  const setFilters = (newFilters: Filters) => {
+  const setFilters = (newFilters: EventFilters) => {
     navigate({ from: Route.fullPath, search: newFilters })
   }
 
@@ -61,7 +38,7 @@ function Home() {
         <ErrorBoundary
           fallbackRender={(props) => <ErrorComponent error={props.error} />}
         >
-          <EventFilters filters={filters} onSetFilters={setFilters} />
+          <EventFiltersBar filters={filters} onSetFilters={setFilters} />
         </ErrorBoundary>
         <div className="flex flex-col gap-4">
           <ErrorBoundary

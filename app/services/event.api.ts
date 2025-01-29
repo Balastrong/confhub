@@ -1,9 +1,9 @@
 import { createServerFn } from "@tanstack/start"
 import { getSupabaseServerClient } from "~/lib/supabase"
-import { FiltersSchema } from "~/routes"
+import { EventFiltersSchema } from "./event.schema"
 
 export const getEvents = createServerFn()
-  .validator(FiltersSchema)
+  .validator(EventFiltersSchema)
   .handler(async ({ data }) => {
     const supabase = getSupabaseServerClient()
 

@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useNavigate } from "@tanstack/react-router"
 import { Loader2 } from "lucide-react"
-import { signIn } from "~/db/auth"
+import { signIn } from "~/services/auth.api"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
-import { authQueries } from "~/queries"
+import { authQueries } from "~/services/queries"
 
 export const SignInForm = () => {
   const navigate = useNavigate()

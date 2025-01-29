@@ -1,7 +1,7 @@
 import { DiscordLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons"
 import { useSuspenseQuery } from "@tanstack/react-query"
 import { createLink, Link } from "@tanstack/react-router"
-import { authQueries } from "~/queries"
+import { authQueries } from "~/services/queries"
 import { Button } from "./ui/button"
 import { UserMenu } from "./user-menu"
 

@@ -1,18 +1,12 @@
 import { createServerFn } from "@tanstack/start"
 import { z } from "zod"
 import { getSupabaseServerClient } from "~/lib/supabase"
-
-const UserMetaSchema = z.object({
-  username: z.string().min(3).max(20),
-})
-
-// TODO: Refine password === confirmPassword
-const SignUpSchema = z.object({
-  username: UserMetaSchema.shape.username,
-  email: z.string().email(),
-  password: z.string(),
-  confirmPassword: z.string(),
-})
+import {
+  SignUpSchema,
+  SignInSchema,
+  UserMetaSchema,
+  AuthState,
+} from "./auth.schema"
 
 export const signUp = createServerFn()
   .validator(SignUpSchema)
@@ -32,11 +26,6 @@ export const signUp = createServerFn()
 
     throw new Error("Something went wrong")
   })
-
-const SignInSchema = z.object({
-  email: z.string().email(),
-  password: z.string(),
-})
 
 export const signIn = createServerFn()
   .validator(SignInSchema)
@@ -60,15 +49,6 @@ export const signOut = createServerFn().handler(async () => {
   await getSupabaseServerClient().auth.signOut()
 })
 
-export type AuthState =
-  | {
-      isAuthenticated: false
-    }
-  | {
-      isAuthenticated: true
-      user: User
-    }
-
 export const updateUser = createServerFn()
   .validator(UserMetaSchema)
   .handler(async ({ data }) => {
@@ -82,10 +62,6 @@ export const updateUser = createServerFn()
       throw new Error(error.message)
     }
   })
-
-export type UserMeta = z.infer<typeof UserMetaSchema>
-
-export type User = { email?: string; meta: UserMeta }
 
 export const getUser = createServerFn().handler<AuthState>(async () => {
   const supabase = getSupabaseServerClient()

@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from "@tanstack/react-query"
 import { Button } from "~/components/ui/button"
-import { tagQueries } from "~/queries"
+import { tagQueries } from "~/services/queries"
 import { Badge } from "../ui/badge"
 
 type Props = {

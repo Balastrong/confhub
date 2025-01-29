@@ -7,7 +7,7 @@
     "dev": "vinxi dev",
     "build": "vinxi build",
     "start": "vinxi start",
-    "supabase:types-gen": "supabase gen types typescript --project-id imrjvsygbidsbssycqtt > app/db/types.gen.ts",
+    "supabase:types-gen": "supabase gen types typescript --project-id imrjvsygbidsbssycqtt > app/lib/types.gen.ts",
     "tsc": "tsc --noEmit",
     "format": "prettier --write **.{ts,tsx,json,md,json}"
   },

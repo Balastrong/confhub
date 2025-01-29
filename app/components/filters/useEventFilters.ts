@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
 import { ObjectKeysByValueType } from "~/lib/types"
 import { useDebounce } from "~/lib/useDebounce"
-import { Filters } from "~/routes"
+import { EventFilters } from "~/services/event.schema"
 
-type FilterBooleanKeys = keyof ObjectKeysByValueType<Filters, boolean>
-type FiltersArrayKeys = keyof ObjectKeysByValueType<Filters, string[]>
+type FilterBooleanKeys = keyof ObjectKeysByValueType<EventFilters, boolean>
+type FiltersArrayKeys = keyof ObjectKeysByValueType<EventFilters, string[]>
 
 export const useEventFilters = (
-  filters: Filters,
-  onSetFilters: (newFilters: Filters) => void,
+  filters: EventFilters,
+  onSetFilters: (newFilters: EventFilters) => void,
 ) => {
   const [query, setQuery] = useState(filters.query ?? "")
 
@@ -26,7 +26,7 @@ export const useEventFilters = (
     onSetFilters({ ...filters, [key]: filters[key] ? undefined : true })
   }
 
-  const setFilter = (key: keyof Filters, value: string) => {
+  const setFilter = (key: keyof EventFilters, value: string) => {
     onSetFilters({ ...filters, [key]: value })
   }
 

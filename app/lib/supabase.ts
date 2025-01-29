@@ -1,6 +1,6 @@
 import { createServerClient } from "@supabase/ssr"
 import { parseCookies, setCookie } from "vinxi/http"
-import { Database } from "~/db/types.gen"
+import { Database } from "~/lib/types.gen"
 
 // TODO: Doublecheck if this is in the client bundle
 export function getSupabaseServerClient() {

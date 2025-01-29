@@ -1,5 +1,5 @@
 import { getRouteApi } from "@tanstack/react-router"
-import { FullEvent } from "~/db/events"
+import { FullEvent } from "~/services/event.api"
 import { formatDate } from "~/lib/date"
 import { Badge } from "./ui/badge"
 import {

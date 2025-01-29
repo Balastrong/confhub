@@ -1,16 +1,16 @@
-import { DiscordLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { createLink, Link, useRouter } from "@tanstack/react-router";
-import { signOut } from "~/db/auth";
-import { authQueries } from "~/queries";
-import { Button } from "./ui/button";
+import { DiscordLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { createLink, Link, useRouter } from "@tanstack/react-router"
+import { signOut } from "~/db/auth"
+import { authQueries } from "~/queries"
+import { Button } from "./ui/button"
 
-const ButtonLink = createLink(Button);
+const ButtonLink = createLink(Button)
 
 export const Header = () => {
-  const router = useRouter();
-  const queryClient = useQueryClient();
-  const { data: authState } = useQuery(authQueries.user());
+  const router = useRouter()
+  const queryClient = useQueryClient()
+  const { data: authState } = useQuery(authQueries.user())
 
   return (
     <header className="px-4 py-2 flex gap-2 items-center justify-between max-w-screen-2xl mx-auto">
@@ -24,8 +24,8 @@ export const Header = () => {
             size={"sm"}
             onClick={() =>
               signOut().then(async () => {
-                queryClient.invalidateQueries(authQueries.user());
-                router.invalidate();
+                queryClient.invalidateQueries(authQueries.user())
+                router.invalidate()
               })
             }
           >
@@ -52,5 +52,5 @@ export const Header = () => {
         </a>
       </div>
     </header>
-  );
-};
+  )
+}

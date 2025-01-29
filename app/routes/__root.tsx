@@ -1,23 +1,23 @@
-import { QueryClient } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query"
 import {
   createRootRouteWithContext,
   Outlet,
   ScrollRestoration,
-} from "@tanstack/react-router";
-import { Meta, Scripts } from "@tanstack/start";
-import * as React from "react";
-import { Header } from "~/components/header";
+} from "@tanstack/react-router"
+import { Meta, Scripts } from "@tanstack/start"
+import * as React from "react"
+import { Header } from "~/components/header"
 // @ts-expect-error
-import css from "~/globals.css?url";
-import { authQueries } from "~/queries";
+import css from "~/globals.css?url"
+import { authQueries } from "~/queries"
 
 export const Route = createRootRouteWithContext<{
-  queryClient: QueryClient;
+  queryClient: QueryClient
 }>()({
   beforeLoad: async ({ context }) => {
-    const authState = await context.queryClient.fetchQuery(authQueries.user());
+    const authState = await context.queryClient.fetchQuery(authQueries.user())
 
-    return { authState };
+    return { authState }
   },
   head: () => ({
     meta: [
@@ -45,14 +45,14 @@ export const Route = createRootRouteWithContext<{
     ],
   }),
   component: RootComponent,
-});
+})
 
 function RootComponent() {
   return (
     <RootDocument>
       <Outlet />
     </RootDocument>
-  );
+  )
 }
 
 function RootDocument({ children }: { children: React.ReactNode }) {
@@ -69,5 +69,5 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <Scripts />
       </body>
     </html>
-  );
+  )
 }

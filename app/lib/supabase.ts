@@ -1,6 +1,6 @@
-import { createServerClient } from "@supabase/ssr";
-import { parseCookies, setCookie } from "vinxi/http";
-import { Database } from "~/db/types.gen";
+import { createServerClient } from "@supabase/ssr"
+import { parseCookies, setCookie } from "vinxi/http"
+import { Database } from "~/db/types.gen"
 
 // TODO: Doublecheck if this is in the client bundle
 export function getSupabaseServerClient() {
@@ -13,16 +13,16 @@ export function getSupabaseServerClient() {
           return Object.entries(parseCookies()).map(([name, value]) => ({
             name,
             value,
-          }));
+          }))
         },
         setAll(cookies) {
           cookies.forEach((cookie) => {
-            setCookie(cookie.name, cookie.value);
-          });
+            setCookie(cookie.name, cookie.value)
+          })
         },
       },
-    }
-  );
+    },
+  )
 }
 
-export type User = { email?: string };
+export type User = { email?: string }

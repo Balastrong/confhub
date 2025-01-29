@@ -1,13 +1,13 @@
-import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
-import { Skeleton } from "./ui/skeleton";
+import { Card, CardContent, CardFooter, CardHeader } from "./ui/card"
+import { Skeleton } from "./ui/skeleton"
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 export const EventCardSkeleton = () => {
-  const [randomLength, setRandomLength] = useState(0);
+  const [randomLength, setRandomLength] = useState(0)
 
   useEffect(() => {
-    setRandomLength(Math.floor(Math.random() * 6) + 2);
-  }, []);
+    setRandomLength(Math.floor(Math.random() * 6) + 2)
+  }, [])
 
   return (
     <Card>
@@ -31,5 +31,5 @@ export const EventCardSkeleton = () => {
         <Skeleton className="h-8 w-32" />
       </CardFooter>
     </Card>
-  );
-};
+  )
+}

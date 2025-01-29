@@ -2,23 +2,23 @@ import {
   createFileRoute,
   ErrorComponent,
   useNavigate,
-} from "@tanstack/react-router";
-import React from "react";
-import { ErrorBoundary } from "react-error-boundary";
-import { z } from "zod";
-import { EventCardSkeleton } from "~/components/event-card-skeleton";
-import { EventsList } from "~/components/events-list";
-import { EventFilters } from "~/components/filters/event-filters";
-import { Layout } from "~/components/layout";
-import { tagQueries } from "~/queries";
+} from "@tanstack/react-router"
+import React from "react"
+import { ErrorBoundary } from "react-error-boundary"
+import { z } from "zod"
+import { EventCardSkeleton } from "~/components/event-card-skeleton"
+import { EventsList } from "~/components/events-list"
+import { EventFilters } from "~/components/filters/event-filters"
+import { Layout } from "~/components/layout"
+import { tagQueries } from "~/queries"
 
 const EventModeSchema = z.union([
   z.literal("In person"),
   z.literal("Hybrid"),
   z.literal("Remote"),
-]);
+])
 
-export const EventModes = EventModeSchema.options.map((mode) => mode.value);
+export const EventModes = EventModeSchema.options.map((mode) => mode.value)
 
 export const FiltersSchema = z
   .object({
@@ -32,27 +32,27 @@ export const FiltersSchema = z
     country: z.string(),
     hasCfpOpen: z.boolean().transform((value) => value || undefined),
   })
-  .partial();
+  .partial()
 
-export type Filters = z.infer<typeof FiltersSchema>;
+export type Filters = z.infer<typeof FiltersSchema>
 
 export const Route = createFileRoute("/")({
   beforeLoad: ({ context }) => {
-    context.queryClient.ensureQueryData(tagQueries.list());
+    context.queryClient.ensureQueryData(tagQueries.list())
   },
   component: Home,
   validateSearch: FiltersSchema,
-});
+})
 
-const skeletons = Array.from({ length: 2 });
+const skeletons = Array.from({ length: 2 })
 
 function Home() {
-  const navigate = useNavigate();
-  const filters = Route.useSearch();
+  const navigate = useNavigate()
+  const filters = Route.useSearch()
 
   const setFilters = (newFilters: Filters) => {
-    navigate({ from: Route.fullPath, search: newFilters });
-  };
+    navigate({ from: Route.fullPath, search: newFilters })
+  }
 
   return (
     <Layout>
@@ -78,5 +78,5 @@ function Home() {
         </div>
       </div>
     </Layout>
-  );
+  )
 }

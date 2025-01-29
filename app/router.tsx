@@ -1,14 +1,14 @@
-import { QueryClient, notifyManager } from "@tanstack/react-query";
+import { QueryClient, notifyManager } from "@tanstack/react-query"
 import {
   createRouter as createTanStackRouter,
   ErrorComponent,
-} from "@tanstack/react-router";
-import { routerWithQueryClient } from "@tanstack/react-router-with-query";
-import { routeTree } from "./routeTree.gen";
+} from "@tanstack/react-router"
+import { routerWithQueryClient } from "@tanstack/react-router-with-query"
+import { routeTree } from "./routeTree.gen"
 
 export function createRouter() {
   if (typeof document !== "undefined") {
-    notifyManager.setScheduler(window.requestAnimationFrame);
+    notifyManager.setScheduler(window.requestAnimationFrame)
   }
 
   const queryClient: QueryClient = new QueryClient({
@@ -19,7 +19,7 @@ export function createRouter() {
         refetchOnWindowFocus: false,
       },
     },
-  });
+  })
 
   const router = routerWithQueryClient(
     createTanStackRouter({
@@ -29,14 +29,14 @@ export function createRouter() {
       defaultNotFoundComponent: () => "Not found!",
       context: { queryClient },
     }),
-    queryClient
-  );
+    queryClient,
+  )
 
-  return router;
+  return router
 }
 
 declare module "@tanstack/react-router" {
   interface Register {
-    router: ReturnType<typeof createRouter>;
+    router: ReturnType<typeof createRouter>
   }
 }

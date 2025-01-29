@@ -1,13 +1,13 @@
-import { createServerFn } from "@tanstack/start";
-import { z } from "zod";
-import { getSupabaseServerClient, User } from "~/lib/supabase";
+import { createServerFn } from "@tanstack/start"
+import { z } from "zod"
+import { getSupabaseServerClient, User } from "~/lib/supabase"
 
 // TODO: Refine password === confirmPassword
 const SignUpSchema = z.object({
   email: z.string().email(),
   password: z.string(),
   confirmPassword: z.string(),
-});
+})
 
 export const signUp = createServerFn()
   .validator(SignUpSchema)
@@ -15,23 +15,23 @@ export const signUp = createServerFn()
     const { data: user, error } = await getSupabaseServerClient().auth.signUp({
       email: data.email,
       password: data.password,
-    });
+    })
 
     if (error) {
-      throw new Error(error.message);
+      throw new Error(error.message)
     }
 
     if (user.user) {
-      return user.user.id;
+      return user.user.id
     }
 
-    throw new Error("Something went wrong");
-  });
+    throw new Error("Something went wrong")
+  })
 
 const SignInSchema = z.object({
   email: z.string().email(),
   password: z.string(),
-});
+})
 
 export const signIn = createServerFn()
   .validator(SignInSchema)
@@ -40,41 +40,41 @@ export const signIn = createServerFn()
       await getSupabaseServerClient().auth.signInWithPassword({
         email: data.email,
         password: data.password,
-      });
+      })
 
     if (error) {
-      throw new Error(error.message);
+      throw new Error(error.message)
     }
 
     if (user.user) {
-      return user.user.id;
+      return user.user.id
     }
-  });
+  })
 
 export const signOut = createServerFn().handler(async () => {
-  await getSupabaseServerClient().auth.signOut();
-});
+  await getSupabaseServerClient().auth.signOut()
+})
 
 export type AuthState =
   | {
-      isAuthenticated: false;
+      isAuthenticated: false
     }
   | {
-      isAuthenticated: true;
-      user: User;
-    };
+      isAuthenticated: true
+      user: User
+    }
 
 export const getUser = createServerFn().handler<AuthState>(async () => {
-  const supabase = getSupabaseServerClient();
+  const supabase = getSupabaseServerClient()
 
-  const { data } = await supabase.auth.getUser();
+  const { data } = await supabase.auth.getUser()
 
   if (data.user) {
     return {
       isAuthenticated: true,
       user: { email: data.user.email },
-    };
+    }
   }
 
-  return { isAuthenticated: false };
-});
+  return { isAuthenticated: false }
+})

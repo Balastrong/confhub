@@ -1,5 +1,5 @@
-import { defineConfig } from "@tanstack/start/config";
-import tsConfigPaths from "vite-tsconfig-paths";
+import { defineConfig } from "@tanstack/start/config"
+import tsConfigPaths from "vite-tsconfig-paths"
 
 export default defineConfig({
   vite: {
@@ -13,4 +13,4 @@ export default defineConfig({
     preset: "netlify",
     compatibilityDate: "2025-01-02",
   },
-});
+})

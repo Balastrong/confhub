@@ -10,67 +10,67 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as TestImport } from './routes/test'
-import { Route as SignUpImport } from './routes/sign-up'
-import { Route as SignInImport } from './routes/sign-in'
-import { Route as IndexImport } from './routes/index'
+import { Route as rootRoute } from "./routes/__root"
+import { Route as TestImport } from "./routes/test"
+import { Route as SignUpImport } from "./routes/sign-up"
+import { Route as SignInImport } from "./routes/sign-in"
+import { Route as IndexImport } from "./routes/index"
 
 // Create/Update Routes
 
 const TestRoute = TestImport.update({
-  id: '/test',
-  path: '/test',
+  id: "/test",
+  path: "/test",
   getParentRoute: () => rootRoute,
 } as any)
 
 const SignUpRoute = SignUpImport.update({
-  id: '/sign-up',
-  path: '/sign-up',
+  id: "/sign-up",
+  path: "/sign-up",
   getParentRoute: () => rootRoute,
 } as any)
 
 const SignInRoute = SignInImport.update({
-  id: '/sign-in',
-  path: '/sign-in',
+  id: "/sign-in",
+  path: "/sign-in",
   getParentRoute: () => rootRoute,
 } as any)
 
 const IndexRoute = IndexImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
+    "/": {
+      id: "/"
+      path: "/"
+      fullPath: "/"
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/sign-in': {
-      id: '/sign-in'
-      path: '/sign-in'
-      fullPath: '/sign-in'
+    "/sign-in": {
+      id: "/sign-in"
+      path: "/sign-in"
+      fullPath: "/sign-in"
       preLoaderRoute: typeof SignInImport
       parentRoute: typeof rootRoute
     }
-    '/sign-up': {
-      id: '/sign-up'
-      path: '/sign-up'
-      fullPath: '/sign-up'
+    "/sign-up": {
+      id: "/sign-up"
+      path: "/sign-up"
+      fullPath: "/sign-up"
       preLoaderRoute: typeof SignUpImport
       parentRoute: typeof rootRoute
     }
-    '/test': {
-      id: '/test'
-      path: '/test'
-      fullPath: '/test'
+    "/test": {
+      id: "/test"
+      path: "/test"
+      fullPath: "/test"
       preLoaderRoute: typeof TestImport
       parentRoute: typeof rootRoute
     }
@@ -80,33 +80,33 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/sign-in': typeof SignInRoute
-  '/sign-up': typeof SignUpRoute
-  '/test': typeof TestRoute
+  "/": typeof IndexRoute
+  "/sign-in": typeof SignInRoute
+  "/sign-up": typeof SignUpRoute
+  "/test": typeof TestRoute
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/sign-in': typeof SignInRoute
-  '/sign-up': typeof SignUpRoute
-  '/test': typeof TestRoute
+  "/": typeof IndexRoute
+  "/sign-in": typeof SignInRoute
+  "/sign-up": typeof SignUpRoute
+  "/test": typeof TestRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/sign-in': typeof SignInRoute
-  '/sign-up': typeof SignUpRoute
-  '/test': typeof TestRoute
+  "/": typeof IndexRoute
+  "/sign-in": typeof SignInRoute
+  "/sign-up": typeof SignUpRoute
+  "/test": typeof TestRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sign-in' | '/sign-up' | '/test'
+  fullPaths: "/" | "/sign-in" | "/sign-up" | "/test"
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sign-in' | '/sign-up' | '/test'
-  id: '__root__' | '/' | '/sign-in' | '/sign-up' | '/test'
+  to: "/" | "/sign-in" | "/sign-up" | "/test"
+  id: "__root__" | "/" | "/sign-in" | "/sign-up" | "/test"
   fileRoutesById: FileRoutesById
 }
 

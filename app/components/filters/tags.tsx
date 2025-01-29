@@ -1,15 +1,15 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { Button } from "~/components/ui/button";
-import { tagQueries } from "~/queries";
-import { Badge } from "../ui/badge";
+import { useSuspenseQuery } from "@tanstack/react-query"
+import { Button } from "~/components/ui/button"
+import { tagQueries } from "~/queries"
+import { Badge } from "../ui/badge"
 
 type Props = {
-  selectedTags: string[];
-  onToggleTag: (filter: string) => void;
-};
+  selectedTags: string[]
+  onToggleTag: (filter: string) => void
+}
 
 export const Tags = ({ selectedTags, onToggleTag }: Props) => {
-  const { data: tags } = useSuspenseQuery(tagQueries.list());
+  const { data: tags } = useSuspenseQuery(tagQueries.list())
 
   return (
     <>
@@ -24,5 +24,5 @@ export const Tags = ({ selectedTags, onToggleTag }: Props) => {
         </Badge>
       ))}
     </>
-  );
-};
+  )
+}

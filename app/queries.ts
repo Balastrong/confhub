@@ -1,8 +1,8 @@
-import { queryOptions } from "@tanstack/react-query";
-import { getUser } from "./db/auth";
-import { getEvents } from "./db/events";
-import { getTags } from "./db/tags";
-import { Filters } from "./routes";
+import { queryOptions } from "@tanstack/react-query"
+import { getUser } from "./db/auth"
+import { getEvents } from "./db/events"
+import { getTags } from "./db/tags"
+import { Filters } from "./routes"
 
 export const eventQueries = {
   all: ["events"],
@@ -11,7 +11,7 @@ export const eventQueries = {
       queryKey: [...eventQueries.all, "list", filters],
       queryFn: () => getEvents({ data: filters }),
     }),
-};
+}
 
 export const tagQueries = {
   all: ["tags"],
@@ -20,7 +20,7 @@ export const tagQueries = {
       queryKey: [...tagQueries.all, "list"],
       queryFn: () => getTags(),
     }),
-};
+}
 
 export const authQueries = {
   all: ["auth"],
@@ -29,4 +29,4 @@ export const authQueries = {
       queryKey: [...authQueries.all, "user"],
       queryFn: () => getUser(),
     }),
-};
+}

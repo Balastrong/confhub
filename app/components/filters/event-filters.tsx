@@ -1,21 +1,21 @@
-import React from "react";
-import { EventModes, Filters } from "~/routes";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-import { Switch } from "../ui/switch";
-import { Tags } from "./tags";
-import { useEventFilters } from "./useEventFilters";
-import { Badge } from "../ui/badge";
+import React from "react"
+import { EventModes, Filters } from "~/routes"
+import { Button } from "../ui/button"
+import { Input } from "../ui/input"
+import { Label } from "../ui/label"
+import { Switch } from "../ui/switch"
+import { Tags } from "./tags"
+import { useEventFilters } from "./useEventFilters"
+import { Badge } from "../ui/badge"
 
 type Props = {
-  filters: Filters;
-  onSetFilters: (newFilters: Filters) => void;
-};
+  filters: Filters
+  onSetFilters: (newFilters: Filters) => void
+}
 
 export const EventFilters = ({ filters, onSetFilters }: Props) => {
   const { query, setQuery, toggleArrayItem, toggleBooleanItem } =
-    useEventFilters(filters, onSetFilters);
+    useEventFilters(filters, onSetFilters)
 
   return (
     <div className="flex flex-col gap-2">
@@ -60,5 +60,5 @@ export const EventFilters = ({ filters, onSetFilters }: Props) => {
         </React.Suspense>
       </div>
     </div>
-  );
-};
+  )
+}

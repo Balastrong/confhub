@@ -1,16 +1,16 @@
-import { signUp } from "~/db/auth";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
+import { signUp } from "~/db/auth"
+import { Button } from "./ui/button"
+import { Input } from "./ui/input"
+import { Label } from "./ui/label"
 
 export const SignUpForm = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    const formData = new FormData(e.currentTarget);
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-    const confirmPassword = formData.get("confirm-password") as string;
+    const formData = new FormData(e.currentTarget)
+    const email = formData.get("email") as string
+    const password = formData.get("password") as string
+    const confirmPassword = formData.get("confirm-password") as string
 
     try {
       await signUp({
@@ -19,12 +19,12 @@ export const SignUpForm = () => {
           password,
           confirmPassword,
         },
-      });
+      })
     } catch (error) {
       // TODO Handle error
-      console.log("Error", error);
+      console.log("Error", error)
     }
-  };
+  }
 
   return (
     <form className="flex flex-col gap-2 w-full" onSubmit={onSubmit}>
@@ -42,5 +42,5 @@ export const SignUpForm = () => {
       </Label>
       <Button>Sign Up</Button>
     </form>
-  );
-};
+  )
+}

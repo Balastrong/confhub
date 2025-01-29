@@ -1,7 +1,7 @@
-import { getRouteApi } from "@tanstack/react-router";
-import { FullEvent } from "~/db/events";
-import { formatDate } from "~/lib/date";
-import { Badge } from "./ui/badge";
+import { getRouteApi } from "@tanstack/react-router"
+import { FullEvent } from "~/db/events"
+import { formatDate } from "~/lib/date"
+import { Badge } from "./ui/badge"
 import {
   Card,
   CardContent,
@@ -9,14 +9,14 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./ui/card";
+} from "./ui/card"
 
 type Props = {
-  event: FullEvent;
-};
+  event: FullEvent
+}
 
 export const EventCard = ({ event }: Props) => {
-  const { tags = [] } = getRouteApi("/").useSearch();
+  const { tags = [] } = getRouteApi("/").useSearch()
 
   return (
     <Card>
@@ -86,5 +86,5 @@ export const EventCard = ({ event }: Props) => {
         </div>
       </CardFooter>
     </Card>
-  );
-};
+  )
+}

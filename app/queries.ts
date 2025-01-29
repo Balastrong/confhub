@@ -1,4 +1,8 @@
-import { queryOptions } from "@tanstack/react-query"
+import {
+  queryOptions,
+  useSuspenseQuery,
+  UseSuspenseQueryResult,
+} from "@tanstack/react-query"
 import { getUser } from "./db/auth"
 import { getEvents } from "./db/events"
 import { getTags } from "./db/tags"
@@ -29,4 +33,14 @@ export const authQueries = {
       queryKey: [...authQueries.all, "user"],
       queryFn: () => getUser(),
     }),
+}
+
+export const useAuthenticatedUser = () => {
+  const authQuery = useSuspenseQuery(authQueries.user())
+
+  if (authQuery.data.isAuthenticated === false) {
+    throw new Error("User is not authenticated!")
+  }
+
+  return authQuery as UseSuspenseQueryResult<typeof authQuery.data>
 }

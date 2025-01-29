@@ -8,6 +8,7 @@ export const SignUpForm = () => {
     e.preventDefault()
 
     const formData = new FormData(e.currentTarget)
+    const username = formData.get("username") as string
     const email = formData.get("email") as string
     const password = formData.get("password") as string
     const confirmPassword = formData.get("confirm-password") as string
@@ -15,6 +16,7 @@ export const SignUpForm = () => {
     try {
       await signUp({
         data: {
+          username,
           email,
           password,
           confirmPassword,
@@ -28,6 +30,10 @@ export const SignUpForm = () => {
 
   return (
     <form className="flex flex-col gap-2 w-full" onSubmit={onSubmit}>
+      <Label htmlFor="username">
+        Username
+        <Input id="username" name="username" />
+      </Label>
       <Label htmlFor="email">
         Email
         <Input id="email" name="email" />

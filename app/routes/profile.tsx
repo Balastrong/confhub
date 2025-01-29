@@ -1,4 +1,5 @@
 import { createFileRoute, redirect } from "@tanstack/react-router"
+import { ProfileCard } from "~/components/profile-card"
 
 export const Route = createFileRoute("/profile")({
   component: RouteComponent,
@@ -10,5 +11,5 @@ export const Route = createFileRoute("/profile")({
 })
 
 function RouteComponent() {
-  return <div>Hello "/profile"!</div>
+  return <ProfileCard />
 }

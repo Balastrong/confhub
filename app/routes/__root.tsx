@@ -4,29 +4,21 @@ import {
   Outlet,
   ScrollRestoration,
 } from "@tanstack/react-router";
-import { createServerFn, Meta, Scripts } from "@tanstack/start";
+import { Meta, Scripts } from "@tanstack/start";
 import * as React from "react";
 import { Header } from "~/components/header";
 // @ts-expect-error
 import css from "~/globals.css?url";
-import { getSupabaseServerClient, User } from "~/lib/supabase";
-
-export const getSupabaseSession = createServerFn().handler<User | undefined>(
-  async () => {
-    const supabase = getSupabaseServerClient();
-
-    const { data } = await supabase.auth.getUser();
-
-    if (data.user?.email) {
-      return { email: data.user.email };
-    }
-  }
-);
+import { authQueries } from "~/queries";
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
-  user?: User;
 }>()({
+  beforeLoad: async ({ context }) => {
+    const authState = await context.queryClient.fetchQuery(authQueries.user());
+
+    return { authState };
+  },
   head: () => ({
     meta: [
       {
@@ -53,11 +45,6 @@ export const Route = createRootRouteWithContext<{
     ],
   }),
   component: RootComponent,
-  beforeLoad: async () => {
-    return {
-      user: await getSupabaseSession(),
-    };
-  },
 });
 
 function RootComponent() {
@@ -69,15 +56,13 @@ function RootComponent() {
 }
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-  const { user } = Route.useRouteContext();
-
   return (
     <html>
       <head>
         <Meta />
       </head>
       <body>
-        <Header user={user} />
+        <Header />
         <hr />
         {children}
         <ScrollRestoration />

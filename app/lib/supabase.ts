@@ -25,4 +25,4 @@ export function getSupabaseServerClient() {
   );
 }
 
-export type User = { email: string };
+export type User = { email?: string };

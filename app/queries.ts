@@ -1,4 +1,5 @@
-import { queryOptions, useMutation } from "@tanstack/react-query";
+import { queryOptions } from "@tanstack/react-query";
+import { getUser } from "./db/auth";
 import { getEvents } from "./db/events";
 import { getTags } from "./db/tags";
 import { Filters } from "./routes";
@@ -18,5 +19,14 @@ export const tagQueries = {
     queryOptions({
       queryKey: [...tagQueries.all, "list"],
       queryFn: () => getTags(),
+    }),
+};
+
+export const authQueries = {
+  all: ["auth"],
+  user: () =>
+    queryOptions({
+      queryKey: [...authQueries.all, "user"],
+      queryFn: () => getUser(),
     }),
 };

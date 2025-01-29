@@ -1,18 +1,21 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 import { Loader2 } from "lucide-react";
 import { signIn } from "~/db/auth";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
+import { authQueries } from "~/queries";
 
 export const SignInForm = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const signInMutation = useMutation({
     mutationFn: signIn,
     onSuccess: () => {
       navigate({ to: "/" });
+      queryClient.invalidateQueries(authQueries.user());
     },
     onError: (error) => {
       console.error(error.message);

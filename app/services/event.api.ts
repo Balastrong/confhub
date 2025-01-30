@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/start"
 import { getSupabaseServerClient } from "~/lib/supabase"
-import { EventFiltersSchema } from "./event.schema"
+import { TablesInsert } from "~/lib/types.gen"
+import { CreateEventSchema, EventFiltersSchema } from "./event.schema"
 
 export const getEvents = createServerFn()
   .validator(EventFiltersSchema)
@@ -42,4 +43,33 @@ export const getEvents = createServerFn()
     return (await eventsWithTags.throwOnError()).data ?? []
   })
 
-export type FullEvent = Awaited<ReturnType<typeof getEvents>>[number]
+export const createEvent = createServerFn()
+  .validator(CreateEventSchema)
+  .handler(async ({ data }) => {
+    const supabase = getSupabaseServerClient()
+
+    const { error, data: eventData } = await supabase
+      .from("events")
+      .insert({
+        name: data.name,
+      })
+      .select("id")
+      .single()
+
+    if (error) {
+      throw new Error(error.message)
+    }
+
+    const { error: tagError } = await supabase
+      .from("event_tag")
+      .insert(
+        data.tags.map(
+          (tag) =>
+            ({ event: eventData.id, tag: tag }) as TablesInsert<"event_tag">,
+        ),
+      )
+
+    if (tagError) {
+      throw new Error(tagError.message)
+    }
+  })

@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { getEvents } from "./event.api"
 
 const EventModeSchema = z.union([
   z.literal("In person"),
@@ -23,3 +24,19 @@ export const EventFiltersSchema = z
   .partial()
 
 export type EventFilters = z.infer<typeof EventFiltersSchema>
+
+export type FullEvent = Awaited<ReturnType<typeof getEvents>>[number]
+
+export const CreateEventSchema = z.object({
+  name: z.string().min(1).max(100),
+  // description: z.string().min(1).max(1000),
+  // url: z.string().url(),
+  // startDate: z.coerce.date(),
+  // endDate: z.coerce.date(),
+  // cfpUrl: z.string().url().nullish(),
+  // eventMode: EventModeSchema,
+  // country: z.string(),
+  tags: z.array(z.number()).min(1),
+})
+
+export type CreateEvent = z.infer<typeof CreateEventSchema>

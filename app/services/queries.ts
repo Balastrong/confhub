@@ -1,12 +1,14 @@
 import {
   queryOptions,
+  useMutation,
+  useQueryClient,
   useSuspenseQuery,
   UseSuspenseQueryResult,
 } from "@tanstack/react-query"
 import { getUser } from "./auth.api"
-import { getEvents } from "./event.api"
-import { getTags } from "./tags.api"
+import { createEvent, getEvents } from "./event.api"
 import { EventFilters } from "./event.schema"
+import { getTags } from "./tags.api"
 
 export const eventQueries = {
   all: ["events"],
@@ -15,6 +17,16 @@ export const eventQueries = {
       queryKey: [...eventQueries.all, "list", filters],
       queryFn: () => getEvents({ data: filters }),
     }),
+}
+
+export const useCreateEventMutation = () => {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: createEvent,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: eventQueries.all })
+    },
+  })
 }
 
 export const tagQueries = {

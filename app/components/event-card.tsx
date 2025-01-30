@@ -1,6 +1,6 @@
 import { getRouteApi } from "@tanstack/react-router"
-import { FullEvent } from "~/services/event.api"
 import { formatDate } from "~/lib/date"
+import { FullEvent } from "~/services/event.schema"
 import { Badge } from "./ui/badge"
 import {
   Card,

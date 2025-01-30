@@ -10,68 +10,82 @@
 
 // Import Routes
 
-import { Route as rootRoute } from "./routes/__root"
-import { Route as SignUpImport } from "./routes/sign-up"
-import { Route as SignInImport } from "./routes/sign-in"
-import { Route as ProfileImport } from "./routes/profile"
-import { Route as IndexImport } from "./routes/index"
+import { Route as rootRoute } from './routes/__root'
+import { Route as SignUpImport } from './routes/sign-up'
+import { Route as SignInImport } from './routes/sign-in'
+import { Route as ProfileImport } from './routes/profile'
+import { Route as IndexImport } from './routes/index'
+import { Route as ReviewSubmitImport } from './routes/review/submit'
 
 // Create/Update Routes
 
 const SignUpRoute = SignUpImport.update({
-  id: "/sign-up",
-  path: "/sign-up",
+  id: '/sign-up',
+  path: '/sign-up',
   getParentRoute: () => rootRoute,
 } as any)
 
 const SignInRoute = SignInImport.update({
-  id: "/sign-in",
-  path: "/sign-in",
+  id: '/sign-in',
+  path: '/sign-in',
   getParentRoute: () => rootRoute,
 } as any)
 
 const ProfileRoute = ProfileImport.update({
-  id: "/profile",
-  path: "/profile",
+  id: '/profile',
+  path: '/profile',
   getParentRoute: () => rootRoute,
 } as any)
 
 const IndexRoute = IndexImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ReviewSubmitRoute = ReviewSubmitImport.update({
+  id: '/review/submit',
+  path: '/review/submit',
   getParentRoute: () => rootRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/": {
-      id: "/"
-      path: "/"
-      fullPath: "/"
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    "/profile": {
-      id: "/profile"
-      path: "/profile"
-      fullPath: "/profile"
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
       preLoaderRoute: typeof ProfileImport
       parentRoute: typeof rootRoute
     }
-    "/sign-in": {
-      id: "/sign-in"
-      path: "/sign-in"
-      fullPath: "/sign-in"
+    '/sign-in': {
+      id: '/sign-in'
+      path: '/sign-in'
+      fullPath: '/sign-in'
       preLoaderRoute: typeof SignInImport
       parentRoute: typeof rootRoute
     }
-    "/sign-up": {
-      id: "/sign-up"
-      path: "/sign-up"
-      fullPath: "/sign-up"
+    '/sign-up': {
+      id: '/sign-up'
+      path: '/sign-up'
+      fullPath: '/sign-up'
       preLoaderRoute: typeof SignUpImport
+      parentRoute: typeof rootRoute
+    }
+    '/review/submit': {
+      id: '/review/submit'
+      path: '/review/submit'
+      fullPath: '/review/submit'
+      preLoaderRoute: typeof ReviewSubmitImport
       parentRoute: typeof rootRoute
     }
   }
@@ -80,33 +94,36 @@ declare module "@tanstack/react-router" {
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute
-  "/profile": typeof ProfileRoute
-  "/sign-in": typeof SignInRoute
-  "/sign-up": typeof SignUpRoute
+  '/': typeof IndexRoute
+  '/profile': typeof ProfileRoute
+  '/sign-in': typeof SignInRoute
+  '/sign-up': typeof SignUpRoute
+  '/review/submit': typeof ReviewSubmitRoute
 }
 
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute
-  "/profile": typeof ProfileRoute
-  "/sign-in": typeof SignInRoute
-  "/sign-up": typeof SignUpRoute
+  '/': typeof IndexRoute
+  '/profile': typeof ProfileRoute
+  '/sign-in': typeof SignInRoute
+  '/sign-up': typeof SignUpRoute
+  '/review/submit': typeof ReviewSubmitRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  "/": typeof IndexRoute
-  "/profile": typeof ProfileRoute
-  "/sign-in": typeof SignInRoute
-  "/sign-up": typeof SignUpRoute
+  '/': typeof IndexRoute
+  '/profile': typeof ProfileRoute
+  '/sign-in': typeof SignInRoute
+  '/sign-up': typeof SignUpRoute
+  '/review/submit': typeof ReviewSubmitRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: "/" | "/profile" | "/sign-in" | "/sign-up"
+  fullPaths: '/' | '/profile' | '/sign-in' | '/sign-up' | '/review/submit'
   fileRoutesByTo: FileRoutesByTo
-  to: "/" | "/profile" | "/sign-in" | "/sign-up"
-  id: "__root__" | "/" | "/profile" | "/sign-in" | "/sign-up"
+  to: '/' | '/profile' | '/sign-in' | '/sign-up' | '/review/submit'
+  id: '__root__' | '/' | '/profile' | '/sign-in' | '/sign-up' | '/review/submit'
   fileRoutesById: FileRoutesById
 }
 
@@ -115,6 +132,7 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   SignInRoute: typeof SignInRoute
   SignUpRoute: typeof SignUpRoute
+  ReviewSubmitRoute: typeof ReviewSubmitRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -122,6 +140,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   SignInRoute: SignInRoute,
   SignUpRoute: SignUpRoute,
+  ReviewSubmitRoute: ReviewSubmitRoute,
 }
 
 export const routeTree = rootRoute
@@ -137,7 +156,8 @@ export const routeTree = rootRoute
         "/",
         "/profile",
         "/sign-in",
-        "/sign-up"
+        "/sign-up",
+        "/review/submit"
       ]
     },
     "/": {
@@ -151,6 +171,9 @@ export const routeTree = rootRoute
     },
     "/sign-up": {
       "filePath": "sign-up.tsx"
+    },
+    "/review/submit": {
+      "filePath": "review/submit.tsx"
     }
   }
 }

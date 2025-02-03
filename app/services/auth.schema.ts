@@ -1,6 +1,4 @@
-import { createServerFn } from "@tanstack/start"
 import { z } from "zod"
-import { getSupabaseServerClient } from "~/lib/supabase"
 
 export const UserMetaSchema = z.object({
   username: z.string().min(3).max(20),
@@ -12,7 +10,7 @@ export type UserMeta = z.infer<typeof UserMetaSchema>
 export const SignUpSchema = z.object({
   username: UserMetaSchema.shape.username,
   email: z.string().email(),
-  password: z.string(),
+  password: z.string().min(6),
   confirmPassword: z.string(),
 })
 

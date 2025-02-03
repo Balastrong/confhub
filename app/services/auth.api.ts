@@ -1,11 +1,10 @@
 import { createServerFn } from "@tanstack/start"
-import { z } from "zod"
 import { getSupabaseServerClient } from "~/lib/supabase"
 import {
-  SignUpSchema,
-  SignInSchema,
-  UserMetaSchema,
   AuthState,
+  SignInSchema,
+  SignUpSchema,
+  UserMetaSchema,
 } from "./auth.schema"
 
 export const signUp = createServerFn()
@@ -30,18 +29,13 @@ export const signUp = createServerFn()
 export const signIn = createServerFn()
   .validator(SignInSchema)
   .handler(async ({ data }) => {
-    const { data: user, error } =
-      await getSupabaseServerClient().auth.signInWithPassword({
-        email: data.email,
-        password: data.password,
-      })
+    const { error } = await getSupabaseServerClient().auth.signInWithPassword({
+      email: data.email,
+      password: data.password,
+    })
 
     if (error) {
-      throw new Error(error.message)
-    }
-
-    if (user.user) {
-      return user.user.id
+      return { error: error.message }
     }
   })
 

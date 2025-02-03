@@ -7,6 +7,7 @@ import {
 import { Meta, Scripts } from "@tanstack/start"
 import * as React from "react"
 import { Header } from "~/components/header"
+import { Toaster } from "~/components/ui/sonner"
 // @ts-expect-error
 import css from "~/globals.css?url"
 import { authQueries } from "~/services/queries"
@@ -67,6 +68,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         {children}
         <ScrollRestoration />
         <Scripts />
+        <Toaster />
       </body>
     </html>
   )

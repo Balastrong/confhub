@@ -2,8 +2,16 @@ import { signUp } from "~/services/auth.api"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
+import { useMutation } from "@tanstack/react-query"
 
 export const SignUpForm = () => {
+  const signUpMutation = useMutation({
+    mutationFn: signUp,
+    onSuccess: () => {
+      // TODO Login?
+    },
+  })
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
@@ -13,19 +21,14 @@ export const SignUpForm = () => {
     const password = formData.get("password") as string
     const confirmPassword = formData.get("confirm-password") as string
 
-    try {
-      await signUp({
-        data: {
-          username,
-          email,
-          password,
-          confirmPassword,
-        },
-      })
-    } catch (error) {
-      // TODO Handle error
-      console.log("Error", error)
-    }
+    signUpMutation.mutate({
+      data: {
+        username,
+        email,
+        password,
+        confirmPassword,
+      },
+    })
   }
 
   return (

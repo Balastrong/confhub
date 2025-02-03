@@ -1,16 +1,14 @@
-import { QueryClient, notifyManager } from "@tanstack/react-query"
+import { MutationCache, QueryClient } from "@tanstack/react-query"
 import {
   createRouter as createTanStackRouter,
   ErrorComponent,
 } from "@tanstack/react-router"
 import { routerWithQueryClient } from "@tanstack/react-router-with-query"
+import { toast } from "sonner"
+import { ZodError } from "zod"
 import { routeTree } from "./routeTree.gen"
 
 export function createRouter() {
-  if (typeof document !== "undefined") {
-    notifyManager.setScheduler(window.requestAnimationFrame)
-  }
-
   const queryClient: QueryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -19,6 +17,15 @@ export function createRouter() {
         refetchOnWindowFocus: false,
       },
     },
+    mutationCache: new MutationCache({
+      onError: (error: unknown) => {
+        if (error instanceof Error) {
+          toast.error(error.message)
+        } else if (typeof error === "string") {
+          toast.error(error)
+        }
+      },
+    }),
   })
 
   const router = routerWithQueryClient(

@@ -6,6 +6,7 @@ import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { authQueries } from "~/services/queries"
+import { toast } from "sonner"
 
 export const SignInForm = () => {
   const navigate = useNavigate()
@@ -13,12 +14,14 @@ export const SignInForm = () => {
 
   const signInMutation = useMutation({
     mutationFn: signIn,
-    onSuccess: () => {
+    onSuccess: (response) => {
+      if (response?.error) {
+        toast.error(response.error)
+        return
+      }
+
       navigate({ to: "/" })
       queryClient.invalidateQueries(authQueries.user())
-    },
-    onError: (error) => {
-      console.error(error.message)
     },
   })
 

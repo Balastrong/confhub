@@ -16,9 +16,11 @@ export const Header = () => {
         <Link to="/">ConfHub</Link>
       </div>
       <div className="flex gap-4 items-center">
-        <ButtonLink size={"sm"} variant={"outline"} to={"/review/submit"}>
-          Submit
-        </ButtonLink>
+        {authState.isAuthenticated && (
+          <ButtonLink size={"sm"} variant={"outline"} to={"/review/submit"}>
+            Submit
+          </ButtonLink>
+        )}
         <a
           href="https://github.com/Balastrong/ConfHub"
           target="_blank"

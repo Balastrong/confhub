@@ -29,13 +29,15 @@ export type FullEvent = Awaited<ReturnType<typeof getEvents>>[number]
 
 export const CreateEventSchema = z.object({
   name: z.string().min(1).max(100),
-  // description: z.string().min(1).max(1000),
-  // url: z.string().url(),
-  // startDate: z.coerce.date(),
-  // endDate: z.coerce.date(),
-  // cfpUrl: z.string().url().nullish(),
-  // eventMode: EventModeSchema,
-  // country: z.string(),
+  description: z.string().min(1).max(1000),
+  eventUrl: z.string().url().nullish(),
+  date: z.string().date(),
+  dateEnd: z.string().date().nullish(),
+  cfpUrl: z.string().url().nullish(),
+  eventMode: EventModeSchema,
+  country: z.string().min(1),
+  city: z.string().nullish(),
+  cfpClosingDate: z.string().date().nullish(),
   tags: z.array(z.number()).min(1),
 })
 

@@ -10,17 +10,25 @@ import {
 export const signUp = createServerFn()
   .validator(SignUpSchema)
   .handler(async ({ data }) => {
-    const { data: user, error } = await getSupabaseServerClient().auth.signUp({
-      email: data.email,
-      password: data.password,
-    })
+    const { data: userData, error } =
+      await getSupabaseServerClient().auth.signUp({
+        email: data.email,
+        password: data.password,
+      })
 
     if (error) {
-      throw new Error(error.message)
+      switch (error.code) {
+        case "email_exists":
+          throw new Error("Email already exists")
+        case "weak_password":
+          throw new Error("Your password is too weak")
+        default:
+          throw new Error(error.message)
+      }
     }
 
-    if (user.user) {
-      return user.user.id
+    if (userData.user) {
+      return userData.user.id
     }
 
     throw new Error("Something went wrong")

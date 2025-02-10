@@ -1,16 +1,24 @@
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useRouter } from "@tanstack/react-router"
+import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import { signUp } from "~/services/auth.api"
+import { authQueries } from "~/services/queries"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 
 export const SignUpForm = () => {
+  const queryClient = useQueryClient()
+  const router = useRouter()
+
   const signUpMutation = useMutation({
     mutationFn: signUp,
     onSuccess: () => {
-      // TODO Login?
       toast.success("You have successfully signed up.")
+
+      queryClient.invalidateQueries(authQueries.user())
+      router.invalidate()
     },
   })
 
@@ -37,7 +45,7 @@ export const SignUpForm = () => {
     <form className="flex flex-col gap-2 w-full" onSubmit={onSubmit}>
       <Label htmlFor="username">
         Username
-        <Input id="username" name="username" />
+        <Input id="username" name="username" autoComplete="off" />
       </Label>
       <Label htmlFor="email">
         Email
@@ -51,7 +59,12 @@ export const SignUpForm = () => {
         Confirm Password
         <Input id="confirm-password" name="confirm-password" type="password" />
       </Label>
-      <Button>Sign Up</Button>
+      <Button disabled={signUpMutation.isPending}>
+        Sign Up
+        {signUpMutation.isPending && (
+          <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+        )}
+      </Button>
     </form>
   )
 }

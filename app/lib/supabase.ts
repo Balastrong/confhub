@@ -2,7 +2,6 @@ import { createServerClient } from "@supabase/ssr"
 import { parseCookies, setCookie } from "vinxi/http"
 import { Database } from "~/lib/types.gen"
 
-// TODO: Doublecheck if this is in the client bundle
 export function getSupabaseServerClient() {
   return createServerClient<Database>(
     import.meta.env.VITE_SUPABASE_URL,

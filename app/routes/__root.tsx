@@ -66,7 +66,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <Header />
         <hr />
         {children}
-        <ScrollRestoration />
         <Scripts />
         <Toaster />
       </body>

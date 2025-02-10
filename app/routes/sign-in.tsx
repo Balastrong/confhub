@@ -16,7 +16,10 @@ function RouteComponent() {
     <Layout className="items-center gap-2 max-w-md">
       <SignInForm />
       <small>
-        <Link to="/sign-up">Do you want to create an account instead?</Link>
+        <Link to="/sign-up" className="group">
+          Do you want to create an account instead?{" "}
+          <span className="underline group-hover:no-underline">Sign Up</span>
+        </Link>
       </small>
     </Layout>
   )

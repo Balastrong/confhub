@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useNavigate } from "@tanstack/react-router"
 import { Loader2 } from "lucide-react"
+import { toast } from "sonner"
 import { signIn } from "~/services/auth.api"
+import { authQueries } from "~/services/queries"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
-import { authQueries } from "~/services/queries"
-import { toast } from "sonner"
 
 export const SignInForm = () => {
   const navigate = useNavigate()
@@ -51,6 +51,7 @@ export const SignInForm = () => {
           id="password"
           name="password"
           defaultValue={import.meta.env.VITE_DEFAULT_USER_PASSWORD}
+          type="password"
         />
       </Label>
       <Button disabled={signInMutation.isPending}>

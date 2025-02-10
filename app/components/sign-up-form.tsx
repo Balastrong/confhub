@@ -1,14 +1,16 @@
+import { useMutation } from "@tanstack/react-query"
+import { toast } from "sonner"
 import { signUp } from "~/services/auth.api"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
-import { useMutation } from "@tanstack/react-query"
 
 export const SignUpForm = () => {
   const signUpMutation = useMutation({
     mutationFn: signUp,
     onSuccess: () => {
       // TODO Login?
+      toast.success("You have successfully signed up.")
     },
   })
 
@@ -43,11 +45,11 @@ export const SignUpForm = () => {
       </Label>
       <Label htmlFor="password">
         Password
-        <Input id="password" name="password" />
+        <Input id="password" name="password" type="password" />
       </Label>
       <Label htmlFor="confirm-password">
         Confirm Password
-        <Input id="confirm-password" name="confirm-password" />
+        <Input id="confirm-password" name="confirm-password" type="password" />
       </Label>
       <Button>Sign Up</Button>
     </form>

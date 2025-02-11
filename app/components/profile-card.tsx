@@ -40,7 +40,7 @@ export function ProfileCard() {
 
   return (
     <form onSubmit={onSubmit}>
-      <Card className="w-full max-w-md mx-auto">
+      <Card className="w-full max-w-md mx-auto mt-6">
         <CardHeader className="flex flex-row items-center gap-4">
           <Avatar className="h-16 w-16">
             <AvatarImage src="/placeholder.svg" alt="User avatar" />

@@ -1,9 +1,5 @@
 import { QueryClient } from "@tanstack/react-query"
-import {
-  createRootRouteWithContext,
-  Outlet,
-  ScrollRestoration,
-} from "@tanstack/react-router"
+import { createRootRouteWithContext, Outlet } from "@tanstack/react-router"
 import { Meta, Scripts } from "@tanstack/start"
 import * as React from "react"
 import { Header } from "~/components/header"
@@ -16,7 +12,9 @@ export const Route = createRootRouteWithContext<{
   queryClient: QueryClient
 }>()({
   beforeLoad: async ({ context }) => {
-    const authState = await context.queryClient.fetchQuery(authQueries.user())
+    const authState = await context.queryClient.ensureQueryData(
+      authQueries.user(),
+    )
 
     return { authState }
   },

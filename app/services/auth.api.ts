@@ -51,6 +51,24 @@ export const signOut = createServerFn().handler(async () => {
   await getSupabaseServerClient().auth.signOut()
 })
 
+export const getUser = createServerFn().handler<AuthState>(async () => {
+  const supabase = getSupabaseServerClient()
+
+  const { data } = await supabase.auth.getUser()
+
+  if (!data.user) {
+    return { isAuthenticated: false }
+  }
+
+  return {
+    isAuthenticated: true,
+    user: {
+      email: data.user.email,
+      meta: { username: data.user.user_metadata.username },
+    },
+  }
+})
+
 export const updateUser = createServerFn()
   .validator(UserMetaSchema)
   .handler(async ({ data }) => {
@@ -64,21 +82,3 @@ export const updateUser = createServerFn()
       throw new Error(error.message)
     }
   })
-
-export const getUser = createServerFn().handler<AuthState>(async () => {
-  const supabase = getSupabaseServerClient()
-
-  const { data } = await supabase.auth.getUser()
-
-  if (data.user) {
-    return {
-      isAuthenticated: true,
-      user: {
-        email: data.user.email,
-        meta: { username: data.user.user_metadata.username },
-      },
-    }
-  }
-
-  return { isAuthenticated: false }
-})

@@ -28,7 +28,7 @@ export function UserMenu() {
 
   const handleLogout = async () => {
     await signOut()
-    queryClient.invalidateQueries(authQueries.user())
+    await queryClient.invalidateQueries(authQueries.user())
     router.invalidate()
   }
 

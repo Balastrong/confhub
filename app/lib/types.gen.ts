@@ -87,13 +87,14 @@ export type Database = {
       events: {
         Row: {
           cfpClosingDate: string | null
+          cfpUrl: string | null
           city: string | null
           communityDraft: boolean | null
           communityId: number | null
           country: string | null
-          cpfUrl: string | null
           date: string | null
           dateEnd: string | null
+          description: string | null
           eventUrl: string | null
           id: number
           mode: Database["public"]["Enums"]["eventMode"] | null
@@ -101,13 +102,14 @@ export type Database = {
         }
         Insert: {
           cfpClosingDate?: string | null
+          cfpUrl?: string | null
           city?: string | null
           communityDraft?: boolean | null
           communityId?: number | null
           country?: string | null
-          cpfUrl?: string | null
           date?: string | null
           dateEnd?: string | null
+          description?: string | null
           eventUrl?: string | null
           id?: number
           mode?: Database["public"]["Enums"]["eventMode"] | null
@@ -115,13 +117,14 @@ export type Database = {
         }
         Update: {
           cfpClosingDate?: string | null
+          cfpUrl?: string | null
           city?: string | null
           communityDraft?: boolean | null
           communityId?: number | null
           country?: string | null
-          cpfUrl?: string | null
           date?: string | null
           dateEnd?: string | null
+          description?: string | null
           eventUrl?: string | null
           id?: number
           mode?: Database["public"]["Enums"]["eventMode"] | null

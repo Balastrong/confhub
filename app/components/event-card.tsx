@@ -49,10 +49,10 @@ export const EventCard = ({ event }: Props) => {
         <p>
           {event.city && event.country && `${event.city}, ${event.country}`}
         </p>
-        {event.cpfUrl && (
+        {event.cfpUrl && (
           <p>
             <a
-              href={event.cpfUrl}
+              href={event.cfpUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-500 hover:underline"

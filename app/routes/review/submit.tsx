@@ -4,11 +4,6 @@ import { SubmitForm } from "~/components/submit-form"
 
 export const Route = createFileRoute("/review/submit")({
   component: RouteComponent,
-  beforeLoad: ({ context }) => {
-    if (!context.authState.isAuthenticated) {
-      throw redirect({ to: "/" })
-    }
-  },
 })
 
 function RouteComponent() {

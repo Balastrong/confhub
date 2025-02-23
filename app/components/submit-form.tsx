@@ -1,20 +1,37 @@
 import { useForm } from "@tanstack/react-form"
-import { useSuspenseQuery } from "@tanstack/react-query"
+import { useQueries, useQuery, useSuspenseQuery } from "@tanstack/react-query"
 import {
   CreateEvent,
   CreateEventSchema,
   EventModes,
 } from "~/services/event.schema"
-import { tagQueries, useCreateEventMutation } from "~/services/queries"
+import {
+  communityQueries,
+  tagQueries,
+  useAuthenticatedUser,
+  useCreateEventMutation,
+} from "~/services/queries"
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { formatDate } from "~/lib/date"
+import { Checkbox } from "./ui/checkbox"
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "./ui/select"
+import { SignedIn } from "./auth/SignedIn"
 
 export const SubmitForm = () => {
   const createEventMutation = useCreateEventMutation()
   const { data: tags } = useSuspenseQuery(tagQueries.list())
+  const { data: communities } = useQuery(
+    communityQueries.list({ ownCommunitiesOnly: true }),
+  )
 
   const form = useForm({
     defaultValues: {
@@ -23,11 +40,12 @@ export const SubmitForm = () => {
       date: formatDate(new Date()),
       dateEnd: null,
       cfpUrl: null,
-      eventMode: "In person",
+      mode: "In person",
       country: "",
       city: null,
       cfpClosingDate: null,
       eventUrl: null,
+      communityId: null,
       tags: [],
     } as CreateEvent,
     validators: {
@@ -84,7 +102,7 @@ export const SubmitForm = () => {
         }}
       />
       <form.Field
-        name="eventMode"
+        name="mode"
         children={(field) => {
           return (
             <div>
@@ -106,38 +124,6 @@ export const SubmitForm = () => {
                 })}
               </div>
             </div>
-          )
-        }}
-      />
-      <form.Field
-        name="eventUrl"
-        children={(field) => {
-          return (
-            <Label htmlFor={field.name}>
-              Event URL
-              <Input
-                name={field.name}
-                id={field.name}
-                value={field.state.value ?? ""}
-                onChange={(e) => field.handleChange(e.target.value)}
-              />
-            </Label>
-          )
-        }}
-      />
-      <form.Field
-        name="cfpUrl"
-        children={(field) => {
-          return (
-            <Label htmlFor={field.name}>
-              CFP URL
-              <Input
-                name={field.name}
-                id={field.name}
-                value={field.state.value ?? ""}
-                onChange={(e) => field.handleChange(e.target.value)}
-              />
-            </Label>
           )
         }}
       />
@@ -177,6 +163,152 @@ export const SubmitForm = () => {
           }}
         />
       </div>
+      <SignedIn>
+        <form.Subscribe
+          selector={(state) => [state.values.mode]}
+          children={([eventMode]) => {
+            if (eventMode === "Remote") {
+              return null
+            }
+            return (
+              <div className="flex gap-2">
+                <form.Field
+                  name="country"
+                  children={(field) => {
+                    return (
+                      <Label htmlFor={field.name} className="flex-1">
+                        Country
+                        <Input
+                          name={field.name}
+                          id={field.name}
+                          value={field.state.value ?? ""}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                        />
+                      </Label>
+                    )
+                  }}
+                />
+                <form.Field
+                  name="city"
+                  children={(field) => {
+                    return (
+                      <Label htmlFor={field.name} className="flex-1">
+                        City
+                        <Input
+                          name={field.name}
+                          id={field.name}
+                          value={field.state.value ?? ""}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                        />
+                      </Label>
+                    )
+                  }}
+                />
+              </div>
+            )
+          }}
+        />
+        <form.Field
+          name="communityId"
+          children={(field) => {
+            return (
+              <Label htmlFor={field.name}>
+                Community
+                <Select
+                  value={field.state.value?.toString() ?? ""}
+                  onValueChange={(value) => {
+                    const communityId = parseInt(value)
+                    field.handleChange(isNaN(communityId) ? null : communityId)
+                  }}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a community" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value={undefined!}>None</SelectItem>
+                    {(communities ?? []).map((community) => (
+                      <SelectItem
+                        key={community.id}
+                        value={community.id.toString()}
+                      >
+                        {community.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </Label>
+            )
+          }}
+        />
+        <form.Subscribe
+          selector={(state) => [
+            state.values.communityId,
+            state.values.communityDraft,
+          ]}
+          children={([communityId]) => {
+            if (!communityId && form.state.values.communityDraft) {
+              form.setFieldValue("communityDraft", false)
+            }
+            return (
+              <form.Field
+                name="communityDraft"
+                children={(field) => {
+                  return (
+                    <div className="flex items-center gap-1">
+                      <Checkbox
+                        disabled={!communityId}
+                        name={field.name}
+                        id={field.name}
+                        checked={field.state.value ?? false}
+                        onCheckedChange={(checked) =>
+                          field.handleChange(
+                            checked === "indeterminate" ? null : checked,
+                          )
+                        }
+                      />
+                      <Label htmlFor={field.name} className="cursor-pointer">
+                        Mark as Draft (internal)
+                      </Label>
+                    </div>
+                  )
+                }}
+              />
+            )
+          }}
+        />
+      </SignedIn>
+      <form.Field
+        name="eventUrl"
+        children={(field) => {
+          return (
+            <Label htmlFor={field.name}>
+              Event URL
+              <Input
+                name={field.name}
+                id={field.name}
+                value={field.state.value ?? ""}
+                onChange={(e) => field.handleChange(e.target.value)}
+              />
+            </Label>
+          )
+        }}
+      />
+      <form.Field
+        name="cfpUrl"
+        children={(field) => {
+          return (
+            <Label htmlFor={field.name}>
+              CFP URL
+              <Input
+                name={field.name}
+                id={field.name}
+                value={field.state.value ?? ""}
+                onChange={(e) => field.handleChange(e.target.value)}
+              />
+            </Label>
+          )
+        }}
+      />
       <form.Field
         name="cfpClosingDate"
         children={(field) => {
@@ -194,41 +326,6 @@ export const SubmitForm = () => {
           )
         }}
       />
-      <div className="flex gap-2">
-        <form.Field
-          name="country"
-          children={(field) => {
-            return (
-              <Label htmlFor={field.name} className="flex-1">
-                Country*
-                <Input
-                  name={field.name}
-                  id={field.name}
-                  value={field.state.value}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                />
-              </Label>
-            )
-          }}
-        />
-        <form.Field
-          name="city"
-          children={(field) => {
-            return (
-              <Label htmlFor={field.name} className="flex-1">
-                City
-                <Input
-                  name={field.name}
-                  id={field.name}
-                  value={field.state.value ?? ""}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                />
-              </Label>
-            )
-          }}
-        />
-      </div>
-
       <form.Field
         name="tags"
         children={(field) => {

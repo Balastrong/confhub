@@ -9,6 +9,8 @@ import { getUser } from "./auth.api"
 import { createEvent, getEvents } from "./event.api"
 import { EventFilters } from "./event.schema"
 import { getTags } from "./tags.api"
+import { getCommunities, getCommunity } from "./community.api"
+import { CommunityFilters } from "./community.schema"
 
 export const eventQueries = {
   all: ["events"],
@@ -47,8 +49,26 @@ export const authQueries = {
     }),
 }
 
+export const communityQueries = {
+  all: ["communities"],
+  list: (filters?: CommunityFilters) =>
+    queryOptions({
+      queryKey: [...communityQueries.all, "list", filters],
+      queryFn: () => getCommunities({ data: filters || {} }),
+    }),
+  detail: (communityId: number) =>
+    queryOptions({
+      queryKey: [...communityQueries.all, "detail", communityId],
+      queryFn: () => getCommunity({ data: { id: communityId } }),
+    }),
+}
+
+export const useAuthentication = () => {
+  return useSuspenseQuery(authQueries.user())
+}
+
 export const useAuthenticatedUser = () => {
-  const authQuery = useSuspenseQuery(authQueries.user())
+  const authQuery = useAuthentication()
 
   if (authQuery.data.isAuthenticated === false) {
     throw new Error("User is not authenticated!")

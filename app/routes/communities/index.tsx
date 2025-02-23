@@ -1,9 +1,9 @@
-import { Suspense } from "react"
-import { createFileRoute } from "@tanstack/react-router"
-import { Layout } from "~/components/layout"
-import { CommunityList } from "~/components/community-list"
+import { Suspense } from 'react'
+import { createFileRoute } from '@tanstack/react-router'
+import { Layout } from '~/components/layout'
+import { CommunityList } from '~/components/community-list'
 
-export const Route = createFileRoute("/community/")({
+export const Route = createFileRoute('/communities/')({
   component: RouteComponent,
 })
 

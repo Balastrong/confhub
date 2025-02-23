@@ -5,13 +5,12 @@ import {
 } from "@tanstack/react-router"
 import React from "react"
 import { ErrorBoundary } from "react-error-boundary"
-import { z } from "zod"
 import { EventCardSkeleton } from "~/components/event-card-skeleton"
 import { EventsList } from "~/components/events-list"
 import { EventFiltersBar } from "~/components/filters/event-filters-bar"
 import { Layout } from "~/components/layout"
+import { EventFilters, EventFiltersSchema } from "~/services/event.schema"
 import { tagQueries } from "~/services/queries"
-import { EventFiltersSchema, EventFilters } from "~/services/event.schema"
 
 export const Route = createFileRoute("/")({
   beforeLoad: ({ context }) => {

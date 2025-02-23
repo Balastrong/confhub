@@ -15,11 +15,12 @@ import { Route as SignUpImport } from './routes/sign-up'
 import { Route as SignInImport } from './routes/sign-in'
 import { Route as ProfileImport } from './routes/profile'
 import { Route as IndexImport } from './routes/index'
-import { Route as CommunityIndexImport } from './routes/community/index'
+import { Route as CommunitiesIndexImport } from './routes/communities/index'
 import { Route as ReviewSubmitImport } from './routes/review/submit'
-import { Route as CommunityCommunityIdImport } from './routes/community/$communityId'
-import { Route as CommunityManagementCreateImport } from './routes/community/management/create'
-import { Route as CommunityManagementCommunityIdImport } from './routes/community/management/$communityId'
+import { Route as CommunitiesCommunityIdImport } from './routes/communities/$communityId'
+import { Route as CommunitiesManagementIndexImport } from './routes/communities/management/index'
+import { Route as CommunitiesManagementCreateImport } from './routes/communities/management/create'
+import { Route as CommunitiesManagementCommunityIdImport } from './routes/communities/management/$communityId'
 
 // Create/Update Routes
 
@@ -47,9 +48,9 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const CommunityIndexRoute = CommunityIndexImport.update({
-  id: '/community/',
-  path: '/community/',
+const CommunitiesIndexRoute = CommunitiesIndexImport.update({
+  id: '/communities/',
+  path: '/communities/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -59,22 +60,31 @@ const ReviewSubmitRoute = ReviewSubmitImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const CommunityCommunityIdRoute = CommunityCommunityIdImport.update({
-  id: '/community/$communityId',
-  path: '/community/$communityId',
+const CommunitiesCommunityIdRoute = CommunitiesCommunityIdImport.update({
+  id: '/communities/$communityId',
+  path: '/communities/$communityId',
   getParentRoute: () => rootRoute,
 } as any)
 
-const CommunityManagementCreateRoute = CommunityManagementCreateImport.update({
-  id: '/community/management/create',
-  path: '/community/management/create',
-  getParentRoute: () => rootRoute,
-} as any)
+const CommunitiesManagementIndexRoute = CommunitiesManagementIndexImport.update(
+  {
+    id: '/communities/management/',
+    path: '/communities/management/',
+    getParentRoute: () => rootRoute,
+  } as any,
+)
 
-const CommunityManagementCommunityIdRoute =
-  CommunityManagementCommunityIdImport.update({
-    id: '/community/management/$communityId',
-    path: '/community/management/$communityId',
+const CommunitiesManagementCreateRoute =
+  CommunitiesManagementCreateImport.update({
+    id: '/communities/management/create',
+    path: '/communities/management/create',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const CommunitiesManagementCommunityIdRoute =
+  CommunitiesManagementCommunityIdImport.update({
+    id: '/communities/management/$communityId',
+    path: '/communities/management/$communityId',
     getParentRoute: () => rootRoute,
   } as any)
 
@@ -110,11 +120,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignUpImport
       parentRoute: typeof rootRoute
     }
-    '/community/$communityId': {
-      id: '/community/$communityId'
-      path: '/community/$communityId'
-      fullPath: '/community/$communityId'
-      preLoaderRoute: typeof CommunityCommunityIdImport
+    '/communities/$communityId': {
+      id: '/communities/$communityId'
+      path: '/communities/$communityId'
+      fullPath: '/communities/$communityId'
+      preLoaderRoute: typeof CommunitiesCommunityIdImport
       parentRoute: typeof rootRoute
     }
     '/review/submit': {
@@ -124,25 +134,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReviewSubmitImport
       parentRoute: typeof rootRoute
     }
-    '/community/': {
-      id: '/community/'
-      path: '/community'
-      fullPath: '/community'
-      preLoaderRoute: typeof CommunityIndexImport
+    '/communities/': {
+      id: '/communities/'
+      path: '/communities'
+      fullPath: '/communities'
+      preLoaderRoute: typeof CommunitiesIndexImport
       parentRoute: typeof rootRoute
     }
-    '/community/management/$communityId': {
-      id: '/community/management/$communityId'
-      path: '/community/management/$communityId'
-      fullPath: '/community/management/$communityId'
-      preLoaderRoute: typeof CommunityManagementCommunityIdImport
+    '/communities/management/$communityId': {
+      id: '/communities/management/$communityId'
+      path: '/communities/management/$communityId'
+      fullPath: '/communities/management/$communityId'
+      preLoaderRoute: typeof CommunitiesManagementCommunityIdImport
       parentRoute: typeof rootRoute
     }
-    '/community/management/create': {
-      id: '/community/management/create'
-      path: '/community/management/create'
-      fullPath: '/community/management/create'
-      preLoaderRoute: typeof CommunityManagementCreateImport
+    '/communities/management/create': {
+      id: '/communities/management/create'
+      path: '/communities/management/create'
+      fullPath: '/communities/management/create'
+      preLoaderRoute: typeof CommunitiesManagementCreateImport
+      parentRoute: typeof rootRoute
+    }
+    '/communities/management/': {
+      id: '/communities/management/'
+      path: '/communities/management'
+      fullPath: '/communities/management'
+      preLoaderRoute: typeof CommunitiesManagementIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -155,11 +172,12 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
-  '/community/$communityId': typeof CommunityCommunityIdRoute
+  '/communities/$communityId': typeof CommunitiesCommunityIdRoute
   '/review/submit': typeof ReviewSubmitRoute
-  '/community': typeof CommunityIndexRoute
-  '/community/management/$communityId': typeof CommunityManagementCommunityIdRoute
-  '/community/management/create': typeof CommunityManagementCreateRoute
+  '/communities': typeof CommunitiesIndexRoute
+  '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
+  '/communities/management/create': typeof CommunitiesManagementCreateRoute
+  '/communities/management': typeof CommunitiesManagementIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -167,11 +185,12 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
-  '/community/$communityId': typeof CommunityCommunityIdRoute
+  '/communities/$communityId': typeof CommunitiesCommunityIdRoute
   '/review/submit': typeof ReviewSubmitRoute
-  '/community': typeof CommunityIndexRoute
-  '/community/management/$communityId': typeof CommunityManagementCommunityIdRoute
-  '/community/management/create': typeof CommunityManagementCreateRoute
+  '/communities': typeof CommunitiesIndexRoute
+  '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
+  '/communities/management/create': typeof CommunitiesManagementCreateRoute
+  '/communities/management': typeof CommunitiesManagementIndexRoute
 }
 
 export interface FileRoutesById {
@@ -180,11 +199,12 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
-  '/community/$communityId': typeof CommunityCommunityIdRoute
+  '/communities/$communityId': typeof CommunitiesCommunityIdRoute
   '/review/submit': typeof ReviewSubmitRoute
-  '/community/': typeof CommunityIndexRoute
-  '/community/management/$communityId': typeof CommunityManagementCommunityIdRoute
-  '/community/management/create': typeof CommunityManagementCreateRoute
+  '/communities/': typeof CommunitiesIndexRoute
+  '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
+  '/communities/management/create': typeof CommunitiesManagementCreateRoute
+  '/communities/management/': typeof CommunitiesManagementIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -194,33 +214,36 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
-    | '/community/$communityId'
+    | '/communities/$communityId'
     | '/review/submit'
-    | '/community'
-    | '/community/management/$communityId'
-    | '/community/management/create'
+    | '/communities'
+    | '/communities/management/$communityId'
+    | '/communities/management/create'
+    | '/communities/management'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/profile'
     | '/sign-in'
     | '/sign-up'
-    | '/community/$communityId'
+    | '/communities/$communityId'
     | '/review/submit'
-    | '/community'
-    | '/community/management/$communityId'
-    | '/community/management/create'
+    | '/communities'
+    | '/communities/management/$communityId'
+    | '/communities/management/create'
+    | '/communities/management'
   id:
     | '__root__'
     | '/'
     | '/profile'
     | '/sign-in'
     | '/sign-up'
-    | '/community/$communityId'
+    | '/communities/$communityId'
     | '/review/submit'
-    | '/community/'
-    | '/community/management/$communityId'
-    | '/community/management/create'
+    | '/communities/'
+    | '/communities/management/$communityId'
+    | '/communities/management/create'
+    | '/communities/management/'
   fileRoutesById: FileRoutesById
 }
 
@@ -229,11 +252,12 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   SignInRoute: typeof SignInRoute
   SignUpRoute: typeof SignUpRoute
-  CommunityCommunityIdRoute: typeof CommunityCommunityIdRoute
+  CommunitiesCommunityIdRoute: typeof CommunitiesCommunityIdRoute
   ReviewSubmitRoute: typeof ReviewSubmitRoute
-  CommunityIndexRoute: typeof CommunityIndexRoute
-  CommunityManagementCommunityIdRoute: typeof CommunityManagementCommunityIdRoute
-  CommunityManagementCreateRoute: typeof CommunityManagementCreateRoute
+  CommunitiesIndexRoute: typeof CommunitiesIndexRoute
+  CommunitiesManagementCommunityIdRoute: typeof CommunitiesManagementCommunityIdRoute
+  CommunitiesManagementCreateRoute: typeof CommunitiesManagementCreateRoute
+  CommunitiesManagementIndexRoute: typeof CommunitiesManagementIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -241,11 +265,12 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   SignInRoute: SignInRoute,
   SignUpRoute: SignUpRoute,
-  CommunityCommunityIdRoute: CommunityCommunityIdRoute,
+  CommunitiesCommunityIdRoute: CommunitiesCommunityIdRoute,
   ReviewSubmitRoute: ReviewSubmitRoute,
-  CommunityIndexRoute: CommunityIndexRoute,
-  CommunityManagementCommunityIdRoute: CommunityManagementCommunityIdRoute,
-  CommunityManagementCreateRoute: CommunityManagementCreateRoute,
+  CommunitiesIndexRoute: CommunitiesIndexRoute,
+  CommunitiesManagementCommunityIdRoute: CommunitiesManagementCommunityIdRoute,
+  CommunitiesManagementCreateRoute: CommunitiesManagementCreateRoute,
+  CommunitiesManagementIndexRoute: CommunitiesManagementIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -262,11 +287,12 @@ export const routeTree = rootRoute
         "/profile",
         "/sign-in",
         "/sign-up",
-        "/community/$communityId",
+        "/communities/$communityId",
         "/review/submit",
-        "/community/",
-        "/community/management/$communityId",
-        "/community/management/create"
+        "/communities/",
+        "/communities/management/$communityId",
+        "/communities/management/create",
+        "/communities/management/"
       ]
     },
     "/": {
@@ -281,20 +307,23 @@ export const routeTree = rootRoute
     "/sign-up": {
       "filePath": "sign-up.tsx"
     },
-    "/community/$communityId": {
-      "filePath": "community/$communityId.tsx"
+    "/communities/$communityId": {
+      "filePath": "communities/$communityId.tsx"
     },
     "/review/submit": {
       "filePath": "review/submit.tsx"
     },
-    "/community/": {
-      "filePath": "community/index.tsx"
+    "/communities/": {
+      "filePath": "communities/index.tsx"
     },
-    "/community/management/$communityId": {
-      "filePath": "community/management/$communityId.tsx"
+    "/communities/management/$communityId": {
+      "filePath": "communities/management/$communityId.tsx"
     },
-    "/community/management/create": {
-      "filePath": "community/management/create.tsx"
+    "/communities/management/create": {
+      "filePath": "communities/management/create.tsx"
+    },
+    "/communities/management/": {
+      "filePath": "communities/management/index.tsx"
     }
   }
 }

@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router"
 import { SignedIn } from "./auth/SignedIn"
 import { SignedOut } from "./auth/SignedOut"
 import { ButtonLink } from "./button-link"
+import { Navigation } from "./navigation"
 import { UserMenu } from "./user-menu"
 
 export const Header = () => {
@@ -12,21 +13,7 @@ export const Header = () => {
         <div className="text-xl leading-loose mr-2">
           <Link to="/">ConfHub</Link>
         </div>
-        <ButtonLink size={"sm"} variant={"outline"} to={"/review/submit"}>
-          Submit
-        </ButtonLink>
-        <SignedIn>
-          <ButtonLink size={"sm"} variant={"outline"} to={"/community"}>
-            Community
-          </ButtonLink>
-          <ButtonLink
-            size={"sm"}
-            variant={"outline"}
-            to={"/community/management/create"}
-          >
-            Create Community
-          </ButtonLink>
-        </SignedIn>
+        <Navigation />
       </div>
       <div className="flex gap-4 items-center">
         <a

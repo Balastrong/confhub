@@ -59,7 +59,7 @@ export function CommunityList() {
             {community.isMember && (
               <ButtonLink
                 className="mr-2"
-                to={`/community/management/$communityId`}
+                to={`/communities/management/$communityId`}
                 params={{ communityId: community.id.toString() }}
               >
                 Manage

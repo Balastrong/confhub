@@ -4,10 +4,10 @@ import { EditCommunityForm } from "~/components/edit-community-form"
 import { Layout } from "~/components/layout"
 import { communityQueries, eventQueries } from "~/services/queries"
 
-export const Route = createFileRoute("/community/management/$communityId")({
+export const Route = createFileRoute("/communities/management/$communityId")({
   loader: async ({ params, context }) => {
     if (!params.communityId) throw new Error("Community ID is required")
-
+    console.log("MARIO")
     await context.queryClient.ensureQueryData(
       communityQueries.detail(+params.communityId),
     )

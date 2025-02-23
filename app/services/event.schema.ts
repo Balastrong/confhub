@@ -35,7 +35,7 @@ export const CreateEventSchema = z.object({
   dateEnd: z.string().date().nullish(),
   cfpUrl: z.string().url().nullish(),
   eventMode: EventModeSchema,
-  country: z.string().min(1),
+  country: z.string().nullish(),
   city: z.string().nullish(),
   cfpClosingDate: z.string().date().nullish(),
   tags: z.array(z.number()).min(1),

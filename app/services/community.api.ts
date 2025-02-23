@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/start"
 import { getSupabaseServerClient } from "~/lib/supabase"
 import {
+  CommunityFiltersSchema,
   CreateCommunitySchema,
   JoinCommunitySchema,
   UpdateCommunitySchema,
@@ -25,31 +26,39 @@ export const createCommunity = createServerFn()
     return community
   })
 
-export const getCommunities = createServerFn().handler(async () => {
-  const supabase = getSupabaseServerClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+export const getCommunities = createServerFn()
+  .validator(CommunityFiltersSchema)
+  .handler(async ({ data }) => {
+    const supabase = getSupabaseServerClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
 
-  const { data, error } = await supabase
-    .from("communities")
-    .select("*, user_community(userId)")
-    .order("name")
+    let query = supabase.from("communities").select("*, user_community(userId)")
 
-  if (error) {
-    throw new Error(error.message)
-  }
+    if (data.ownCommunitiesOnly && user?.id) {
+      query = supabase
+        .from("communities")
+        .select("*, user_community!inner(userId)")
+        .eq("user_community.userId", user.id)
+    }
 
-  return data.map((community) => {
-    const isMember = community.user_community.some(
-      (userCommunity) => userCommunity.userId === user?.id,
-    )
+    const { data: communities, error } = await query.order("name")
 
-    const { user_community, ...rest } = community
+    if (error) {
+      throw new Error(error.message)
+    }
 
-    return { ...rest, isMember }
+    return communities.map((community) => {
+      const isMember = community.user_community.some(
+        (userCommunity) => userCommunity.userId === user?.id,
+      )
+
+      const { user_community, ...rest } = community
+
+      return { ...rest, isMember }
+    })
   })
-})
 
 export const getCommunity = createServerFn()
   .validator(z.object({ id: z.number() }))

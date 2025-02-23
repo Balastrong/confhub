@@ -109,38 +109,6 @@ export const SubmitForm = () => {
           )
         }}
       />
-      <form.Field
-        name="eventUrl"
-        children={(field) => {
-          return (
-            <Label htmlFor={field.name}>
-              Event URL
-              <Input
-                name={field.name}
-                id={field.name}
-                value={field.state.value ?? ""}
-                onChange={(e) => field.handleChange(e.target.value)}
-              />
-            </Label>
-          )
-        }}
-      />
-      <form.Field
-        name="cfpUrl"
-        children={(field) => {
-          return (
-            <Label htmlFor={field.name}>
-              CFP URL
-              <Input
-                name={field.name}
-                id={field.name}
-                value={field.state.value ?? ""}
-                onChange={(e) => field.handleChange(e.target.value)}
-              />
-            </Label>
-          )
-        }}
-      />
       <div className="flex gap-2">
         <form.Field
           name="date"
@@ -177,6 +145,82 @@ export const SubmitForm = () => {
           }}
         />
       </div>
+      <form.Subscribe
+        selector={(state) => [state.values.eventMode]}
+        children={([eventMode]) => {
+          if (eventMode === "Remote") {
+            return null
+          }
+          return (
+            <div className="flex gap-2">
+              <form.Field
+                name="country"
+                children={(field) => {
+                  return (
+                    <Label htmlFor={field.name} className="flex-1">
+                      Country
+                      <Input
+                        name={field.name}
+                        id={field.name}
+                        value={field.state.value ?? ""}
+                        onChange={(e) => field.handleChange(e.target.value)}
+                      />
+                    </Label>
+                  )
+                }}
+              />
+              <form.Field
+                name="city"
+                children={(field) => {
+                  return (
+                    <Label htmlFor={field.name} className="flex-1">
+                      City
+                      <Input
+                        name={field.name}
+                        id={field.name}
+                        value={field.state.value ?? ""}
+                        onChange={(e) => field.handleChange(e.target.value)}
+                      />
+                    </Label>
+                  )
+                }}
+              />
+            </div>
+          )
+        }}
+      />
+      <form.Field
+        name="eventUrl"
+        children={(field) => {
+          return (
+            <Label htmlFor={field.name}>
+              Event URL
+              <Input
+                name={field.name}
+                id={field.name}
+                value={field.state.value ?? ""}
+                onChange={(e) => field.handleChange(e.target.value)}
+              />
+            </Label>
+          )
+        }}
+      />
+      <form.Field
+        name="cfpUrl"
+        children={(field) => {
+          return (
+            <Label htmlFor={field.name}>
+              CFP URL
+              <Input
+                name={field.name}
+                id={field.name}
+                value={field.state.value ?? ""}
+                onChange={(e) => field.handleChange(e.target.value)}
+              />
+            </Label>
+          )
+        }}
+      />
       <form.Field
         name="cfpClosingDate"
         children={(field) => {
@@ -194,41 +238,6 @@ export const SubmitForm = () => {
           )
         }}
       />
-      <div className="flex gap-2">
-        <form.Field
-          name="country"
-          children={(field) => {
-            return (
-              <Label htmlFor={field.name} className="flex-1">
-                Country*
-                <Input
-                  name={field.name}
-                  id={field.name}
-                  value={field.state.value}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                />
-              </Label>
-            )
-          }}
-        />
-        <form.Field
-          name="city"
-          children={(field) => {
-            return (
-              <Label htmlFor={field.name} className="flex-1">
-                City
-                <Input
-                  name={field.name}
-                  id={field.name}
-                  value={field.state.value ?? ""}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                />
-              </Label>
-            )
-          }}
-        />
-      </div>
-
       <form.Field
         name="tags"
         children={(field) => {

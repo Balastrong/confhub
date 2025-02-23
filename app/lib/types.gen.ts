@@ -88,6 +88,8 @@ export type Database = {
         Row: {
           cfpClosingDate: string | null
           city: string | null
+          communityDraft: boolean | null
+          communityId: number | null
           country: string | null
           cpfUrl: string | null
           date: string | null
@@ -100,6 +102,8 @@ export type Database = {
         Insert: {
           cfpClosingDate?: string | null
           city?: string | null
+          communityDraft?: boolean | null
+          communityId?: number | null
           country?: string | null
           cpfUrl?: string | null
           date?: string | null
@@ -112,6 +116,8 @@ export type Database = {
         Update: {
           cfpClosingDate?: string | null
           city?: string | null
+          communityDraft?: boolean | null
+          communityId?: number | null
           country?: string | null
           cpfUrl?: string | null
           date?: string | null
@@ -121,7 +127,15 @@ export type Database = {
           mode?: Database["public"]["Enums"]["eventMode"] | null
           name?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "events_communityId_fkey"
+            columns: ["communityId"]
+            isOneToOne: false
+            referencedRelation: "communities"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       tags: {
         Row: {

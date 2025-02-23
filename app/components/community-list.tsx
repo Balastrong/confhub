@@ -17,14 +17,14 @@ export function CommunityList() {
   const joinMutation = useMutation({
     mutationFn: joinCommunity,
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["communities"] })
+      await queryClient.invalidateQueries({ queryKey: communityQueries.all })
     },
   })
 
   const leaveMutation = useMutation({
     mutationFn: leaveCommunity,
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["communities"] })
+      await queryClient.invalidateQueries({ queryKey: communityQueries.all })
     },
   })
 
@@ -62,7 +62,7 @@ export function CommunityList() {
                 to={`/community/management/$communityId`}
                 params={{ communityId: community.id.toString() }}
               >
-                Admin
+                Manage
               </ButtonLink>
             )}
             <Button

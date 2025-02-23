@@ -63,8 +63,12 @@ export const communityQueries = {
     }),
 }
 
+export const useAuthentication = () => {
+  return useSuspenseQuery(authQueries.user())
+}
+
 export const useAuthenticatedUser = () => {
-  const authQuery = useSuspenseQuery(authQueries.user())
+  const authQuery = useAuthentication()
 
   if (authQuery.data.isAuthenticated === false) {
     throw new Error("User is not authenticated!")

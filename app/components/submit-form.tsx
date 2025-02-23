@@ -24,6 +24,7 @@ import {
   SelectContent,
   SelectItem,
 } from "./ui/select"
+import { SignedIn } from "./auth/SignedIn"
 
 export const SubmitForm = () => {
   const createEventMutation = useCreateEventMutation()
@@ -162,118 +163,120 @@ export const SubmitForm = () => {
           }}
         />
       </div>
-      <form.Subscribe
-        selector={(state) => [state.values.mode]}
-        children={([eventMode]) => {
-          if (eventMode === "Remote") {
-            return null
-          }
-          return (
-            <div className="flex gap-2">
+      <SignedIn>
+        <form.Subscribe
+          selector={(state) => [state.values.mode]}
+          children={([eventMode]) => {
+            if (eventMode === "Remote") {
+              return null
+            }
+            return (
+              <div className="flex gap-2">
+                <form.Field
+                  name="country"
+                  children={(field) => {
+                    return (
+                      <Label htmlFor={field.name} className="flex-1">
+                        Country
+                        <Input
+                          name={field.name}
+                          id={field.name}
+                          value={field.state.value ?? ""}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                        />
+                      </Label>
+                    )
+                  }}
+                />
+                <form.Field
+                  name="city"
+                  children={(field) => {
+                    return (
+                      <Label htmlFor={field.name} className="flex-1">
+                        City
+                        <Input
+                          name={field.name}
+                          id={field.name}
+                          value={field.state.value ?? ""}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                        />
+                      </Label>
+                    )
+                  }}
+                />
+              </div>
+            )
+          }}
+        />
+        <form.Field
+          name="communityId"
+          children={(field) => {
+            return (
+              <Label htmlFor={field.name}>
+                Community
+                <Select
+                  value={field.state.value?.toString() ?? ""}
+                  onValueChange={(value) => {
+                    const communityId = parseInt(value)
+                    field.handleChange(isNaN(communityId) ? null : communityId)
+                  }}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a community" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value={undefined!}>None</SelectItem>
+                    {(communities ?? []).map((community) => (
+                      <SelectItem
+                        key={community.id}
+                        value={community.id.toString()}
+                      >
+                        {community.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </Label>
+            )
+          }}
+        />
+        <form.Subscribe
+          selector={(state) => [
+            state.values.communityId,
+            state.values.communityDraft,
+          ]}
+          children={([communityId]) => {
+            if (!communityId && form.state.values.communityDraft) {
+              form.setFieldValue("communityDraft", false)
+            }
+            return (
               <form.Field
-                name="country"
+                name="communityDraft"
                 children={(field) => {
                   return (
-                    <Label htmlFor={field.name} className="flex-1">
-                      Country
-                      <Input
+                    <div className="flex items-center gap-1">
+                      <Checkbox
+                        disabled={!communityId}
                         name={field.name}
                         id={field.name}
-                        value={field.state.value ?? ""}
-                        onChange={(e) => field.handleChange(e.target.value)}
+                        checked={field.state.value ?? false}
+                        onCheckedChange={(checked) =>
+                          field.handleChange(
+                            checked === "indeterminate" ? null : checked,
+                          )
+                        }
                       />
-                    </Label>
+                      <Label htmlFor={field.name} className="cursor-pointer">
+                        Mark as Draft (internal)
+                      </Label>
+                    </div>
                   )
                 }}
               />
-              <form.Field
-                name="city"
-                children={(field) => {
-                  return (
-                    <Label htmlFor={field.name} className="flex-1">
-                      City
-                      <Input
-                        name={field.name}
-                        id={field.name}
-                        value={field.state.value ?? ""}
-                        onChange={(e) => field.handleChange(e.target.value)}
-                      />
-                    </Label>
-                  )
-                }}
-              />
-            </div>
-          )
-        }}
-      />
-      <form.Field
-        name="communityId"
-        children={(field) => {
-          return (
-            <Label htmlFor={field.name}>
-              Community
-              <Select
-                value={field.state.value?.toString() ?? ""}
-                onValueChange={(value) => {
-                  const communityId = parseInt(value)
-                  field.handleChange(isNaN(communityId) ? null : communityId)
-                }}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select a community" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value={undefined!}>None</SelectItem>
-                  {(communities ?? []).map((community) => (
-                    <SelectItem
-                      key={community.id}
-                      value={community.id.toString()}
-                    >
-                      {community.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </Label>
-          )
-        }}
-      />
-      <form.Subscribe
-        selector={(state) => [
-          state.values.communityId,
-          state.values.communityDraft,
-        ]}
-        children={([communityId]) => {
-          if (!communityId && form.state.values.communityDraft) {
-            form.setFieldValue("communityDraft", false)
-          }
-          return (
-            <form.Field
-              name="communityDraft"
-              children={(field) => {
-                return (
-                  <div className="flex items-center gap-1">
-                    <Checkbox
-                      disabled={!communityId}
-                      name={field.name}
-                      id={field.name}
-                      checked={field.state.value ?? false}
-                      onCheckedChange={(checked) =>
-                        field.handleChange(
-                          checked === "indeterminate" ? null : checked,
-                        )
-                      }
-                    />
-                    <Label htmlFor={field.name} className="cursor-pointer">
-                      Mark as Draft (internal)
-                    </Label>
-                  </div>
-                )
-              }}
-            />
-          )
-        }}
-      />
+            )
+          }}
+        />
+      </SignedIn>
       <form.Field
         name="eventUrl"
         children={(field) => {

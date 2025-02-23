@@ -27,6 +27,30 @@ export type Database = {
         }
         Relationships: []
       }
+      communities: {
+        Row: {
+          created_at: string
+          id: number
+          location: string | null
+          logoUrl: string | null
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          location?: string | null
+          logoUrl?: string | null
+          name: string
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          location?: string | null
+          logoUrl?: string | null
+          name?: string
+        }
+        Relationships: []
+      }
       event_tag: {
         Row: {
           event: number

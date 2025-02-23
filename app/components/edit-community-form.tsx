@@ -1,5 +1,4 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { useRouter } from "@tanstack/react-router"
 import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import { updateCommunity } from "~/services/community.api"
@@ -9,22 +8,21 @@ import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 
 type EditCommunityFormProps = {
-  communityId: string
+  communityId: number
 }
 
 export const EditCommunityForm = ({ communityId }: EditCommunityFormProps) => {
-  const router = useRouter()
   const queryClient = useQueryClient()
 
-  const { data: community, isLoading } = useQuery({
-    ...communityQueries.detail(+communityId),
+  const { data: community } = useQuery({
+    ...communityQueries.detail(communityId),
   })
 
   const updateCommunityMutation = useMutation({
     mutationFn: updateCommunity,
     onSuccess: async () => {
       queryClient.invalidateQueries(communityQueries.list())
-      queryClient.invalidateQueries(communityQueries.detail(+communityId))
+      queryClient.invalidateQueries(communityQueries.detail(communityId))
       toast.success("Community updated successfully")
     },
   })
@@ -35,7 +33,7 @@ export const EditCommunityForm = ({ communityId }: EditCommunityFormProps) => {
 
     updateCommunityMutation.mutate({
       data: {
-        id: +communityId,
+        id: communityId,
         name: formData.get("name") as string,
         location: (formData.get("location") as string) || undefined,
         logoUrl: (formData.get("logoUrl") as string) || undefined,

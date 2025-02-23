@@ -54,6 +54,15 @@ function RootComponent() {
   )
 }
 
+const TanStackRouterDevtools =
+  process.env.NODE_ENV === "production"
+    ? () => null
+    : React.lazy(() =>
+        import("@tanstack/router-devtools").then((res) => ({
+          default: res.TanStackRouterDevtools,
+        })),
+      )
+
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html>
@@ -66,6 +75,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         {children}
         <Scripts />
         <Toaster />
+        <React.Suspense>
+          <TanStackRouterDevtools />
+        </React.Suspense>
       </body>
     </html>
   )

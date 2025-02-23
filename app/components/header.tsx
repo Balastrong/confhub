@@ -4,8 +4,7 @@ import { createLink, Link } from "@tanstack/react-router"
 import { authQueries } from "~/services/queries"
 import { Button } from "./ui/button"
 import { UserMenu } from "./user-menu"
-
-const ButtonLink = createLink(Button)
+import { ButtonLink } from "./button-link"
 
 export const Header = () => {
   const { data: authState } = useSuspenseQuery(authQueries.user())

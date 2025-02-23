@@ -9,7 +9,7 @@ import { getUser } from "./auth.api"
 import { createEvent, getEvents } from "./event.api"
 import { EventFilters } from "./event.schema"
 import { getTags } from "./tags.api"
-import { getCommunities } from "./community.api"
+import { getCommunities, getCommunity } from "./community.api"
 
 export const eventQueries = {
   all: ["events"],
@@ -54,6 +54,11 @@ export const communityQueries = {
     queryOptions({
       queryKey: [...communityQueries.all, "list"],
       queryFn: () => getCommunities(),
+    }),
+  detail: (communityId: number) =>
+    queryOptions({
+      queryKey: [...communityQueries.all, "detail", communityId],
+      queryFn: () => getCommunity({ data: { id: communityId } }),
     }),
 }
 

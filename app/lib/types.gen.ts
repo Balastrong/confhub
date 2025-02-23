@@ -149,6 +149,35 @@ export type Database = {
           },
         ]
       }
+      user_community: {
+        Row: {
+          communityId: number
+          created_at: string
+          id: number
+          userId: string
+        }
+        Insert: {
+          communityId: number
+          created_at?: string
+          id?: number
+          userId: string
+        }
+        Update: {
+          communityId?: number
+          created_at?: string
+          id?: number
+          userId?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_community_communityId_fkey"
+            columns: ["communityId"]
+            isOneToOne: false
+            referencedRelation: "communities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

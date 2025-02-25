@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/start"
 import { getSupabaseServerClient } from "~/lib/supabase"
 import { TablesInsert } from "~/lib/types.gen"
 import { CreateEventSchema, EventFiltersSchema } from "./event.schema"
-import { z } from "zod" // Adding zod import for schema validation
+import { z } from "zod"
 
 export const getEvents = createServerFn()
   .validator(EventFiltersSchema)
@@ -40,6 +40,16 @@ export const getEvents = createServerFn()
 
       if (data.communityId) {
         query = query.eq("communityId", data.communityId)
+      }
+
+      if (data.startDate) {
+        query = query.or(
+          `date.gte.${data.startDate},dateEnd.gte.${data.startDate}`,
+        )
+      }
+
+      if (data.endDate) {
+        query = query.or(`date.lte.${data.endDate},dateEnd.lte.${data.endDate}`)
       }
     }
 

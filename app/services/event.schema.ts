@@ -22,6 +22,8 @@ export const EventFiltersSchema = z
     hasCfpOpen: z.boolean().transform((value) => value || undefined),
     communityId: z.number().nullish(),
     communityDraft: z.boolean().nullish(),
+    startDate: z.string().date().nullish(),
+    endDate: z.string().date().nullish(),
   })
   .partial()
 

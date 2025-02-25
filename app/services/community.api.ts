@@ -143,8 +143,6 @@ export const updateCommunity = createServerFn()
 
     const { id, ...community } = data
 
-    console.log(data)
-
     const { data: updatedCommunity, error } = await supabase
       .from("communities")
       .update(community)

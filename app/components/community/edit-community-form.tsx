@@ -3,9 +3,9 @@ import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import { updateCommunity } from "~/services/community.api"
 import { communityQueries } from "~/services/queries"
-import { Button } from "./ui/button"
-import { Input } from "./ui/input"
-import { Label } from "./ui/label"
+import { Button } from "../ui/button"
+import { Input } from "../ui/input"
+import { Label } from "../ui/label"
 
 type EditCommunityFormProps = {
   communityId: number
@@ -44,7 +44,7 @@ export const EditCommunityForm = ({ communityId }: EditCommunityFormProps) => {
   if (!community) return null
 
   return (
-    <form className="flex flex-col gap-2 w-full" onSubmit={onSubmit}>
+    <form className="flex flex-col gap-2 max-w-md" onSubmit={onSubmit}>
       <Label htmlFor="name">
         Name
         <Input id="name" name="name" required defaultValue={community.name} />

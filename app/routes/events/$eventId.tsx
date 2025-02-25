@@ -2,8 +2,8 @@ import { useSuspenseQuery } from "@tanstack/react-query"
 import { createFileRoute } from "@tanstack/react-router"
 import { ArrowLeft } from "lucide-react"
 import { ButtonLink } from "~/components/button-link"
+import { SubmitForm } from "~/components/event/submit-form"
 import { Layout } from "~/components/layout"
-import { SubmitForm } from "~/components/submit-form"
 import { eventQueries } from "~/services/queries"
 
 export const Route = createFileRoute("/events/$eventId")({

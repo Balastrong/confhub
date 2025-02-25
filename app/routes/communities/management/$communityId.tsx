@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from "@tanstack/react-query"
 import { createFileRoute, useNavigate } from "@tanstack/react-router"
-import { EditCommunityForm } from "~/components/edit-community-form"
-import { EventManagementCard } from "~/components/event-management-card"
+import { EditCommunityForm } from "~/components/community/edit-community-form"
+import { EventManagementCard } from "~/components/event/event-management-card"
 import { Layout } from "~/components/layout"
 import { communityQueries, eventQueries } from "~/services/queries"
 
@@ -30,7 +30,7 @@ function RouteComponent() {
     <Layout className="items-center gap-2">
       <h1 className="text-2xl font-bold">{community.name}</h1>
       <h2 className="text-xl font-semibold">Draft Events</h2>
-      <div className="flex flex-col gap-2 w-full">
+      <div className="flex flex-col gap-2 min-w-[40%] max-w-[90%]">
         {eventsQuery.data.map((event) => (
           <EventManagementCard
             key={event.id}
@@ -45,7 +45,9 @@ function RouteComponent() {
         ))}
       </div>
       <h2 className="text-xl font-semibold">Edit Data</h2>
-      <EditCommunityForm communityId={+communityId} />
+      <div className="min-w-[40%]">
+        <EditCommunityForm communityId={+communityId} />
+      </div>
     </Layout>
   )
 }

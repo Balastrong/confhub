@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { Layout } from "~/components/layout"
-import { CreateCommunityForm } from "~/components/create-community-form"
+import { CreateCommunityForm } from "~/components/community/create-community-form"
 
 export const Route = createFileRoute("/communities/management/create")({
   component: RouteComponent,

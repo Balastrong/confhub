@@ -18,7 +18,6 @@ import { Route as IndexImport } from './routes/index'
 import { Route as CommunitiesIndexImport } from './routes/communities/index'
 import { Route as EventsSubmitImport } from './routes/events/submit'
 import { Route as EventsEventIdImport } from './routes/events/$eventId'
-import { Route as CommunitiesCommunityIdImport } from './routes/communities/$communityId'
 import { Route as CommunitiesManagementIndexImport } from './routes/communities/management/index'
 import { Route as CommunitiesManagementCreateImport } from './routes/communities/management/create'
 import { Route as CommunitiesManagementCommunityIdImport } from './routes/communities/management/$communityId'
@@ -64,12 +63,6 @@ const EventsSubmitRoute = EventsSubmitImport.update({
 const EventsEventIdRoute = EventsEventIdImport.update({
   id: '/events/$eventId',
   path: '/events/$eventId',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const CommunitiesCommunityIdRoute = CommunitiesCommunityIdImport.update({
-  id: '/communities/$communityId',
-  path: '/communities/$communityId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -127,13 +120,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignUpImport
       parentRoute: typeof rootRoute
     }
-    '/communities/$communityId': {
-      id: '/communities/$communityId'
-      path: '/communities/$communityId'
-      fullPath: '/communities/$communityId'
-      preLoaderRoute: typeof CommunitiesCommunityIdImport
-      parentRoute: typeof rootRoute
-    }
     '/events/$eventId': {
       id: '/events/$eventId'
       path: '/events/$eventId'
@@ -186,7 +172,6 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
-  '/communities/$communityId': typeof CommunitiesCommunityIdRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities': typeof CommunitiesIndexRoute
@@ -200,7 +185,6 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
-  '/communities/$communityId': typeof CommunitiesCommunityIdRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities': typeof CommunitiesIndexRoute
@@ -215,7 +199,6 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
-  '/communities/$communityId': typeof CommunitiesCommunityIdRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities/': typeof CommunitiesIndexRoute
@@ -231,7 +214,6 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
-    | '/communities/$communityId'
     | '/events/$eventId'
     | '/events/submit'
     | '/communities'
@@ -244,7 +226,6 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
-    | '/communities/$communityId'
     | '/events/$eventId'
     | '/events/submit'
     | '/communities'
@@ -257,7 +238,6 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
-    | '/communities/$communityId'
     | '/events/$eventId'
     | '/events/submit'
     | '/communities/'
@@ -272,7 +252,6 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   SignInRoute: typeof SignInRoute
   SignUpRoute: typeof SignUpRoute
-  CommunitiesCommunityIdRoute: typeof CommunitiesCommunityIdRoute
   EventsEventIdRoute: typeof EventsEventIdRoute
   EventsSubmitRoute: typeof EventsSubmitRoute
   CommunitiesIndexRoute: typeof CommunitiesIndexRoute
@@ -286,7 +265,6 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   SignInRoute: SignInRoute,
   SignUpRoute: SignUpRoute,
-  CommunitiesCommunityIdRoute: CommunitiesCommunityIdRoute,
   EventsEventIdRoute: EventsEventIdRoute,
   EventsSubmitRoute: EventsSubmitRoute,
   CommunitiesIndexRoute: CommunitiesIndexRoute,
@@ -309,7 +287,6 @@ export const routeTree = rootRoute
         "/profile",
         "/sign-in",
         "/sign-up",
-        "/communities/$communityId",
         "/events/$eventId",
         "/events/submit",
         "/communities/",
@@ -329,9 +306,6 @@ export const routeTree = rootRoute
     },
     "/sign-up": {
       "filePath": "sign-up.tsx"
-    },
-    "/communities/$communityId": {
-      "filePath": "communities/$communityId.tsx"
     },
     "/events/$eventId": {
       "filePath": "events/$eventId.tsx"

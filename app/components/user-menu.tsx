@@ -3,7 +3,7 @@ import { createLink, useRouter } from "@tanstack/react-router"
 import { LogOut, User } from "lucide-react"
 import { useState } from "react"
 import { signOut } from "~/services/auth.api"
-import { authQueries, useAuthenticatedUser } from "~/services/queries"
+import { useAuthenticatedUser } from "~/services/queries"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { Button } from "./ui/button"
 import {
@@ -28,7 +28,7 @@ export function UserMenu() {
 
   const handleLogout = async () => {
     await signOut()
-    await queryClient.invalidateQueries(authQueries.user())
+    queryClient.resetQueries()
     router.invalidate()
   }
 

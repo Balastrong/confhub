@@ -3,9 +3,9 @@ import { useRouter } from "@tanstack/react-router"
 import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import { createCommunity } from "~/services/community.api"
-import { Button } from "./ui/button"
-import { Input } from "./ui/input"
-import { Label } from "./ui/label"
+import { Button } from "../ui/button"
+import { Input } from "../ui/input"
+import { Label } from "../ui/label"
 import { communityQueries } from "~/services/queries"
 
 export const CreateCommunityForm = () => {
@@ -19,7 +19,7 @@ export const CreateCommunityForm = () => {
       queryClient.invalidateQueries(communityQueries.list())
       toast.success("Community created successfully")
       router.navigate({
-        to: "/communities/$communityId",
+        to: "/communities/management/$communityId",
         params: { communityId: community.id.toString() },
       })
     },

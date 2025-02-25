@@ -12,19 +12,19 @@ import {
   tagQueries,
   useUpsertEventMutation,
 } from "~/services/queries"
-import { SignedIn } from "./auth/SignedIn"
-import { Badge } from "./ui/badge"
-import { Button } from "./ui/button"
-import { Checkbox } from "./ui/checkbox"
-import { Input } from "./ui/input"
-import { Label } from "./ui/label"
+import { SignedIn } from "../auth/SignedIn"
+import { Badge } from "../ui/badge"
+import { Button } from "../ui/button"
+import { Checkbox } from "../ui/checkbox"
+import { Input } from "../ui/input"
+import { Label } from "../ui/label"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select"
+} from "../ui/select"
 
 type SubmitFormProps = {
   defaultEvent?: Partial<FullEvent>

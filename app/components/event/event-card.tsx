@@ -1,7 +1,7 @@
 import { getRouteApi } from "@tanstack/react-router"
 import { formatDate } from "~/lib/date"
 import { FullEvent } from "~/services/event.schema"
-import { Badge } from "./ui/badge"
+import { Badge } from "../ui/badge"
 import {
   Card,
   CardContent,
@@ -9,7 +9,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./ui/card"
+} from "../ui/card"
 
 type Props = {
   event: FullEvent

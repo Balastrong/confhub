@@ -3,10 +3,9 @@ import { useNavigate } from "@tanstack/react-router"
 import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import { signIn } from "~/services/auth.api"
-import { authQueries } from "~/services/queries"
-import { Button } from "./ui/button"
-import { Input } from "./ui/input"
-import { Label } from "./ui/label"
+import { Button } from "../ui/button"
+import { Input } from "../ui/input"
+import { Label } from "../ui/label"
 
 export const SignInForm = () => {
   const navigate = useNavigate()
@@ -20,8 +19,8 @@ export const SignInForm = () => {
         return
       }
 
+      queryClient.resetQueries()
       navigate({ to: "/" })
-      queryClient.invalidateQueries(authQueries.user())
     },
   })
 

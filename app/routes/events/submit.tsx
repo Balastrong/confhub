@@ -1,6 +1,6 @@
 import { createFileRoute, Link, redirect } from "@tanstack/react-router"
+import { SubmitForm } from "~/components/event/submit-form"
 import { Layout } from "~/components/layout"
-import { SubmitForm } from "~/components/submit-form"
 
 export const Route = createFileRoute("/events/submit")({
   component: RouteComponent,

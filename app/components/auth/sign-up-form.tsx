@@ -3,10 +3,9 @@ import { useRouter } from "@tanstack/react-router"
 import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import { signUp } from "~/services/auth.api"
-import { authQueries } from "~/services/queries"
-import { Button } from "./ui/button"
-import { Input } from "./ui/input"
-import { Label } from "./ui/label"
+import { Button } from "../ui/button"
+import { Input } from "../ui/input"
+import { Label } from "../ui/label"
 
 export const SignUpForm = () => {
   const queryClient = useQueryClient()
@@ -17,7 +16,7 @@ export const SignUpForm = () => {
     onSuccess: () => {
       toast.success("You have successfully signed up.")
 
-      queryClient.invalidateQueries(authQueries.user())
+      queryClient.resetQueries()
       router.invalidate()
     },
   })

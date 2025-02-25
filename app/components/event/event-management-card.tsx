@@ -1,6 +1,6 @@
 import { formatDate } from "~/lib/date"
 import { FullEvent } from "~/services/event.schema"
-import { Button } from "./ui/button"
+import { Button } from "../ui/button"
 import { PencilIcon } from "lucide-react"
 import {
   Card,
@@ -9,7 +9,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./ui/card"
+} from "../ui/card"
 
 type Props = {
   event: FullEvent

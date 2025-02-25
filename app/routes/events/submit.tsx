@@ -1,14 +1,14 @@
-import { createFileRoute, Link, redirect } from '@tanstack/react-router'
-import { Layout } from '~/components/layout'
-import { SubmitForm } from '~/components/submit-form'
+import { createFileRoute, Link, redirect } from "@tanstack/react-router"
+import { Layout } from "~/components/layout"
+import { SubmitForm } from "~/components/submit-form"
 
-export const Route = createFileRoute('/events/submit')({
+export const Route = createFileRoute("/events/submit")({
   component: RouteComponent,
 })
 
 function RouteComponent() {
   return (
-    <Layout className="items-center gap-2 max-w-md">
+    <Layout className="items-center gap-2">
       <SubmitForm />
     </Layout>
   )

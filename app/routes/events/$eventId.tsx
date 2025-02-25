@@ -16,7 +16,7 @@ function RouteComponent() {
   const { data: event } = useSuspenseQuery(eventQueries.detail(+eventId))
 
   return (
-    <Layout className="items-center gap-2 max-w-md">
+    <Layout className="items-center gap-2">
       {event.communityId && (
         <div className="w-full">
           <ButtonLink

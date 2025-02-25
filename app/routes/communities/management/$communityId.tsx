@@ -27,8 +27,8 @@ function RouteComponent() {
   )
 
   return (
-    <Layout className="items-center gap-2 max-w-md">
-      <h1 className="text-2xl font-bold">{community?.name}</h1>
+    <Layout className="items-center gap-2">
+      <h1 className="text-2xl font-bold">{community.name}</h1>
       <h2 className="text-xl font-semibold">Draft Events</h2>
       <div className="flex flex-col gap-2 w-full">
         {eventsQuery.data.map((event) => (

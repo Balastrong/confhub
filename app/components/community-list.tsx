@@ -15,14 +15,16 @@ export function CommunityList() {
   const { data: communities } = useSuspenseQuery(communityQueries.list())
 
   const joinMutation = useMutation({
-    mutationFn: joinCommunity,
+    mutationFn: (data: Parameters<typeof joinCommunity>[0]) =>
+      joinCommunity(data),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: communityQueries.all })
     },
   })
 
   const leaveMutation = useMutation({
-    mutationFn: leaveCommunity,
+    mutationFn: (data: Parameters<typeof leaveCommunity>[0]) =>
+      leaveCommunity(data),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: communityQueries.all })
     },

@@ -13,7 +13,8 @@ export const CreateCommunityForm = () => {
   const queryClient = useQueryClient()
 
   const createCommunityMutation = useMutation({
-    mutationFn: createCommunity,
+    mutationFn: (data: Parameters<typeof createCommunity>[0]) =>
+      createCommunity(data),
     onSuccess: async (community) => {
       queryClient.invalidateQueries(communityQueries.list())
       toast.success("Community created successfully")

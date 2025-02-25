@@ -13,7 +13,7 @@ export const SignInForm = () => {
   const queryClient = useQueryClient()
 
   const signInMutation = useMutation({
-    mutationFn: signIn,
+    mutationFn: (data: Parameters<typeof signIn>[0]) => signIn(data),
     onSuccess: (response) => {
       if (response?.error) {
         toast.error(response.error)

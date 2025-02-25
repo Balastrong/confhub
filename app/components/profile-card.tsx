@@ -22,7 +22,7 @@ export function ProfileCard() {
   const queryClient = useQueryClient()
 
   const updateUserMutation = useMutation({
-    mutationFn: updateUser,
+    mutationFn: (data: Parameters<typeof updateUser>[0]) => updateUser(data),
     onSuccess: () => {
       toast.success("Your profile has been updated.")
       queryClient.invalidateQueries(authQueries.user())

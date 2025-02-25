@@ -17,7 +17,8 @@ export const EditCommunityForm = ({ communityId }: EditCommunityFormProps) => {
   const { data: community } = useQuery(communityQueries.detail(communityId))
 
   const updateCommunityMutation = useMutation({
-    mutationFn: updateCommunity,
+    mutationFn: (data: Parameters<typeof updateCommunity>[0]) =>
+      updateCommunity(data),
     onSuccess: async () => {
       queryClient.invalidateQueries(communityQueries.list())
       queryClient.invalidateQueries(communityQueries.detail(communityId))

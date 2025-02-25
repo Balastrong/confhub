@@ -13,7 +13,7 @@ export const SignUpForm = () => {
   const router = useRouter()
 
   const signUpMutation = useMutation({
-    mutationFn: signUp,
+    mutationFn: (data: Parameters<typeof signUp>[0]) => signUp(data),
     onSuccess: () => {
       toast.success("You have successfully signed up.")
 

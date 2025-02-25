@@ -1,6 +1,10 @@
 import { QueryClient } from "@tanstack/react-query"
-import { createRootRouteWithContext, Outlet } from "@tanstack/react-router"
-import { Meta, Scripts } from "@tanstack/start"
+import {
+  createRootRouteWithContext,
+  Outlet,
+  Scripts,
+  HeadContent,
+} from "@tanstack/react-router"
 import * as React from "react"
 import { Header } from "~/components/header"
 import { Toaster } from "~/components/ui/sonner"
@@ -67,7 +71,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html>
       <head>
-        <Meta />
+        <HeadContent />
       </head>
       <body>
         <Header />

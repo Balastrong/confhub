@@ -39,8 +39,8 @@ function RouteComponent() {
             event={event}
             onEdit={(event) => {
               navigate({
-                to: "/events/$eventid",
-                params: { eventid: `${event.id}` },
+                to: "/events/$eventId",
+                params: { eventId: `${event.id}` },
               })
             }}
           />

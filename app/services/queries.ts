@@ -66,7 +66,6 @@ export const communityQueries = {
     queryOptions({
       queryKey: [...communityQueries.all, "detail", communityId],
       queryFn: () => getCommunity({ data: { id: communityId } }),
-      enabled: !isNaN(communityId) && !!communityId,
     }),
 }
 

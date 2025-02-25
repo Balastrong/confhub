@@ -7,11 +7,9 @@ import { communityQueries, eventQueries } from "~/services/queries"
 
 export const Route = createFileRoute("/communities/management/$communityId")({
   loader: async ({ params, context }) => {
-    // if (!params.communityId) throw new Error("Community ID is required")
-    // console.log("params", params)
-    // await context.queryClient.ensureQueryData(
-    //   communityQueries.detail(+params.communityId),
-    // )
+    await context.queryClient.ensureQueryData(
+      communityQueries.detail(+params.communityId),
+    )
   },
   component: RouteComponent,
 })
@@ -30,7 +28,7 @@ function RouteComponent() {
 
   return (
     <Layout className="items-center gap-2 max-w-md">
-      <h1 className="text-2xl font-bold">{community.name}</h1>
+      <h1 className="text-2xl font-bold">{community?.name}</h1>
       <h2 className="text-xl font-semibold">Draft Events</h2>
       <div className="flex flex-col gap-2 w-full">
         {eventsQuery.data.map((event) => (

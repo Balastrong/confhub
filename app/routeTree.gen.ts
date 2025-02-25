@@ -17,7 +17,7 @@ import { Route as ProfileImport } from './routes/profile'
 import { Route as IndexImport } from './routes/index'
 import { Route as CommunitiesIndexImport } from './routes/communities/index'
 import { Route as EventsSubmitImport } from './routes/events/submit'
-import { Route as EventsEventidImport } from './routes/events/$eventid'
+import { Route as EventsEventIdImport } from './routes/events/$eventId'
 import { Route as CommunitiesCommunityIdImport } from './routes/communities/$communityId'
 import { Route as CommunitiesManagementIndexImport } from './routes/communities/management/index'
 import { Route as CommunitiesManagementCreateImport } from './routes/communities/management/create'
@@ -61,9 +61,9 @@ const EventsSubmitRoute = EventsSubmitImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const EventsEventidRoute = EventsEventidImport.update({
-  id: '/events/$eventid',
-  path: '/events/$eventid',
+const EventsEventIdRoute = EventsEventIdImport.update({
+  id: '/events/$eventId',
+  path: '/events/$eventId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -134,11 +134,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommunitiesCommunityIdImport
       parentRoute: typeof rootRoute
     }
-    '/events/$eventid': {
-      id: '/events/$eventid'
-      path: '/events/$eventid'
-      fullPath: '/events/$eventid'
-      preLoaderRoute: typeof EventsEventidImport
+    '/events/$eventId': {
+      id: '/events/$eventId'
+      path: '/events/$eventId'
+      fullPath: '/events/$eventId'
+      preLoaderRoute: typeof EventsEventIdImport
       parentRoute: typeof rootRoute
     }
     '/events/submit': {
@@ -187,7 +187,7 @@ export interface FileRoutesByFullPath {
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
   '/communities/$communityId': typeof CommunitiesCommunityIdRoute
-  '/events/$eventid': typeof EventsEventidRoute
+  '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities': typeof CommunitiesIndexRoute
   '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
@@ -201,7 +201,7 @@ export interface FileRoutesByTo {
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
   '/communities/$communityId': typeof CommunitiesCommunityIdRoute
-  '/events/$eventid': typeof EventsEventidRoute
+  '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities': typeof CommunitiesIndexRoute
   '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
@@ -216,7 +216,7 @@ export interface FileRoutesById {
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
   '/communities/$communityId': typeof CommunitiesCommunityIdRoute
-  '/events/$eventid': typeof EventsEventidRoute
+  '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities/': typeof CommunitiesIndexRoute
   '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
@@ -232,7 +232,7 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/sign-up'
     | '/communities/$communityId'
-    | '/events/$eventid'
+    | '/events/$eventId'
     | '/events/submit'
     | '/communities'
     | '/communities/management/$communityId'
@@ -245,7 +245,7 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/sign-up'
     | '/communities/$communityId'
-    | '/events/$eventid'
+    | '/events/$eventId'
     | '/events/submit'
     | '/communities'
     | '/communities/management/$communityId'
@@ -258,7 +258,7 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/sign-up'
     | '/communities/$communityId'
-    | '/events/$eventid'
+    | '/events/$eventId'
     | '/events/submit'
     | '/communities/'
     | '/communities/management/$communityId'
@@ -273,7 +273,7 @@ export interface RootRouteChildren {
   SignInRoute: typeof SignInRoute
   SignUpRoute: typeof SignUpRoute
   CommunitiesCommunityIdRoute: typeof CommunitiesCommunityIdRoute
-  EventsEventidRoute: typeof EventsEventidRoute
+  EventsEventIdRoute: typeof EventsEventIdRoute
   EventsSubmitRoute: typeof EventsSubmitRoute
   CommunitiesIndexRoute: typeof CommunitiesIndexRoute
   CommunitiesManagementCommunityIdRoute: typeof CommunitiesManagementCommunityIdRoute
@@ -287,7 +287,7 @@ const rootRouteChildren: RootRouteChildren = {
   SignInRoute: SignInRoute,
   SignUpRoute: SignUpRoute,
   CommunitiesCommunityIdRoute: CommunitiesCommunityIdRoute,
-  EventsEventidRoute: EventsEventidRoute,
+  EventsEventIdRoute: EventsEventIdRoute,
   EventsSubmitRoute: EventsSubmitRoute,
   CommunitiesIndexRoute: CommunitiesIndexRoute,
   CommunitiesManagementCommunityIdRoute: CommunitiesManagementCommunityIdRoute,
@@ -310,7 +310,7 @@ export const routeTree = rootRoute
         "/sign-in",
         "/sign-up",
         "/communities/$communityId",
-        "/events/$eventid",
+        "/events/$eventId",
         "/events/submit",
         "/communities/",
         "/communities/management/$communityId",
@@ -333,8 +333,8 @@ export const routeTree = rootRoute
     "/communities/$communityId": {
       "filePath": "communities/$communityId.tsx"
     },
-    "/events/$eventid": {
-      "filePath": "events/$eventid.tsx"
+    "/events/$eventId": {
+      "filePath": "events/$eventId.tsx"
     },
     "/events/submit": {
       "filePath": "events/submit.tsx"

@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/start"
 import { getSupabaseServerClient } from "~/lib/supabase"
 import { TablesInsert } from "~/lib/types.gen"
 import { CreateEventSchema, EventFiltersSchema } from "./event.schema"
+import { z } from "zod" // Adding zod import for schema validation
 
 export const getEvents = createServerFn()
   .validator(EventFiltersSchema)
@@ -53,7 +54,29 @@ export const getEvents = createServerFn()
     return (await eventsWithTags.throwOnError()).data ?? []
   })
 
-export const createEvent = createServerFn()
+export const getEvent = createServerFn()
+  .validator(
+    z.object({
+      id: z.number(),
+    }),
+  )
+  .handler(async ({ data }) => {
+    const supabase = getSupabaseServerClient()
+
+    const { data: event, error } = await supabase
+      .from("events")
+      .select("*, tags(*)")
+      .eq("id", data.id)
+      .single()
+
+    if (error) {
+      throw new Error(error.message)
+    }
+
+    return event
+  })
+
+export const upsertEvent = createServerFn()
   .validator(CreateEventSchema)
   .handler(async ({ data }) => {
     const supabase = getSupabaseServerClient()
@@ -62,12 +85,22 @@ export const createEvent = createServerFn()
 
     const { error, data: eventData } = await supabase
       .from("events")
-      .insert(event)
+      .upsert(event)
       .select("id")
       .single()
 
     if (error) {
       throw new Error(error.message)
+    }
+
+    // Delete existing tags for the event
+    const { error: deleteTagError } = await supabase
+      .from("event_tag")
+      .delete()
+      .eq("event", eventData.id)
+
+    if (deleteTagError) {
+      throw new Error(deleteTagError.message)
     }
 
     const { error: tagError } = await supabase

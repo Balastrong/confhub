@@ -14,9 +14,7 @@ type EditCommunityFormProps = {
 export const EditCommunityForm = ({ communityId }: EditCommunityFormProps) => {
   const queryClient = useQueryClient()
 
-  const { data: community } = useQuery({
-    ...communityQueries.detail(communityId),
-  })
+  const { data: community } = useQuery(communityQueries.detail(communityId))
 
   const updateCommunityMutation = useMutation({
     mutationFn: updateCommunity,
@@ -37,6 +35,7 @@ export const EditCommunityForm = ({ communityId }: EditCommunityFormProps) => {
         name: formData.get("name") as string,
         location: (formData.get("location") as string) || undefined,
         logoUrl: (formData.get("logoUrl") as string) || undefined,
+        homeUrl: (formData.get("homeUrl") as string) || undefined,
       },
     })
   }
@@ -64,6 +63,15 @@ export const EditCommunityForm = ({ communityId }: EditCommunityFormProps) => {
           name="logoUrl"
           type="url"
           defaultValue={community.logoUrl || ""}
+        />
+      </Label>
+      <Label htmlFor="homeUrl">
+        Home URL
+        <Input
+          id="homeUrl"
+          name="homeUrl"
+          type="url"
+          defaultValue={community.homeUrl || ""}
         />
       </Label>
       <Button disabled={updateCommunityMutation.isPending}>

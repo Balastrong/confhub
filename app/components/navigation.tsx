@@ -17,7 +17,7 @@ export const Navigation = () => {
         <NavigationMenuItem>
           <NavigationMenuLink
             className={navigationMenuTriggerStyle()}
-            to="/review/submit"
+            to="/events/submit"
           >
             Submit Event
           </NavigationMenuLink>

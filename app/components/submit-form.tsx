@@ -1,33 +1,37 @@
 import { useForm } from "@tanstack/react-form"
-import { useQueries, useQuery, useSuspenseQuery } from "@tanstack/react-query"
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query"
+import { formatDate } from "~/lib/date"
 import {
   CreateEvent,
   CreateEventSchema,
   EventModes,
+  FullEvent,
 } from "~/services/event.schema"
 import {
   communityQueries,
   tagQueries,
-  useAuthenticatedUser,
-  useCreateEventMutation,
+  useUpsertEventMutation,
 } from "~/services/queries"
+import { SignedIn } from "./auth/SignedIn"
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
+import { Checkbox } from "./ui/checkbox"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
-import { formatDate } from "~/lib/date"
-import { Checkbox } from "./ui/checkbox"
 import {
   Select,
-  SelectTrigger,
-  SelectValue,
   SelectContent,
   SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "./ui/select"
-import { SignedIn } from "./auth/SignedIn"
 
-export const SubmitForm = () => {
-  const createEventMutation = useCreateEventMutation()
+type SubmitFormProps = {
+  defaultEvent?: Partial<FullEvent>
+}
+
+export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
+  const upsertEventMutation = useUpsertEventMutation()
   const { data: tags } = useSuspenseQuery(tagQueries.list())
   const { data: communities } = useQuery(
     communityQueries.list({ ownCommunitiesOnly: true }),
@@ -35,18 +39,19 @@ export const SubmitForm = () => {
 
   const form = useForm({
     defaultValues: {
-      name: "",
-      description: "",
-      date: formatDate(new Date()),
-      dateEnd: null,
-      cfpUrl: null,
-      mode: "In person",
-      country: "",
-      city: null,
-      cfpClosingDate: null,
-      eventUrl: null,
-      communityId: null,
-      tags: [],
+      id: defaultEvent?.id || null,
+      name: defaultEvent?.name || "",
+      description: defaultEvent?.description || "",
+      date: defaultEvent?.date || formatDate(new Date()),
+      dateEnd: defaultEvent?.dateEnd || null,
+      cfpUrl: defaultEvent?.cfpUrl || null,
+      mode: defaultEvent?.mode || "In person",
+      country: defaultEvent?.country || "",
+      city: defaultEvent?.city || null,
+      cfpClosingDate: defaultEvent?.cfpClosingDate || null,
+      eventUrl: defaultEvent?.eventUrl || null,
+      communityId: defaultEvent?.communityId || null,
+      tags: defaultEvent?.tags?.map((t) => t.id) || [],
     } as CreateEvent,
     validators: {
       onMount: CreateEventSchema,
@@ -54,7 +59,7 @@ export const SubmitForm = () => {
     },
     onSubmit: async ({ value }) => {
       try {
-        await createEventMutation.mutateAsync({ data: value })
+        await upsertEventMutation.mutateAsync({ data: value })
       } catch (error) {}
 
       form.reset()

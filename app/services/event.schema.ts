@@ -30,6 +30,7 @@ export type EventFilters = z.infer<typeof EventFiltersSchema>
 export type FullEvent = Awaited<ReturnType<typeof getEvents>>[number]
 
 export const CreateEventSchema = z.object({
+  id: z.number().optional(),
   name: z.string().min(1).max(100),
   description: z.string().min(1).max(1000),
   eventUrl: z.string().url().nullish(),

@@ -37,11 +37,11 @@ export function CommunityList() {
   }
 
   return (
-    <ul className="space-y-2 min-w-[40%]">
+    <ul className="space-y-2 min-w-[40%] max-w-[90%]">
       {communities?.map((community) => (
         <Card
           key={community.id}
-          className="flex justify-between items-center p-4"
+          className="flex justify-between items-center p-4 gap-4"
         >
           <div className="flex items-center gap-4">
             <Avatar className="h-12 w-12">
@@ -52,6 +52,17 @@ export function CommunityList() {
               <CardTitle className="text-lg">{community.name}</CardTitle>
               {community.location && (
                 <CardDescription>{community.location}</CardDescription>
+              )}
+              {community.homeUrl && (
+                <CardDescription className="text-blue-500 hover:underline">
+                  <a
+                    href={community.homeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {community.homeUrl}
+                  </a>
+                </CardDescription>
               )}
             </div>
           </div>

@@ -32,7 +32,15 @@ function Home() {
 
   return (
     <Layout>
-      <h1 className="text-2xl mb-4 text-center">Events</h1>
+      <div className="mb-9 text-center">
+        <h1 className="text-4xl font-bold tracking-tight mb-3">
+          Tech Events & Conferences
+        </h1>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Discover the best tech conferences, meetups, and workshops happening
+          around the world.
+        </p>
+      </div>
       <div className="flex flex-col gap-4 w-full">
         <ErrorBoundary
           fallbackRender={(props) => <ErrorComponent error={props.error} />}

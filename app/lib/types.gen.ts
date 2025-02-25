@@ -30,6 +30,7 @@ export type Database = {
       communities: {
         Row: {
           created_at: string
+          homeUrl: string | null
           id: number
           location: string | null
           logoUrl: string | null
@@ -37,6 +38,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          homeUrl?: string | null
           id?: number
           location?: string | null
           logoUrl?: string | null
@@ -44,6 +46,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          homeUrl?: string | null
           id?: number
           location?: string | null
           logoUrl?: string | null

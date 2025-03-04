@@ -1,6 +1,6 @@
-import { useForm } from "@tanstack/react-form"
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query"
 import { formatDate } from "~/lib/date"
+import { useAppForm } from "~/lib/form"
 import {
   CreateEvent,
   CreateEventSchema,
@@ -14,7 +14,6 @@ import {
 } from "~/services/queries"
 import { SignedIn } from "../auth/SignedIn"
 import { Badge } from "../ui/badge"
-import { Button } from "../ui/button"
 import { Checkbox } from "../ui/checkbox"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
@@ -37,7 +36,7 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
     communityQueries.list({ ownCommunitiesOnly: true }),
   )
 
-  const form = useForm({
+  const form = useAppForm({
     defaultValues: {
       id: defaultEvent?.id || null,
       name: defaultEvent?.name || "",
@@ -66,48 +65,24 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
     },
   })
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    e.stopPropagation()
-    form.handleSubmit()
-  }
-
   return (
-    <form className="flex flex-col gap-4 w-full" onSubmit={onSubmit}>
+    <form
+      className="flex flex-col gap-4 w-full"
+      onSubmit={(e) => {
+        e.preventDefault()
+        form.handleSubmit()
+      }}
+    >
       {/* Basic Information Section */}
       <section className="flex flex-col gap-2">
         <h3 className="text-lg font-semibold">Basic Information</h3>
-        <form.Field
+        <form.AppField
           name="name"
-          children={(field) => {
-            return (
-              <Label htmlFor={field.name}>
-                Event Name*
-                <Input
-                  name={field.name}
-                  id={field.name}
-                  value={field.state.value}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                />
-              </Label>
-            )
-          }}
+          children={(field) => <field.TextField label="Event Name" required />}
         />
-        <form.Field
+        <form.AppField
           name="description"
-          children={(field) => {
-            return (
-              <Label htmlFor={field.name}>
-                Description*
-                <Input
-                  name={field.name}
-                  id={field.name}
-                  value={field.state.value}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                />
-              </Label>
-            )
-          }}
+          children={(field) => <field.TextField label="Description" required />}
         />
         <div className="flex gap-2">
           <form.Field
@@ -137,21 +112,9 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
             }}
           />
           <div className="flex-1">
-            <form.Field
+            <form.AppField
               name="eventUrl"
-              children={(field) => {
-                return (
-                  <Label htmlFor={field.name}>
-                    Event URL
-                    <Input
-                      name={field.name}
-                      id={field.name}
-                      value={field.state.value ?? ""}
-                      onChange={(e) => field.handleChange(e.target.value)}
-                    />
-                  </Label>
-                )
-              }}
+              children={(field) => <field.TextField label="Event URL" />}
             />
           </div>
         </div>
@@ -204,37 +167,13 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
               }
               return (
                 <>
-                  <form.Field
+                  <form.AppField
                     name="country"
-                    children={(field) => {
-                      return (
-                        <Label htmlFor={field.name} className="flex-1">
-                          Country
-                          <Input
-                            name={field.name}
-                            id={field.name}
-                            value={field.state.value ?? ""}
-                            onChange={(e) => field.handleChange(e.target.value)}
-                          />
-                        </Label>
-                      )
-                    }}
+                    children={(field) => <field.TextField label="Country" />}
                   />
-                  <form.Field
+                  <form.AppField
                     name="city"
-                    children={(field) => {
-                      return (
-                        <Label htmlFor={field.name} className="flex-1">
-                          City
-                          <Input
-                            name={field.name}
-                            id={field.name}
-                            value={field.state.value ?? ""}
-                            onChange={(e) => field.handleChange(e.target.value)}
-                          />
-                        </Label>
-                      )
-                    }}
+                    children={(field) => <field.TextField label="City" />}
                   />
                 </>
               )
@@ -248,39 +187,20 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
         <section className="flex flex-col gap-2">
           <h3 className="text-lg font-semibold">Community</h3>
           <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
-            <form.Field
+            <form.AppField
               name="communityId"
-              children={(field) => {
-                return (
-                  <Label htmlFor={field.name}>
-                    Community
-                    <Select
-                      value={field.state.value?.toString() ?? ""}
-                      onValueChange={(value) => {
-                        const communityId = parseInt(value)
-                        field.handleChange(
-                          isNaN(communityId) ? null : communityId,
-                        )
-                      }}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a community" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value={undefined!}>None</SelectItem>
-                        {(communities ?? []).map((community) => (
-                          <SelectItem
-                            key={community.id}
-                            value={community.id.toString()}
-                          >
-                            {community.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </Label>
-                )
-              }}
+              children={(field) => (
+                <field.SelectField
+                  label="Community"
+                  options={[
+                    { value: undefined!, label: "None" },
+                    ...(communities ?? []).map((community) => ({
+                      value: community.id,
+                      label: community.name,
+                    })),
+                  ]}
+                />
+              )}
             />
             <form.Subscribe
               selector={(state) => [
@@ -349,21 +269,9 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
             />
           </div>
           <div className="col-span-2">
-            <form.Field
+            <form.AppField
               name="cfpUrl"
-              children={(field) => {
-                return (
-                  <Label htmlFor={field.name}>
-                    CFP URL
-                    <Input
-                      name={field.name}
-                      id={field.name}
-                      value={field.state.value ?? ""}
-                      onChange={(e) => field.handleChange(e.target.value)}
-                    />
-                  </Label>
-                )
-              }}
+              children={(field) => <field.TextField label="CFP URL" />}
             />
           </div>
         </div>
@@ -407,12 +315,9 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
       </section>
 
       {/* Submit Button */}
-      <form.Subscribe
-        selector={(state) => [state.canSubmit]}
-        children={([canSubmit]) => {
-          return <Button disabled={!canSubmit}>Submit</Button>
-        }}
-      />
+      <form.AppForm>
+        <form.SubmitButton label="Submit" />
+      </form.AppForm>
     </form>
   )
 }

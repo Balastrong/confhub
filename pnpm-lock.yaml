@@ -42,8 +42,8 @@ importers:
         specifier: ^0.5.2
         version: 0.5.2(@supabase/supabase-js@2.47.10)
       '@tanstack/react-form':
-        specifier: ^0.41.3
-        version: 0.41.3(@tanstack/start@1.111.7(@types/node@22.12.0)(db0@0.2.3)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.1.0(@types/node@22.12.0)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(yaml@2.7.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)
+        specifier: ^1.0.0
+        version: 1.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)(vinxi@0.4.3(@types/node@22.12.0)(db0@0.2.3)(ioredis@5.4.2)(terser@5.37.0)(typescript@5.7.3))
       '@tanstack/react-query':
         specifier: ^5.66.9
         version: 5.66.9(react@19.0.0)
@@ -1760,8 +1760,8 @@ packages:
     resolution: {integrity: sha512-9j4N7wt1C38n1Egi8kDE270QXgKEEADUyIGS2ZlcJIbrye7p4QjBxkcx600S+vMy9qFxEhw3I7Oi9/KjRp69qw==}
     engines: {node: '>=12'}
 
-  '@tanstack/form-core@0.41.3':
-    resolution: {integrity: sha512-ifGRimfnYgc+SQikx8ngWGhIxs5UHutSwUQ1IPFHZ6PRAfCTEEqDtXqaWZGkuzvf8itoxXdwsR+chEdwiPtsPA==}
+  '@tanstack/form-core@1.0.0':
+    resolution: {integrity: sha512-GHYjF9m+FjXbIMpbMP1Ru8XzTJnQDva9wkw3E/fXUIPAtx0NmTGrefxUGqs7/aCT2uSqdrmzRyVFUJObemx51Q==}
 
   '@tanstack/history@1.99.13':
     resolution: {integrity: sha512-JMd7USmnp8zV8BRGIjALqzPxazvKtQ7PGXQC7n39HpbqdsmfV2ePCzieO84IvN+mwsTrXErpbjI4BfKCa+ZNCg==}
@@ -1770,13 +1770,16 @@ packages:
   '@tanstack/query-core@5.66.4':
     resolution: {integrity: sha512-skM/gzNX4shPkqmdTCSoHtJAPMTtmIJNS0hE+xwTTUVYwezArCT34NMermABmBVUg5Ls5aiUXEDXfqwR1oVkcA==}
 
-  '@tanstack/react-form@0.41.3':
-    resolution: {integrity: sha512-GZUiapJnQoWRvIFjXwC7IrTileAgLKG9AwQTk+EhZsJi5vXJcaiy9xQy2c6l9SQOv4ue+MNUIrIGNEhgukTBHA==}
+  '@tanstack/react-form@1.0.0':
+    resolution: {integrity: sha512-8vhhpfdWlLfO92DF70dIzi/tKIbtVb0mJkixXPKUzfxgp/s0fpILNHeLePs5xjBlRmm35xt6PmNXwcGKM1Ofkg==}
     peerDependencies:
-      '@tanstack/start': ^1.43.13
+      '@tanstack/react-start': ^1.112.0
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      vinxi: ^0.5.0
     peerDependenciesMeta:
-      '@tanstack/start':
+      '@tanstack/react-start':
+        optional: true
+      vinxi:
         optional: true
 
   '@tanstack/react-query@5.66.9':
@@ -5545,7 +5548,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@tanstack/form-core@0.41.3':
+  '@tanstack/form-core@1.0.0':
     dependencies:
       '@tanstack/store': 0.7.0
 
@@ -5553,15 +5556,15 @@ snapshots:
 
   '@tanstack/query-core@5.66.4': {}
 
-  '@tanstack/react-form@0.41.3(@tanstack/start@1.111.7(@types/node@22.12.0)(db0@0.2.3)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.1.0(@types/node@22.12.0)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(yaml@2.7.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)':
+  '@tanstack/react-form@1.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)(vinxi@0.4.3(@types/node@22.12.0)(db0@0.2.3)(ioredis@5.4.2)(terser@5.37.0)(typescript@5.7.3))':
     dependencies:
       '@remix-run/node': 2.15.3(typescript@5.7.3)
-      '@tanstack/form-core': 0.41.3
+      '@tanstack/form-core': 1.0.0
       '@tanstack/react-store': 0.7.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       decode-formdata: 0.8.0
       react: 19.0.0
     optionalDependencies:
-      '@tanstack/start': 1.111.7(@types/node@22.12.0)(db0@0.2.3)(ioredis@5.4.2)(jiti@2.4.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.1.0(@types/node@22.12.0)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(yaml@2.7.0)
+      vinxi: 0.4.3(@types/node@22.12.0)(db0@0.2.3)(ioredis@5.4.2)(terser@5.37.0)(typescript@5.7.3)
     transitivePeerDependencies:
       - react-dom
       - typescript

@@ -14,10 +14,14 @@ export const SignUpSchema = z.object({
   confirmPassword: z.string(),
 })
 
+export type SignUpSchema = z.infer<typeof SignUpSchema>
+
 export const SignInSchema = z.object({
   email: z.string().email(),
   password: z.string(),
 })
+
+export type SignInSchema = z.infer<typeof SignInSchema>
 
 export type AuthState =
   | {

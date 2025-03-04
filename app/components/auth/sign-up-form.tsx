@@ -1,11 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useRouter } from "@tanstack/react-router"
-import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
+import { useAppForm } from "~/lib/form"
 import { signUp } from "~/services/auth.api"
-import { Button } from "../ui/button"
-import { Input } from "../ui/input"
-import { Label } from "../ui/label"
+import { SignUpSchema } from "~/services/auth.schema"
 
 export const SignUpForm = () => {
   const queryClient = useQueryClient()
@@ -21,49 +19,51 @@ export const SignUpForm = () => {
     },
   })
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    const formData = new FormData(e.currentTarget)
-    const username = formData.get("username") as string
-    const email = formData.get("email") as string
-    const password = formData.get("password") as string
-    const confirmPassword = formData.get("confirm-password") as string
-
-    signUpMutation.mutate({
-      data: {
-        username,
-        email,
-        password,
-        confirmPassword,
-      },
-    })
-  }
+  const form = useAppForm({
+    defaultValues: {
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    } as SignUpSchema,
+    onSubmit: async ({ value }) => {
+      await signUpMutation.mutateAsync({ data: value })
+    },
+  })
 
   return (
-    <form className="flex flex-col gap-2 w-full" onSubmit={onSubmit}>
-      <Label htmlFor="username">
-        Username
-        <Input id="username" name="username" autoComplete="off" />
-      </Label>
-      <Label htmlFor="email">
-        Email
-        <Input id="email" name="email" />
-      </Label>
-      <Label htmlFor="password">
-        Password
-        <Input id="password" name="password" type="password" />
-      </Label>
-      <Label htmlFor="confirm-password">
-        Confirm Password
-        <Input id="confirm-password" name="confirm-password" type="password" />
-      </Label>
-      <Button disabled={signUpMutation.isPending}>
-        Sign Up
-        {signUpMutation.isPending && (
-          <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+    <form
+      className="flex flex-col gap-2 w-full"
+      onSubmit={(e) => {
+        e.preventDefault()
+        form.handleSubmit()
+      }}
+    >
+      <form.AppField
+        name="username"
+        children={(field) => <field.TextField label="Username" required />}
+      />
+      <form.AppField
+        name="email"
+        children={(field) => (
+          <field.TextField label="Email" required type="email" />
         )}
-      </Button>
+      />
+      <form.AppField
+        name="password"
+        children={(field) => (
+          <field.TextField label="Password" required type="password" />
+        )}
+      />
+      <form.AppField
+        name="confirmPassword"
+        children={(field) => (
+          <field.TextField label="Confirm Password" required type="password" />
+        )}
+      />
+      <form.AppForm>
+        <form.SubmitButton label="Sign Up" />
+      </form.AppForm>
     </form>
   )
 }

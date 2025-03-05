@@ -9,18 +9,20 @@ import {
   SelectValue,
 } from "../ui/select"
 
-type Props<T> = {
+type Props<TType extends "string" | "number" = "string"> = {
   label: string
-  options: { value: string | number; label: string }[]
+  options: { value: TType extends "string" ? string : number; label: string }[]
+  type: TType
   required?: boolean
 }
 
-export const SelectField = <T extends string | number>({
+export const SelectField = <TType extends "string" | "number" = "string">({
   label,
   options,
   required,
-}: Props<T>) => {
-  const field = useFieldContext<T>()
+  type,
+}: Props<TType>) => {
+  const field = useFieldContext<string | number>()
 
   return (
     <Label htmlFor={field.name}>
@@ -29,7 +31,7 @@ export const SelectField = <T extends string | number>({
       <Select
         value={field.state.value?.toString() ?? ""}
         onValueChange={(value) => {
-          field.handleChange(value as T)
+          field.handleChange(type === "number" ? Number(value) : value)
         }}
       >
         <SelectTrigger>

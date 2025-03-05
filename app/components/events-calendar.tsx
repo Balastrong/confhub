@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react"
-import { Button } from "./ui/button"
+import { Calendar, ChevronLeft, ChevronRight } from "lucide-react"
+import { cn, getColorFromName } from "~/lib/utils"
 import { FullEvent } from "~/services/event.schema"
-import { getColorFromName } from "~/lib/utils"
+import { Button } from "./ui/button"
+
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
 // Add helper to format date consistently without timezone issues
@@ -148,59 +149,126 @@ export const EventsCalendar = ({
     )
   }
 
+  // New helper to check if a date is today
+  const isToday = (date: Date) => {
+    const today = new Date()
+    return (
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    )
+  }
+
+  // Navigate to current month
+  const goToToday = () => {
+    onCurrentDateChange(new Date(new Date().setDate(1)))
+  }
+
   return (
-    <div>
-      <div className="flex justify-between items-center mb-4">
-        <Button onClick={handlePrevMonth}>Prev</Button>
-        <div className="text-lg font-bold">
+    <div className="bg-white rounded-lg shadow-md p-4 border border-gray-200">
+      <div className="flex justify-between items-center mb-6">
+        <div className="flex items-center space-x-1">
+          <Button
+            onClick={handlePrevMonth}
+            variant="outline"
+            size="icon"
+            className="h-8 w-8"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+          <Button
+            onClick={handleNextMonth}
+            variant="outline"
+            size="icon"
+            className="h-8 w-8"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
+
+        <h2 className="text-xl font-bold">
           {currentDate.toLocaleString("default", {
             month: "long",
             year: "numeric",
           })}
-        </div>
-        <Button onClick={handleNextMonth}>Next</Button>
+        </h2>
+
+        <Button
+          onClick={goToToday}
+          variant="outline"
+          size="sm"
+          className="flex items-center gap-1"
+        >
+          <Calendar className="h-4 w-4 mr-1" />
+          Today
+        </Button>
       </div>
-      <div className="grid grid-cols-7 gap-2">
+
+      <div className="grid grid-cols-7 gap-1">
         {DAYS.map((day) => (
-          <div key={day} className="text-center font-semibold">
+          <div
+            key={day}
+            className="text-center font-medium text-gray-500 text-sm py-2"
+          >
             {day}
           </div>
         ))}
+
         {generateCalendar().map((week, weekIndex) => {
           const { weekCells, numSlots } = scheduleWeekEvents(week)
-          return week.map((cell, dayIndex) => (
-            <div
-              key={`${weekIndex}-${dayIndex}`}
-              className={`border rounded-sm min-h-20 flex flex-col items-center justify-start p-1 relative ${
-                cell.isCurrentMonth ? "" : "bg-gray-100"
-              }`}
-            >
-              <span>{cell.date.getDate()}</span>
-              <div className="flex flex-col gap-1 mt-1 w-full">
-                {Array.from({ length: numSlots }).map((_, slotIndex) => {
-                  const event = weekCells[dayIndex][slotIndex]
-                  if (event) {
-                    const cellDateStr = formatDate(cell.date)
-                    const leftRounded = cellDateStr === event.date
-                    const rightRounded = cellDateStr === event.dateEnd
-                    return (
-                      <div
-                        key={slotIndex}
-                        className={`w-full h-4 relative ${getColorFromName(event.name)} ${leftRounded ? "rounded-l-md" : ""} ${
-                          rightRounded ? "rounded-r-md" : ""
-                        }`}
-                      >
-                        <span className="absolute inset-0 flex items-center justify-center text-white text-xs">
-                          {event.name}
-                        </span>
-                      </div>
-                    )
-                  }
-                  return <div key={slotIndex} className="w-full h-4"></div>
-                })}
+          return week.map((cell, dayIndex) => {
+            const isCurrentDay = isToday(cell.date)
+
+            return (
+              <div
+                key={`${weekIndex}-${dayIndex}`}
+                className={cn(
+                  "border rounded min-h-[6rem] flex flex-col p-1 relative transition-colors",
+                  cell.isCurrentMonth ? "bg-white" : "bg-gray-50 text-gray-400",
+                  isCurrentDay && "ring-2 ring-primary ring-offset-1",
+                  "hover:bg-gray-50",
+                )}
+              >
+                <span
+                  className={cn(
+                    "text-sm font-medium h-6 w-6 flex items-center justify-center rounded-full",
+                    isCurrentDay && "bg-primary text-primary-foreground",
+                  )}
+                >
+                  {cell.date.getDate()}
+                </span>
+
+                <div className="flex flex-col gap-1 mt-1 w-full">
+                  {Array.from({ length: numSlots }).map((_, slotIndex) => {
+                    const event = weekCells[dayIndex][slotIndex]
+                    if (event) {
+                      const cellDateStr = formatDate(cell.date)
+                      const leftRounded = cellDateStr === event.date
+                      const rightRounded = cellDateStr === event.dateEnd
+                      return (
+                        <div
+                          key={slotIndex}
+                          className={cn(
+                            "w-full h-5 relative overflow-hidden",
+                            getColorFromName(event.name),
+                            leftRounded ? "rounded-l-md" : "",
+                            rightRounded ? "rounded-r-md" : "",
+                            "shadow-sm hover:opacity-90 cursor-pointer",
+                          )}
+                          title={event.name}
+                        >
+                          <span className="absolute inset-0 flex items-center justify-start text-white text-xs px-1 truncate">
+                            {event.name}
+                          </span>
+                        </div>
+                      )
+                    }
+                    return <div key={slotIndex} className="w-full h-5"></div>
+                  })}
+                </div>
               </div>
-            </div>
-          ))
+            )
+          })
         })}
       </div>
     </div>

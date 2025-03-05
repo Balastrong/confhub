@@ -1,3 +1,7 @@
-This is a TanStack Start project, pages are in the /routes folder no in /pages as in a Next.js project.
-The database is Supabase, use its APIs to access the data.
+This is a TanStack Start project which means the routing is done with @tanstack/react-router and pages are in the /routes folder.
+
+The database is Supabase, use supabase-js to make the queries.
+
 UI Components are from shadcn/ui, use them to build the UI.
+
+Forms are made with TanStack Form, you can use the useAppForm hook to create forms.

@@ -17,13 +17,6 @@ import { Badge } from "../ui/badge"
 import { Checkbox } from "../ui/checkbox"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../ui/select"
 
 type SubmitFormProps = {
   defaultEvent?: Partial<FullEvent>
@@ -38,7 +31,6 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
 
   const form = useAppForm({
     defaultValues: {
-      id: defaultEvent?.id || null,
       name: defaultEvent?.name || "",
       description: defaultEvent?.description || "",
       date: defaultEvent?.date || formatDate(new Date()),
@@ -54,11 +46,20 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
     } as CreateEvent,
     validators: {
       onMount: CreateEventSchema,
-      onChange: CreateEventSchema,
+      onSubmit: CreateEventSchema,
+    },
+    onSubmitInvalid: (errors) => {
+      console.log(errors)
     },
     onSubmit: async ({ value }) => {
+      console.log("submit", value)
       try {
-        await upsertEventMutation.mutateAsync({ data: value })
+        await upsertEventMutation.mutateAsync({
+          data: {
+            ...value,
+            id: defaultEvent?.id,
+          },
+        })
       } catch (error) {}
 
       form.reset()
@@ -192,6 +193,7 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
               children={(field) => (
                 <field.SelectField
                   label="Community"
+                  type="number"
                   options={[
                     { value: undefined!, label: "None" },
                     ...(communities ?? []).map((community) => ({

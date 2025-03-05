@@ -44,7 +44,7 @@ export const EditCommunityForm = ({ communityId }: EditCommunityFormProps) => {
   if (!community) return null
 
   return (
-    <form className="flex flex-col gap-2 max-w-md" onSubmit={onSubmit}>
+    <form className="flex flex-col gap-2 max-w-md w-full" onSubmit={onSubmit}>
       <Label htmlFor="name">
         Name
         <Input id="name" name="name" required defaultValue={community.name} />

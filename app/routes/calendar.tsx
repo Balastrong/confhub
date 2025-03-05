@@ -19,9 +19,6 @@ export const Route = createFileRoute("/calendar")({
       .date()
       .catch(() => formatDate(new Date(new Date().setDate(1)))),
   }),
-  loader: () => {
-    // TODO: get search param and prefetch previous and next month?
-  },
   component: RouteComponent,
 })
 

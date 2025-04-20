@@ -3,4 +3,6 @@ theme: monomi
 layout: default
 ---
 
-# 80% Router 20% Start
+# TanStack Start is just the tip of the iceberg
+
+20% Start, 80% Router

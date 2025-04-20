@@ -1,0 +1,141 @@
+{
+  "$schema": "https://demotime.elio.dev/demo-time.schema.json",
+  "title": "TanStack Start",
+  "description": "",
+  "demos": [
+    {
+      "title": "Draft",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/draft.md"
+        }
+      ]
+    },
+    {
+      "title": "Cover",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/cover.md"
+        }
+      ]
+    },
+    {
+      "title": "Server React",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/server-react.md"
+        }
+      ]
+    },
+    {
+      "title": "Client React",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/client-react.md"
+        }
+      ]
+    },
+    {
+      "title": "Start Router",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/start-router.md"
+        }
+      ]
+    },
+    {
+      "title": "Meta",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/meta.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Different",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/different.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Agnostic",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/spec-agnostic.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Client",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/spec-client.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Developer Experience",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/spec-dx.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Close",
+      "steps": [
+        {
+          "action": "unsetPresentationView"
+        }
+      ]
+    },
+    {
+      "title": "Website",
+      "description": "",
+      "steps": [
+        {
+          "action": "openWebsite",
+          "url": "https://demotime.elio.dev?foo=bar",
+          "openInVSCode": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://demotime.elio.dev/demo-time.schema.json",
+  "title": "Demo",
+  "description": "",
+  "demos": [
+    {
+      "title": "Draft",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/draft.md"
+        }
+      ]
+    },
+    {
+      "title": "Cover",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/cover.md"
+        }
+      ]
+    },
+    {
+      "title": "Server React",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/server-react.md"
+        }
+      ]
+    },
+    {
+      "title": "Client React",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/client-react.md"
+        }
+      ]
+    },
+    {
+      "title": "Start Router",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/start-router.md"
+        }
+      ]
+    },
+    {
+      "title": "Close",
+      "steps": [
+        {
+          "action": "unsetPresentationView"
+        }
+      ]
+    },
+    {
+      "title": "Website",
+      "description": "",
+      "steps": [
+        {
+          "action": "openWebsite",
+          "url": "https://demotime.elio.dev?foo=bar",
+          "openInVSCode": true
+        }
+      ]
+    }
+  ]
+}

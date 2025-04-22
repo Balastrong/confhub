@@ -119,6 +119,117 @@
       }
     },
     {
+      "title": "Client Journey",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/router/journey.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Router meta",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/router/meta.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Typesafety",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/router/typesafety.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Typesafe Link Component",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/components/header.tsx",
+          "startPlaceholder": "<Link"
+        },
+        {
+          "action": "positionCursor",
+          "path": "app/components/header.tsx",
+          "startPlaceholder": "\/\">"
+        }
+      ]
+    },
+    {
+      "title": "Typesafe path params",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/routes/communities/management/$communityId.tsx",
+          "startPlaceholder": " } = Route.useParams()"
+        },
+        {
+          "action": "positionCursor",
+          "path": "app/routes/communities/management/$communityId.tsx",
+          "startPlaceholder": " } = Route.useParams()"
+        }
+      ]
+    },
+    {
+      "title": "Typesafe redirect",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/routes/profile.tsx",
+          "startPlaceholder": "throw redirect"
+        },
+        {
+          "action": "positionCursor",
+          "path": "app/routes/profile.tsx",
+          "startPlaceholder": "\/\" "
+        }
+      ]
+    },
+    {
+      "title": "Search State Manager",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/router/search.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Search demo",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/routes/index.tsx",
+          "position": "26:31"
+        }
+      ]
+    },
+    {
       "title": "Close",
       "steps": [
         {

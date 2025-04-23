@@ -56,6 +56,9 @@ importers:
       '@tanstack/react-router-with-query':
         specifier: ^1.117.0
         version: 1.117.0(@tanstack/react-query@5.74.4(react@19.1.0))(@tanstack/react-router@1.117.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@tanstack/router-core@1.117.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@tanstack/router-core':
+        specifier: ^1.117.0
+        version: 1.117.0
       '@tanstack/start':
         specifier: ^1.117.0
         version: 1.117.0(@netlify/blobs@8.2.0)(@types/node@22.14.1)(db0@0.3.2)(ioredis@5.6.1)(jiti@2.4.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(terser@5.39.0)(tsx@4.19.3)(vite@6.3.2(@types/node@22.14.1)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1))(yaml@2.7.1)

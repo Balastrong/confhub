@@ -147,6 +147,119 @@
       }
     },
     {
+      "title": "Route definition",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/router/routes.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Route features",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/router/routes-features.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Route definition - file",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/router/routes-file.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Route definition - code",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/router/routes-code.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Route definition - virtual",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/router/routes-virtual.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Route definition - demo",
+      "steps": [
+        {
+          "action": "open",
+          "path": "app/routes/demo/nested/example.tsx"
+        }
+      ]
+    },
+    {
+      "title": "Vite plugin",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/router/vite-plugin.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Route tree",
+      "steps": [
+        {
+          "action": "positionCursor",
+          "path": "app/routeTree.gen.ts",
+          "position": "1"
+        }
+      ]
+    },
+    {
+      "title": "Route tree defs",
+      "steps": [
+        {
+          "action": "positionCursor",
+          "path": "app/routeTree.gen.ts",
+          "startPlaceholder": "declare module '@tanstack/react-router' {"
+        }
+      ]
+    },
+    {
       "title": "Typesafety",
       "description": "",
       "steps": [
@@ -206,6 +319,30 @@
       ]
     },
     {
+      "title": "Typesafe blog",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/router/type-blog.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Types",
+      "steps": [
+        {
+          "action": "positionCursor",
+          "path": "node_modules/@tanstack/router-core/src/route.ts",
+          "startPlaceholder": "export interface Route<"
+        }
+      ]
+    },
+    {
       "title": "Search State Manager",
       "description": "",
       "steps": [
@@ -220,7 +357,28 @@
       }
     },
     {
-      "title": "Search demo",
+      "title": "Search definition - Function",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/routes/demo/nested/search.tsx",
+          "startPlaceholder": "validateSearch: (search: Record<string, unknown>): ProductSearch => {",
+          "endPlaceholder": "},"
+        }
+      ]
+    },
+    {
+      "title": "Search definition - Zod",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/routes/index.tsx",
+          "startPlaceholder": "validateSearch: EventFiltersSchema"
+        }
+      ]
+    },
+    {
+      "title": "Search as state manager",
       "steps": [
         {
           "action": "highlight",
@@ -229,6 +387,18 @@
         }
       ]
     },
+    {
+      "title": "Search Demo",
+      "description": "",
+      "steps": [
+        {
+          "action": "openWebsite",
+          "url": "http://localhost:3000",
+          "openInVSCode": true
+        }
+      ]
+    },
+    // Structural Sharing & fine grained
     {
       "title": "Close",
       "steps": [

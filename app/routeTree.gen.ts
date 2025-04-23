@@ -20,6 +20,8 @@ import { Route as CommunitiesIndexImport } from './routes/communities/index'
 import { Route as EventsSubmitImport } from './routes/events/submit'
 import { Route as EventsEventIdImport } from './routes/events/$eventId'
 import { Route as CommunitiesManagementIndexImport } from './routes/communities/management/index'
+import { Route as DemoNestedSearchImport } from './routes/demo/nested/search'
+import { Route as DemoNestedExampleImport } from './routes/demo/nested/example'
 import { Route as CommunitiesManagementCreateImport } from './routes/communities/management/create'
 import { Route as CommunitiesManagementCommunityIdImport } from './routes/communities/management/$communityId'
 
@@ -80,6 +82,18 @@ const CommunitiesManagementIndexRoute = CommunitiesManagementIndexImport.update(
     getParentRoute: () => rootRoute,
   } as any,
 )
+
+const DemoNestedSearchRoute = DemoNestedSearchImport.update({
+  id: '/demo/nested/search',
+  path: '/demo/nested/search',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DemoNestedExampleRoute = DemoNestedExampleImport.update({
+  id: '/demo/nested/example',
+  path: '/demo/nested/example',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const CommunitiesManagementCreateRoute =
   CommunitiesManagementCreateImport.update({
@@ -169,6 +183,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommunitiesManagementCreateImport
       parentRoute: typeof rootRoute
     }
+    '/demo/nested/example': {
+      id: '/demo/nested/example'
+      path: '/demo/nested/example'
+      fullPath: '/demo/nested/example'
+      preLoaderRoute: typeof DemoNestedExampleImport
+      parentRoute: typeof rootRoute
+    }
+    '/demo/nested/search': {
+      id: '/demo/nested/search'
+      path: '/demo/nested/search'
+      fullPath: '/demo/nested/search'
+      preLoaderRoute: typeof DemoNestedSearchImport
+      parentRoute: typeof rootRoute
+    }
     '/communities/management/': {
       id: '/communities/management/'
       path: '/communities/management'
@@ -192,6 +220,8 @@ export interface FileRoutesByFullPath {
   '/communities': typeof CommunitiesIndexRoute
   '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
   '/communities/management/create': typeof CommunitiesManagementCreateRoute
+  '/demo/nested/example': typeof DemoNestedExampleRoute
+  '/demo/nested/search': typeof DemoNestedSearchRoute
   '/communities/management': typeof CommunitiesManagementIndexRoute
 }
 
@@ -206,6 +236,8 @@ export interface FileRoutesByTo {
   '/communities': typeof CommunitiesIndexRoute
   '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
   '/communities/management/create': typeof CommunitiesManagementCreateRoute
+  '/demo/nested/example': typeof DemoNestedExampleRoute
+  '/demo/nested/search': typeof DemoNestedSearchRoute
   '/communities/management': typeof CommunitiesManagementIndexRoute
 }
 
@@ -221,6 +253,8 @@ export interface FileRoutesById {
   '/communities/': typeof CommunitiesIndexRoute
   '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
   '/communities/management/create': typeof CommunitiesManagementCreateRoute
+  '/demo/nested/example': typeof DemoNestedExampleRoute
+  '/demo/nested/search': typeof DemoNestedSearchRoute
   '/communities/management/': typeof CommunitiesManagementIndexRoute
 }
 
@@ -237,6 +271,8 @@ export interface FileRouteTypes {
     | '/communities'
     | '/communities/management/$communityId'
     | '/communities/management/create'
+    | '/demo/nested/example'
+    | '/demo/nested/search'
     | '/communities/management'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -250,6 +286,8 @@ export interface FileRouteTypes {
     | '/communities'
     | '/communities/management/$communityId'
     | '/communities/management/create'
+    | '/demo/nested/example'
+    | '/demo/nested/search'
     | '/communities/management'
   id:
     | '__root__'
@@ -263,6 +301,8 @@ export interface FileRouteTypes {
     | '/communities/'
     | '/communities/management/$communityId'
     | '/communities/management/create'
+    | '/demo/nested/example'
+    | '/demo/nested/search'
     | '/communities/management/'
   fileRoutesById: FileRoutesById
 }
@@ -278,6 +318,8 @@ export interface RootRouteChildren {
   CommunitiesIndexRoute: typeof CommunitiesIndexRoute
   CommunitiesManagementCommunityIdRoute: typeof CommunitiesManagementCommunityIdRoute
   CommunitiesManagementCreateRoute: typeof CommunitiesManagementCreateRoute
+  DemoNestedExampleRoute: typeof DemoNestedExampleRoute
+  DemoNestedSearchRoute: typeof DemoNestedSearchRoute
   CommunitiesManagementIndexRoute: typeof CommunitiesManagementIndexRoute
 }
 
@@ -292,6 +334,8 @@ const rootRouteChildren: RootRouteChildren = {
   CommunitiesIndexRoute: CommunitiesIndexRoute,
   CommunitiesManagementCommunityIdRoute: CommunitiesManagementCommunityIdRoute,
   CommunitiesManagementCreateRoute: CommunitiesManagementCreateRoute,
+  DemoNestedExampleRoute: DemoNestedExampleRoute,
+  DemoNestedSearchRoute: DemoNestedSearchRoute,
   CommunitiesManagementIndexRoute: CommunitiesManagementIndexRoute,
 }
 
@@ -315,6 +359,8 @@ export const routeTree = rootRoute
         "/communities/",
         "/communities/management/$communityId",
         "/communities/management/create",
+        "/demo/nested/example",
+        "/demo/nested/search",
         "/communities/management/"
       ]
     },
@@ -347,6 +393,12 @@ export const routeTree = rootRoute
     },
     "/communities/management/create": {
       "filePath": "communities/management/create.tsx"
+    },
+    "/demo/nested/example": {
+      "filePath": "demo/nested/example.tsx"
+    },
+    "/demo/nested/search": {
+      "filePath": "demo/nested/search.tsx"
     },
     "/communities/management/": {
       "filePath": "communities/management/index.tsx"

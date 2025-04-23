@@ -19,8 +19,8 @@ import { Route as IndexImport } from './routes/index'
 import { Route as CommunitiesIndexImport } from './routes/communities/index'
 import { Route as EventsSubmitImport } from './routes/events/submit'
 import { Route as EventsEventIdImport } from './routes/events/$eventId'
+import { Route as DemoSearchImport } from './routes/demo/search'
 import { Route as CommunitiesManagementIndexImport } from './routes/communities/management/index'
-import { Route as DemoNestedSearchImport } from './routes/demo/nested/search'
 import { Route as DemoNestedExampleImport } from './routes/demo/nested/example'
 import { Route as CommunitiesManagementCreateImport } from './routes/communities/management/create'
 import { Route as CommunitiesManagementCommunityIdImport } from './routes/communities/management/$communityId'
@@ -75,6 +75,12 @@ const EventsEventIdRoute = EventsEventIdImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const DemoSearchRoute = DemoSearchImport.update({
+  id: '/demo/search',
+  path: '/demo/search',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const CommunitiesManagementIndexRoute = CommunitiesManagementIndexImport.update(
   {
     id: '/communities/management/',
@@ -82,12 +88,6 @@ const CommunitiesManagementIndexRoute = CommunitiesManagementIndexImport.update(
     getParentRoute: () => rootRoute,
   } as any,
 )
-
-const DemoNestedSearchRoute = DemoNestedSearchImport.update({
-  id: '/demo/nested/search',
-  path: '/demo/nested/search',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const DemoNestedExampleRoute = DemoNestedExampleImport.update({
   id: '/demo/nested/example',
@@ -148,6 +148,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignUpImport
       parentRoute: typeof rootRoute
     }
+    '/demo/search': {
+      id: '/demo/search'
+      path: '/demo/search'
+      fullPath: '/demo/search'
+      preLoaderRoute: typeof DemoSearchImport
+      parentRoute: typeof rootRoute
+    }
     '/events/$eventId': {
       id: '/events/$eventId'
       path: '/events/$eventId'
@@ -190,13 +197,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoNestedExampleImport
       parentRoute: typeof rootRoute
     }
-    '/demo/nested/search': {
-      id: '/demo/nested/search'
-      path: '/demo/nested/search'
-      fullPath: '/demo/nested/search'
-      preLoaderRoute: typeof DemoNestedSearchImport
-      parentRoute: typeof rootRoute
-    }
     '/communities/management/': {
       id: '/communities/management/'
       path: '/communities/management'
@@ -215,13 +215,13 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/demo/search': typeof DemoSearchRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities': typeof CommunitiesIndexRoute
   '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
   '/communities/management/create': typeof CommunitiesManagementCreateRoute
   '/demo/nested/example': typeof DemoNestedExampleRoute
-  '/demo/nested/search': typeof DemoNestedSearchRoute
   '/communities/management': typeof CommunitiesManagementIndexRoute
 }
 
@@ -231,13 +231,13 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/demo/search': typeof DemoSearchRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities': typeof CommunitiesIndexRoute
   '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
   '/communities/management/create': typeof CommunitiesManagementCreateRoute
   '/demo/nested/example': typeof DemoNestedExampleRoute
-  '/demo/nested/search': typeof DemoNestedSearchRoute
   '/communities/management': typeof CommunitiesManagementIndexRoute
 }
 
@@ -248,13 +248,13 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/demo/search': typeof DemoSearchRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities/': typeof CommunitiesIndexRoute
   '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
   '/communities/management/create': typeof CommunitiesManagementCreateRoute
   '/demo/nested/example': typeof DemoNestedExampleRoute
-  '/demo/nested/search': typeof DemoNestedSearchRoute
   '/communities/management/': typeof CommunitiesManagementIndexRoute
 }
 
@@ -266,13 +266,13 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
+    | '/demo/search'
     | '/events/$eventId'
     | '/events/submit'
     | '/communities'
     | '/communities/management/$communityId'
     | '/communities/management/create'
     | '/demo/nested/example'
-    | '/demo/nested/search'
     | '/communities/management'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -281,13 +281,13 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
+    | '/demo/search'
     | '/events/$eventId'
     | '/events/submit'
     | '/communities'
     | '/communities/management/$communityId'
     | '/communities/management/create'
     | '/demo/nested/example'
-    | '/demo/nested/search'
     | '/communities/management'
   id:
     | '__root__'
@@ -296,13 +296,13 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
+    | '/demo/search'
     | '/events/$eventId'
     | '/events/submit'
     | '/communities/'
     | '/communities/management/$communityId'
     | '/communities/management/create'
     | '/demo/nested/example'
-    | '/demo/nested/search'
     | '/communities/management/'
   fileRoutesById: FileRoutesById
 }
@@ -313,13 +313,13 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   SignInRoute: typeof SignInRoute
   SignUpRoute: typeof SignUpRoute
+  DemoSearchRoute: typeof DemoSearchRoute
   EventsEventIdRoute: typeof EventsEventIdRoute
   EventsSubmitRoute: typeof EventsSubmitRoute
   CommunitiesIndexRoute: typeof CommunitiesIndexRoute
   CommunitiesManagementCommunityIdRoute: typeof CommunitiesManagementCommunityIdRoute
   CommunitiesManagementCreateRoute: typeof CommunitiesManagementCreateRoute
   DemoNestedExampleRoute: typeof DemoNestedExampleRoute
-  DemoNestedSearchRoute: typeof DemoNestedSearchRoute
   CommunitiesManagementIndexRoute: typeof CommunitiesManagementIndexRoute
 }
 
@@ -329,13 +329,13 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   SignInRoute: SignInRoute,
   SignUpRoute: SignUpRoute,
+  DemoSearchRoute: DemoSearchRoute,
   EventsEventIdRoute: EventsEventIdRoute,
   EventsSubmitRoute: EventsSubmitRoute,
   CommunitiesIndexRoute: CommunitiesIndexRoute,
   CommunitiesManagementCommunityIdRoute: CommunitiesManagementCommunityIdRoute,
   CommunitiesManagementCreateRoute: CommunitiesManagementCreateRoute,
   DemoNestedExampleRoute: DemoNestedExampleRoute,
-  DemoNestedSearchRoute: DemoNestedSearchRoute,
   CommunitiesManagementIndexRoute: CommunitiesManagementIndexRoute,
 }
 
@@ -354,13 +354,13 @@ export const routeTree = rootRoute
         "/profile",
         "/sign-in",
         "/sign-up",
+        "/demo/search",
         "/events/$eventId",
         "/events/submit",
         "/communities/",
         "/communities/management/$communityId",
         "/communities/management/create",
         "/demo/nested/example",
-        "/demo/nested/search",
         "/communities/management/"
       ]
     },
@@ -379,6 +379,9 @@ export const routeTree = rootRoute
     "/sign-up": {
       "filePath": "sign-up.tsx"
     },
+    "/demo/search": {
+      "filePath": "demo/search.tsx"
+    },
     "/events/$eventId": {
       "filePath": "events/$eventId.tsx"
     },
@@ -396,9 +399,6 @@ export const routeTree = rootRoute
     },
     "/demo/nested/example": {
       "filePath": "demo/nested/example.tsx"
-    },
-    "/demo/nested/search": {
-      "filePath": "demo/nested/search.tsx"
     },
     "/communities/management/": {
       "filePath": "communities/management/index.tsx"

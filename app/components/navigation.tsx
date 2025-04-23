@@ -48,6 +48,15 @@ export const Navigation = () => {
             Calendar
           </NavigationMenuLink>
         </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink
+            className={navigationMenuTriggerStyle()}
+            to="/demo/search"
+            search={{ page: 1, filter: "", sort: "newest" }}
+          >
+            Search
+          </NavigationMenuLink>
+        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   )

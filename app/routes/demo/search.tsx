@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router"
 import { useState, useEffect, useRef } from "react"
 import { Button } from "~/components/ui/button"
+import { Input } from "~/components/ui/input"
 
 type ProductSearchSortOptions = "newest" | "oldest" | "price"
 
@@ -23,8 +24,10 @@ export const Route = createFileRoute("/demo/search")({
 
 function RouteComponent() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 m-2 p-2 w-64 border-2 border-green-700">
+      <h1 className="text-2xl font-bold">Route component</h1>
       <PageComponent />
+      <FilterComponent />
       <AnotherComponent />
     </div>
   )
@@ -32,11 +35,9 @@ function RouteComponent() {
 
 const PageComponent = () => {
   const navigate = useNavigate()
-  const page = Route.useSearch({
-    select: (search) => search.page,
-  })
+  const page = Route.useSearch({ select: (search) => search.page })
 
-  const setSearch = (newPage: number) => {
+  const setPage = (newPage: number) => {
     navigate({
       from: Route.fullPath,
       search: (prev) => ({ ...prev, page: newPage }),
@@ -47,9 +48,32 @@ const PageComponent = () => {
   renderCount.current += 1
 
   return (
-    <div>
-      <Button onClick={() => setSearch(page + 1)}>Next Page</Button>
+    <div className="p-2 border-2 border-red-700">
+      <Button onClick={() => setPage(page + 1)}>Next Page</Button>
       <p>We are on page {page}</p>
+      <p>Rerenders: {renderCount.current}</p>
+    </div>
+  )
+}
+
+const FilterComponent = () => {
+  const navigate = useNavigate()
+  const filter = Route.useSearch({ select: (search) => search.filter })
+
+  const setFilter = (newFilter: string) => {
+    navigate({
+      from: Route.fullPath,
+      search: (prev) => ({ ...prev, filter: newFilter }),
+    })
+  }
+
+  const renderCount = useRef(0)
+  renderCount.current += 1
+
+  return (
+    <div className="p-2 border-2 border-red-700">
+      <Input value={filter} onChange={(e) => setFilter(e.target.value)} />
+      <p>Filter: {filter}</p>
       <p>Rerenders: {renderCount.current}</p>
     </div>
   )
@@ -60,7 +84,7 @@ const AnotherComponent = () => {
   renderCount.current += 1
 
   return (
-    <div>
+    <div className="p-2 border-2 border-red-700">
       <p>Here's another component</p>
       <p>Rerenders: {renderCount.current}</p>
     </div>

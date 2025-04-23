@@ -119,6 +119,20 @@
       }
     },
     {
+      "title": "Features Rich",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/features.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
       "title": "Client Journey",
       "description": "",
       "steps": [
@@ -361,7 +375,7 @@
       "steps": [
         {
           "action": "highlight",
-          "path": "app/routes/demo/nested/search.tsx",
+          "path": "app/routes/demo/search.tsx",
           "startPlaceholder": "validateSearch: (search: Record<string, unknown>): ProductSearch => {",
           "endPlaceholder": "},"
         }
@@ -398,7 +412,27 @@
         }
       ]
     },
-    // Structural Sharing & fine grained
+    {
+      "title": "Fine-grained selectors",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/routes/demo/search.tsx",
+          "startPlaceholder": "const page = Route.useSearch({ select: (search) => search.page })"
+        }
+      ]
+    },
+    {
+      "title": "Search Demo",
+      "description": "",
+      "steps": [
+        {
+          "action": "openWebsite",
+          "url": "http://localhost:3000/demo/search",
+          "openInVSCode": true
+        }
+      ]
+    },
     {
       "title": "Close",
       "steps": [

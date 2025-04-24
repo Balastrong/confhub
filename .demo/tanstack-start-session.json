@@ -434,21 +434,151 @@
       ]
     },
     {
-      "title": "Close",
+      "title": "Router Context",
+      "description": "",
       "steps": [
         {
-          "action": "unsetPresentationView"
+          "action": "openSlide",
+          "path": "/.demo/slides/router/context.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Context Demo Root",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/routes/__root.tsx",
+          "startPlaceholder": "export const Route = createRootRouteWithContext<{",
+          "endPlaceholder": "beforeLoad: async ({ context }) => {"
         }
       ]
     },
     {
-      "title": "Website",
+      "title": "Context Demo Profile",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/routes/profile.tsx",
+          "startPlaceholder": "beforeLoad",
+          "endPlaceholder": "},"
+        }
+      ]
+    },
+    {
+      "title": "External Data Loading",
       "description": "",
       "steps": [
         {
+          "action": "openSlide",
+          "path": "/.demo/slides/router/loaders.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Loaders and Routing",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/router/loaders-routing.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Loaders Demo",
+      "steps": [
+        {
           "action": "openWebsite",
-          "url": "https://demotime.elio.dev?foo=bar",
+          "url": "http://localhost:3000/demo/loaders",
           "openInVSCode": true
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.action.splitEditorToRightGroup"
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.action.focusLeftGroup"
+        },
+        {
+          "action": "open",
+          "path": "app/routes/demo/loaders/route.tsx"
+        },
+        {
+          "action": "open",
+          "path": "app/routes/demo/loaders/blocking.tsx"
+        },
+        {
+          "action": "open",
+          "path": "app/routes/demo/loaders/defer.tsx"
+        },
+        {
+          "action": "highlight",
+          "path": "app/routes/demo/loaders/route.tsx",
+          "position": "10:17"
+        }
+      ]
+    },
+    {
+      "title": "Server Loaders",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/router/server-loaders.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "More on Router",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/router/router-more.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "TanStack Start",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/start/intro.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Close",
+      "steps": [
+        {
+          "action": "unsetPresentationView"
         }
       ]
     }

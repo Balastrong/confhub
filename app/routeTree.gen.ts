@@ -20,8 +20,12 @@ import { Route as CommunitiesIndexImport } from './routes/communities/index'
 import { Route as EventsSubmitImport } from './routes/events/submit'
 import { Route as EventsEventIdImport } from './routes/events/$eventId'
 import { Route as DemoSearchImport } from './routes/demo/search'
+import { Route as DemoLoadersRouteImport } from './routes/demo/loaders/route'
+import { Route as DemoLoadersIndexImport } from './routes/demo/loaders/index'
 import { Route as CommunitiesManagementIndexImport } from './routes/communities/management/index'
 import { Route as DemoNestedExampleImport } from './routes/demo/nested/example'
+import { Route as DemoLoadersDeferImport } from './routes/demo/loaders/defer'
+import { Route as DemoLoadersBlockingImport } from './routes/demo/loaders/blocking'
 import { Route as CommunitiesManagementCreateImport } from './routes/communities/management/create'
 import { Route as CommunitiesManagementCommunityIdImport } from './routes/communities/management/$communityId'
 
@@ -81,6 +85,18 @@ const DemoSearchRoute = DemoSearchImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const DemoLoadersRouteRoute = DemoLoadersRouteImport.update({
+  id: '/demo/loaders',
+  path: '/demo/loaders',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DemoLoadersIndexRoute = DemoLoadersIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DemoLoadersRouteRoute,
+} as any)
+
 const CommunitiesManagementIndexRoute = CommunitiesManagementIndexImport.update(
   {
     id: '/communities/management/',
@@ -93,6 +109,18 @@ const DemoNestedExampleRoute = DemoNestedExampleImport.update({
   id: '/demo/nested/example',
   path: '/demo/nested/example',
   getParentRoute: () => rootRoute,
+} as any)
+
+const DemoLoadersDeferRoute = DemoLoadersDeferImport.update({
+  id: '/defer',
+  path: '/defer',
+  getParentRoute: () => DemoLoadersRouteRoute,
+} as any)
+
+const DemoLoadersBlockingRoute = DemoLoadersBlockingImport.update({
+  id: '/blocking',
+  path: '/blocking',
+  getParentRoute: () => DemoLoadersRouteRoute,
 } as any)
 
 const CommunitiesManagementCreateRoute =
@@ -148,6 +176,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignUpImport
       parentRoute: typeof rootRoute
     }
+    '/demo/loaders': {
+      id: '/demo/loaders'
+      path: '/demo/loaders'
+      fullPath: '/demo/loaders'
+      preLoaderRoute: typeof DemoLoadersRouteImport
+      parentRoute: typeof rootRoute
+    }
     '/demo/search': {
       id: '/demo/search'
       path: '/demo/search'
@@ -190,6 +225,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommunitiesManagementCreateImport
       parentRoute: typeof rootRoute
     }
+    '/demo/loaders/blocking': {
+      id: '/demo/loaders/blocking'
+      path: '/blocking'
+      fullPath: '/demo/loaders/blocking'
+      preLoaderRoute: typeof DemoLoadersBlockingImport
+      parentRoute: typeof DemoLoadersRouteImport
+    }
+    '/demo/loaders/defer': {
+      id: '/demo/loaders/defer'
+      path: '/defer'
+      fullPath: '/demo/loaders/defer'
+      preLoaderRoute: typeof DemoLoadersDeferImport
+      parentRoute: typeof DemoLoadersRouteImport
+    }
     '/demo/nested/example': {
       id: '/demo/nested/example'
       path: '/demo/nested/example'
@@ -204,10 +253,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommunitiesManagementIndexImport
       parentRoute: typeof rootRoute
     }
+    '/demo/loaders/': {
+      id: '/demo/loaders/'
+      path: '/'
+      fullPath: '/demo/loaders/'
+      preLoaderRoute: typeof DemoLoadersIndexImport
+      parentRoute: typeof DemoLoadersRouteImport
+    }
   }
 }
 
 // Create and export the route tree
+
+interface DemoLoadersRouteRouteChildren {
+  DemoLoadersBlockingRoute: typeof DemoLoadersBlockingRoute
+  DemoLoadersDeferRoute: typeof DemoLoadersDeferRoute
+  DemoLoadersIndexRoute: typeof DemoLoadersIndexRoute
+}
+
+const DemoLoadersRouteRouteChildren: DemoLoadersRouteRouteChildren = {
+  DemoLoadersBlockingRoute: DemoLoadersBlockingRoute,
+  DemoLoadersDeferRoute: DemoLoadersDeferRoute,
+  DemoLoadersIndexRoute: DemoLoadersIndexRoute,
+}
+
+const DemoLoadersRouteRouteWithChildren =
+  DemoLoadersRouteRoute._addFileChildren(DemoLoadersRouteRouteChildren)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -215,14 +286,18 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/demo/loaders': typeof DemoLoadersRouteRouteWithChildren
   '/demo/search': typeof DemoSearchRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities': typeof CommunitiesIndexRoute
   '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
   '/communities/management/create': typeof CommunitiesManagementCreateRoute
+  '/demo/loaders/blocking': typeof DemoLoadersBlockingRoute
+  '/demo/loaders/defer': typeof DemoLoadersDeferRoute
   '/demo/nested/example': typeof DemoNestedExampleRoute
   '/communities/management': typeof CommunitiesManagementIndexRoute
+  '/demo/loaders/': typeof DemoLoadersIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -237,8 +312,11 @@ export interface FileRoutesByTo {
   '/communities': typeof CommunitiesIndexRoute
   '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
   '/communities/management/create': typeof CommunitiesManagementCreateRoute
+  '/demo/loaders/blocking': typeof DemoLoadersBlockingRoute
+  '/demo/loaders/defer': typeof DemoLoadersDeferRoute
   '/demo/nested/example': typeof DemoNestedExampleRoute
   '/communities/management': typeof CommunitiesManagementIndexRoute
+  '/demo/loaders': typeof DemoLoadersIndexRoute
 }
 
 export interface FileRoutesById {
@@ -248,14 +326,18 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/demo/loaders': typeof DemoLoadersRouteRouteWithChildren
   '/demo/search': typeof DemoSearchRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities/': typeof CommunitiesIndexRoute
   '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
   '/communities/management/create': typeof CommunitiesManagementCreateRoute
+  '/demo/loaders/blocking': typeof DemoLoadersBlockingRoute
+  '/demo/loaders/defer': typeof DemoLoadersDeferRoute
   '/demo/nested/example': typeof DemoNestedExampleRoute
   '/communities/management/': typeof CommunitiesManagementIndexRoute
+  '/demo/loaders/': typeof DemoLoadersIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -266,14 +348,18 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
+    | '/demo/loaders'
     | '/demo/search'
     | '/events/$eventId'
     | '/events/submit'
     | '/communities'
     | '/communities/management/$communityId'
     | '/communities/management/create'
+    | '/demo/loaders/blocking'
+    | '/demo/loaders/defer'
     | '/demo/nested/example'
     | '/communities/management'
+    | '/demo/loaders/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -287,8 +373,11 @@ export interface FileRouteTypes {
     | '/communities'
     | '/communities/management/$communityId'
     | '/communities/management/create'
+    | '/demo/loaders/blocking'
+    | '/demo/loaders/defer'
     | '/demo/nested/example'
     | '/communities/management'
+    | '/demo/loaders'
   id:
     | '__root__'
     | '/'
@@ -296,14 +385,18 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
+    | '/demo/loaders'
     | '/demo/search'
     | '/events/$eventId'
     | '/events/submit'
     | '/communities/'
     | '/communities/management/$communityId'
     | '/communities/management/create'
+    | '/demo/loaders/blocking'
+    | '/demo/loaders/defer'
     | '/demo/nested/example'
     | '/communities/management/'
+    | '/demo/loaders/'
   fileRoutesById: FileRoutesById
 }
 
@@ -313,6 +406,7 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   SignInRoute: typeof SignInRoute
   SignUpRoute: typeof SignUpRoute
+  DemoLoadersRouteRoute: typeof DemoLoadersRouteRouteWithChildren
   DemoSearchRoute: typeof DemoSearchRoute
   EventsEventIdRoute: typeof EventsEventIdRoute
   EventsSubmitRoute: typeof EventsSubmitRoute
@@ -329,6 +423,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   SignInRoute: SignInRoute,
   SignUpRoute: SignUpRoute,
+  DemoLoadersRouteRoute: DemoLoadersRouteRouteWithChildren,
   DemoSearchRoute: DemoSearchRoute,
   EventsEventIdRoute: EventsEventIdRoute,
   EventsSubmitRoute: EventsSubmitRoute,
@@ -354,6 +449,7 @@ export const routeTree = rootRoute
         "/profile",
         "/sign-in",
         "/sign-up",
+        "/demo/loaders",
         "/demo/search",
         "/events/$eventId",
         "/events/submit",
@@ -379,6 +475,14 @@ export const routeTree = rootRoute
     "/sign-up": {
       "filePath": "sign-up.tsx"
     },
+    "/demo/loaders": {
+      "filePath": "demo/loaders/route.tsx",
+      "children": [
+        "/demo/loaders/blocking",
+        "/demo/loaders/defer",
+        "/demo/loaders/"
+      ]
+    },
     "/demo/search": {
       "filePath": "demo/search.tsx"
     },
@@ -397,11 +501,23 @@ export const routeTree = rootRoute
     "/communities/management/create": {
       "filePath": "communities/management/create.tsx"
     },
+    "/demo/loaders/blocking": {
+      "filePath": "demo/loaders/blocking.tsx",
+      "parent": "/demo/loaders"
+    },
+    "/demo/loaders/defer": {
+      "filePath": "demo/loaders/defer.tsx",
+      "parent": "/demo/loaders"
+    },
     "/demo/nested/example": {
       "filePath": "demo/nested/example.tsx"
     },
     "/communities/management/": {
       "filePath": "communities/management/index.tsx"
+    },
+    "/demo/loaders/": {
+      "filePath": "demo/loaders/index.tsx",
+      "parent": "/demo/loaders"
     }
   }
 }

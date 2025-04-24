@@ -5,4 +5,4 @@ layout: section
 
 # Search/Query params support
 
-The URL is your new state manager.
+The URL is your new state manager

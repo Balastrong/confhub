@@ -1,4 +1,3 @@
-// app/ssr.tsx
 import {
   createStartHandler,
   defaultStreamHandler,

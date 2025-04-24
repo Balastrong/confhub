@@ -575,6 +575,78 @@
       }
     },
     {
+      "title": "Vite Plugin",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/start/vite-plugin.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Plug and Play",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/start/plug-play.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Setup - root",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/routes/__root.tsx",
+          "position": "71:90"
+        }
+      ]
+    },
+    {
+      "title": "Setup - client",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/client.tsx",
+          "position": "1:7"
+        }
+      ]
+    },
+    {
+      "title": "Setup - ssr",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/ssr.tsx",
+          "position": "1:12"
+        }
+      ]
+    },
+    {
+      "title": "Server Functions",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/start/server-fn.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
       "title": "Close",
       "steps": [
         {

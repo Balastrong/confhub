@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/start"
+import { createServerFn } from "@tanstack/react-start"
 import { z } from "zod"
 import { getSupabaseServerClient } from "~/lib/supabase"
 import { userMiddleware } from "./auth.api"

@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/start"
+import { createServerFn } from "@tanstack/react-start"
 import z from "zod"
 
 const PersonSchema = z.object({

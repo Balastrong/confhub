@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/start"
+import { createServerFn } from "@tanstack/react-start"
 import { getSupabaseServerClient } from "~/lib/supabase"
 
 export const getTags = createServerFn().handler(async () => {

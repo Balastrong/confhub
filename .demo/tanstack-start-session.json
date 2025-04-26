@@ -406,9 +406,8 @@
       "description": "",
       "steps": [
         {
-          "action": "openWebsite",
-          "url": "http://localhost:3000",
-          "openInVSCode": true
+          "action": "openSlide",
+          "path": "/.demo/slides/router/search-demo.md"
         }
       ]
     },
@@ -423,7 +422,7 @@
       ]
     },
     {
-      "title": "Search Demo",
+      "title": "Fine Grained Search Demo",
       "description": "",
       "steps": [
         {
@@ -645,6 +644,120 @@
         "start": "vm",
         "end": "pass-filled"
       }
+    },
+    {
+      "title": "Server Functions Def",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/start/server-fn-definition.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Server Fn Basic",
+      "description": "",
+      "steps": [
+        {
+          "action": "open",
+          "path": "app/services/demo1.api.ts"
+        }
+      ]
+    },
+    {
+      "title": "Server Fn Manual Validation",
+      "description": "",
+      "steps": [
+        {
+          "action": "open",
+          "path": "app/services/demo2.api.ts"
+        }
+      ]
+    },
+    {
+      "title": "Server Fn Standard Schema",
+      "description": "",
+      "steps": [
+        {
+          "action": "open",
+          "path": "app/services/demo3.api.ts"
+        }
+      ]
+    },
+    {
+      "title": "Query Integration Demo",
+      "description": "",
+      "steps": [
+        {
+          "action": "open",
+          "path": "app/routes/communities/index.tsx"
+        }
+      ]
+    },
+    {
+      "title": "Middlewares",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/router/middlewares.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Middlewares Demo",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/services/auth.api.ts",
+          "position": "10:21"
+        }
+      ]
+    },
+    {
+      "title": "API Routes",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/start/api-routes.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "API Demo",
+      "steps": [
+        {
+          "action": "openWebsite",
+          "url": "http://localhost:3000/api/demo/leonardo",
+          "openInVSCode": true
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.action.splitEditorToRightGroup"
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.action.focusLeftGroup"
+        },
+        {
+          "action": "open",
+          "path": "app/routes/api/demo/$name.ts"
+        }
+      ]
     },
     {
       "title": "Close",

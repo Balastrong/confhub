@@ -8,6 +8,7 @@ export const Route = createFileRoute("/demo/loaders")({
 })
 
 export async function getSlowData() {
+  console.log("Loading data...")
   await new Promise((resolve) => setTimeout(resolve, 2000))
 
   return {

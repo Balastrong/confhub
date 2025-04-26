@@ -1,12 +1,13 @@
 import { createServerFn } from "@tanstack/start"
+import { z } from "zod"
 import { getSupabaseServerClient } from "~/lib/supabase"
+import { userMiddleware } from "./auth.api"
 import {
   CommunityFiltersSchema,
   CreateCommunitySchema,
   JoinCommunitySchema,
   UpdateCommunitySchema,
 } from "./community.schema"
-import { z } from "zod"
 
 export const createCommunity = createServerFn()
   .validator(CreateCommunitySchema)
@@ -28,11 +29,9 @@ export const createCommunity = createServerFn()
 
 export const getCommunities = createServerFn()
   .validator(CommunityFiltersSchema)
-  .handler(async ({ data }) => {
-    const supabase = getSupabaseServerClient()
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
+  .middleware([userMiddleware])
+  .handler(async ({ data, context: { user, supabase } }) => {
+    await new Promise((resolve) => setTimeout(resolve, 5000))
 
     let query = supabase.from("communities").select("*, user_community(userId)")
 

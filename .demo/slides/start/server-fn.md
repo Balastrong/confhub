@@ -5,4 +5,4 @@ layout: section
 
 # Server Functions
 
-We have a server now, let's add some logic to it.
+Now that we have a server, let's add some logic to it

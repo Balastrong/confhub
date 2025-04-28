@@ -13,15 +13,9 @@ export const CommunityCardSkeleton = () => {
           </AvatarFallback>
         </Avatar>
         <div>
-          <CardTitle className="text-lg">
-            <Skeleton className="h-6 w-32 mb-2" />
-          </CardTitle>
-          <CardDescription>
-            <Skeleton className="h-4 w-24 mt-1" />
-          </CardDescription>
-          <CardDescription className="text-blue-500 mt-1">
-            <Skeleton className="h-4 w-12" />
-          </CardDescription>
+          <Skeleton className="h-6 w-32 mb-2 text-2xl" />
+          <Skeleton className="h-4 w-24 mt-1" />
+          <Skeleton className="h-4 w-12 mt-1" />
         </div>
       </div>
       <div>

@@ -8,6 +8,9 @@
   "files.readonlyInclude": {
     "**/routeTree.gen.ts": true
   },
+  "[markdown]": {
+    "editor.formatOnSave": false
+  },
   "demoTime.previousEnabled": true,
   "demoTime.highlightBlur": 0.75,
   "workbench.statusBar.visible": true,

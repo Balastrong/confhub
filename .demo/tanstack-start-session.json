@@ -706,7 +706,7 @@
       "steps": [
         {
           "action": "openSlide",
-          "path": "/.demo/slides/router/middlewares.md"
+          "path": "/.demo/slides/start/middlewares.md"
         }
       ],
       "icons": {
@@ -757,8 +757,41 @@
         {
           "action": "open",
           "path": "app/routes/api/demo/$name.ts"
+        },
+        {
+          "action": "highlight",
+          "path": "app/routes/api/demo/$name.ts",
+          "startPlaceholder": "createAPIFileRoute("
         }
       ]
+    },
+    {
+      "title": "Stack & Hosting",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/start/stack.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Next steps",
+      "description": "",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/start/steps.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
     },
     {
       "title": "Close",

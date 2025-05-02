@@ -3,7 +3,7 @@ theme: monomi
 layout: default
 ---
 
-# Routes definition - code-based
+# Routes definition: code-based
 
 Manually handle and maintain routes in your code
 

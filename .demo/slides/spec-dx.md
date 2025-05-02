@@ -5,6 +5,8 @@ layout: default
 
 # Superior Developer Experience
 
-- Typesafety
-- Minimal boilerplate (vite plugin)
-- Easier to migrate & learn (client-first, less unnecessary constraints)
+- Extreme Typesafety without writing any types
+- Minimal boilerplate
+    - Little to no configuration
+    - A Vite plugin autogenerates the boring parts
+- Easier to migrate & learn (client-first, no unnecessary constraints)

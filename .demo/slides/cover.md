@@ -1,6 +1,8 @@
 ---
 theme: monomi
-layout: intro
+layout: section
 ---
 
-# TanStack Start
+# A better framework for React full-stack applications
+
+## Let's talk about TanStack Start

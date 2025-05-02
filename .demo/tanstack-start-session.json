@@ -254,6 +254,26 @@
       }
     },
     {
+      "title": "Start Plugin",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app.config.ts",
+          "startPlaceholder": "import { defineConfig } from "
+        }
+      ]
+    },
+    {
+      "title": "Start Plugin config",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app.config.ts",
+          "position": "5:12"
+        }
+      ]
+    },
+    {
       "title": "Route tree",
       "steps": [
         {
@@ -516,14 +536,14 @@
           "action": "open",
           "path": "app/routes/demo/loaders/route.tsx"
         },
-        {
-          "action": "open",
-          "path": "app/routes/demo/loaders/blocking.tsx"
-        },
-        {
-          "action": "open",
-          "path": "app/routes/demo/loaders/defer.tsx"
-        },
+        // {
+        //   "action": "open",
+        //   "path": "app/routes/demo/loaders/blocking.tsx"
+        // },
+        // {
+        //   "action": "open",
+        //   "path": "app/routes/demo/loaders/defer.tsx"
+        // },
         {
           "action": "highlight",
           "path": "app/routes/demo/loaders/route.tsx",
@@ -535,6 +555,9 @@
       "title": "Server Loaders",
       "description": "",
       "steps": [
+        {
+          "action": "closeAll"
+        },
         {
           "action": "openSlide",
           "path": "/.demo/slides/router/server-loaders.md"

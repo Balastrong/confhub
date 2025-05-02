@@ -5,7 +5,7 @@ layout: default
 
 # A Server Function:
 
-- Runs only on the server (it's not even in the client bundle)
+- Runs only on the server (it's extracted from the client bundle)
 - Can be called from the client or server
   - A simple async function from the server
   - An HTTP endpoint hit with a fetch from the client

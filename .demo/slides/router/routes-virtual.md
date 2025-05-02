@@ -3,9 +3,9 @@ theme: monomi
 layout: default
 ---
 
-# Routes definition - file-based
+# Routes definition - virtual
 
-Inspired by Remix, manually reference files to build your own routes tree.
+Inspired by Remix, manually reference components or folders/files to build your own routes tree.
 
 ```ts
 import { rootRoute, route, index, layout, physical } from "@tanstack/virtual-file-routes"

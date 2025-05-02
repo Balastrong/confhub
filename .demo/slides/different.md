@@ -3,4 +3,4 @@ theme: monomi
 layout: section
 ---
 
-# What makes it different?
+# What makes it special?

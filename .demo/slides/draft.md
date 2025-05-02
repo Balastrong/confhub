@@ -1,28 +1,28 @@
 ---
 theme: monomi
-layout: default
+layout: two-columns
 ---
 
-# React is going on the Server
+![Propic](.demo/assets/propic.png)
 
-- Improved Initial Load Performance
-- Enhanced SEO Capabilities
-- Reduced Client-Side JavaScript
+::right::
+# Leonardo Montini
 
----
+- Frontend Engineer @ Claranet
+- GitHub Star & Microsoft MVP
+- Open Source Maintainer
 
-# React is going on the Server 2
+<div style="float: left">
 
-- Improved Initial Load Performance
-- Enhanced SEO Capabilities
-- Reduced Client-Side JavaScript
+<h3 style="margin-bottom: 10px">Find me on:</h3>
 
----
+- YouTube [@DevLeonardo](https://www.youtube.com/@DevLeonardo)
+  
+  ^^ TanStack videos ^^
+- Twitter [@Balastrong](https://twitter.com/Balastrong)
+- GitHub [@Balastrong](https://github.com/Balastrong)
 
-# Slide 3
-
----
-layout: section
----
-
-# Slide 4
+</div>
+<div style="float: right">
+    <img src=".demo/assets/qrlinkedin.png" alt="LinkedIn QR Code" width="200" height="200" style="border-radius: 10px;"/>
+</div>

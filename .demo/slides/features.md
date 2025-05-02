@@ -5,6 +5,17 @@ layout: default
 
 # Features Rich
 
-Router + Start have all the features you need from a full stack routing library.
+Router + Start have all the features you need from a full stack routing library, for example:
 
-We'll put the spotlight on some of my favorites.
+**Router** 
+- Search params as first class citizens
+- Nested routes
+- Lifecycle hooks
+- Global Context (Dependency Injection)
+- Data loading, Prefetching & Caching
+- Suspense & error boundaries
+
+**Start**
+- Server Side Rendering
+- Streaming
+- Server functions

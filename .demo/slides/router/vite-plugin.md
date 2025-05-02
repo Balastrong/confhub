@@ -5,7 +5,7 @@ layout: default
 
 # Vite Plugin
 
-Manually configured on Router, automatically set on Start.
+Manually configured on TanStack Router, automatically set on TanStack Start.
 
 ```ts
 // vite.config.ts

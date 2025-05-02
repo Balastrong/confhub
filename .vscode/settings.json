@@ -16,5 +16,5 @@
   "workbench.statusBar.visible": true,
   "workbench.editor.showTabs": "multiple",
   "workbench.activityBar.location": "default",
-  "editor.hover.enabled": false
+  "editor.hover.enabled": true
 }

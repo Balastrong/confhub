@@ -16,213 +16,30 @@
       "title": "Cover",
       "steps": [
         {
+          // "action": "closeAll"
+        },
+        {
           "action": "openSlide",
           "path": "/.demo/slides/cover.md"
         }
       ]
     },
     {
-      "title": "Server React",
+      "title": "Session Intro",
       "steps": [
         {
           "action": "openSlide",
-          "path": "/.demo/slides/server-react.md"
+          "path": "/.demo/slides/intro.md"
         }
       ]
     },
     {
-      "title": "Client React",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/client-react.md"
-        }
-      ]
-    },
-    {
-      "title": "Start Router",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/start-router.md"
-        }
-      ]
-    },
-    {
-      "title": "Meta",
+      "title": "Router Intro",
       "description": "",
       "steps": [
         {
           "action": "openSlide",
-          "path": "/.demo/slides/meta.md"
-        }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "pass-filled"
-      }
-    },
-    {
-      "title": "Different",
-      "description": "",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/different.md"
-        }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "pass-filled"
-      }
-    },
-    {
-      "title": "Agnostic",
-      "description": "",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/spec-agnostic.md"
-        }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "pass-filled"
-      }
-    },
-    {
-      "title": "Client",
-      "description": "",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/spec-client.md"
-        }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "pass-filled"
-      }
-    },
-    {
-      "title": "Developer Experience",
-      "description": "",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/spec-dx.md"
-        }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "pass-filled"
-      }
-    },
-    {
-      "title": "Features Rich",
-      "description": "",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/features.md"
-        }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "pass-filled"
-      }
-    },
-    {
-      "title": "Client Journey",
-      "description": "",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/router/journey.md"
-        }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "pass-filled"
-      }
-    },
-    {
-      "title": "Router meta",
-      "description": "",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/router/meta.md"
-        }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "pass-filled"
-      }
-    },
-    {
-      "title": "Route definition",
-      "description": "",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/router/routes.md"
-        }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "pass-filled"
-      }
-    },
-    {
-      "title": "Route features",
-      "description": "",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/router/routes-features.md"
-        }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "pass-filled"
-      }
-    },
-    {
-      "title": "Route definition - file",
-      "description": "",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/router/routes-file.md"
-        }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "pass-filled"
-      }
-    },
-    {
-      "title": "Route definition - code",
-      "description": "",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/router/routes-code.md"
-        }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "pass-filled"
-      }
-    },
-    {
-      "title": "Route definition - virtual",
-      "description": "",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/router/routes-virtual.md"
+          "path": "/.demo/slides/router/intro.md"
         }
       ],
       "icons": {
@@ -373,6 +190,15 @@
           "action": "positionCursor",
           "path": "node_modules/@tanstack/router-core/src/route.ts",
           "startPlaceholder": "export interface Route<"
+        }
+      ]
+    },
+    {
+      "title": "Type Tests",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/router/tests.md"
         }
       ]
     },

@@ -77,8 +77,9 @@ layout: two-columns
 # Leonardo Montini
 
 - Frontend Engineer @ Claranet
+- Dev Youtuber & Wannabe Public Speaker
+- Open Source Maintainer (TanStack Form)
 - GitHub Star & Microsoft MVP
-- Open Source Maintainer
 
 <div style="float: left">
 
@@ -100,4 +101,4 @@ theme: monomi
 layout: section
 ---
 
-# Thank you!
+# Thank for having me!

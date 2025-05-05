@@ -21,7 +21,33 @@
           "action": "openSlide",
           "path": "/.demo/slides/cover.md"
         }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Demo Time",
+      "steps": [
+        {
+          "action": "openWebsite",
+          "url": "https://marketplace.visualstudio.com/items?itemName=eliostruyf.vscode-demo-time"
+        }
       ]
+    },
+    {
+      "title": "Me",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/me.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
     },
     {
       "title": "Session Intro",
@@ -30,7 +56,11 @@
           "action": "openSlide",
           "path": "/.demo/slides/intro.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
     },
     {
       "title": "Router Intro",

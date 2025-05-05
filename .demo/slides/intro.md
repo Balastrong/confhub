@@ -1,9 +1,16 @@
 ---
 theme: monomi
-layout: default
+layout: section
 ---
 
 # React is going on the Server
+
+---
+theme: monomi
+layout: default
+---
+
+# SSR brings a lot of benefits
 
 - Improved Initial Load Performance
 - Enhanced SEO Capabilities
@@ -19,8 +26,8 @@ layout: default
 # Rendering on the client still makes sense
 
 - Highly Interactive Applications
-- Smooth User Experience
-- Reduced Server Load
+- Smooth User Experience and Navigation
+- Cheaper Hosting
 
 ---
 theme: monomi

@@ -5,6 +5,6 @@ layout: default
 
 # Data loaders & Routing
 
-- Page might show only when data is available
+- The page might show only when data is available
 - Load can begin during or even before navigation (preloading)
-- TanStack Router has built-in caching, or you can use TanStack Query
+- Data bound to routes might benefit from caching (built-in or TanStack Query)

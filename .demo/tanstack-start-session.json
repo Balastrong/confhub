@@ -1,7 +1,6 @@
 {
   "$schema": "https://demotime.elio.dev/demo-time.schema.json",
   "title": "TanStack Start",
-  "description": "",
   "demos": [
     {
       "title": "Draft",
@@ -35,7 +34,6 @@
     },
     {
       "title": "Router Intro",
-      "description": "",
       "steps": [
         {
           "action": "openSlide",
@@ -58,7 +56,6 @@
     },
     {
       "title": "Vite plugin",
-      "description": "",
       "steps": [
         {
           "action": "openSlide",
@@ -112,7 +109,6 @@
     },
     {
       "title": "Typesafety",
-      "description": "",
       "steps": [
         {
           "action": "openSlide",
@@ -171,7 +167,6 @@
     },
     {
       "title": "Typesafe blog",
-      "description": "",
       "steps": [
         {
           "action": "openSlide",
@@ -204,7 +199,6 @@
     },
     {
       "title": "Search State Manager",
-      "description": "",
       "steps": [
         {
           "action": "openSlide",
@@ -249,7 +243,6 @@
     },
     {
       "title": "Search Demo",
-      "description": "",
       "steps": [
         {
           "action": "openSlide",
@@ -269,7 +262,6 @@
     },
     {
       "title": "Fine Grained Search Demo",
-      "description": "",
       "steps": [
         {
           "action": "openWebsite",
@@ -280,7 +272,6 @@
     },
     {
       "title": "Router Context",
-      "description": "",
       "steps": [
         {
           "action": "openSlide",
@@ -316,7 +307,6 @@
     },
     {
       "title": "External Data Loading",
-      "description": "",
       "steps": [
         {
           "action": "openSlide",
@@ -330,7 +320,6 @@
     },
     {
       "title": "Loaders and Routing",
-      "description": "",
       "steps": [
         {
           "action": "openSlide",
@@ -379,7 +368,6 @@
     },
     {
       "title": "Server Loaders",
-      "description": "",
       "steps": [
         {
           "action": "closeAll"
@@ -396,7 +384,6 @@
     },
     {
       "title": "More on Router",
-      "description": "",
       "steps": [
         {
           "action": "openSlide",
@@ -410,7 +397,6 @@
     },
     {
       "title": "TanStack Start",
-      "description": "",
       "steps": [
         {
           "action": "openSlide",
@@ -424,25 +410,10 @@
     },
     {
       "title": "Vite Plugin",
-      "description": "",
       "steps": [
         {
           "action": "openSlide",
           "path": "/.demo/slides/start/vite-plugin.md"
-        }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "pass-filled"
-      }
-    },
-    {
-      "title": "Plug and Play",
-      "description": "",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/start/plug-play.md"
         }
       ],
       "icons": {
@@ -482,7 +453,6 @@
     },
     {
       "title": "Server Functions",
-      "description": "",
       "steps": [
         {
           "action": "openSlide",
@@ -496,7 +466,6 @@
     },
     {
       "title": "Server Functions Def",
-      "description": "",
       "steps": [
         {
           "action": "openSlide",
@@ -510,7 +479,6 @@
     },
     {
       "title": "Server Fn Basic",
-      "description": "",
       "steps": [
         {
           "action": "open",
@@ -520,7 +488,6 @@
     },
     {
       "title": "Server Fn Manual Validation",
-      "description": "",
       "steps": [
         {
           "action": "open",
@@ -530,7 +497,6 @@
     },
     {
       "title": "Server Fn Standard Schema",
-      "description": "",
       "steps": [
         {
           "action": "open",
@@ -540,7 +506,6 @@
     },
     {
       "title": "Query Integration Demo",
-      "description": "",
       "steps": [
         {
           "action": "open",
@@ -551,7 +516,6 @@
     // TODO Replace the two snippets and use highlight to show the most relevant parts
     {
       "title": "Middlewares",
-      "description": "",
       "steps": [
         {
           "action": "openSlide",
@@ -575,7 +539,6 @@
     },
     {
       "title": "API Routes",
-      "description": "",
       "steps": [
         {
           "action": "openSlide",
@@ -616,7 +579,6 @@
     },
     {
       "title": "Stack & Hosting",
-      "description": "",
       "steps": [
         {
           "action": "openSlide",
@@ -629,8 +591,17 @@
       }
     },
     {
+      "title": "Hosting Preset",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app.config.ts",
+          "position": "12:15"
+        }
+      ]
+    },
+    {
       "title": "Next steps",
-      "description": "",
       "steps": [
         {
           "action": "openSlide",

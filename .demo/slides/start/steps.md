@@ -24,7 +24,7 @@ Primitives-first approach, RSCs are just another way of displaying server state
 - Challenges of server state: staleness, dependencies, cache and partial invalidation
 - Server Components cached with TanStack Query
 
-Coming soon
+_Coming soon!_
 
 ---
 layout: section
@@ -94,3 +94,10 @@ layout: two-columns
 <div style="float: right">
     <img src=".demo/assets/qrlinkedin.png" alt="LinkedIn QR Code" width="200" height="200" style="border-radius: 10px;"/>
 </div>
+
+---
+theme: monomi
+layout: section
+---
+
+# Thank you!

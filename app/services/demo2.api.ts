@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start"
 
 export const myServerFunction = createServerFn({ method: "POST" })
-  .validator((data): number => {
+  .validator((data: number) => {
     if (typeof data !== "number") {
       throw new Error("Invalid data type")
     }

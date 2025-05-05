@@ -9,3 +9,5 @@ layout: default
   - Same naming convetions as client routes
 - Stable endpoints for server logic
 - Full HTTP support (verbs, headers, etc.)
+
+_Note: this will likely have breaking changes soon_

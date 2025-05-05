@@ -10,3 +10,4 @@ layout: default
   - A simple async function from the server
   - An HTTP endpoint hit with a fetch from the client
 - Has a public URL (unstable... for now!)
+- Has full control on HTTP response, headers, cookies, redirects, etc.

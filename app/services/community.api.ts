@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start"
 import { z } from "zod"
 import { getSupabaseServerClient } from "~/lib/supabase"
-import { userMiddleware } from "./auth.api"
+import { userMiddleware, userRequiredMiddleware } from "./auth.api"
 import {
   CommunityFiltersSchema,
   CreateCommunitySchema,
@@ -88,18 +88,10 @@ export const getCommunity = createServerFn()
 
 export const joinCommunity = createServerFn()
   .validator(JoinCommunitySchema)
-  .handler(async ({ data }) => {
-    const supabase = getSupabaseServerClient()
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-
-    if (!user) {
-      throw new Error("User not found")
-    }
-
+  .middleware([userRequiredMiddleware])
+  .handler(async ({ data, context: { user, supabase } }) => {
     const { error } = await supabase.from("user_community").insert({
-      userId: user?.id,
+      userId: user.id,
       communityId: data.communityId,
     })
 

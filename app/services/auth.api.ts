@@ -42,7 +42,11 @@ export const userRequiredMiddleware = createMiddleware()
 
     console.log("The answer is", context.theAnswer)
 
-    return next()
+    return next({
+      context: {
+        user: context.user,
+      },
+    })
   })
 
 export const signUp = createServerFn()

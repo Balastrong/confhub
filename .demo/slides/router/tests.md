@@ -1,5 +1,6 @@
 ---
 theme: monomi
-layout: image
-image: /.demo/assets/router.png
+layout: default
 ---
+
+![tests](.demo/assets/tests.png)

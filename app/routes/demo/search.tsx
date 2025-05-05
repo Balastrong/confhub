@@ -13,7 +13,7 @@ type ProductSearch = {
 
 export const Route = createFileRoute("/demo/search")({
   component: RouteComponent,
-  validateSearch: (search: Record<string, unknown>): ProductSearch => {
+  validateSearch: (search): ProductSearch => {
     return {
       page: Number(search?.page ?? 1),
       filter: (search.filter as string) || "",

@@ -32,6 +32,7 @@ function RouteComponent() {
         <ButtonLink
           to="/demo/loaders/blocking"
           activeProps={{ variant: "secondary" }}
+          preload={false}
         >
           Blocking
         </ButtonLink>

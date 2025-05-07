@@ -5,9 +5,8 @@ export const Route = createFileRoute("/demo/loaders/blocking")({
   component: RouteComponent,
   loader: getSlowData,
   pendingComponent: () => <div>Loading...</div>,
-  wrapInSuspense: true,
-  // endingMs: 0,
-  // staleTime: 5000,
+  // pendingMs: 0, // Default is 1000
+  // staleTime: 5000, // Default is 0
 })
 
 function RouteComponent() {

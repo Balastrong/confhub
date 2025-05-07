@@ -4,13 +4,13 @@ import { Suspense } from "react"
 
 export const Route = createFileRoute("/demo/loaders/defer")({
   component: RouteComponent,
-  loader: async () => {
+  loader: () => {
     return {
       fastData: "hello I'm fast",
       slowDataPromise: defer(getSlowData()),
     }
   },
-  staleTime: 5000,
+  staleTime: 10000,
 })
 
 function RouteComponent() {

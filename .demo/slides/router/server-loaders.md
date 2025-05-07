@@ -3,6 +3,6 @@ theme: monomi
 layout: default
 ---
 
-# Do you even need a server?
+# Do you really need a full-stack framework?
 
-Are you sure what you can do from the client isn't enough for your users?
+Don't you have enough cool features already in your client-side framework with a separate backend?

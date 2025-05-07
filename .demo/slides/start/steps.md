@@ -30,9 +30,9 @@ _Coming soon!_
 layout: section
 ---
 
-# Cool, is this production ready
+# Ok fine, but is this production ready?
 
-Talking about tech is cool, but we're here for the $$$
+Talking about tech is cool, but we're here for the 💰💰💰
 
 ---
 layout: default
@@ -52,7 +52,7 @@ layout: default
 
 - v1 should happen this year
 - removing vinxi will have breaking changes (and improvements!)
-- Feature rich, but not yet 100% stable
+- Feature rich, but not yet 100% stable (we're getting there!)
 
 ---
 layout: default

@@ -246,7 +246,7 @@
         {
           "action": "highlight",
           "path": "app/routes/demo/search.tsx",
-          "startPlaceholder": "validateSearch: (search: Record<string, unknown>): ProductSearch => {",
+          "startPlaceholder": "validateSearch",
           "endPlaceholder": "},"
         }
       ]
@@ -381,14 +381,14 @@
           "action": "open",
           "path": "app/routes/demo/loaders/route.tsx"
         },
-        // {
-        //   "action": "open",
-        //   "path": "app/routes/demo/loaders/blocking.tsx"
-        // },
-        // {
-        //   "action": "open",
-        //   "path": "app/routes/demo/loaders/defer.tsx"
-        // },
+        {
+          "action": "open",
+          "path": "app/routes/demo/loaders/blocking.tsx"
+        },
+        {
+          "action": "open",
+          "path": "app/routes/demo/loaders/defer.tsx"
+        },
         {
           "action": "highlight",
           "path": "app/routes/demo/loaders/route.tsx",
@@ -397,24 +397,64 @@
       ]
     },
     {
-      "title": "Server Loaders",
+      "title": "Loaders Demo - Pending Component",
       "steps": [
         {
-          "action": "closeAll"
-        },
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/router/server-loaders.md"
+          "action": "highlight",
+          "path": "app/routes/demo/loaders/blocking.tsx",
+          "startPlaceholder": "pendingComponent:"
         }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "pass-filled"
-      }
+      ]
+    },
+    {
+      "title": "Loaders Demo - Preloading",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/routes/demo/loaders/route.tsx",
+          "startPlaceholder": "preload={false}"
+        }
+      ]
+    },
+    {
+      "title": "Loaders Demo - Defer",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/routes/demo/loaders/defer.tsx",
+          "startPlaceholder": "loader: () => {",
+          "endPlaceholder": "},"
+        }
+      ]
+    },
+    {
+      "title": "Loaders Demo - Await",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/routes/demo/loaders/defer.tsx",
+          "startPlaceholder": "<Suspense fallback",
+          "endPlaceholder": "</Suspense>"
+        }
+      ]
+    },
+    {
+      "title": "Loaders Demo - Types",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/routes/demo/loaders/defer.tsx",
+          "startPlaceholder": "<Await",
+          "endPlaceholder": "time }) => ("
+        }
+      ]
     },
     {
       "title": "More on Router",
       "steps": [
+        {
+          "action": "closeAll"
+        },
         {
           "action": "openSlide",
           "path": "/.demo/slides/router/router-more.md"
@@ -426,7 +466,20 @@
       }
     },
     {
-      "title": "TanStack Start",
+      "title": "Server Loaders",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/router/server-loaders.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Why TanStack Start",
       "steps": [
         {
           "action": "openSlide",
@@ -558,12 +611,33 @@
       }
     },
     {
-      "title": "Middlewares Demo",
+      "title": "Middlewares Demo - Definition",
       "steps": [
         {
           "action": "highlight",
           "path": "app/services/auth.api.ts",
           "position": "10:21"
+        }
+      ]
+    },
+    {
+      "title": "Middlewares Demo - Definition 2",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/services/auth.api.ts",
+          "position": "23:31"
+        }
+      ]
+    },
+    {
+      "title": "Middlewares Demo - Chaining",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/services/auth.api.ts",
+          "startPlaceholder": ".middleware(",
+          "endPlaceholder": ".server(async ({ next, context }) => {"
         }
       ]
     },
@@ -585,7 +659,7 @@
       "steps": [
         {
           "action": "openWebsite",
-          "url": "http://localhost:3000/api/demo/leonardo",
+          "url": "http://localhost:3000/api/demo/Leonardo",
           "openInVSCode": true
         },
         {
@@ -644,8 +718,13 @@
       }
     },
     {
-      "title": "Close",
+      "title": "Closing",
       "steps": [
+        {
+          "action": "positionCursor",
+          "path": ".demo/tanstack-start-session.json",
+          "position": "1"
+        },
         {
           "action": "unsetPresentationView"
         }

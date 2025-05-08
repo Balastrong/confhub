@@ -23,9 +23,9 @@ export const Route = createFileRoute("/")({
 const skeletons = Array.from({ length: 2 })
 
 function Home() {
-  const navigate = useNavigate()
   const filters = Route.useSearch()
 
+  const navigate = useNavigate()
   const setFilters = (newFilters: EventFilters) => {
     navigate({ from: Route.fullPath, search: newFilters })
   }

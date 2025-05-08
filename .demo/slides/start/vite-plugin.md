@@ -16,10 +16,13 @@ layout: default
 
 We have this _simple_ plugin that:
 
+- Enforces an opinionated file based routing
+    - Automatically generates boilerplate
+- Provides a server side data fetching API
 - Splits your app bundle into server and client
 - Handles server side rendering
-- Offers an opinionated file based routing
-- Provides a server side data fetching API
+
+Nuxt and SvelteKit follow the same pattern
 
 ---
 theme: monomi

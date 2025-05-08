@@ -588,15 +588,18 @@
       ]
     },
     {
-      "title": "Query Integration Demo",
+      "title": "Server Fn Insights",
       "steps": [
         {
-          "action": "open",
-          "path": "app/routes/communities/index.tsx"
+          "action": "openSlide",
+          "path": "/.demo/slides/start/server-fn-insights.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
     },
-    // TODO Replace the two snippets and use highlight to show the most relevant parts
     {
       "title": "Middlewares",
       "steps": [
@@ -678,6 +681,28 @@
           "action": "highlight",
           "path": "app/routes/api/demo/$name.ts",
           "startPlaceholder": "createAPIFileRoute("
+        }
+      ]
+    },
+    {
+      "title": "Query Demo Slide",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/start/query-demo.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Query Integration Demo",
+      "steps": [
+        {
+          "action": "open",
+          "path": "app/routes/communities/index.tsx"
         }
       ]
     },

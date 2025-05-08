@@ -10,7 +10,7 @@ Everything you can do with TanStack Router even before going server-side.
 ---
 theme: monomi
 layout: image
-image: ".demo/assets/router.png"
+image: .demo/assets/router.png
 ---
 
 ---
@@ -85,7 +85,7 @@ theme: monomi
 layout: default
 ---
 
-# Routes definition - virtual
+# Routes definition: virtual
 
 Inspired by Remix, manually reference components or folders/files to build your own routes tree.
 

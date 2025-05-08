@@ -707,6 +707,17 @@
       ]
     },
     {
+      "title": "Query Integration Demo - Suspense",
+      "steps": [
+        {
+          "action": "applyPatch",
+          "path": "app/routes/communities/index.tsx",
+          "contentPath": "/snapshots/index.snapshot.tsx",
+          "patch": "/patches/add-suspense.patch"
+        }
+      ]
+    },
+    {
       "title": "Stack & Hosting",
       "steps": [
         {

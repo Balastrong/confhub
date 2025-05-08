@@ -3,45 +3,15 @@
   "title": "TanStack Start",
   "demos": [
     {
-      "title": "Draft",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/draft.md"
-        }
-      ]
-    },
-    {
       "title": "Cover",
       "steps": [
         {
-          // "action": "closeAll"
+          "action": "snippet",
+          "contentPath": "/snippets/show-slide.json"
         },
         {
           "action": "openSlide",
           "path": "/.demo/slides/cover.md"
-        }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "pass-filled"
-      }
-    },
-    {
-      "title": "Demo Time",
-      "steps": [
-        {
-          "action": "openWebsite",
-          "url": "https://marketplace.visualstudio.com/items?itemName=eliostruyf.vscode-demo-time"
-        }
-      ]
-    },
-    {
-      "title": "Me",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/me.md"
         }
       ],
       "icons": {
@@ -118,26 +88,6 @@
       ]
     },
     {
-      "title": "Route tree",
-      "steps": [
-        {
-          "action": "positionCursor",
-          "path": "app/routeTree.gen.ts",
-          "position": "1"
-        }
-      ]
-    },
-    {
-      "title": "Route tree defs",
-      "steps": [
-        {
-          "action": "positionCursor",
-          "path": "app/routeTree.gen.ts",
-          "startPlaceholder": "declare module '@tanstack/react-router' {"
-        }
-      ]
-    },
-    {
       "title": "Typesafety",
       "steps": [
         {
@@ -209,6 +159,26 @@
       }
     },
     {
+      "title": "Route tree",
+      "steps": [
+        {
+          "action": "positionCursor",
+          "path": "app/routeTree.gen.ts",
+          "position": "1"
+        }
+      ]
+    },
+    {
+      "title": "Route tree defs",
+      "steps": [
+        {
+          "action": "positionCursor",
+          "path": "app/routeTree.gen.ts",
+          "startPlaceholder": "declare module '@tanstack/react-router' {"
+        }
+      ]
+    },
+    {
       "title": "Types",
       "steps": [
         {
@@ -230,6 +200,10 @@
     {
       "title": "Search State Manager",
       "steps": [
+        {
+          "action": "snippet",
+          "contentPath": "/snippets/show-slide.json"
+        },
         {
           "action": "openSlide",
           "path": "/.demo/slides/router/search.md"
@@ -303,6 +277,10 @@
     {
       "title": "Router Context",
       "steps": [
+        {
+          "action": "snippet",
+          "contentPath": "/snippets/show-slide.json"
+        },
         {
           "action": "openSlide",
           "path": "/.demo/slides/router/context.md"
@@ -453,7 +431,8 @@
       "title": "More on Router",
       "steps": [
         {
-          "action": "closeAll"
+          "action": "snippet",
+          "contentPath": "/snippets/show-slide.json"
         },
         {
           "action": "openSlide",
@@ -537,6 +516,10 @@
     {
       "title": "Server Functions",
       "steps": [
+        {
+          "action": "snippet",
+          "contentPath": "/snippets/show-slide.json"
+        },
         {
           "action": "openSlide",
           "path": "/.demo/slides/start/server-fn.md"
@@ -688,6 +671,10 @@
       "title": "Query Demo Slide",
       "steps": [
         {
+          "action": "snippet",
+          "contentPath": "/snippets/show-slide.json"
+        },
+        {
           "action": "openSlide",
           "path": "/.demo/slides/start/query-demo.md"
         }
@@ -720,6 +707,10 @@
     {
       "title": "Stack & Hosting",
       "steps": [
+        {
+          "action": "snippet",
+          "contentPath": "/snippets/show-slide.json"
+        },
         {
           "action": "openSlide",
           "path": "/.demo/slides/start/stack.md"

@@ -67,9 +67,10 @@ layout: default
 
 # Technology-Agnostic by Default
 
-- Tanstack Philosphy: Typescript Core + Framework adapters
-    - React, Solid (Angular soon™)
+- Tanstack Philosphy (all libraries): Typescript Core + Framework adapters
+    - Start supports React and Solid (Angular soon™)
 - Hosting is simple and works everywhere
+    - No vendor lock-in
 
 ---
 theme: monomi
@@ -79,9 +80,9 @@ layout: default
 # Client-Side First Philosophy
 
 - SSR on first load and only when you really want it
-    - No "use server"/"use client" directives
+    - No `"use server"`/`"use client"` directives
 - One of the best client-side routers to date
-- Focus on user interaction
+- Focus on highly interactive applications
 - Well integrated with client-side caching (TanStack Query)
 
 ---
@@ -112,7 +113,7 @@ Router + Start have all the features you need from a full stack routing library,
 - Lifecycle hooks (auth guards, redirects, etc.)
 - Global Context (Dependency Injection)
 - Data loading, Prefetching & Caching
-- Suspense & error boundaries
+- Lazy loading, suspense & code splitting
 
 **Start**
 - Server Side Rendering

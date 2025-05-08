@@ -51,7 +51,7 @@ layout: default
 # TanStack Start: You're an early adopter
 
 - v1 should happen this year
-- removing vinxi will have breaking changes (and improvements!)
+- Removing vinxi will have breaking changes (and improvements!)
 - Feature rich, but not yet 100% stable (we're getting there!)
 
 ---

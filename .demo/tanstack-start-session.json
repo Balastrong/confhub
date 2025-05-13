@@ -68,26 +68,6 @@
       }
     },
     {
-      "title": "Start Plugin",
-      "steps": [
-        {
-          "action": "highlight",
-          "path": "app.config.ts",
-          "startPlaceholder": "import { defineConfig } from "
-        }
-      ]
-    },
-    {
-      "title": "Start Plugin config",
-      "steps": [
-        {
-          "action": "highlight",
-          "path": "app.config.ts",
-          "position": "5:12"
-        }
-      ]
-    },
-    {
       "title": "Typesafety",
       "steps": [
         {
@@ -428,6 +408,16 @@
       ]
     },
     {
+      "title": "Loaders Demo - Api",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/routes/demo/loaders/-components/NiceDisplayComponents.tsx",
+          "startPlaceholder": "const"
+        }
+      ]
+    },
+    {
       "title": "More on Router",
       "steps": [
         {
@@ -482,36 +472,6 @@
         "start": "vm",
         "end": "pass-filled"
       }
-    },
-    {
-      "title": "Setup - root",
-      "steps": [
-        {
-          "action": "highlight",
-          "path": "app/routes/__root.tsx",
-          "position": "71:90"
-        }
-      ]
-    },
-    {
-      "title": "Setup - client",
-      "steps": [
-        {
-          "action": "highlight",
-          "path": "app/client.tsx",
-          "position": "1:7"
-        }
-      ]
-    },
-    {
-      "title": "Setup - ssr",
-      "steps": [
-        {
-          "action": "highlight",
-          "path": "app/ssr.tsx",
-          "position": "1:12"
-        }
-      ]
     },
     {
       "title": "Server Functions",

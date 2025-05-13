@@ -5,18 +5,18 @@ layout: section
 
 # React is going on the Server
 
+## Nextjs, Server Components, useActionState/useTransition
+
 ---
 theme: monomi
 layout: default
 ---
 
-# SSR brings a lot of benefits
+# SSR tecniques bring a lot of benefits
 
 - Improved Initial Load Performance
 - Enhanced SEO Capabilities
 - Reduced Client-Side JavaScript
-
-Nextjs pushes a lot on React Server Components (RSC)
 
 ---
 theme: monomi
@@ -103,7 +103,7 @@ theme: monomi
 layout: default
 ---
 
-# Features Rich
+# Feature Rich
 
 Router + Start have all the features you need from a full stack routing library, for example:
 

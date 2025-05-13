@@ -16,9 +16,9 @@ export const Route = createFileRoute("/demo/search")({
   validateSearch: (search): ProductSearch => {
     return {
       page: Number(search?.page ?? 1),
-      filter: (search.filter as string) || "",
-      sort: (search.sort as ProductSearchSortOptions) || "newest",
-    }
+      filter: search.filter || "",
+      sort: search.sort || "newest",
+    } as ProductSearch
   },
 })
 

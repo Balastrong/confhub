@@ -602,17 +602,28 @@
         {
           "action": "highlight",
           "path": "app/services/auth.api.ts",
-          "position": "10:21"
+          "position": "10:23"
         }
       ]
     },
     {
-      "title": "Middlewares Demo - Definition 2",
+      "title": "Middlewares Demo - Usage",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/services/community.api.ts",
+          "startPlaceholder": ".middleware([userMiddleware])",
+          "endPlaceholder": ".handler(async ({ data, context: { user, supabase } }) => {"
+        }
+      ]
+    },
+    {
+      "title": "Middlewares Demo - Definition Client",
       "steps": [
         {
           "action": "highlight",
           "path": "app/services/auth.api.ts",
-          "position": "23:31"
+          "position": "25:34"
         }
       ]
     },
@@ -622,8 +633,17 @@
         {
           "action": "highlight",
           "path": "app/services/auth.api.ts",
-          "startPlaceholder": ".middleware(",
-          "endPlaceholder": ".server(async ({ next, context }) => {"
+          "position": "47:48"
+        }
+      ]
+    },
+    {
+      "title": "Middlewares Demo - Global",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/global-middleware.ts",
+          "position": "4:6"
         }
       ]
     },

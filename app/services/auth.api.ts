@@ -7,20 +7,22 @@ import {
   UserMetaSchema,
 } from "./auth.schema"
 
-export const userMiddleware = createMiddleware().server(async ({ next }) => {
-  const supabase = getSupabaseServerClient()
+export const userMiddleware = createMiddleware({ type: "function" }).server(
+  async ({ next }) => {
+    const supabase = getSupabaseServerClient()
 
-  const { data } = await supabase.auth.getUser()
+    const { data } = await supabase.auth.getUser()
 
-  return next({
-    context: {
-      user: data.user,
-      supabase,
-    },
-  })
-})
+    return next({
+      context: {
+        user: data.user,
+        supabase,
+      },
+    })
+  },
+)
 
-const logMiddleware = createMiddleware()
+const logMiddleware = createMiddleware({ type: "function" })
   .client(async ({ next }) => {
     console.log("Client middleware")
 
@@ -42,7 +44,7 @@ const logMiddleware = createMiddleware()
     })
   })
 
-export const userRequiredMiddleware = createMiddleware()
+export const userRequiredMiddleware = createMiddleware({ type: "function" })
   .middleware([logMiddleware, userMiddleware])
   .server(async ({ next, context }) => {
     if (!context.user) {
@@ -135,9 +137,9 @@ export const updateUser = createServerFn()
     }
   })
 
-export const globalLoggerMiddleware = createMiddleware().server(
-  async ({ next }) => {
-    console.log("Global middleware")
-    return next()
-  },
-)
+export const globalLoggerMiddleware = createMiddleware({
+  type: "function",
+}).server(async ({ next }) => {
+  // console.log("Global middleware")
+  return next()
+})

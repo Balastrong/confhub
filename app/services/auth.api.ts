@@ -20,15 +20,27 @@ export const userMiddleware = createMiddleware().server(async ({ next }) => {
   })
 })
 
-const logMiddleware = createMiddleware().server(async ({ next }) => {
-  console.log("I'm just logging something, nothing to see here")
+const logMiddleware = createMiddleware()
+  .client(async ({ next }) => {
+    console.log("Client middleware")
 
-  return next({
-    context: {
-      theAnswer: 42 as const,
-    },
+    return next({
+      sendContext: {
+        somethingPassedFromTheClient: { hello: "world" },
+      },
+    })
   })
-})
+  .server(async ({ next, context }) => {
+    console.log(
+      `I'm just logging something I received from the client: ${context.somethingPassedFromTheClient.hello}`,
+    )
+
+    return next({
+      context: {
+        theAnswer: 42 as const,
+      },
+    })
+  })
 
 export const userRequiredMiddleware = createMiddleware()
   .middleware([logMiddleware, userMiddleware])
@@ -122,3 +134,10 @@ export const updateUser = createServerFn()
       throw new Error(error.message)
     }
   })
+
+export const globalLoggerMiddleware = createMiddleware().server(
+  async ({ next }) => {
+    console.log("Global middleware")
+    return next()
+  },
+)

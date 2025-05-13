@@ -30,7 +30,7 @@ function RouteComponent() {
 
 function Communities() {
   const { data: communities, isLoading } = useQuery(communityQueries.list())
-  console.log("Communities component")
+  // console.log("Communities component")
 
   if (isLoading) {
     return <CommunityCardSkeletons />

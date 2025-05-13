@@ -31,7 +31,7 @@ Index: /app/routes/communities/index.tsx
  function Communities() {
 -  const { data: communities, isLoading } = useQuery(communityQueries.list())
 +  const { data: communities } = useSuspenseQuery(communityQueries.list())
-   console.log("Communities component")
+   // console.log("Communities component")
  
 -  if (isLoading) {
 -    return <CommunityCardSkeletons />

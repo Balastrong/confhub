@@ -51,8 +51,10 @@ layout: default
 # TanStack Start: You're an early adopter
 
 - v1 should happen this year
-- Removing vinxi will have breaking changes (and improvements!)
+  - maybe even this summer
 - Feature rich, but not yet 100% stable (we're getting there!)
+- Removing vinxi will have breaking changes (and improvements!)
+  - Alpha version without vinxi has been released a couple of days ago
 
 ---
 layout: default
@@ -67,7 +69,6 @@ layout: default
 And...
 
 ---
-theme: monomi
 layout: two-columns
 ---
 
@@ -101,4 +102,4 @@ theme: monomi
 layout: section
 ---
 
-# Thank for having me!
+# Thanks for listening!

@@ -251,6 +251,10 @@
           "action": "openWebsite",
           "url": "http://localhost:3000/demo/search",
           "openInVSCode": true
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.action.splitEditorToRightGroup"
         }
       ]
     },

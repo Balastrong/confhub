@@ -14,14 +14,14 @@ export const Navigation = () => {
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        <NavigationMenuItem>
+        {/* <NavigationMenuItem>
           <NavigationMenuLink
             className={navigationMenuTriggerStyle()}
             to="/events/submit"
           >
             Submit Event
           </NavigationMenuLink>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
         <NavigationMenuItem>
           <NavigationMenuTrigger>Communities</NavigationMenuTrigger>
           <NavigationMenuContent>
@@ -40,14 +40,14 @@ export const Navigation = () => {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
+        {/* <NavigationMenuItem>
           <NavigationMenuLink
             className={navigationMenuTriggerStyle()}
             to="/calendar"
           >
             Calendar
           </NavigationMenuLink>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
         <NavigationMenuItem>
           <NavigationMenuLink
             className={navigationMenuTriggerStyle()}

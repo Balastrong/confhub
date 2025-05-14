@@ -79,7 +79,7 @@ layout: default
 
 # Client-Side First Philosophy
 
-- SSR on first load and only when you really want it
+- SSR on first page load and only when you really want it
     - No `"use server"`/`"use client"` directives
 - One of the best client-side routers to date
 - Focus on highly interactive applications

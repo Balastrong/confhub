@@ -39,10 +39,13 @@ layout: section
 ## Where is TanStack Start positioned
 
 ---
-theme: default
-layout: image
-image: .demo/assets/start.png
+theme: monomi
+layout: default
 ---
+
+# TanStack Start is just the tip of the iceberg
+
+<img src=".demo/assets/iceberg.png" alt="Iceberg" style="margin: auto; margin-top: 10px; height: 80%"/>
 
 ---
 theme: monomi
@@ -51,7 +54,7 @@ layout: default
 
 # TanStack Start is just the tip of the iceberg
 
-<img src=".demo/assets/iceberg.png" alt="Iceberg" style="margin: auto; margin-top: 10px; height: 80%"/>
+<img src=".demo/assets/iceberg-flip.png" alt="Iceberg Flipped" style="margin: auto; margin-top: 10px; height: 80%;"/>
 
 ---
 theme: monomi

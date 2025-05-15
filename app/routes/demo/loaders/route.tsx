@@ -12,7 +12,7 @@ export async function getSlowData() {
   await new Promise((resolve) => setTimeout(resolve, 2000))
 
   return {
-    theAnswer: 42,
+    theAnswer: 42 as const,
     time: format(new Date(), "HH:mm:ss"),
   }
 }
@@ -32,7 +32,6 @@ function RouteComponent() {
         <ButtonLink
           to="/demo/loaders/blocking"
           activeProps={{ variant: "secondary" }}
-          preload={false}
         >
           Blocking
         </ButtonLink>

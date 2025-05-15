@@ -25,9 +25,10 @@ layout: default
 
 # Rendering on the client still makes sense
 
-- Highly Interactive Applications
-- Smooth User Experience and Navigation
-- Cheaper Hosting
+- Easier to handle highly interactive applications
+- Totally fine for applications behind a login
+- Smooth user experience and navigation
+- Cheaper hosting
 
 ---
 theme: monomi
@@ -121,4 +122,4 @@ Router + Start have all the features you need from a full stack routing library,
 **Start**
 - Server Side Rendering
 - Streaming
-- Server functions
+- Server functionalities

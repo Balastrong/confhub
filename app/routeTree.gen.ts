@@ -26,6 +26,7 @@ import { Route as CommunitiesManagementIndexImport } from './routes/communities/
 import { Route as DemoNestedExampleImport } from './routes/demo/nested/example'
 import { Route as DemoLoadersDeferImport } from './routes/demo/loaders/defer'
 import { Route as DemoLoadersBlockingImport } from './routes/demo/loaders/blocking'
+import { Route as DemoOrgCompanyImport } from './routes/demo/$org.$company'
 import { Route as CommunitiesManagementCreateImport } from './routes/communities/management/create'
 import { Route as CommunitiesManagementCommunityIdImport } from './routes/communities/management/$communityId'
 
@@ -121,6 +122,12 @@ const DemoLoadersBlockingRoute = DemoLoadersBlockingImport.update({
   id: '/blocking',
   path: '/blocking',
   getParentRoute: () => DemoLoadersRouteRoute,
+} as any)
+
+const DemoOrgCompanyRoute = DemoOrgCompanyImport.update({
+  id: '/demo/$org/$company',
+  path: '/demo/$org/$company',
+  getParentRoute: () => rootRoute,
 } as any)
 
 const CommunitiesManagementCreateRoute =
@@ -225,6 +232,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommunitiesManagementCreateImport
       parentRoute: typeof rootRoute
     }
+    '/demo/$org/$company': {
+      id: '/demo/$org/$company'
+      path: '/demo/$org/$company'
+      fullPath: '/demo/$org/$company'
+      preLoaderRoute: typeof DemoOrgCompanyImport
+      parentRoute: typeof rootRoute
+    }
     '/demo/loaders/blocking': {
       id: '/demo/loaders/blocking'
       path: '/blocking'
@@ -293,6 +307,7 @@ export interface FileRoutesByFullPath {
   '/communities': typeof CommunitiesIndexRoute
   '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
   '/communities/management/create': typeof CommunitiesManagementCreateRoute
+  '/demo/$org/$company': typeof DemoOrgCompanyRoute
   '/demo/loaders/blocking': typeof DemoLoadersBlockingRoute
   '/demo/loaders/defer': typeof DemoLoadersDeferRoute
   '/demo/nested/example': typeof DemoNestedExampleRoute
@@ -312,6 +327,7 @@ export interface FileRoutesByTo {
   '/communities': typeof CommunitiesIndexRoute
   '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
   '/communities/management/create': typeof CommunitiesManagementCreateRoute
+  '/demo/$org/$company': typeof DemoOrgCompanyRoute
   '/demo/loaders/blocking': typeof DemoLoadersBlockingRoute
   '/demo/loaders/defer': typeof DemoLoadersDeferRoute
   '/demo/nested/example': typeof DemoNestedExampleRoute
@@ -333,6 +349,7 @@ export interface FileRoutesById {
   '/communities/': typeof CommunitiesIndexRoute
   '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
   '/communities/management/create': typeof CommunitiesManagementCreateRoute
+  '/demo/$org/$company': typeof DemoOrgCompanyRoute
   '/demo/loaders/blocking': typeof DemoLoadersBlockingRoute
   '/demo/loaders/defer': typeof DemoLoadersDeferRoute
   '/demo/nested/example': typeof DemoNestedExampleRoute
@@ -355,6 +372,7 @@ export interface FileRouteTypes {
     | '/communities'
     | '/communities/management/$communityId'
     | '/communities/management/create'
+    | '/demo/$org/$company'
     | '/demo/loaders/blocking'
     | '/demo/loaders/defer'
     | '/demo/nested/example'
@@ -373,6 +391,7 @@ export interface FileRouteTypes {
     | '/communities'
     | '/communities/management/$communityId'
     | '/communities/management/create'
+    | '/demo/$org/$company'
     | '/demo/loaders/blocking'
     | '/demo/loaders/defer'
     | '/demo/nested/example'
@@ -392,6 +411,7 @@ export interface FileRouteTypes {
     | '/communities/'
     | '/communities/management/$communityId'
     | '/communities/management/create'
+    | '/demo/$org/$company'
     | '/demo/loaders/blocking'
     | '/demo/loaders/defer'
     | '/demo/nested/example'
@@ -413,6 +433,7 @@ export interface RootRouteChildren {
   CommunitiesIndexRoute: typeof CommunitiesIndexRoute
   CommunitiesManagementCommunityIdRoute: typeof CommunitiesManagementCommunityIdRoute
   CommunitiesManagementCreateRoute: typeof CommunitiesManagementCreateRoute
+  DemoOrgCompanyRoute: typeof DemoOrgCompanyRoute
   DemoNestedExampleRoute: typeof DemoNestedExampleRoute
   CommunitiesManagementIndexRoute: typeof CommunitiesManagementIndexRoute
 }
@@ -430,6 +451,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommunitiesIndexRoute: CommunitiesIndexRoute,
   CommunitiesManagementCommunityIdRoute: CommunitiesManagementCommunityIdRoute,
   CommunitiesManagementCreateRoute: CommunitiesManagementCreateRoute,
+  DemoOrgCompanyRoute: DemoOrgCompanyRoute,
   DemoNestedExampleRoute: DemoNestedExampleRoute,
   CommunitiesManagementIndexRoute: CommunitiesManagementIndexRoute,
 }
@@ -456,6 +478,7 @@ export const routeTree = rootRoute
         "/communities/",
         "/communities/management/$communityId",
         "/communities/management/create",
+        "/demo/$org/$company",
         "/demo/nested/example",
         "/communities/management/"
       ]
@@ -500,6 +523,9 @@ export const routeTree = rootRoute
     },
     "/communities/management/create": {
       "filePath": "communities/management/create.tsx"
+    },
+    "/demo/$org/$company": {
+      "filePath": "demo/$org.$company.tsx"
     },
     "/demo/loaders/blocking": {
       "filePath": "demo/loaders/blocking.tsx",

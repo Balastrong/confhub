@@ -42,7 +42,7 @@ layout: default
 
 - v1 released on 24/12/2023
 - 500k+ weekly downloads on npm
-- Stable APIs, detiled documentation and resources
+- Stable APIs, detailed documentation and resources
 
 ---
 layout: default
@@ -55,6 +55,7 @@ layout: default
 - Feature rich, but not yet 100% stable (we're getting there!)
 - Removing vinxi will have breaking changes (and improvements!)
   - Alpha version without vinxi has been released a couple of days ago
+  - tanstack.com is already using it
 
 ---
 layout: default
@@ -63,8 +64,9 @@ layout: default
 # How to learn more?
 
 - GitHub Repos (Start is a package in the Router repo)
-- Official documentation (tanstack.com is built on Start)
+- Official documentation
 - TanStack Discord
+  - Maintainers are very active
 
 And...
 

@@ -55,6 +55,17 @@
       ]
     },
     {
+      "title": "Route definition - demo new file",
+      "steps": [
+        {
+          "action": "write",
+          "content": "\n// Do I really need to write this all the time?",
+          "path": "app/routes/demo/nested/example.tsx",
+          "position": "11"
+        }
+      ]
+    },
+    {
       "title": "Vite plugin",
       "steps": [
         {
@@ -100,12 +111,12 @@
       "steps": [
         {
           "action": "highlight",
-          "path": "app/routes/communities/management/$communityId.tsx",
+          "path": "app/routes/demo/$org.$company.tsx",
           "startPlaceholder": " } = Route.useParams()"
         },
         {
           "action": "positionCursor",
-          "path": "app/routes/communities/management/$communityId.tsx",
+          "path": "app/routes/demo/$org.$company.tsx",
           "startPlaceholder": " } = Route.useParams()"
         }
       ]
@@ -364,7 +375,30 @@
         {
           "action": "highlight",
           "path": "app/routes/demo/loaders/blocking.tsx",
-          "startPlaceholder": "pendingComponent:"
+          "startPlaceholder": "loader:",
+          "endPlaceholder": "pendingComponent:"
+        }
+      ]
+    },
+    {
+      "title": "Loaders Demo - PendingMs",
+      "steps": [
+        {
+          "action": "write",
+          "content": "\n  pendingMs: 0, // Default is 1000",
+          "path": "app/routes/demo/loaders/blocking.tsx",
+          "startPlaceholder": "})"
+        }
+      ]
+    },
+    {
+      "title": "Loaders Demo - Stale",
+      "steps": [
+        {
+          "action": "write",
+          "content": "\n  staleTime: 5000, // Default is 0",
+          "path": "app/routes/demo/loaders/blocking.tsx",
+          "startPlaceholder": "})"
         }
       ]
     },
@@ -373,8 +407,8 @@
       "steps": [
         {
           "action": "highlight",
-          "path": "app/routes/demo/loaders/route.tsx",
-          "startPlaceholder": "preload={false}"
+          "path": "app/router.tsx",
+          "startPlaceholder": "defaultPreload"
         }
       ]
     },
@@ -538,6 +572,10 @@
       "title": "Server Fn Insights",
       "steps": [
         {
+          "action": "snippet",
+          "contentPath": "/snippets/show-slide.json"
+        },
+        {
           "action": "openSlide",
           "path": "/.demo/slides/start/server-fn-insights.md"
         }
@@ -598,6 +636,16 @@
           "action": "highlight",
           "path": "app/services/auth.api.ts",
           "position": "47:48"
+        }
+      ]
+    },
+    {
+      "title": "Middlewares Demo - Chaining Usage",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "app/services/community.api.ts",
+          "position": "89:92"
         }
       ]
     },

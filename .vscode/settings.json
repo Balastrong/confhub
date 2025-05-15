@@ -16,5 +16,7 @@
   "workbench.statusBar.visible": true,
   "workbench.editor.showTabs": "multiple",
   "workbench.activityBar.location": "default",
-  "editor.hover.enabled": true
+  "editor.hover.enabled": true,
+  "gitlens.currentLine.enabled": false,
+  "gitlens.codeLens.enabled": false
 }

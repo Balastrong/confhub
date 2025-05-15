@@ -586,6 +586,43 @@
       }
     },
     {
+      "title": "Query Demo Slide",
+      "steps": [
+        {
+          "action": "snippet",
+          "contentPath": "/snippets/show-slide.json"
+        },
+        {
+          "action": "openSlide",
+          "path": "/.demo/slides/start/query-demo.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "pass-filled"
+      }
+    },
+    {
+      "title": "Query Integration Demo",
+      "steps": [
+        {
+          "action": "open",
+          "path": "app/routes/communities/index.tsx"
+        }
+      ]
+    },
+    {
+      "title": "Query Integration Demo - Suspense",
+      "steps": [
+        {
+          "action": "applyPatch",
+          "path": "app/routes/communities/index.tsx",
+          "contentPath": "/snapshots/index.snapshot.tsx",
+          "patch": "/patches/add-suspense.patch"
+        }
+      ]
+    },
+    {
       "title": "Middlewares",
       "steps": [
         {
@@ -696,43 +733,6 @@
           "action": "highlight",
           "path": "app/routes/api/demo/$name.ts",
           "startPlaceholder": "createAPIFileRoute("
-        }
-      ]
-    },
-    {
-      "title": "Query Demo Slide",
-      "steps": [
-        {
-          "action": "snippet",
-          "contentPath": "/snippets/show-slide.json"
-        },
-        {
-          "action": "openSlide",
-          "path": "/.demo/slides/start/query-demo.md"
-        }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "pass-filled"
-      }
-    },
-    {
-      "title": "Query Integration Demo",
-      "steps": [
-        {
-          "action": "open",
-          "path": "app/routes/communities/index.tsx"
-        }
-      ]
-    },
-    {
-      "title": "Query Integration Demo - Suspense",
-      "steps": [
-        {
-          "action": "applyPatch",
-          "path": "app/routes/communities/index.tsx",
-          "contentPath": "/snapshots/index.snapshot.tsx",
-          "patch": "/patches/add-suspense.patch"
         }
       ]
     },

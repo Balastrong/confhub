@@ -5,7 +5,7 @@ layout: section
 
 # How is all of that possible?
 
-A couple words on the tech stack behind the scenes
+A few references on the tech stack behind the scenes
 
 ---
 layout: section

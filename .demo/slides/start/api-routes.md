@@ -5,7 +5,7 @@ layout: default
 
 # Server Routes
 
-_Now known as API routes_
+_Previously known as API routes_
 
 - Files inside `routes/api` are API routes
   - Same naming convetions as client routes

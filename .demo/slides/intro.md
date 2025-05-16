@@ -41,6 +41,12 @@ layout: section
 
 ---
 theme: monomi
+layout: image
+image: .demo/assets/start.png
+---
+
+---
+theme: monomi
 layout: default
 ---
 

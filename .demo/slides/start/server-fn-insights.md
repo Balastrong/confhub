@@ -6,7 +6,7 @@ layout: default
 # Builder Pattern?
 
 ```
-createServerFn().middleware().validator().handler()
+createServerFn().validator().handler()
 ```
 
 For the devs:

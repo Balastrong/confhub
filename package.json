@@ -50,7 +50,7 @@
     "zod-validation-error": "^3.4.0"
   },
   "devDependencies": {
-    "@tanstack/router-devtools": "^1.121.0-alpha.1",
+    "@tanstack/react-router-devtools": "^1.121.0-alpha.1",
     "@types/react": "^18.3.20",
     "@types/react-dom": "^18.3.6",
     "autoprefixer": "^10.4.21",

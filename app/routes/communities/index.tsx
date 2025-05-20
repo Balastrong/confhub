@@ -1,10 +1,9 @@
-import { useQuery } from "@tanstack/react-query"
+import { useSuspenseQuery } from "@tanstack/react-query"
 import { createFileRoute } from "@tanstack/react-router"
-import { useState } from "react"
+import { Suspense } from "react"
 import { CommunityCard } from "~/components/community/community-card"
 import { CommunityCardSkeletons } from "~/components/community/community-card-skeleton"
 import { Layout } from "~/components/layout"
-import { Button } from "~/components/ui/button"
 import { communityQueries } from "~/services/queries"
 
 export const Route = createFileRoute("/communities/")({
@@ -15,30 +14,22 @@ export const Route = createFileRoute("/communities/")({
 })
 
 function RouteComponent() {
-  const [count, setCount] = useState(0)
-
   return (
     <Layout className="items-center gap-2">
       <h1 className="text-2xl font-bold">Public Communities</h1>
-      <Communities />
-      <Button variant="outline" onClick={() => setCount((c) => c + 1)}>
-        Increase: {count}
-      </Button>
+      <Suspense fallback={<CommunityCardSkeletons />}>
+        <Communities />
+      </Suspense>
     </Layout>
   )
 }
 
 function Communities() {
-  const { data: communities, isLoading } = useQuery(communityQueries.list())
-  // console.log("Communities component")
-
-  if (isLoading) {
-    return <CommunityCardSkeletons />
-  }
+  const { data: communities } = useSuspenseQuery(communityQueries.list())
 
   return (
     <ul className="space-y-2 min-w-[40%] max-w-[90%]">
-      {communities?.map((community) => (
+      {communities.map((community) => (
         <CommunityCard key={community.id} community={community} />
       ))}
     </ul>

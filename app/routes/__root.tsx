@@ -8,7 +8,6 @@ import {
 import * as React from "react"
 import { Header } from "~/components/header"
 import { Toaster } from "~/components/ui/sonner"
-import { UrlBar } from "~/components/url-bar"
 // @ts-expect-error
 import css from "~/globals.css?url"
 import { authQueries } from "~/services/queries"
@@ -75,7 +74,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <UrlBar />
         <Header />
         <hr />
         {children}

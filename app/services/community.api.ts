@@ -31,8 +31,6 @@ export const getCommunities = createServerFn()
   .validator(CommunityFiltersSchema)
   .middleware([userMiddleware])
   .handler(async ({ data, context: { user, supabase } }) => {
-    await new Promise((resolve) => setTimeout(resolve, 4000))
-
     let query = supabase.from("communities").select("*, user_community(userId)")
 
     if (data.ownCommunitiesOnly && user?.id) {

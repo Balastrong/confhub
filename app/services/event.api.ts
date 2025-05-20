@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/start"
+import { createServerFn } from "@tanstack/react-start"
 import { getSupabaseServerClient } from "~/lib/supabase"
 import { TablesInsert } from "~/lib/types.gen"
 import { CreateEventSchema, EventFiltersSchema } from "./event.schema"

@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/start"
+import { createMiddleware, createServerFn, json } from "@tanstack/react-start"
 import { getSupabaseServerClient } from "~/lib/supabase"
 import {
   AuthState,
@@ -6,6 +6,37 @@ import {
   SignUpSchema,
   UserMetaSchema,
 } from "./auth.schema"
+
+export const userMiddleware = createMiddleware({ type: "function" }).server(
+  async ({ next }) => {
+    const supabase = getSupabaseServerClient()
+
+    const { data } = await supabase.auth.getUser()
+
+    return next({
+      context: {
+        user: data.user,
+        supabase,
+      },
+    })
+  },
+)
+export const userRequiredMiddleware = createMiddleware({ type: "function" })
+  .middleware([userMiddleware])
+  .server(async ({ next, context }) => {
+    if (!context.user) {
+      throw json(
+        { message: "You must be logged in to access this resource!" },
+        { status: 401 },
+      )
+    }
+
+    return next({
+      context: {
+        user: context.user,
+      },
+    })
+  })
 
 export const signUp = createServerFn()
   .validator(SignUpSchema)
@@ -51,23 +82,21 @@ export const signOut = createServerFn().handler(async () => {
   await getSupabaseServerClient().auth.signOut()
 })
 
-export const getUser = createServerFn().handler<AuthState>(async () => {
-  const supabase = getSupabaseServerClient()
+export const getUser = createServerFn()
+  .middleware([userMiddleware])
+  .handler<AuthState>(async ({ context: { user } }) => {
+    if (!user) {
+      return { isAuthenticated: false }
+    }
 
-  const { data } = await supabase.auth.getUser()
-
-  if (!data.user) {
-    return { isAuthenticated: false }
-  }
-
-  return {
-    isAuthenticated: true,
-    user: {
-      email: data.user.email,
-      meta: { username: data.user.user_metadata.username },
-    },
-  }
-})
+    return {
+      isAuthenticated: true,
+      user: {
+        email: user.email,
+        meta: { username: user.user_metadata.username },
+      },
+    }
+  })
 
 export const updateUser = createServerFn()
   .validator(UserMetaSchema)

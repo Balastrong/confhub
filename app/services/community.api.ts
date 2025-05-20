@@ -1,12 +1,13 @@
-import { createServerFn } from "@tanstack/start"
+import { createServerFn } from "@tanstack/react-start"
+import { z } from "zod"
 import { getSupabaseServerClient } from "~/lib/supabase"
+import { userMiddleware, userRequiredMiddleware } from "./auth.api"
 import {
   CommunityFiltersSchema,
   CreateCommunitySchema,
   JoinCommunitySchema,
   UpdateCommunitySchema,
 } from "./community.schema"
-import { z } from "zod"
 
 export const createCommunity = createServerFn()
   .validator(CreateCommunitySchema)
@@ -28,12 +29,8 @@ export const createCommunity = createServerFn()
 
 export const getCommunities = createServerFn()
   .validator(CommunityFiltersSchema)
-  .handler(async ({ data }) => {
-    const supabase = getSupabaseServerClient()
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-
+  .middleware([userMiddleware])
+  .handler(async ({ data, context: { user, supabase } }) => {
     let query = supabase.from("communities").select("*, user_community(userId)")
 
     if (data.ownCommunitiesOnly && user?.id) {
@@ -89,18 +86,10 @@ export const getCommunity = createServerFn()
 
 export const joinCommunity = createServerFn()
   .validator(JoinCommunitySchema)
-  .handler(async ({ data }) => {
-    const supabase = getSupabaseServerClient()
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-
-    if (!user) {
-      throw new Error("User not found")
-    }
-
+  .middleware([userRequiredMiddleware])
+  .handler(async ({ data, context: { user, supabase } }) => {
     const { error } = await supabase.from("user_community").insert({
-      userId: user?.id,
+      userId: user.id,
       communityId: data.communityId,
     })
 

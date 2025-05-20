@@ -5,7 +5,7 @@ This is a TanStack Start project for a conference hub application. Follow these 
 ## Project Architecture
 
 - **Routing**: Uses `@tanstack/react-router`. Route files are in the `/routes` folder. Root layout is in `__root.tsx`.
-- **API Structure**: Server functions are created with `createServerFn()` from `@tanstack/start`.
+- **API Structure**: Server functions are created with `createServerFn()` from `@tanstack/react-start`.
 - **Database**: Supabase is used as the backend database service.
 - **State Management**: TanStack Query is used for data fetching, caching, and state management.
 
@@ -16,7 +16,7 @@ This is a TanStack Start project for a conference hub application. Follow these 
 - **Database**: Supabase via `supabase-js` client
 - **UI Components**: shadcn/ui component library
 - **Forms**: TanStack Form with the custom `useAppForm` hook
-- **API**: Server functions with `createServerFn()` from `@tanstack/start`
+- **API**: Server functions with `createServerFn()` from `@tanstack/react-start`
 - **Styling**: Tailwind CSS
 
 ## Code Organization
@@ -40,7 +40,7 @@ When accessing Supabase:
 ### API Service Pattern
 
 ```typescript
-import { createServerFn } from "@tanstack/start"
+import { createServerFn } from "@tanstack/react-start"
 import { getSupabaseServerClient } from "~/lib/supabase"
 import { YourValidationSchema } from "./your-schema"
 

@@ -10,7 +10,7 @@ export type UserMeta = z.infer<typeof UserMetaSchema>
 export const SignUpSchema = z.object({
   username: UserMetaSchema.shape.username,
   email: z.string().email(),
-  password: z.string().min(6),
+  password: z.string().min(8),
   confirmPassword: z.string(),
 })
 
@@ -22,14 +22,3 @@ export const SignInSchema = z.object({
 })
 
 export type SignInSchema = z.infer<typeof SignInSchema>
-
-export type AuthState =
-  | {
-      isAuthenticated: false
-    }
-  | {
-      isAuthenticated: true
-      user: User
-    }
-
-export type User = { email?: string; meta: UserMeta }

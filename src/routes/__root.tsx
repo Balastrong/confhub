@@ -15,11 +15,11 @@ export const Route = createRootRouteWithContext<{
   queryClient: QueryClient
 }>()({
   beforeLoad: async ({ context }) => {
-    const authState = await context.queryClient.ensureQueryData(
+    const userSession = await context.queryClient.ensureQueryData(
       authQueries.user(),
     )
 
-    return { authState }
+    return { userSession }
   },
   head: () => ({
     meta: [

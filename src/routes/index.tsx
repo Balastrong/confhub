@@ -1,6 +1,4 @@
-import { 
-  ErrorComponent,
-  useNavigate, } from "@tanstack/react-router"
+import { ErrorComponent, useNavigate } from "@tanstack/react-router"
 import React from "react"
 import { ErrorBoundary } from "react-error-boundary"
 import { EventCardSkeleton } from "src/components/event/event-card-skeleton"

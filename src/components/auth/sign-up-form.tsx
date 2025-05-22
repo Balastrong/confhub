@@ -2,15 +2,29 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useRouter } from "@tanstack/react-router"
 import { toast } from "sonner"
 import { useAppForm } from "src/lib/form"
-import { signUp } from "src/services/auth.api"
 import { SignUpSchema } from "src/services/auth.schema"
+import { authClient } from "~/lib/auth/client"
+
+const signUp = async (data: SignUpSchema) => {
+  const { error } = await authClient.signUp.email({
+    email: data.email,
+    password: data.password,
+    name: data.username,
+  })
+
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  return data
+}
 
 export const SignUpForm = () => {
   const queryClient = useQueryClient()
   const router = useRouter()
 
   const signUpMutation = useMutation({
-    mutationFn: (data: Parameters<typeof signUp>[0]) => signUp(data),
+    mutationFn: signUp,
     onSuccess: () => {
       toast.success("You have successfully signed up.")
 
@@ -27,7 +41,7 @@ export const SignUpForm = () => {
       confirmPassword: "",
     } as SignUpSchema,
     onSubmit: async ({ value }) => {
-      await signUpMutation.mutateAsync({ data: value })
+      await signUpMutation.mutateAsync(value)
     },
   })
 

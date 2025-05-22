@@ -13,8 +13,7 @@ export const CreateCommunityForm = () => {
   const queryClient = useQueryClient()
 
   const createCommunityMutation = useMutation({
-    mutationFn: (data: Parameters<typeof createCommunity>[0]) =>
-      createCommunity(data),
+    mutationFn: createCommunity,
     onSuccess: async (community) => {
       queryClient.invalidateQueries(communityQueries.list())
       toast.success("Community created successfully")
@@ -32,7 +31,7 @@ export const CreateCommunityForm = () => {
     createCommunityMutation.mutate({
       data: {
         name: formData.get("name") as string,
-        location: (formData.get("location") as string) || undefined,
+        description: (formData.get("description") as string) || undefined,
         logoUrl: (formData.get("logoUrl") as string) || undefined,
       },
     })
@@ -44,9 +43,9 @@ export const CreateCommunityForm = () => {
         Name
         <Input id="name" name="name" required />
       </Label>
-      <Label htmlFor="location">
-        Location
-        <Input id="location" name="location" />
+      <Label htmlFor="description">
+        Description
+        <Input id="description" name="description" />
       </Label>
       <Label htmlFor="logoUrl">
         Logo URL

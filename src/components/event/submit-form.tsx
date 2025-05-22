@@ -42,7 +42,8 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
       cfpClosingDate: defaultEvent?.cfpClosingDate || null,
       eventUrl: defaultEvent?.eventUrl || null,
       communityId: defaultEvent?.communityId || null,
-      tags: defaultEvent?.tags?.map((t) => t.id) || [],
+      draft: defaultEvent?.draft || false,
+      tags: defaultEvent?.tags || [],
     } as CreateEvent,
     validators: {
       onMount: CreateEventSchema,
@@ -163,7 +164,7 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
           <form.Subscribe
             selector={(state) => [state.values.mode]}
             children={([eventMode]) => {
-              if (eventMode === "Remote") {
+              if (eventMode === "online") {
                 return null
               }
               return (
@@ -207,15 +208,15 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
             <form.Subscribe
               selector={(state) => [
                 state.values.communityId,
-                state.values.communityDraft,
+                state.values.draft,
               ]}
               children={([communityId]) => {
-                if (!communityId && form.state.values.communityDraft) {
-                  form.setFieldValue("communityDraft", false)
+                if (!communityId && form.state.values.draft) {
+                  form.setFieldValue("draft", false)
                 }
                 return (
                   <form.Field
-                    name="communityDraft"
+                    name="draft"
                     children={(field) => {
                       return (
                         <div className="flex items-center gap-1 mt-3">
@@ -290,22 +291,22 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
                 <Label htmlFor={field.name}>Tags *</Label>
                 <div className="flex gap-1 flex-wrap items-center">
                   {tags.map((tag) => {
-                    const isSelected = field.state.value.includes(tag.id)
+                    const isSelected = field.state.value.includes(tag)
                     return (
                       <Badge
-                        key={tag.id}
+                        key={tag}
                         className="cursor-pointer"
                         role="checkbox"
                         onClick={() =>
                           isSelected
                             ? field.setValue(
-                                field.state.value.filter((v) => v != tag.id),
+                                field.state.value.filter((v) => v != tag),
                               )
-                            : field.pushValue(tag.id)
+                            : field.pushValue(tag)
                         }
                         variant={isSelected ? "default" : "outline"}
                       >
-                        {tag.name}
+                        {tag}
                       </Badge>
                     )
                   })}

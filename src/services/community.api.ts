@@ -1,6 +1,11 @@
 import { createServerFn } from "@tanstack/react-start"
+import { and, eq, getTableColumns, sql } from "drizzle-orm"
 import { z } from "zod"
-import { getSupabaseServerClient } from "src/lib/supabase"
+import { db } from "~/lib/db"
+import {
+  communityTable,
+  usersInCommunityTable,
+} from "~/lib/db/schema/community"
 import { userMiddleware, userRequiredMiddleware } from "./auth.api"
 import {
   CommunityFiltersSchema,
@@ -12,136 +17,89 @@ import {
 export const createCommunity = createServerFn()
   .validator(CreateCommunitySchema)
   .handler(async ({ data }) => {
-    const supabase = getSupabaseServerClient()
+    const [community] = await db.insert(communityTable).values(data).returning()
 
-    const { data: community, error } = await supabase
-      .from("communities")
-      .insert(data)
-      .select()
-      .single()
+    return community
+  })
 
-    if (error) {
-      throw new Error(error.message)
+const isMemberQuery = (userId?: string) =>
+  userId
+    ? sql<boolean>`exists (
+    select 1 from ${usersInCommunityTable}
+    where ${usersInCommunityTable.userId} = ${userId}
+    and ${usersInCommunityTable.communityId} = ${communityTable.id}
+  )`
+    : sql<boolean>`false`
+
+export const getCommunities = createServerFn()
+  .validator(CommunityFiltersSchema)
+  .middleware([userMiddleware])
+  .handler(async ({ data, context: { authData } }) => {
+    const userId = authData?.user?.id
+
+    return await db
+      .select({
+        ...getTableColumns(communityTable),
+        isMember: isMemberQuery(userId),
+      })
+      .from(communityTable)
+      .where(data.ownCommunitiesOnly ? isMemberQuery(userId) : undefined)
+      .orderBy(communityTable.name)
+  })
+
+export const getCommunity = createServerFn()
+  .validator(z.object({ id: z.number() }))
+  .middleware([userMiddleware])
+  .handler(async ({ data, context: { authData } }) => {
+    const [community] = await db
+      .select({
+        ...getTableColumns(communityTable),
+        isMember: isMemberQuery(authData?.user.id),
+      })
+      .from(communityTable)
+      .where(eq(communityTable.id, data.id))
+      .limit(1)
+
+    if (!community) {
+      throw new Error("Community not found")
     }
 
     return community
   })
 
-export const getCommunities = createServerFn()
-  .validator(CommunityFiltersSchema)
-  .middleware([userMiddleware])
-  .handler(async ({ data, context: { user, supabase } }) => {
-    let query = supabase.from("communities").select("*, user_community(userId)")
-
-    if (data.ownCommunitiesOnly && user?.id) {
-      query = supabase
-        .from("communities")
-        .select("*, user_community!inner(userId)")
-        .eq("user_community.userId", user.id)
-    }
-
-    const { data: communities, error } = await query.order("name")
-
-    if (error) {
-      throw new Error(error.message)
-    }
-
-    return communities.map((community) => {
-      const isMember = community.user_community.some(
-        (userCommunity) => userCommunity.userId === user?.id,
-      )
-
-      const { user_community, ...rest } = community
-
-      return { ...rest, isMember }
-    })
-  })
-
-export const getCommunity = createServerFn()
-  .validator(z.object({ id: z.number() }))
-  .handler(async ({ data }) => {
-    const supabase = getSupabaseServerClient()
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-
-    const { data: community, error } = await supabase
-      .from("communities")
-      .select("*, user_community(userId)")
-      .eq("id", data.id)
-      .single()
-
-    if (error) {
-      throw new Error(error.message)
-    }
-
-    const isMember = community.user_community.some(
-      (userCommunity) => userCommunity.userId === user?.id,
-    )
-
-    const { user_community, ...rest } = community
-
-    return { ...rest, isMember }
-  })
-
 export const joinCommunity = createServerFn()
   .validator(JoinCommunitySchema)
   .middleware([userRequiredMiddleware])
-  .handler(async ({ data, context: { user, supabase } }) => {
-    const { error } = await supabase.from("user_community").insert({
-      userId: user.id,
+  .handler(async ({ data, context: { authData } }) => {
+    await db.insert(usersInCommunityTable).values({
+      userId: authData.user.id,
       communityId: data.communityId,
     })
-
-    if (error) {
-      throw new Error(error.message)
-    }
-
-    return { success: true }
   })
 
 export const leaveCommunity = createServerFn()
   .validator(JoinCommunitySchema)
-  .handler(async ({ data }) => {
-    const supabase = getSupabaseServerClient()
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-
-    if (!user) {
-      throw new Error("User not found")
-    }
-
-    const { error } = await supabase
-      .from("user_community")
-      .delete()
-      .eq("userId", user.id)
-      .eq("communityId", data.communityId)
-
-    if (error) {
-      throw new Error(error.message)
-    }
-
-    return { success: true }
+  .middleware([userRequiredMiddleware])
+  .handler(async ({ data, context: { authData } }) => {
+    await db
+      .delete(usersInCommunityTable)
+      .where(
+        and(
+          eq(usersInCommunityTable.userId, authData.user.id),
+          eq(usersInCommunityTable.communityId, data.communityId),
+        ),
+      )
   })
 
 export const updateCommunity = createServerFn()
   .validator(UpdateCommunitySchema)
   .handler(async ({ data }) => {
-    const supabase = getSupabaseServerClient()
+    const { id, ...communityData } = data
+    const [community] = await db
+      .update(communityTable)
+      .set(communityData)
+      .where(eq(communityTable.id, id))
+      .returning()
 
-    const { id, ...community } = data
-
-    const { data: updatedCommunity, error } = await supabase
-      .from("communities")
-      .update(community)
-      .eq("id", id)
-      .select()
-      .single()
-
-    if (error) {
-      throw new Error(error.message)
-    }
-
-    return updatedCommunity
+    return community
   })

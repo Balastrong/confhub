@@ -34,7 +34,7 @@ export const EditCommunityForm = ({ communityId }: EditCommunityFormProps) => {
       data: {
         id: communityId,
         name: formData.get("name") as string,
-        location: (formData.get("location") as string) || undefined,
+        description: (formData.get("description") as string) || undefined,
         logoUrl: (formData.get("logoUrl") as string) || undefined,
         homeUrl: (formData.get("homeUrl") as string) || undefined,
       },
@@ -49,12 +49,12 @@ export const EditCommunityForm = ({ communityId }: EditCommunityFormProps) => {
         Name
         <Input id="name" name="name" required defaultValue={community.name} />
       </Label>
-      <Label htmlFor="location">
-        Location
+      <Label htmlFor="description">
+        Description
         <Input
-          id="location"
-          name="location"
-          defaultValue={community.location || ""}
+          id="description"
+          name="description"
+          defaultValue={community.description || ""}
         />
       </Label>
       <Label htmlFor="logoUrl">

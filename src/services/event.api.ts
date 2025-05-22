@@ -1,67 +1,60 @@
 import { createServerFn } from "@tanstack/react-start"
-import { getSupabaseServerClient } from "src/lib/supabase"
-import { TablesInsert } from "src/lib/types.gen"
-import { CreateEventSchema, EventFiltersSchema } from "./event.schema"
+import { and, arrayOverlaps, eq, gt, ilike, inArray } from "drizzle-orm"
 import { z } from "zod"
+import { db } from "~/lib/db"
+import { eventTable } from "~/lib/db/schema"
+import { CreateEventSchema, EventFiltersSchema } from "./event.schema"
 
 export const getEvents = createServerFn()
   .validator(EventFiltersSchema)
   .handler(async ({ data }) => {
-    const supabase = getSupabaseServerClient()
+    const filters = []
 
-    let query = supabase.from("events").select("id, tags!inner(name)")
-
-    if (data.communityDraft === undefined) {
-      query = query.not("communityDraft", "is", true)
+    if (data.communityDraft == undefined) {
+      filters.push(eq(eventTable.draft, false))
     } else {
-      query = query.is("communityDraft", data.communityDraft)
+      filters.push(eq(eventTable.draft, data.communityDraft))
     }
 
-    if (Object.values(data).some((value) => value)) {
-      if (data.query) {
-        query = query.ilike("name", `%${data.query}%`)
-      }
-
-      if (data.modes) {
-        query = query.in("mode", data.modes)
-      }
-
-      if (data.tags) {
-        query = query.in("tags.name", data.tags)
-      }
-
-      if (data.country) {
-        query = query.eq("country", data.country)
-      }
-
-      if (data.hasCfpOpen) {
-        query = query.gte("cfpClosingDate", new Date().toDateString())
-      }
-
-      if (data.communityId) {
-        query = query.eq("communityId", data.communityId)
-      }
-
-      if (data.startDate) {
-        query = query.or(
-          `date.gte.${data.startDate},dateEnd.gte.${data.startDate}`,
-        )
-      }
-
-      if (data.endDate) {
-        query = query.or(`date.lte.${data.endDate},dateEnd.lte.${data.endDate}`)
-      }
+    if (data.query) {
+      filters.push(ilike(eventTable.name, `%${data.query}%`))
     }
 
-    const eventIds = (await query.throwOnError()).data?.map((e) => e.id) ?? []
+    if (data.modes && data.modes.length > 0) {
+      filters.push(inArray(eventTable.mode, data.modes))
+    }
 
-    const eventsWithTags = supabase
-      .from("events")
-      .select("*, tags(*)")
-      .in("id", eventIds)
-      .order("name")
+    if (data.tags && data.tags.length > 0) {
+      filters.push(arrayOverlaps(eventTable.tags, data.tags))
+    }
 
-    return (await eventsWithTags.throwOnError()).data ?? []
+    if (data.country) {
+      filters.push(eq(eventTable.country, data.country))
+    }
+
+    if (data.hasCfpOpen) {
+      filters.push(gt(eventTable.cfpClosingDate, new Date().toISOString()))
+    }
+
+    if (data.communityId) {
+      filters.push(eq(eventTable.communityId, data.communityId))
+    }
+
+    // if (data.startDate) {
+    //   filters.push(
+    //     sql`(${eventTable.date} >= ${data.startDate} OR ${eventTable.dateEnd} >= ${data.startDate})`,
+    //   )
+    // }
+
+    // if (data.endDate) {
+    //   filters.push(
+    //     sql`(${eventTable.date} <= ${data.endDate} OR ${eventTable.dateEnd} <= ${data.endDate})`,
+    //   )
+    // }
+
+    const whereCondition = filters.length > 0 ? and(...filters) : undefined
+
+    return await db.select().from(eventTable).where(whereCondition)
   })
 
 export const getEvent = createServerFn()
@@ -71,17 +64,10 @@ export const getEvent = createServerFn()
     }),
   )
   .handler(async ({ data }) => {
-    const supabase = getSupabaseServerClient()
-
-    const { data: event, error } = await supabase
-      .from("events")
-      .select("*, tags(*)")
-      .eq("id", data.id)
-      .single()
-
-    if (error) {
-      throw new Error(error.message)
-    }
+    const [event] = await db
+      .select()
+      .from(eventTable)
+      .where(eq(eventTable.id, data.id))
 
     return event
   })
@@ -89,40 +75,11 @@ export const getEvent = createServerFn()
 export const upsertEvent = createServerFn()
   .validator(CreateEventSchema)
   .handler(async ({ data }) => {
-    const supabase = getSupabaseServerClient()
+    const { id, ...eventData } = data
 
-    const { tags, ...event } = data
-
-    const { error, data: eventData } = await supabase
-      .from("events")
-      .upsert(event)
-      .select("id")
-      .single()
-
-    if (error) {
-      throw new Error(error.message)
-    }
-
-    // Delete existing tags for the event
-    const { error: deleteTagError } = await supabase
-      .from("event_tag")
-      .delete()
-      .eq("event", eventData.id)
-
-    if (deleteTagError) {
-      throw new Error(deleteTagError.message)
-    }
-
-    const { error: tagError } = await supabase
-      .from("event_tag")
-      .insert(
-        tags.map(
-          (tag) =>
-            ({ event: eventData.id, tag: tag }) as TablesInsert<"event_tag">,
-        ),
-      )
-
-    if (tagError) {
-      throw new Error(tagError.message)
+    if (id == null) {
+      await db.insert(eventTable).values(eventData)
+    } else {
+      await db.update(eventTable).set(eventData).where(eq(eventTable.id, id))
     }
   })

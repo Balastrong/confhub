@@ -2,9 +2,9 @@ import { z } from "zod"
 import { getEvents } from "./event.api"
 
 const EventModeSchema = z.union([
-  z.literal("In person"),
-  z.literal("Hybrid"),
-  z.literal("Remote"),
+  z.literal("in-person"),
+  z.literal("hybrid"),
+  z.literal("online"),
 ])
 
 export const EventModes = EventModeSchema.options.map((mode) => mode.value)
@@ -43,9 +43,9 @@ export const CreateEventSchema = z.object({
   country: z.string().nullish(),
   city: z.string().nullish(),
   cfpClosingDate: z.string().date().nullish(),
-  tags: z.array(z.number()).min(1),
+  tags: z.array(z.string()).min(1),
   communityId: z.number().nullish(),
-  communityDraft: z.boolean().nullish(),
+  draft: z.boolean().nullish(),
 })
 
 export type CreateEvent = z.infer<typeof CreateEventSchema>

@@ -1,30 +1,27 @@
 import { createMiddleware, createServerFn, json } from "@tanstack/react-start"
-import { getSupabaseServerClient } from "src/lib/supabase"
-import {
-  AuthState,
-  SignInSchema,
-  SignUpSchema,
-  UserMetaSchema,
-} from "./auth.schema"
+import { getWebRequest } from "@tanstack/react-start/server"
+import { eq } from "drizzle-orm"
+import { auth } from "~/lib/auth/auth"
+import { db } from "~/lib/db"
+import { userTable } from "~/lib/db/schema"
+import { UserMetaSchema } from "./auth.schema"
 
 export const userMiddleware = createMiddleware({ type: "function" }).server(
   async ({ next }) => {
-    const supabase = getSupabaseServerClient()
-
-    const { data } = await supabase.auth.getUser()
+    const authData = await getUserSession()
 
     return next({
       context: {
-        user: data.user,
-        supabase,
+        authData,
       },
     })
   },
 )
+
 export const userRequiredMiddleware = createMiddleware({ type: "function" })
   .middleware([userMiddleware])
   .server(async ({ next, context }) => {
-    if (!context.user) {
+    if (!context.authData) {
       throw json(
         { message: "You must be logged in to access this resource!" },
         { status: 401 },
@@ -33,81 +30,32 @@ export const userRequiredMiddleware = createMiddleware({ type: "function" })
 
     return next({
       context: {
-        user: context.user,
+        authData: context.authData,
       },
     })
   })
 
-export const signUp = createServerFn()
-  .validator(SignUpSchema)
-  .handler(async ({ data }) => {
-    const { data: userData, error } =
-      await getSupabaseServerClient().auth.signUp({
-        email: data.email,
-        password: data.password,
-      })
+export const getUserSession = createServerFn({ method: "GET" }).handler(
+  async () => {
+    const request = getWebRequest()
 
-    if (error) {
-      switch (error.code) {
-        case "email_exists":
-          throw new Error("Email already exists")
-        case "weak_password":
-          throw new Error("Your password is too weak")
-        default:
-          throw new Error(error.message)
-      }
+    if (!request?.headers) {
+      return null
     }
 
-    if (userData.user) {
-      return userData.user.id
-    }
-
-    throw new Error("Something went wrong")
-  })
-
-export const signIn = createServerFn()
-  .validator(SignInSchema)
-  .handler(async ({ data }) => {
-    const { error } = await getSupabaseServerClient().auth.signInWithPassword({
-      email: data.email,
-      password: data.password,
+    const authData = await auth.api.getSession({
+      headers: request.headers,
     })
 
-    if (error) {
-      return { error: error.message }
-    }
-  })
-
-export const signOut = createServerFn().handler(async () => {
-  await getSupabaseServerClient().auth.signOut()
-})
-
-export const getUser = createServerFn()
-  .middleware([userMiddleware])
-  .handler<AuthState>(async ({ context: { user } }) => {
-    if (!user) {
-      return { isAuthenticated: false }
-    }
-
-    return {
-      isAuthenticated: true,
-      user: {
-        email: user.email,
-        meta: { username: user.user_metadata.username },
-      },
-    }
-  })
+    return authData
+  },
+)
 
 export const updateUser = createServerFn()
   .validator(UserMetaSchema)
-  .handler(async ({ data }) => {
-    const supabase = getSupabaseServerClient()
-
-    const { error } = await supabase.auth.updateUser({
-      data: { username: data.username },
-    })
-
-    if (error) {
-      throw new Error(error.message)
-    }
+  .middleware([userRequiredMiddleware])
+  .handler(async ({ data, context: { authData } }) => {
+    db.update(userTable)
+      .set({ name: data.username })
+      .where(eq(userTable.id, authData.user.id))
   })

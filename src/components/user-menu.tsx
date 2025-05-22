@@ -2,8 +2,7 @@ import { useQueryClient } from "@tanstack/react-query"
 import { createLink, useRouter } from "@tanstack/react-router"
 import { LogOut, User } from "lucide-react"
 import { useState } from "react"
-import { signOut } from "src/services/auth.api"
-import { useAuthenticatedUser } from "src/services/queries"
+import { authClient, useAuthenticatedUser } from "~/lib/auth/client"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { Button } from "./ui/button"
 import {
@@ -21,13 +20,11 @@ const ItemLink = createLink(DropdownMenuItem)
 export function UserMenu() {
   const router = useRouter()
   const queryClient = useQueryClient()
-  const {
-    data: { user },
-  } = useAuthenticatedUser()
+  const { user } = useAuthenticatedUser()
   const [open, setOpen] = useState(false)
 
   const handleLogout = async () => {
-    await signOut()
+    await authClient.signOut()
     queryClient.resetQueries()
     router.invalidate()
   }
@@ -48,10 +45,10 @@ export function UserMenu() {
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">
-              {user.meta.username ?? "User"}
+              {user?.name ?? "User"}
             </p>
             <p className="text-xs leading-none text-muted-foreground">
-              {user.email}
+              {user?.email ?? ""}
             </p>
           </div>
         </DropdownMenuLabel>

@@ -15,12 +15,12 @@ export const Tags = ({ selectedTags, onToggleTag }: Props) => {
     <>
       {tags.map((tag) => (
         <Badge
-          key={tag.id}
-          className="cursor-pointer"
-          onClick={() => onToggleTag(tag.name)}
-          variant={selectedTags.includes(tag.name) ? "default" : "outline"}
+          key={tag}
+          className="cursor-pointer capitalize"
+          onClick={() => onToggleTag(tag)}
+          variant={selectedTags.includes(tag) ? "default" : "outline"}
         >
-          {tag.name}
+          {tag}
         </Badge>
       ))}
     </>

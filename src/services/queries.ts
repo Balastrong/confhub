@@ -2,15 +2,13 @@ import {
   queryOptions,
   useMutation,
   useQueryClient,
-  useSuspenseQuery,
-  UseSuspenseQueryResult,
 } from "@tanstack/react-query"
-import { getUser } from "./auth.api"
-import { upsertEvent, getEvent, getEvents } from "./event.api"
-import { EventFilters } from "./event.schema"
-import { getTags } from "./tags.api"
+import { getUserSession } from "./auth.api"
 import { getCommunities, getCommunity } from "./community.api"
 import { CommunityFilters } from "./community.schema"
+import { getEvent, getEvents, upsertEvent } from "./event.api"
+import { EventFilters } from "./event.schema"
+import { getTags } from "./tags.api"
 
 export const eventQueries = {
   all: ["events"],
@@ -51,7 +49,7 @@ export const authQueries = {
   user: () =>
     queryOptions({
       queryKey: [...authQueries.all, "user"],
-      queryFn: () => getUser(),
+      queryFn: () => getUserSession(),
     }),
 }
 
@@ -67,18 +65,4 @@ export const communityQueries = {
       queryKey: [...communityQueries.all, "detail", communityId],
       queryFn: () => getCommunity({ data: { id: communityId } }),
     }),
-}
-
-export const useAuthentication = () => {
-  return useSuspenseQuery(authQueries.user())
-}
-
-export const useAuthenticatedUser = () => {
-  const authQuery = useAuthentication()
-
-  if (authQuery.data.isAuthenticated === false) {
-    throw new Error("User is not authenticated!")
-  }
-
-  return authQuery as UseSuspenseQueryResult<typeof authQuery.data>
 }

@@ -27,7 +27,7 @@ function RouteComponent() {
   )
 
   const eventsQuery = useSuspenseQuery(
-    eventQueries.list({ communityId: +communityId, communityDraft: true }),
+    eventQueries.list({ communityId: +communityId }),
   )
 
   return (
@@ -43,7 +43,7 @@ function RouteComponent() {
           onClick={() =>
             navigate({
               to: "/events/submit",
-              search: { communityId: communityId },
+              search: { communityId: +communityId },
             })
           }
         >
@@ -52,9 +52,8 @@ function RouteComponent() {
         </Button>
       </div>
 
-      {/* Draft Events Section */}
       <Card className="w-full p-6">
-        <h2 className="text-xl font-semibold mb-4">Draft Events</h2>
+        <h2 className="text-xl font-semibold mb-4">Community Events</h2>
         <Separator className="mb-4" />
 
         {eventsQuery.data.length > 0 ? (
@@ -75,14 +74,14 @@ function RouteComponent() {
         ) : (
           <div className="flex flex-col items-center justify-center py-10 text-center">
             <p className="text-muted-foreground mb-4">
-              No draft events found for this community
+              No events found for this community
             </p>
             <Button
               variant="outline"
               onClick={() =>
                 navigate({
                   to: "/events/submit",
-                  search: { communityId: communityId },
+                  search: { communityId: +communityId },
                 })
               }
             >

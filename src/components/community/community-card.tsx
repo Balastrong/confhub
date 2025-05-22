@@ -1,19 +1,17 @@
-import { joinCommunity, leaveCommunity } from "src/services/community.api"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { ButtonLink } from "../button-link"
-import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar"
-import { Button } from "../ui/button"
-import { Card, CardTitle, CardDescription } from "../ui/card"
+import { joinCommunity, leaveCommunity } from "src/services/community.api"
 import { communityQueries } from "src/services/queries"
-import { Database, Tables } from "src/lib/types.gen"
+import { CommunityWithMember } from "~/lib/db/schema/community"
+import { ButtonLink } from "../button-link"
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import { Button } from "../ui/button"
+import { Card, CardDescription, CardTitle } from "../ui/card"
 
-type CommunityCardProps = {
-  community: Tables<"communities"> & {
-    isMember: boolean
-  }
-}
-
-export function CommunityCard({ community }: CommunityCardProps) {
+export function CommunityCard({
+  community,
+}: {
+  community: CommunityWithMember
+}) {
   const queryClient = useQueryClient()
 
   const joinMutation = useMutation({
@@ -49,8 +47,8 @@ export function CommunityCard({ community }: CommunityCardProps) {
         </Avatar>
         <div>
           <CardTitle className="text-lg">{community.name}</CardTitle>
-          {community.location && (
-            <CardDescription>{community.location}</CardDescription>
+          {community.description && (
+            <CardDescription>{community.description}</CardDescription>
           )}
           {community.homeUrl && (
             <CardDescription className="text-blue-500 hover:underline">

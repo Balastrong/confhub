@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { Loader2, User } from "lucide-react"
 import { toast } from "sonner"
 import { updateUser } from "src/services/auth.api"
-import { authQueries, useAuthenticatedUser } from "src/services/queries"
+import { authQueries } from "src/services/queries"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { Button } from "./ui/button"
 import {
@@ -14,11 +14,10 @@ import {
 } from "./ui/card"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
+import { useAuthenticatedUser } from "~/lib/auth/client"
 
 export function ProfileCard() {
-  const {
-    data: { user },
-  } = useAuthenticatedUser()
+  const { user } = useAuthenticatedUser()
   const queryClient = useQueryClient()
 
   const updateUserMutation = useMutation({
@@ -61,7 +60,7 @@ export function ProfileCard() {
                 <Input
                   name="username"
                   type="text"
-                  defaultValue={user.meta.username}
+                  defaultValue={user.name}
                   placeholder="Enter username"
                   className="mt-1"
                 />

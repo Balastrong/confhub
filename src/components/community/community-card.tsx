@@ -6,6 +6,10 @@ import { ButtonLink } from "../button-link"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { Button } from "../ui/button"
 import { Card, CardDescription, CardTitle } from "../ui/card"
+import { SignedIn } from "../auth/SignedIn"
+import { useAuthentication } from "~/lib/auth/client"
+import { toast } from "sonner"
+import { useNavigate } from "@tanstack/react-router"
 
 export function CommunityCard({
   community,
@@ -13,6 +17,8 @@ export function CommunityCard({
   community: CommunityWithMember
 }) {
   const queryClient = useQueryClient()
+  const { data } = useAuthentication()
+  const navigate = useNavigate()
 
   const joinMutation = useMutation({
     mutationFn: joinCommunity,
@@ -29,6 +35,16 @@ export function CommunityCard({
   })
 
   const handleJoinToggle = async (communityId: number, isMember: boolean) => {
+    if (!data?.user) {
+      toast.error("You need to be logged in to join or leave a community.", {
+        action: {
+          label: "Sign in",
+          onClick: () => navigate({ to: "/sign-in" }),
+        },
+      })
+      return
+    }
+
     if (isMember) {
       leaveMutation.mutate({ data: { communityId } })
     } else {

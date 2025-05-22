@@ -17,6 +17,7 @@ import { Badge } from "../ui/badge"
 import { Checkbox } from "../ui/checkbox"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
+import { toast } from "sonner"
 
 type SubmitFormProps = {
   defaultEvent?: Partial<FullEvent>
@@ -53,14 +54,17 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
       console.log(errors)
     },
     onSubmit: async ({ value }) => {
-      console.log("submit", value)
       try {
-        await upsertEventMutation.mutateAsync({
+        const response = await upsertEventMutation.mutateAsync({
           data: {
             ...value,
             id: defaultEvent?.id,
           },
         })
+
+        toast.success(
+          `Event ${defaultEvent?.id ? "updated" : "created"} successfully!`,
+        )
       } catch (error) {}
 
       form.reset()

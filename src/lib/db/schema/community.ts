@@ -1,5 +1,5 @@
 import { text, integer, pgTable, primaryKey } from "drizzle-orm/pg-core"
-import { userTable } from "./auth"
+import { userTable } from "./user"
 import { relations } from "drizzle-orm"
 
 export const communityTable = pgTable("communities", {
@@ -18,7 +18,7 @@ export const communityRelations = relations(communityTable, ({ many }) => ({
 }))
 
 export const usersInCommunityTable = pgTable(
-  "users_in_community", // TODO: rename to user_community
+  "users_in_community", // TODO: rename to user_community?
   {
     userId: text("user_id")
       .notNull()

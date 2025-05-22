@@ -6,7 +6,7 @@ import { SignInSchema } from "src/services/auth.schema"
 import { authClient } from "~/lib/auth/client"
 
 const signIn = async (data: SignInSchema) => {
-  const { error } = await authClient.signIn.email({
+  const { error, data: response } = await authClient.signIn.email({
     email: data.email,
     password: data.password,
   })
@@ -15,7 +15,7 @@ const signIn = async (data: SignInSchema) => {
     throw new Error(error.message)
   }
 
-  return data
+  return response
 }
 
 export const SignInForm = () => {
@@ -25,7 +25,7 @@ export const SignInForm = () => {
   const signInMutation = useMutation({
     mutationFn: signIn,
     onSuccess: (response) => {
-      toast.success("You have successfully signed up.")
+      toast.success(`Hey ${response.user.name}, welcome back!`)
 
       queryClient.resetQueries()
       navigate({ to: "/" })

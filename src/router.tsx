@@ -36,6 +36,12 @@ export function createRouter() {
           toast.error(error.message)
         } else if (typeof error === "string") {
           toast.error(error)
+        } else if (
+          typeof error === "object" &&
+          error !== null &&
+          "message" in error
+        ) {
+          toast.error((error as { message: string }).message)
         }
       },
     }),

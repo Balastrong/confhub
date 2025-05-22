@@ -19,7 +19,7 @@ export const userRequiredMiddleware = createMiddleware({ type: "function" })
   .server(async ({ next, context }) => {
     if (!context.authData) {
       throw json(
-        { message: "You must be logged in to access this resource!" },
+        { message: "You must be logged in to do that!" },
         { status: 401 },
       )
     }

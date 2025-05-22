@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/react-start"
+import { createServerFn, json } from "@tanstack/react-start"
 import { and, eq, getTableColumns, sql } from "drizzle-orm"
 import { z } from "zod"
 import { db } from "~/lib/db"
@@ -13,11 +13,19 @@ import {
   JoinCommunitySchema,
   UpdateCommunitySchema,
 } from "./community.schema"
+import { setResponseStatus } from "@tanstack/react-start/server"
 
 export const createCommunity = createServerFn()
   .validator(CreateCommunitySchema)
-  .handler(async ({ data }) => {
+  .middleware([userRequiredMiddleware])
+  .handler(async ({ data, context: { authData } }) => {
     const [community] = await db.insert(communityTable).values(data).returning()
+
+    await db.insert(usersInCommunityTable).values({
+      userId: authData.user.id,
+      communityId: community.id,
+      role: "admin",
+    })
 
     return community
   })
@@ -93,7 +101,19 @@ export const leaveCommunity = createServerFn()
 
 export const updateCommunity = createServerFn()
   .validator(UpdateCommunitySchema)
-  .handler(async ({ data }) => {
+  .middleware([userRequiredMiddleware])
+  .handler(async ({ data, context: { authData } }) => {
+    const userRole = await getUserRoleInCommunity({
+      data: { communityId: data.id },
+    })
+
+    if (userRole !== "admin") {
+      throw json(
+        { message: "You are not allowed to update this community" },
+        { status: 403 },
+      )
+    }
+
     const { id, ...communityData } = data
     const [community] = await db
       .update(communityTable)
@@ -102,4 +122,29 @@ export const updateCommunity = createServerFn()
       .returning()
 
     return community
+  })
+
+export const getUserRoleInCommunity = createServerFn()
+  .validator(z.object({ communityId: z.number() }))
+  .middleware([userRequiredMiddleware])
+  .handler(async ({ data, context: { authData } }) => {
+    const [userInCommunity] = await db
+      .select({
+        role: usersInCommunityTable.role,
+      })
+      .from(usersInCommunityTable)
+      .where(
+        and(
+          eq(usersInCommunityTable.userId, authData.user.id),
+          eq(usersInCommunityTable.communityId, data.communityId),
+        ),
+      )
+      .limit(1)
+
+    if (!userInCommunity || !userInCommunity.role) {
+      setResponseStatus(404)
+      return null
+    }
+
+    return userInCommunity.role
   })

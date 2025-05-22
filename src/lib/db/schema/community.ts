@@ -1,4 +1,4 @@
-import { text, integer, pgTable, primaryKey } from "drizzle-orm/pg-core"
+import { text, integer, pgTable, primaryKey, pgEnum } from "drizzle-orm/pg-core"
 import { userTable } from "./user"
 import { relations } from "drizzle-orm"
 
@@ -17,8 +17,13 @@ export const communityRelations = relations(communityTable, ({ many }) => ({
   usersInCommunityTable: many(usersInCommunityTable),
 }))
 
+export const userInCommunityRole = pgEnum("user_in_community_role", [
+  "admin",
+  "member",
+])
+
 export const usersInCommunityTable = pgTable(
-  "users_in_community", // TODO: rename to user_community?
+  "user_in_community",
   {
     userId: text("user_id")
       .notNull()
@@ -26,6 +31,7 @@ export const usersInCommunityTable = pgTable(
     communityId: integer("community_id")
       .notNull()
       .references(() => communityTable.id),
+    role: userInCommunityRole().default("member"),
   },
   (t) => [primaryKey({ columns: [t.userId, t.communityId] })],
 )

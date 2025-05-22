@@ -50,6 +50,13 @@
       "when": 1747929975203,
       "tag": "0006_easy_stone_men",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1747944282260,
+      "tag": "0007_strong_speed_demon",
+      "breakpoints": true
     }
   ]
 }

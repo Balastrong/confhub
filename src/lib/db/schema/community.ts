@@ -11,7 +11,10 @@ export const communityTable = pgTable("communities", {
 })
 
 export type Community = typeof communityTable.$inferSelect
-export type CommunityWithMember = Community & { isMember: boolean }
+export type CommunityWithMember = Community & {
+  isMember: boolean
+  memberCount: number
+}
 
 export const communityRelations = relations(communityTable, ({ many }) => ({
   usersInCommunityTable: many(usersInCommunityTable),

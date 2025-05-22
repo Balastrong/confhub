@@ -48,6 +48,11 @@ export const getCommunities = createServerFn()
     return await db
       .select({
         ...getTableColumns(communityTable),
+        memberCount: sql<number>`(
+          select count(*)
+          from ${usersInCommunityTable}
+          where ${usersInCommunityTable.communityId} = ${communityTable.id}
+        )`,
         isMember: isMemberQuery(userId),
       })
       .from(communityTable)

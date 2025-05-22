@@ -75,6 +75,7 @@ export function CommunityCard({
               </a>
             </CardDescription>
           )}
+          <CardDescription>{community.memberCount} members</CardDescription>
         </div>
       </div>
       <div>

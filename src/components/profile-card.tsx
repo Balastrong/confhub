@@ -3,6 +3,7 @@ import { Loader2, User } from "lucide-react"
 import { toast } from "sonner"
 import { updateUser } from "src/services/auth.api"
 import { authQueries } from "src/services/queries"
+import { useAuthenticatedUser } from "~/lib/auth/client"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { Button } from "./ui/button"
 import {
@@ -14,14 +15,13 @@ import {
 } from "./ui/card"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
-import { useAuthenticatedUser } from "~/lib/auth/client"
 
 export function ProfileCard() {
   const { user } = useAuthenticatedUser()
   const queryClient = useQueryClient()
 
   const updateUserMutation = useMutation({
-    mutationFn: (data: Parameters<typeof updateUser>[0]) => updateUser(data),
+    mutationFn: updateUser,
     onSuccess: () => {
       toast.success("Your profile has been updated.")
       queryClient.invalidateQueries(authQueries.user())

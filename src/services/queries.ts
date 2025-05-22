@@ -28,7 +28,7 @@ export const eventQueries = {
 export const useUpsertEventMutation = () => {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (data: Parameters<typeof upsertEvent>[0]) => upsertEvent(data),
+    mutationFn: upsertEvent,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: eventQueries.all })
     },

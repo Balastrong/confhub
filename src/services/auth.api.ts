@@ -10,11 +10,7 @@ export const userMiddleware = createMiddleware({ type: "function" }).server(
   async ({ next }) => {
     const authData = await getUserSession()
 
-    return next({
-      context: {
-        authData,
-      },
-    })
+    return next({ context: { authData } })
   },
 )
 
@@ -28,11 +24,7 @@ export const userRequiredMiddleware = createMiddleware({ type: "function" })
       )
     }
 
-    return next({
-      context: {
-        authData: context.authData,
-      },
-    })
+    return next({ context: { authData: context.authData } })
   })
 
 export const getUserSession = createServerFn({ method: "GET" }).handler(
@@ -43,9 +35,7 @@ export const getUserSession = createServerFn({ method: "GET" }).handler(
       return null
     }
 
-    const authData = await auth.api.getSession({
-      headers: request.headers,
-    })
+    const authData = await auth.api.getSession({ headers: request.headers })
 
     return authData
   },
@@ -55,7 +45,8 @@ export const updateUser = createServerFn()
   .validator(UserMetaSchema)
   .middleware([userRequiredMiddleware])
   .handler(async ({ data, context: { authData } }) => {
-    db.update(userTable)
+    await db
+      .update(userTable)
       .set({ name: data.username })
       .where(eq(userTable.id, authData.user.id))
   })

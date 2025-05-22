@@ -15,16 +15,14 @@ export function CommunityCard({
   const queryClient = useQueryClient()
 
   const joinMutation = useMutation({
-    mutationFn: (data: Parameters<typeof joinCommunity>[0]) =>
-      joinCommunity(data),
+    mutationFn: joinCommunity,
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: communityQueries.all })
     },
   })
 
   const leaveMutation = useMutation({
-    mutationFn: (data: Parameters<typeof leaveCommunity>[0]) =>
-      leaveCommunity(data),
+    mutationFn: leaveCommunity,
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: communityQueries.all })
     },

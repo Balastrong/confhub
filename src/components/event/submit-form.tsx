@@ -75,7 +75,6 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
         form.handleSubmit()
       }}
     >
-      {/* Basic Information Section */}
       <section className="flex flex-col gap-2">
         <h3 className="text-lg font-semibold">Basic Information</h3>
         <form.AppField
@@ -122,7 +121,42 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
         </div>
       </section>
 
-      {/* Date and Location Section */}
+      <section className="flex flex-col gap-2">
+        <h3 className="text-lg font-semibold">Tags</h3>
+        <form.Field
+          name="tags"
+          children={(field) => {
+            return (
+              <div>
+                <Label htmlFor={field.name}>Tags *</Label>
+                <div className="flex gap-1 flex-wrap items-center">
+                  {tags.map((tag) => {
+                    const isSelected = field.state.value.includes(tag)
+                    return (
+                      <Badge
+                        key={tag}
+                        className="cursor-pointer"
+                        role="checkbox"
+                        onClick={() =>
+                          isSelected
+                            ? field.setValue(
+                                field.state.value.filter((v) => v != tag),
+                              )
+                            : field.pushValue(tag)
+                        }
+                        variant={isSelected ? "default" : "outline"}
+                      >
+                        {tag}
+                      </Badge>
+                    )
+                  })}
+                </div>
+              </div>
+            )
+          }}
+        />
+      </section>
+
       <section className="flex flex-col gap-2">
         <h3 className="text-lg font-semibold">Date and Location</h3>
         <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
@@ -184,7 +218,6 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
         </div>
       </section>
 
-      {/* Community and Draft Section */}
       <SignedIn>
         <section className="flex flex-col gap-2">
           <h3 className="text-lg font-semibold">Community</h3>
@@ -248,7 +281,6 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
         </section>
       </SignedIn>
 
-      {/* URL Information Section */}
       <section className="flex flex-col gap-2">
         <h3 className="text-lg font-semibold">Call For Paper</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -280,44 +312,6 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
         </div>
       </section>
 
-      {/* Tags Section */}
-      <section className="flex flex-col gap-2">
-        <h3 className="text-lg font-semibold">Tags</h3>
-        <form.Field
-          name="tags"
-          children={(field) => {
-            return (
-              <div>
-                <Label htmlFor={field.name}>Tags *</Label>
-                <div className="flex gap-1 flex-wrap items-center">
-                  {tags.map((tag) => {
-                    const isSelected = field.state.value.includes(tag)
-                    return (
-                      <Badge
-                        key={tag}
-                        className="cursor-pointer"
-                        role="checkbox"
-                        onClick={() =>
-                          isSelected
-                            ? field.setValue(
-                                field.state.value.filter((v) => v != tag),
-                              )
-                            : field.pushValue(tag)
-                        }
-                        variant={isSelected ? "default" : "outline"}
-                      >
-                        {tag}
-                      </Badge>
-                    )
-                  })}
-                </div>
-              </div>
-            )
-          }}
-        />
-      </section>
-
-      {/* Submit Button */}
       <form.AppForm>
         <form.SubmitButton label="Submit" />
       </form.AppForm>

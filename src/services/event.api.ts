@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start"
-import { and, arrayOverlaps, eq, gt, ilike, inArray } from "drizzle-orm"
+import { and, arrayOverlaps, eq, gt, ilike, inArray, or } from "drizzle-orm"
 import { z } from "zod"
 import { db } from "~/lib/db"
 import { eventTable } from "~/lib/db/schema"
@@ -40,21 +40,22 @@ export const getEvents = createServerFn()
       filters.push(eq(eventTable.communityId, data.communityId))
     }
 
-    // if (data.startDate) {
-    //   filters.push(
-    //     sql`(${eventTable.date} >= ${data.startDate} OR ${eventTable.dateEnd} >= ${data.startDate})`,
-    //   )
-    // }
-
-    // if (data.endDate) {
-    //   filters.push(
-    //     sql`(${eventTable.date} <= ${data.endDate} OR ${eventTable.dateEnd} <= ${data.endDate})`,
-    //   )
-    // }
+    if (data.startDate) {
+      filters.push(
+        or(
+          gt(eventTable.date, data.startDate),
+          gt(eventTable.dateEnd, data.startDate),
+        ),
+      )
+    }
 
     const whereCondition = filters.length > 0 ? and(...filters) : undefined
 
-    return await db.select().from(eventTable).where(whereCondition)
+    return await db
+      .select()
+      .from(eventTable)
+      .where(whereCondition)
+      .orderBy(eventTable.date)
   })
 
 export const getEvent = createServerFn()

@@ -26,7 +26,10 @@ export const useEventFilters = (
     onSetFilters({ ...filters, [key]: filters[key] ? undefined : true })
   }
 
-  const setFilter = (key: keyof EventFilters, value: string) => {
+  const setFilter = <K extends keyof EventFilters>(
+    key: K,
+    value: EventFilters[K],
+  ) => {
     onSetFilters({ ...filters, [key]: value })
   }
 
@@ -39,6 +42,7 @@ export const useEventFilters = (
   return {
     query,
     setQuery,
+    setFilter,
     toggleArrayItem,
     toggleBooleanItem,
     filters,

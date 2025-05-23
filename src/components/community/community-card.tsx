@@ -6,7 +6,7 @@ import { ButtonLink } from "../button-link"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { Button } from "../ui/button"
 import { Card, CardDescription, CardTitle } from "../ui/card"
-import { SignedIn } from "../auth/SignedIn"
+import { SignedIn } from "../auth/signed-in"
 import { useAuthentication } from "~/lib/auth/client"
 import { toast } from "sonner"
 import { useNavigate } from "@tanstack/react-router"
@@ -17,7 +17,7 @@ export function CommunityCard({
   community: CommunityWithMember
 }) {
   const queryClient = useQueryClient()
-  const { data } = useAuthentication()
+  const { userSession } = useAuthentication()
   const navigate = useNavigate()
 
   const joinMutation = useMutation({
@@ -34,9 +34,9 @@ export function CommunityCard({
     },
   })
 
-  const handleJoinToggle = async (communityId: number, isMember: boolean) => {
-    if (!data?.user) {
-      toast.error("You need to be logged in to join or leave a community.", {
+  const handleJoin = (communityId: number) => {
+    if (!userSession?.user) {
+      toast.error("You need to be logged in to join a community.", {
         action: {
           label: "Sign in",
           onClick: () => navigate({ to: "/sign-in" }),
@@ -45,11 +45,11 @@ export function CommunityCard({
       return
     }
 
-    if (isMember) {
-      leaveMutation.mutate({ data: { communityId } })
-    } else {
-      joinMutation.mutate({ data: { communityId } })
-    }
+    joinMutation.mutate({ data: { communityId } })
+  }
+
+  const handleLeave = (communityId: number) => {
+    leaveMutation.mutate({ data: { communityId } })
   }
 
   return (
@@ -75,26 +75,38 @@ export function CommunityCard({
               </a>
             </CardDescription>
           )}
-          <CardDescription>{community.memberCount} members</CardDescription>
+          <CardDescription>
+            {community.memberCount}{" "}
+            {community.memberCount === 1 ? "member" : "members"}
+          </CardDescription>
         </div>
       </div>
       <div>
-        {community.isMember && (
-          <ButtonLink
-            className="mr-2"
-            to={`/communities/management/$communityId`}
-            params={{ communityId: community.id.toString() }}
+        {community.isMember ? (
+          <>
+            <ButtonLink
+              className="mr-2"
+              to={`/communities/management/$communityId`}
+              params={{ communityId: community.id.toString() }}
+            >
+              Manage
+            </ButtonLink>
+            <Button
+              onClick={() => handleLeave(community.id)}
+              variant={"outline"}
+              disabled={leaveMutation.isPending}
+            >
+              Leave
+            </Button>
+          </>
+        ) : (
+          <Button
+            onClick={() => handleJoin(community.id)}
+            disabled={joinMutation.isPending}
           >
-            Manage
-          </ButtonLink>
+            Join
+          </Button>
         )}
-        <Button
-          onClick={() => handleJoinToggle(community.id, community.isMember)}
-          variant={community.isMember ? "outline" : "default"}
-          disabled={joinMutation.isPending || leaveMutation.isPending}
-        >
-          {community.isMember ? "Leave" : "Join"}
-        </Button>
       </div>
     </Card>
   )

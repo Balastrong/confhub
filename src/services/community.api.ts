@@ -18,11 +18,11 @@ import { setResponseStatus } from "@tanstack/react-start/server"
 export const createCommunity = createServerFn()
   .validator(CreateCommunitySchema)
   .middleware([userRequiredMiddleware])
-  .handler(async ({ data, context: { authData } }) => {
+  .handler(async ({ data, context: { userSession } }) => {
     const [community] = await db.insert(communityTable).values(data).returning()
 
     await db.insert(usersInCommunityTable).values({
-      userId: authData.user.id,
+      userId: userSession.user.id,
       communityId: community.id,
       role: "admin",
     })
@@ -42,14 +42,14 @@ const isMemberQuery = (userId?: string) =>
 export const getCommunities = createServerFn()
   .validator(CommunityFiltersSchema)
   .middleware([userMiddleware])
-  .handler(async ({ data, context: { authData } }) => {
-    const userId = authData?.user?.id
+  .handler(async ({ data, context: { userSession } }) => {
+    const userId = userSession?.user?.id
 
     return await db
       .select({
         ...getTableColumns(communityTable),
         memberCount: sql<number>`(
-          select count(*)
+          select count(*)::int
           from ${usersInCommunityTable}
           where ${usersInCommunityTable.communityId} = ${communityTable.id}
         )`,
@@ -63,11 +63,11 @@ export const getCommunities = createServerFn()
 export const getCommunity = createServerFn()
   .validator(z.object({ id: z.number() }))
   .middleware([userMiddleware])
-  .handler(async ({ data, context: { authData } }) => {
+  .handler(async ({ data, context: { userSession } }) => {
     const [community] = await db
       .select({
         ...getTableColumns(communityTable),
-        isMember: isMemberQuery(authData?.user.id),
+        isMember: isMemberQuery(userSession?.user.id),
       })
       .from(communityTable)
       .where(eq(communityTable.id, data.id))
@@ -83,9 +83,9 @@ export const getCommunity = createServerFn()
 export const joinCommunity = createServerFn()
   .validator(JoinCommunitySchema)
   .middleware([userRequiredMiddleware])
-  .handler(async ({ data, context: { authData } }) => {
+  .handler(async ({ data, context: { userSession } }) => {
     await db.insert(usersInCommunityTable).values({
-      userId: authData.user.id,
+      userId: userSession.user.id,
       communityId: data.communityId,
     })
   })
@@ -93,12 +93,12 @@ export const joinCommunity = createServerFn()
 export const leaveCommunity = createServerFn()
   .validator(JoinCommunitySchema)
   .middleware([userRequiredMiddleware])
-  .handler(async ({ data, context: { authData } }) => {
+  .handler(async ({ data, context: { userSession } }) => {
     await db
       .delete(usersInCommunityTable)
       .where(
         and(
-          eq(usersInCommunityTable.userId, authData.user.id),
+          eq(usersInCommunityTable.userId, userSession.user.id),
           eq(usersInCommunityTable.communityId, data.communityId),
         ),
       )
@@ -107,7 +107,7 @@ export const leaveCommunity = createServerFn()
 export const updateCommunity = createServerFn()
   .validator(UpdateCommunitySchema)
   .middleware([userRequiredMiddleware])
-  .handler(async ({ data, context: { authData } }) => {
+  .handler(async ({ data, context: { userSession } }) => {
     const userRole = await getUserRoleInCommunity({
       data: { communityId: data.id },
     })
@@ -132,7 +132,7 @@ export const updateCommunity = createServerFn()
 export const getUserRoleInCommunity = createServerFn()
   .validator(z.object({ communityId: z.number() }))
   .middleware([userRequiredMiddleware])
-  .handler(async ({ data, context: { authData } }) => {
+  .handler(async ({ data, context: { userSession } }) => {
     const [userInCommunity] = await db
       .select({
         role: usersInCommunityTable.role,
@@ -140,7 +140,7 @@ export const getUserRoleInCommunity = createServerFn()
       .from(usersInCommunityTable)
       .where(
         and(
-          eq(usersInCommunityTable.userId, authData.user.id),
+          eq(usersInCommunityTable.userId, userSession.user.id),
           eq(usersInCommunityTable.communityId, data.communityId),
         ),
       )

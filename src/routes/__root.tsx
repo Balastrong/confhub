@@ -1,15 +1,15 @@
 import { QueryClient } from "@tanstack/react-query"
 import {
   createRootRouteWithContext,
+  HeadContent,
   Outlet,
   Scripts,
-  HeadContent,
 } from "@tanstack/react-router"
 import * as React from "react"
 import { Header } from "src/components/header"
 import { Toaster } from "src/components/ui/sonner"
-import css from "~/globals.css?url"
 import { authQueries } from "src/services/queries"
+import css from "~/globals.css?url"
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient

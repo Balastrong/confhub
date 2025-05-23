@@ -12,7 +12,7 @@ import {
   tagQueries,
   useUpsertEventMutation,
 } from "src/services/queries"
-import { SignedIn } from "../auth/SignedIn"
+import { SignedIn } from "../auth/signed-in"
 import { Badge } from "../ui/badge"
 import { Checkbox } from "../ui/checkbox"
 import { Input } from "../ui/input"

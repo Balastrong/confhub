@@ -1,9 +1,9 @@
 import { useAuthentication } from "~/lib/auth/client"
 
 export const SignedOut = ({ children }: { children: React.ReactNode }) => {
-  const { data } = useAuthentication()
+  const { userSession } = useAuthentication()
 
-  if (data) return null
+  if (userSession) return null
 
   return <>{children}</>
 }

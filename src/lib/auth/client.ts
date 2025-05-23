@@ -6,14 +6,18 @@ export const authClient = createAuthClient({
   baseURL: import.meta.env.VITE_SERVER_URL,
 })
 
-export const useAuthentication = () => useQuery(authQueries.user())
+export const useAuthentication = () => {
+  const { data: userSession } = useQuery(authQueries.user())
+
+  return { userSession }
+}
 
 export const useAuthenticatedUser = () => {
-  const { data } = useAuthentication()
+  const { userSession } = useAuthentication()
 
-  if (!data) {
+  if (!userSession) {
     throw new Error("User is not authenticated!")
   }
 
-  return data
+  return userSession
 }

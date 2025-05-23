@@ -20,12 +20,12 @@ const ItemLink = createLink(DropdownMenuItem)
 export function UserMenu() {
   const router = useRouter()
   const queryClient = useQueryClient()
-  const { user } = useAuthenticatedUser()
+  const userSession = useAuthenticatedUser()
   const [open, setOpen] = useState(false)
 
   const handleLogout = async () => {
     await authClient.signOut()
-    queryClient.resetQueries()
+    await queryClient.invalidateQueries()
     router.invalidate()
   }
 
@@ -45,10 +45,10 @@ export function UserMenu() {
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">
-              {user?.name ?? "User"}
+              {userSession.user.name ?? "User"}
             </p>
             <p className="text-xs leading-none text-muted-foreground">
-              {user?.email ?? ""}
+              {userSession.user.email ?? ""}
             </p>
           </div>
         </DropdownMenuLabel>

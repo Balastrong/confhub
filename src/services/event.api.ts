@@ -77,7 +77,7 @@ export const getEvent = createServerFn()
 export const upsertEvent = createServerFn()
   .validator(CreateEventSchema)
   .middleware([userRequiredMiddleware])
-  .handler(async ({ data, context: { authData } }) => {
+  .handler(async ({ data, context: { userSession } }) => {
     const { id, ...eventData } = data
 
     if (id == null) {
@@ -111,7 +111,7 @@ export const upsertEvent = createServerFn()
         .from(usersInCommunityTable)
         .where(
           and(
-            eq(usersInCommunityTable.userId, authData.user.id),
+            eq(usersInCommunityTable.userId, userSession.user.id),
             eq(usersInCommunityTable.communityId, event.communityId),
           ),
         )

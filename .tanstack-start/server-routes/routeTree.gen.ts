@@ -103,7 +103,7 @@ export const routeTree = rootRoute
       ]
     },
     "/api/auth/$": {
-      "filePath": "api/auth.$.tsx"
+      "filePath": "api/auth.$.ts"
     }
   }
 }

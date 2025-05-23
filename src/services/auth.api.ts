@@ -6,27 +6,6 @@ import { db } from "~/lib/db"
 import { userTable } from "~/lib/db/schema"
 import { UserMetaSchema } from "./auth.schema"
 
-export const userMiddleware = createMiddleware({ type: "function" }).server(
-  async ({ next }) => {
-    const authData = await getUserSession()
-
-    return next({ context: { authData } })
-  },
-)
-
-export const userRequiredMiddleware = createMiddleware({ type: "function" })
-  .middleware([userMiddleware])
-  .server(async ({ next, context }) => {
-    if (!context.authData) {
-      throw json(
-        { message: "You must be logged in to do that!" },
-        { status: 401 },
-      )
-    }
-
-    return next({ context: { authData: context.authData } })
-  })
-
 export const getUserSession = createServerFn({ method: "GET" }).handler(
   async () => {
     const request = getWebRequest()
@@ -35,18 +14,39 @@ export const getUserSession = createServerFn({ method: "GET" }).handler(
       return null
     }
 
-    const authData = await auth.api.getSession({ headers: request.headers })
+    const userSession = await auth.api.getSession({ headers: request.headers })
 
-    return authData
+    return userSession
   },
 )
+
+export const userMiddleware = createMiddleware({ type: "function" }).server(
+  async ({ next }) => {
+    const userSession = await getUserSession()
+
+    return next({ context: { userSession } })
+  },
+)
+
+export const userRequiredMiddleware = createMiddleware({ type: "function" })
+  .middleware([userMiddleware])
+  .server(async ({ next, context }) => {
+    if (!context.userSession) {
+      throw json(
+        { message: "You must be logged in to do that!" },
+        { status: 401 },
+      )
+    }
+
+    return next({ context: { userSession: context.userSession } })
+  })
 
 export const updateUser = createServerFn()
   .validator(UserMetaSchema)
   .middleware([userRequiredMiddleware])
-  .handler(async ({ data, context: { authData } }) => {
+  .handler(async ({ data, context: { userSession } }) => {
     await db
       .update(userTable)
       .set({ name: data.username })
-      .where(eq(userTable.id, authData.user.id))
+      .where(eq(userTable.id, userSession.user.id))
   })

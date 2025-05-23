@@ -9,7 +9,7 @@ export const authClient = createAuthClient({
 export const useAuthentication = () => {
   const { data: userSession } = useQuery(authQueries.user())
 
-  return { userSession }
+  return { userSession, isAuthenticated: !!userSession }
 }
 
 export const useAuthenticatedUser = () => {

@@ -1,15 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useNavigate } from "@tanstack/react-router"
+import { toast } from "sonner"
 import { joinCommunity, leaveCommunity } from "src/services/community.api"
 import { communityQueries } from "src/services/queries"
+import { useAuthentication } from "~/lib/auth/client"
 import { CommunityWithMember } from "~/lib/db/schema/community"
 import { ButtonLink } from "../button-link"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { Button } from "../ui/button"
 import { Card, CardDescription, CardTitle } from "../ui/card"
-import { SignedIn } from "../auth/signed-in"
-import { useAuthentication } from "~/lib/auth/client"
-import { toast } from "sonner"
-import { useNavigate } from "@tanstack/react-router"
 
 export function CommunityCard({
   community,
@@ -17,7 +16,7 @@ export function CommunityCard({
   community: CommunityWithMember
 }) {
   const queryClient = useQueryClient()
-  const { userSession } = useAuthentication()
+  const { isAuthenticated } = useAuthentication()
   const navigate = useNavigate()
 
   const joinMutation = useMutation({
@@ -35,7 +34,7 @@ export function CommunityCard({
   })
 
   const handleJoin = (communityId: number) => {
-    if (!userSession?.user) {
+    if (!isAuthenticated) {
       toast.error("You need to be logged in to join a community.", {
         action: {
           label: "Sign in",

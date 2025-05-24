@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@neondatabase/serverless':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@radix-ui/react-accordion':
         specifier: ^1.2.8
         version: 1.2.8(@types/react-dom@18.3.6(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -5102,7 +5105,6 @@ snapshots:
     dependencies:
       '@types/node': 22.15.2
       '@types/pg': 8.15.2
-    optional: true
 
   '@netlify/binary-info@1.0.0': {}
 
@@ -6380,7 +6382,6 @@ snapshots:
   '@types/node@22.15.2':
     dependencies:
       undici-types: 6.21.0
-    optional: true
 
   '@types/normalize-package-data@2.4.4': {}
 
@@ -6389,7 +6390,6 @@ snapshots:
       '@types/node': 22.15.2
       pg-protocol: 1.10.0
       pg-types: 4.0.2
-    optional: true
 
   '@types/prop-types@15.7.14': {}
 
@@ -8049,8 +8049,7 @@ snapshots:
 
   object-inspect@1.13.4: {}
 
-  obuf@1.1.2:
-    optional: true
+  obuf@1.1.2: {}
 
   ofetch@1.4.1:
     dependencies:
@@ -8163,8 +8162,7 @@ snapshots:
 
   pg-int8@1.0.1: {}
 
-  pg-numeric@1.0.2:
-    optional: true
+  pg-numeric@1.0.2: {}
 
   pg-pool@3.10.0(pg@8.16.0):
     dependencies:
@@ -8189,7 +8187,6 @@ snapshots:
       postgres-date: 2.1.0
       postgres-interval: 3.0.0
       postgres-range: 1.1.4
-    optional: true
 
   pg@8.16.0:
     dependencies:
@@ -8273,30 +8270,25 @@ snapshots:
 
   postgres-array@2.0.0: {}
 
-  postgres-array@3.0.4:
-    optional: true
+  postgres-array@3.0.4: {}
 
   postgres-bytea@1.0.0: {}
 
   postgres-bytea@3.0.0:
     dependencies:
       obuf: 1.1.2
-    optional: true
 
   postgres-date@1.0.7: {}
 
-  postgres-date@2.1.0:
-    optional: true
+  postgres-date@2.1.0: {}
 
   postgres-interval@1.2.0:
     dependencies:
       xtend: 4.0.2
 
-  postgres-interval@3.0.0:
-    optional: true
+  postgres-interval@3.0.0: {}
 
-  postgres-range@1.1.4:
-    optional: true
+  postgres-range@1.1.4: {}
 
   precinct@11.0.5:
     dependencies:
@@ -8892,8 +8884,7 @@ snapshots:
       magic-string: 0.30.17
       unplugin: 2.3.2
 
-  undici-types@6.21.0:
-    optional: true
+  undici-types@6.21.0: {}
 
   undici@6.21.3: {}
 

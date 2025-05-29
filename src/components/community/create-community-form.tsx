@@ -18,7 +18,7 @@ export const CreateCommunityForm = () => {
       queryClient.invalidateQueries(communityQueries.list())
       toast.success("Community created successfully")
       router.navigate({
-        to: "/communities/management/$communityId",
+        to: "/communities/$communityId",
         params: { communityId: community.id.toString() },
       })
     },
@@ -38,7 +38,10 @@ export const CreateCommunityForm = () => {
   }
 
   return (
-    <form className="flex flex-col gap-2 w-full" onSubmit={onSubmit}>
+    <form
+      className="flex flex-col gap-2 w-full max-w-2xl mx-auto"
+      onSubmit={onSubmit}
+    >
       <Label htmlFor="name">
         Name
         <Input id="name" name="name" required />

@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from "@tanstack/react-query"
-import { } from "@tanstack/react-router"
+import {} from "@tanstack/react-router"
 import { ArrowLeft } from "lucide-react"
 import { ButtonLink } from "src/components/button-link"
 import { SubmitForm } from "src/components/event/submit-form"
@@ -23,7 +23,7 @@ function RouteComponent() {
             variant="ghost"
             size="sm"
             className="mb-2"
-            to="/communities/management/$communityId"
+            to="/communities/$communityId"
             params={{ communityId: String(event.communityId) }}
           >
             <ArrowLeft className="mr-2 h-4 w-4" />

@@ -21,9 +21,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CommunitiesIndexRouteImport } from './routes/communities/index'
 import { Route as EventsSubmitRouteImport } from './routes/events/submit'
 import { Route as EventsEventIdRouteImport } from './routes/events/$eventId'
-import { Route as CommunitiesManagementIndexRouteImport } from './routes/communities/management/index'
-import { Route as CommunitiesManagementCreateRouteImport } from './routes/communities/management/create'
-import { Route as CommunitiesManagementCommunityIdRouteImport } from './routes/communities/management/$communityId'
+import { Route as CommunitiesCreateRouteImport } from './routes/communities/create'
+import { Route as CommunitiesCommunityIdRouteImport } from './routes/communities/$communityId'
 
 // Create/Update Routes
 
@@ -75,26 +74,17 @@ const EventsEventIdRoute = EventsEventIdRouteImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const CommunitiesManagementIndexRoute =
-  CommunitiesManagementIndexRouteImport.update({
-    id: '/communities/management/',
-    path: '/communities/management/',
-    getParentRoute: () => rootRoute,
-  } as any)
+const CommunitiesCreateRoute = CommunitiesCreateRouteImport.update({
+  id: '/communities/create',
+  path: '/communities/create',
+  getParentRoute: () => rootRoute,
+} as any)
 
-const CommunitiesManagementCreateRoute =
-  CommunitiesManagementCreateRouteImport.update({
-    id: '/communities/management/create',
-    path: '/communities/management/create',
-    getParentRoute: () => rootRoute,
-  } as any)
-
-const CommunitiesManagementCommunityIdRoute =
-  CommunitiesManagementCommunityIdRouteImport.update({
-    id: '/communities/management/$communityId',
-    path: '/communities/management/$communityId',
-    getParentRoute: () => rootRoute,
-  } as any)
+const CommunitiesCommunityIdRoute = CommunitiesCommunityIdRouteImport.update({
+  id: '/communities/$communityId',
+  path: '/communities/$communityId',
+  getParentRoute: () => rootRoute,
+} as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -135,6 +125,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignUpRouteImport
       parentRoute: typeof rootRoute
     }
+    '/communities/$communityId': {
+      id: '/communities/$communityId'
+      path: '/communities/$communityId'
+      fullPath: '/communities/$communityId'
+      preLoaderRoute: typeof CommunitiesCommunityIdRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/communities/create': {
+      id: '/communities/create'
+      path: '/communities/create'
+      fullPath: '/communities/create'
+      preLoaderRoute: typeof CommunitiesCreateRouteImport
+      parentRoute: typeof rootRoute
+    }
     '/events/$eventId': {
       id: '/events/$eventId'
       path: '/events/$eventId'
@@ -154,27 +158,6 @@ declare module '@tanstack/react-router' {
       path: '/communities'
       fullPath: '/communities'
       preLoaderRoute: typeof CommunitiesIndexRouteImport
-      parentRoute: typeof rootRoute
-    }
-    '/communities/management/$communityId': {
-      id: '/communities/management/$communityId'
-      path: '/communities/management/$communityId'
-      fullPath: '/communities/management/$communityId'
-      preLoaderRoute: typeof CommunitiesManagementCommunityIdRouteImport
-      parentRoute: typeof rootRoute
-    }
-    '/communities/management/create': {
-      id: '/communities/management/create'
-      path: '/communities/management/create'
-      fullPath: '/communities/management/create'
-      preLoaderRoute: typeof CommunitiesManagementCreateRouteImport
-      parentRoute: typeof rootRoute
-    }
-    '/communities/management/': {
-      id: '/communities/management/'
-      path: '/communities/management'
-      fullPath: '/communities/management'
-      preLoaderRoute: typeof CommunitiesManagementIndexRouteImport
       parentRoute: typeof rootRoute
     }
   }
@@ -227,6 +210,24 @@ declare module './routes/sign-up' {
     FileRoutesByPath['/sign-up']['fullPath']
   >
 }
+declare module './routes/communities/$communityId' {
+  const createFileRoute: CreateFileRoute<
+    '/communities/$communityId',
+    FileRoutesByPath['/communities/$communityId']['parentRoute'],
+    FileRoutesByPath['/communities/$communityId']['id'],
+    FileRoutesByPath['/communities/$communityId']['path'],
+    FileRoutesByPath['/communities/$communityId']['fullPath']
+  >
+}
+declare module './routes/communities/create' {
+  const createFileRoute: CreateFileRoute<
+    '/communities/create',
+    FileRoutesByPath['/communities/create']['parentRoute'],
+    FileRoutesByPath['/communities/create']['id'],
+    FileRoutesByPath['/communities/create']['path'],
+    FileRoutesByPath['/communities/create']['fullPath']
+  >
+}
 declare module './routes/events/$eventId' {
   const createFileRoute: CreateFileRoute<
     '/events/$eventId',
@@ -254,33 +255,6 @@ declare module './routes/communities/index' {
     FileRoutesByPath['/communities/']['fullPath']
   >
 }
-declare module './routes/communities/management/$communityId' {
-  const createFileRoute: CreateFileRoute<
-    '/communities/management/$communityId',
-    FileRoutesByPath['/communities/management/$communityId']['parentRoute'],
-    FileRoutesByPath['/communities/management/$communityId']['id'],
-    FileRoutesByPath['/communities/management/$communityId']['path'],
-    FileRoutesByPath['/communities/management/$communityId']['fullPath']
-  >
-}
-declare module './routes/communities/management/create' {
-  const createFileRoute: CreateFileRoute<
-    '/communities/management/create',
-    FileRoutesByPath['/communities/management/create']['parentRoute'],
-    FileRoutesByPath['/communities/management/create']['id'],
-    FileRoutesByPath['/communities/management/create']['path'],
-    FileRoutesByPath['/communities/management/create']['fullPath']
-  >
-}
-declare module './routes/communities/management/index' {
-  const createFileRoute: CreateFileRoute<
-    '/communities/management/',
-    FileRoutesByPath['/communities/management/']['parentRoute'],
-    FileRoutesByPath['/communities/management/']['id'],
-    FileRoutesByPath['/communities/management/']['path'],
-    FileRoutesByPath['/communities/management/']['fullPath']
-  >
-}
 
 // Create and export the route tree
 
@@ -290,12 +264,11 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/communities/$communityId': typeof CommunitiesCommunityIdRoute
+  '/communities/create': typeof CommunitiesCreateRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities': typeof CommunitiesIndexRoute
-  '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
-  '/communities/management/create': typeof CommunitiesManagementCreateRoute
-  '/communities/management': typeof CommunitiesManagementIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -304,12 +277,11 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/communities/$communityId': typeof CommunitiesCommunityIdRoute
+  '/communities/create': typeof CommunitiesCreateRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities': typeof CommunitiesIndexRoute
-  '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
-  '/communities/management/create': typeof CommunitiesManagementCreateRoute
-  '/communities/management': typeof CommunitiesManagementIndexRoute
 }
 
 export interface FileRoutesById {
@@ -319,12 +291,11 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/communities/$communityId': typeof CommunitiesCommunityIdRoute
+  '/communities/create': typeof CommunitiesCreateRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities/': typeof CommunitiesIndexRoute
-  '/communities/management/$communityId': typeof CommunitiesManagementCommunityIdRoute
-  '/communities/management/create': typeof CommunitiesManagementCreateRoute
-  '/communities/management/': typeof CommunitiesManagementIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -335,12 +306,11 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
+    | '/communities/$communityId'
+    | '/communities/create'
     | '/events/$eventId'
     | '/events/submit'
     | '/communities'
-    | '/communities/management/$communityId'
-    | '/communities/management/create'
-    | '/communities/management'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -348,12 +318,11 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
+    | '/communities/$communityId'
+    | '/communities/create'
     | '/events/$eventId'
     | '/events/submit'
     | '/communities'
-    | '/communities/management/$communityId'
-    | '/communities/management/create'
-    | '/communities/management'
   id:
     | '__root__'
     | '/'
@@ -361,12 +330,11 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
+    | '/communities/$communityId'
+    | '/communities/create'
     | '/events/$eventId'
     | '/events/submit'
     | '/communities/'
-    | '/communities/management/$communityId'
-    | '/communities/management/create'
-    | '/communities/management/'
   fileRoutesById: FileRoutesById
 }
 
@@ -376,12 +344,11 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   SignInRoute: typeof SignInRoute
   SignUpRoute: typeof SignUpRoute
+  CommunitiesCommunityIdRoute: typeof CommunitiesCommunityIdRoute
+  CommunitiesCreateRoute: typeof CommunitiesCreateRoute
   EventsEventIdRoute: typeof EventsEventIdRoute
   EventsSubmitRoute: typeof EventsSubmitRoute
   CommunitiesIndexRoute: typeof CommunitiesIndexRoute
-  CommunitiesManagementCommunityIdRoute: typeof CommunitiesManagementCommunityIdRoute
-  CommunitiesManagementCreateRoute: typeof CommunitiesManagementCreateRoute
-  CommunitiesManagementIndexRoute: typeof CommunitiesManagementIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -390,12 +357,11 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   SignInRoute: SignInRoute,
   SignUpRoute: SignUpRoute,
+  CommunitiesCommunityIdRoute: CommunitiesCommunityIdRoute,
+  CommunitiesCreateRoute: CommunitiesCreateRoute,
   EventsEventIdRoute: EventsEventIdRoute,
   EventsSubmitRoute: EventsSubmitRoute,
   CommunitiesIndexRoute: CommunitiesIndexRoute,
-  CommunitiesManagementCommunityIdRoute: CommunitiesManagementCommunityIdRoute,
-  CommunitiesManagementCreateRoute: CommunitiesManagementCreateRoute,
-  CommunitiesManagementIndexRoute: CommunitiesManagementIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -413,12 +379,11 @@ export const routeTree = rootRoute
         "/profile",
         "/sign-in",
         "/sign-up",
+        "/communities/$communityId",
+        "/communities/create",
         "/events/$eventId",
         "/events/submit",
-        "/communities/",
-        "/communities/management/$communityId",
-        "/communities/management/create",
-        "/communities/management/"
+        "/communities/"
       ]
     },
     "/": {
@@ -436,6 +401,12 @@ export const routeTree = rootRoute
     "/sign-up": {
       "filePath": "sign-up.tsx"
     },
+    "/communities/$communityId": {
+      "filePath": "communities/$communityId.tsx"
+    },
+    "/communities/create": {
+      "filePath": "communities/create.tsx"
+    },
     "/events/$eventId": {
       "filePath": "events/$eventId.tsx"
     },
@@ -444,15 +415,6 @@ export const routeTree = rootRoute
     },
     "/communities/": {
       "filePath": "communities/index.tsx"
-    },
-    "/communities/management/$communityId": {
-      "filePath": "communities/management/$communityId.tsx"
-    },
-    "/communities/management/create": {
-      "filePath": "communities/management/create.tsx"
-    },
-    "/communities/management/": {
-      "filePath": "communities/management/index.tsx"
     }
   }
 }

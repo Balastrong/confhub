@@ -22,7 +22,7 @@ function RouteComponent() {
             variant="ghost"
             size="sm"
             className="mb-2"
-            to="/communities/management/$communityId"
+            to="/communities/$communityId"
             params={{ communityId: String(search.communityId) }}
           >
             <ArrowLeft className="mr-2 h-4 w-4" />

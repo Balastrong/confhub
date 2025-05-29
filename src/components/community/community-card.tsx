@@ -81,23 +81,22 @@ export function CommunityCard({
         </div>
       </div>
       <div>
+        <ButtonLink
+          className="mr-2"
+          to={`/communities/$communityId`}
+          variant={"secondary"}
+          params={{ communityId: community.id.toString() }}
+        >
+          View
+        </ButtonLink>
         {community.isMember ? (
-          <>
-            <ButtonLink
-              className="mr-2"
-              to={`/communities/management/$communityId`}
-              params={{ communityId: community.id.toString() }}
-            >
-              Manage
-            </ButtonLink>
-            <Button
-              onClick={() => handleLeave(community.id)}
-              variant={"outline"}
-              disabled={leaveMutation.isPending}
-            >
-              Leave
-            </Button>
-          </>
+          <Button
+            onClick={() => handleLeave(community.id)}
+            variant={"outline"}
+            disabled={leaveMutation.isPending}
+          >
+            Leave
+          </Button>
         ) : (
           <Button
             onClick={() => handleJoin(community.id)}

@@ -1,19 +1,12 @@
+import { PencilIcon } from "lucide-react"
 import { formatDate } from "src/lib/date"
 import { FullEvent } from "src/services/event.schema"
 import { Button } from "../ui/button"
-import { PencilIcon } from "lucide-react"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../ui/card"
+import { Card, CardDescription, CardTitle } from "../ui/card"
 
 type Props = {
   event: FullEvent
-  onEdit: (event: FullEvent) => void
+  onEdit?: (event: FullEvent) => void
 }
 
 export const EventManagementCard = ({ event, onEdit }: Props) => {
@@ -34,9 +27,11 @@ export const EventManagementCard = ({ event, onEdit }: Props) => {
           </CardDescription>
         )}
       </div>
-      <Button variant="outline" size="icon" onClick={() => onEdit(event)}>
-        <PencilIcon className="h-4 w-4" />
-      </Button>
+      {onEdit && (
+        <Button variant="outline" size="icon" onClick={() => onEdit(event)}>
+          <PencilIcon className="h-4 w-4" />
+        </Button>
+      )}
     </Card>
   )
 }

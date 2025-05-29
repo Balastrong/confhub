@@ -1,4 +1,3 @@
-
 import { Layout } from "src/components/layout"
 import { CreateCommunityForm } from "src/components/community/create-community-form"
 

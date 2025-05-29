@@ -30,6 +30,7 @@ export const createCommunity = createServerFn()
     return community
   })
 
+// TODO: Might not be needed
 const isMemberQuery = (userId?: string) =>
   userId
     ? sql<boolean>`exists (
@@ -53,9 +54,17 @@ export const getCommunities = createServerFn()
           from ${usersInCommunityTable}
           where ${usersInCommunityTable.communityId} = ${communityTable.id}
         )`,
-        isMember: isMemberQuery(userId),
+        isMember: sql<boolean>`${usersInCommunityTable.role} is not null`,
+        userRole: usersInCommunityTable.role,
       })
       .from(communityTable)
+      .leftJoin(
+        usersInCommunityTable,
+        and(
+          eq(usersInCommunityTable.communityId, communityTable.id),
+          eq(usersInCommunityTable.userId, userSession?.user?.id || ""),
+        ),
+      )
       .where(data.ownCommunitiesOnly ? isMemberQuery(userId) : undefined)
       .orderBy(communityTable.name)
   })
@@ -67,9 +76,17 @@ export const getCommunity = createServerFn()
     const [community] = await db
       .select({
         ...getTableColumns(communityTable),
-        isMember: isMemberQuery(userSession?.user.id),
+        isMember: sql<boolean>`${usersInCommunityTable.role} is not null`,
+        userRole: usersInCommunityTable.role,
       })
       .from(communityTable)
+      .leftJoin(
+        usersInCommunityTable,
+        and(
+          eq(usersInCommunityTable.communityId, communityTable.id),
+          eq(usersInCommunityTable.userId, userSession?.user?.id || ""),
+        ),
+      )
       .where(eq(communityTable.id, data.id))
       .limit(1)
 

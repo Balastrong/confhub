@@ -29,12 +29,7 @@ export const Navigation = () => {
               <NavigationMenuLink to="/communities">
                 <ListItem title="Discover">Find communities to join.</ListItem>
               </NavigationMenuLink>
-              <NavigationMenuLink to="/communities/management">
-                <ListItem title="Participate">
-                  Get more involved in your communities.
-                </ListItem>
-              </NavigationMenuLink>
-              <NavigationMenuLink to="/communities/management/create">
+              <NavigationMenuLink to="/communities/create">
                 <ListItem title="Create">Start your own community.</ListItem>
               </NavigationMenuLink>
             </ul>

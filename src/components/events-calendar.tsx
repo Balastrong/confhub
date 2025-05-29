@@ -1,15 +1,19 @@
-import { Calendar, ChevronLeft, ChevronRight } from "lucide-react"
+import {
+  Calendar,
+  ChevronLeft,
+  ChevronRight,
+  Clock,
+  ExternalLink,
+  MapPin,
+} from "lucide-react"
 import { cn, getColorFromName } from "src/lib/utils"
 import { FullEvent } from "src/services/event.schema"
+import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card"
+import { formatDate } from "~/lib/date"
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-
-// Add helper to format date consistently without timezone issues
-const formatDate = (date: Date) =>
-  `${date.getFullYear()}-${(date.getMonth() + 1)
-    .toString()
-    .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`
 
 type DatedFullEvent = FullEvent & {
   date: string
@@ -246,21 +250,95 @@ export const EventsCalendar = ({
                       const leftRounded = cellDateStr === event.date
                       const rightRounded = cellDateStr === event.dateEnd
                       return (
-                        <div
-                          key={slotIndex}
-                          className={cn(
-                            "w-full h-5 relative overflow-hidden",
-                            getColorFromName(event.name),
-                            leftRounded ? "rounded-l-md" : "",
-                            rightRounded ? "rounded-r-md" : "",
-                            "shadow-sm hover:opacity-90 cursor-pointer",
-                          )}
-                          title={event.name}
-                        >
-                          <span className="absolute inset-0 flex items-center justify-start text-white text-xs px-1 truncate">
-                            {event.name}
-                          </span>
-                        </div>
+                        <HoverCard key={slotIndex}>
+                          <HoverCardTrigger asChild>
+                            <div
+                              className={cn(
+                                "w-full h-5 relative overflow-hidden",
+                                getColorFromName(event.name),
+                                leftRounded ? "rounded-l-md" : "",
+                                rightRounded ? "rounded-r-md" : "",
+                                "shadow-sm hover:opacity-90 cursor-pointer",
+                              )}
+                            >
+                              <span className="absolute inset-0 flex items-center justify-start text-white text-xs px-1 truncate">
+                                {event.name}
+                              </span>
+                            </div>
+                          </HoverCardTrigger>
+                          <HoverCardContent className="w-80" side="top">
+                            <div className="space-y-3">
+                              <div>
+                                <h4 className="text-sm font-semibold leading-none mb-2">
+                                  {event.name}
+                                </h4>
+                                {event.description && (
+                                  <p className="text-sm text-muted-foreground line-clamp-3">
+                                    {event.description}
+                                  </p>
+                                )}
+                              </div>
+
+                              <div className="space-y-2">
+                                <div className="flex items-center gap-2 text-sm">
+                                  <Clock className="h-4 w-4 text-muted-foreground" />
+                                  <span>
+                                    {formatDate(event.date)}
+                                    {event.dateEnd &&
+                                      event.dateEnd !== event.date && (
+                                        <span>
+                                          {" "}
+                                          - {formatDate(event.dateEnd)}
+                                        </span>
+                                      )}
+                                  </span>
+                                </div>
+
+                                {(event.city || event.country) && (
+                                  <div className="flex items-center gap-2 text-sm">
+                                    <MapPin className="h-4 w-4 text-muted-foreground" />
+                                    <span>
+                                      {event.city && event.country
+                                        ? `${event.city}, ${event.country}`
+                                        : event.city || event.country}
+                                    </span>
+                                  </div>
+                                )}
+
+                                <div className="flex items-center gap-2">
+                                  <Badge
+                                    variant="secondary"
+                                    className="text-xs"
+                                  >
+                                    {event.mode}
+                                  </Badge>
+                                  {event.cfpUrl && (
+                                    <Badge
+                                      variant="outline"
+                                      className="text-xs"
+                                    >
+                                      CFP Open
+                                    </Badge>
+                                  )}
+                                </div>
+
+                                {event.eventUrl && (
+                                  <div className="pt-2">
+                                    <a
+                                      href={event.eventUrl}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+                                    >
+                                      <ExternalLink className="h-3 w-3" />
+                                      View Event
+                                    </a>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </HoverCardContent>
+                        </HoverCard>
                       )
                     }
                     return <div key={slotIndex} className="w-full h-5"></div>

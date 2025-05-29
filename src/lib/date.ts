@@ -4,6 +4,6 @@ export const formatDateTime = (date: Date) => {
   return format(date, "yyyy-MM-dd HH:mm")
 }
 
-export const formatDate = (date: Date) => {
+export const formatDate = (date: Date | string) => {
   return format(date, "yyyy-MM-dd")
 }

@@ -8,7 +8,7 @@
     "dev:cloud": "NODE_ENV=cloud vite dev",
     "build": "vite build",
     "start": "node .output/server/index.mjs",
-    "build:deploy": "pnpm run db:generate && pnpm run db:push && vite build",
+    "build:deploy": "pnpm run db:push && vite build",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",

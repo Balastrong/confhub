@@ -8,11 +8,9 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import type { CreateFileRoute, FileRoutesByPath } from '@tanstack/react-router'
+import { createServerRootRoute } from '@tanstack/react-start/server'
 
-// Import Routes
-
-import { Route as rootRoute } from './routes/__root'
+import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignUpRouteImport } from './routes/sign-up'
 import { Route as SignInRouteImport } from './routes/sign-in'
 import { Route as ProfileRouteImport } from './routes/profile'
@@ -23,240 +21,65 @@ import { Route as EventsSubmitRouteImport } from './routes/events/submit'
 import { Route as EventsEventIdRouteImport } from './routes/events/$eventId'
 import { Route as CommunitiesCreateRouteImport } from './routes/communities/create'
 import { Route as CommunitiesCommunityIdRouteImport } from './routes/communities/$communityId'
+import { ServerRoute as ApiAuthSplatServerRouteImport } from './routes/api/auth.$'
 
-// Create/Update Routes
+const rootServerRouteImport = createServerRootRoute()
 
 const SignUpRoute = SignUpRouteImport.update({
   id: '/sign-up',
   path: '/sign-up',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
 const SignInRoute = SignInRouteImport.update({
   id: '/sign-in',
   path: '/sign-in',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
 const CalendarRoute = CalendarRouteImport.update({
   id: '/calendar',
   path: '/calendar',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
 const CommunitiesIndexRoute = CommunitiesIndexRouteImport.update({
   id: '/communities/',
   path: '/communities/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
 const EventsSubmitRoute = EventsSubmitRouteImport.update({
   id: '/events/submit',
   path: '/events/submit',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
 const EventsEventIdRoute = EventsEventIdRouteImport.update({
   id: '/events/$eventId',
   path: '/events/$eventId',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
 const CommunitiesCreateRoute = CommunitiesCreateRouteImport.update({
   id: '/communities/create',
   path: '/communities/create',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
 const CommunitiesCommunityIdRoute = CommunitiesCommunityIdRouteImport.update({
   id: '/communities/$communityId',
   path: '/communities/$communityId',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-// Populate the FileRoutesByPath interface
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRoute
-    }
-    '/calendar': {
-      id: '/calendar'
-      path: '/calendar'
-      fullPath: '/calendar'
-      preLoaderRoute: typeof CalendarRouteImport
-      parentRoute: typeof rootRoute
-    }
-    '/profile': {
-      id: '/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof ProfileRouteImport
-      parentRoute: typeof rootRoute
-    }
-    '/sign-in': {
-      id: '/sign-in'
-      path: '/sign-in'
-      fullPath: '/sign-in'
-      preLoaderRoute: typeof SignInRouteImport
-      parentRoute: typeof rootRoute
-    }
-    '/sign-up': {
-      id: '/sign-up'
-      path: '/sign-up'
-      fullPath: '/sign-up'
-      preLoaderRoute: typeof SignUpRouteImport
-      parentRoute: typeof rootRoute
-    }
-    '/communities/$communityId': {
-      id: '/communities/$communityId'
-      path: '/communities/$communityId'
-      fullPath: '/communities/$communityId'
-      preLoaderRoute: typeof CommunitiesCommunityIdRouteImport
-      parentRoute: typeof rootRoute
-    }
-    '/communities/create': {
-      id: '/communities/create'
-      path: '/communities/create'
-      fullPath: '/communities/create'
-      preLoaderRoute: typeof CommunitiesCreateRouteImport
-      parentRoute: typeof rootRoute
-    }
-    '/events/$eventId': {
-      id: '/events/$eventId'
-      path: '/events/$eventId'
-      fullPath: '/events/$eventId'
-      preLoaderRoute: typeof EventsEventIdRouteImport
-      parentRoute: typeof rootRoute
-    }
-    '/events/submit': {
-      id: '/events/submit'
-      path: '/events/submit'
-      fullPath: '/events/submit'
-      preLoaderRoute: typeof EventsSubmitRouteImport
-      parentRoute: typeof rootRoute
-    }
-    '/communities/': {
-      id: '/communities/'
-      path: '/communities'
-      fullPath: '/communities'
-      preLoaderRoute: typeof CommunitiesIndexRouteImport
-      parentRoute: typeof rootRoute
-    }
-  }
-}
-
-// Add type-safety to the createFileRoute function across the route tree
-
-declare module './routes/index' {
-  const createFileRoute: CreateFileRoute<
-    '/',
-    FileRoutesByPath['/']['parentRoute'],
-    FileRoutesByPath['/']['id'],
-    FileRoutesByPath['/']['path'],
-    FileRoutesByPath['/']['fullPath']
-  >
-}
-declare module './routes/calendar' {
-  const createFileRoute: CreateFileRoute<
-    '/calendar',
-    FileRoutesByPath['/calendar']['parentRoute'],
-    FileRoutesByPath['/calendar']['id'],
-    FileRoutesByPath['/calendar']['path'],
-    FileRoutesByPath['/calendar']['fullPath']
-  >
-}
-declare module './routes/profile' {
-  const createFileRoute: CreateFileRoute<
-    '/profile',
-    FileRoutesByPath['/profile']['parentRoute'],
-    FileRoutesByPath['/profile']['id'],
-    FileRoutesByPath['/profile']['path'],
-    FileRoutesByPath['/profile']['fullPath']
-  >
-}
-declare module './routes/sign-in' {
-  const createFileRoute: CreateFileRoute<
-    '/sign-in',
-    FileRoutesByPath['/sign-in']['parentRoute'],
-    FileRoutesByPath['/sign-in']['id'],
-    FileRoutesByPath['/sign-in']['path'],
-    FileRoutesByPath['/sign-in']['fullPath']
-  >
-}
-declare module './routes/sign-up' {
-  const createFileRoute: CreateFileRoute<
-    '/sign-up',
-    FileRoutesByPath['/sign-up']['parentRoute'],
-    FileRoutesByPath['/sign-up']['id'],
-    FileRoutesByPath['/sign-up']['path'],
-    FileRoutesByPath['/sign-up']['fullPath']
-  >
-}
-declare module './routes/communities/$communityId' {
-  const createFileRoute: CreateFileRoute<
-    '/communities/$communityId',
-    FileRoutesByPath['/communities/$communityId']['parentRoute'],
-    FileRoutesByPath['/communities/$communityId']['id'],
-    FileRoutesByPath['/communities/$communityId']['path'],
-    FileRoutesByPath['/communities/$communityId']['fullPath']
-  >
-}
-declare module './routes/communities/create' {
-  const createFileRoute: CreateFileRoute<
-    '/communities/create',
-    FileRoutesByPath['/communities/create']['parentRoute'],
-    FileRoutesByPath['/communities/create']['id'],
-    FileRoutesByPath['/communities/create']['path'],
-    FileRoutesByPath['/communities/create']['fullPath']
-  >
-}
-declare module './routes/events/$eventId' {
-  const createFileRoute: CreateFileRoute<
-    '/events/$eventId',
-    FileRoutesByPath['/events/$eventId']['parentRoute'],
-    FileRoutesByPath['/events/$eventId']['id'],
-    FileRoutesByPath['/events/$eventId']['path'],
-    FileRoutesByPath['/events/$eventId']['fullPath']
-  >
-}
-declare module './routes/events/submit' {
-  const createFileRoute: CreateFileRoute<
-    '/events/submit',
-    FileRoutesByPath['/events/submit']['parentRoute'],
-    FileRoutesByPath['/events/submit']['id'],
-    FileRoutesByPath['/events/submit']['path'],
-    FileRoutesByPath['/events/submit']['fullPath']
-  >
-}
-declare module './routes/communities/index' {
-  const createFileRoute: CreateFileRoute<
-    '/communities/',
-    FileRoutesByPath['/communities/']['parentRoute'],
-    FileRoutesByPath['/communities/']['id'],
-    FileRoutesByPath['/communities/']['path'],
-    FileRoutesByPath['/communities/']['fullPath']
-  >
-}
-
-// Create and export the route tree
+const ApiAuthSplatServerRoute = ApiAuthSplatServerRouteImport.update({
+  id: '/api/auth/$',
+  path: '/api/auth/$',
+  getParentRoute: () => rootServerRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -270,7 +93,6 @@ export interface FileRoutesByFullPath {
   '/events/submit': typeof EventsSubmitRoute
   '/communities': typeof CommunitiesIndexRoute
 }
-
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/calendar': typeof CalendarRoute
@@ -283,9 +105,8 @@ export interface FileRoutesByTo {
   '/events/submit': typeof EventsSubmitRoute
   '/communities': typeof CommunitiesIndexRoute
 }
-
 export interface FileRoutesById {
-  __root__: typeof rootRoute
+  __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/calendar': typeof CalendarRoute
   '/profile': typeof ProfileRoute
@@ -297,7 +118,6 @@ export interface FileRoutesById {
   '/events/submit': typeof EventsSubmitRoute
   '/communities/': typeof CommunitiesIndexRoute
 }
-
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
@@ -337,7 +157,6 @@ export interface FileRouteTypes {
     | '/communities/'
   fileRoutesById: FileRoutesById
 }
-
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CalendarRoute: typeof CalendarRoute
@@ -349,6 +168,113 @@ export interface RootRouteChildren {
   EventsEventIdRoute: typeof EventsEventIdRoute
   EventsSubmitRoute: typeof EventsSubmitRoute
   CommunitiesIndexRoute: typeof CommunitiesIndexRoute
+}
+export interface FileServerRoutesByFullPath {
+  '/api/auth/$': typeof ApiAuthSplatServerRoute
+}
+export interface FileServerRoutesByTo {
+  '/api/auth/$': typeof ApiAuthSplatServerRoute
+}
+export interface FileServerRoutesById {
+  __root__: typeof rootServerRouteImport
+  '/api/auth/$': typeof ApiAuthSplatServerRoute
+}
+export interface FileServerRouteTypes {
+  fileServerRoutesByFullPath: FileServerRoutesByFullPath
+  fullPaths: '/api/auth/$'
+  fileServerRoutesByTo: FileServerRoutesByTo
+  to: '/api/auth/$'
+  id: '__root__' | '/api/auth/$'
+  fileServerRoutesById: FileServerRoutesById
+}
+export interface RootServerRouteChildren {
+  ApiAuthSplatServerRoute: typeof ApiAuthSplatServerRoute
+}
+
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/sign-up': {
+      id: '/sign-up'
+      path: '/sign-up'
+      fullPath: '/sign-up'
+      preLoaderRoute: typeof SignUpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-in': {
+      id: '/sign-in'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof SignInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calendar': {
+      id: '/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/communities/': {
+      id: '/communities/'
+      path: '/communities'
+      fullPath: '/communities'
+      preLoaderRoute: typeof CommunitiesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/submit': {
+      id: '/events/submit'
+      path: '/events/submit'
+      fullPath: '/events/submit'
+      preLoaderRoute: typeof EventsSubmitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/$eventId': {
+      id: '/events/$eventId'
+      path: '/events/$eventId'
+      fullPath: '/events/$eventId'
+      preLoaderRoute: typeof EventsEventIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/communities/create': {
+      id: '/communities/create'
+      path: '/communities/create'
+      fullPath: '/communities/create'
+      preLoaderRoute: typeof CommunitiesCreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/communities/$communityId': {
+      id: '/communities/$communityId'
+      path: '/communities/$communityId'
+      fullPath: '/communities/$communityId'
+      preLoaderRoute: typeof CommunitiesCommunityIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+  }
+}
+declare module '@tanstack/react-start/server' {
+  interface ServerFileRoutesByPath {
+    '/api/auth/$': {
+      id: '/api/auth/$'
+      path: '/api/auth/$'
+      fullPath: '/api/auth/$'
+      preLoaderRoute: typeof ApiAuthSplatServerRouteImport
+      parentRoute: typeof rootServerRouteImport
+    }
+  }
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -363,59 +289,12 @@ const rootRouteChildren: RootRouteChildren = {
   EventsSubmitRoute: EventsSubmitRoute,
   CommunitiesIndexRoute: CommunitiesIndexRoute,
 }
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/calendar",
-        "/profile",
-        "/sign-in",
-        "/sign-up",
-        "/communities/$communityId",
-        "/communities/create",
-        "/events/$eventId",
-        "/events/submit",
-        "/communities/"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/calendar": {
-      "filePath": "calendar.tsx"
-    },
-    "/profile": {
-      "filePath": "profile.tsx"
-    },
-    "/sign-in": {
-      "filePath": "sign-in.tsx"
-    },
-    "/sign-up": {
-      "filePath": "sign-up.tsx"
-    },
-    "/communities/$communityId": {
-      "filePath": "communities/$communityId.tsx"
-    },
-    "/communities/create": {
-      "filePath": "communities/create.tsx"
-    },
-    "/events/$eventId": {
-      "filePath": "events/$eventId.tsx"
-    },
-    "/events/submit": {
-      "filePath": "events/submit.tsx"
-    },
-    "/communities/": {
-      "filePath": "communities/index.tsx"
-    }
-  }
+const rootServerRouteChildren: RootServerRouteChildren = {
+  ApiAuthSplatServerRoute: ApiAuthSplatServerRoute,
 }
-ROUTE_MANIFEST_END */
+export const serverRouteTree = rootServerRouteImport
+  ._addFileChildren(rootServerRouteChildren)
+  ._addFileTypes<FileServerRouteTypes>()

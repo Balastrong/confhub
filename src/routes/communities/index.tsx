@@ -1,3 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router"
 import { useSuspenseQuery } from "@tanstack/react-query"
 import { } from "@tanstack/react-router"
 import { Suspense } from "react"
@@ -6,7 +7,7 @@ import { CommunityCardSkeletons } from "src/components/community/community-card-
 import { Layout } from "src/components/layout"
 import { communityQueries } from "src/services/queries"
 
-export const Route = createFileRoute({
+export const Route = createFileRoute("/communities/")({
   component: RouteComponent,
   loader: ({ context }) => {
     context.queryClient.ensureQueryData(communityQueries.list())

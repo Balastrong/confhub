@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getRouteApi, useNavigate } from "@tanstack/react-router"
+import { getRouteApi, useNavigate, createFileRoute } from "@tanstack/react-router"
 import { useMemo, useState } from "react"
 import { z } from "zod"
 import { EventsCalendar } from "src/components/events-calendar"
@@ -8,7 +8,7 @@ import { formatDate } from "src/lib/date"
 import { getFirstAndLast } from "src/lib/utils"
 import { eventQueries } from "src/services/queries"
 
-export const Route = createFileRoute({
+export const Route = createFileRoute("/calendar")({
   validateSearch: z.object({
     date: z
       .string()

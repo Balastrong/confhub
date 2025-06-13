@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from "@tanstack/react-query"
-import { useNavigate } from "@tanstack/react-router"
+import { useNavigate, createFileRoute } from "@tanstack/react-router"
 import { PlusCircle } from "lucide-react"
 import { EditCommunityForm } from "src/components/community/edit-community-form"
 import { EventManagementCard } from "src/components/event/event-management-card"
@@ -9,7 +9,7 @@ import { Card } from "src/components/ui/card"
 import { Separator } from "src/components/ui/separator"
 import { communityQueries, eventQueries } from "src/services/queries"
 
-export const Route = createFileRoute({
+export const Route = createFileRoute("/communities/$communityId")({
   loader: async ({ params, context }) => {
     await context.queryClient.ensureQueryData(
       communityQueries.detail(+params.communityId),

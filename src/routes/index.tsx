@@ -1,4 +1,4 @@
-import { ErrorComponent, useNavigate } from "@tanstack/react-router"
+import { ErrorComponent, useNavigate, createFileRoute } from "@tanstack/react-router"
 import React from "react"
 import { ErrorBoundary } from "react-error-boundary"
 import { EventCardSkeleton } from "src/components/event/event-card-skeleton"
@@ -8,7 +8,7 @@ import { Layout } from "src/components/layout"
 import { EventFilters, EventFiltersSchema } from "src/services/event.schema"
 import { tagQueries } from "src/services/queries"
 
-export const Route = createFileRoute({
+export const Route = createFileRoute("/")({
   beforeLoad: ({ context }) => {
     context.queryClient.ensureQueryData(tagQueries.list())
   },

@@ -1,10 +1,11 @@
+import { createFileRoute } from "@tanstack/react-router"
 import { ArrowLeft } from "lucide-react"
 import { SubmitForm } from "src/components/event/submit-form"
 import { Layout } from "src/components/layout"
 import { z } from "zod"
 import { ButtonLink } from "~/components/button-link"
 
-export const Route = createFileRoute({
+export const Route = createFileRoute("/events/submit")({
   component: RouteComponent,
   validateSearch: z.object({
     communityId: z.number().optional(),

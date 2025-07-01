@@ -1,7 +1,7 @@
 import { betterAuth } from "better-auth"
 import { drizzleAdapter } from "better-auth/adapters/drizzle"
 import { db } from "../db"
-import { reactStartCookies } from "better-auth/react-start"
+// import { reactStartCookies } from "better-auth/react-start"
 import * as schema from "../db/schema"
 
 export const auth = betterAuth({
@@ -17,5 +17,5 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  plugins: [reactStartCookies()],
+  // plugins: [reactStartCookies()],
 })

@@ -135,3 +135,4 @@ dist
 .nitro
 .output
 .tanstack-start/build
+.tanstack

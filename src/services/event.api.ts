@@ -5,6 +5,7 @@ import { db } from "~/lib/db"
 import { eventTable, usersInCommunityTable } from "~/lib/db/schema"
 import { CreateEventSchema, EventFiltersSchema } from "./event.schema"
 import { userRequiredMiddleware } from "./auth.api"
+import { formatDate } from "~/lib/date"
 
 export const getEvents = createServerFn()
   .validator(EventFiltersSchema)
@@ -41,12 +42,10 @@ export const getEvents = createServerFn()
       filters.push(eq(eventTable.communityId, data.communityId))
     }
 
-    if (data.startDate) {
+    if (data.startDate || data.startDate === undefined) {
+      const startDate = data.startDate || formatDate(new Date())
       filters.push(
-        or(
-          gt(eventTable.date, data.startDate),
-          gt(eventTable.dateEnd, data.startDate),
-        ),
+        or(gt(eventTable.date, startDate), gt(eventTable.dateEnd, startDate)),
       )
     }
 

@@ -1,4 +1,11 @@
-import { text, integer, pgTable, primaryKey, pgEnum } from "drizzle-orm/pg-core"
+import {
+  text,
+  integer,
+  pgTable,
+  primaryKey,
+  pgEnum,
+  boolean,
+} from "drizzle-orm/pg-core"
 import { userTable } from "./user"
 import { relations } from "drizzle-orm"
 
@@ -8,6 +15,7 @@ export const communityTable = pgTable("communities", {
   description: text(),
   logoUrl: text("logo_url"),
   homeUrl: text("home_url"),
+  verified: boolean().default(false).notNull(),
 })
 
 export type Community = typeof communityTable.$inferSelect

@@ -6,6 +6,7 @@ import { EventManagementCard } from "src/components/event/event-management-card"
 import { Layout } from "src/components/layout"
 import { Button } from "src/components/ui/button"
 import { Card } from "src/components/ui/card"
+import { Badge } from "src/components/ui/badge"
 import { Separator } from "src/components/ui/separator"
 import { communityQueries, eventQueries } from "src/services/queries"
 
@@ -36,7 +37,17 @@ function RouteComponent() {
     <Layout className="items-center gap-6 max-w-4xl mx-auto py-8 w-full">
       <div className="w-full flex flex-col sm:flex-row justify-between items-center bg-muted/50 p-6 rounded-lg">
         <div>
-          <h1 className="text-3xl font-bold">{community.name}</h1>
+          <div className="flex items-center gap-3">
+            <h1 className="text-3xl font-bold">{community.name}</h1>
+            {community.verified && (
+              <Badge
+                variant="secondary"
+                className="bg-blue-100 text-blue-800 border-blue-200"
+              >
+                ✓ Verified
+              </Badge>
+            )}
+          </div>
           <p className="text-muted-foreground mt-1">Community Management</p>
         </div>
         {isAdmin && (

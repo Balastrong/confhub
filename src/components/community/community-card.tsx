@@ -8,6 +8,7 @@ import { useAuthentication } from "~/lib/auth/client"
 import { CommunityWithMember } from "~/lib/db/schema/community"
 import { ButtonLink } from "../button-link"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 import { Card, CardDescription, CardTitle } from "../ui/card"
 import {
@@ -77,7 +78,17 @@ export function CommunityCard({
           <AvatarFallback>{community.name.substring(0, 2)}</AvatarFallback>
         </Avatar>
         <div>
-          <CardTitle className="text-lg">{community.name}</CardTitle>
+          <div className="flex items-center gap-2">
+            <CardTitle className="text-lg">{community.name}</CardTitle>
+            {community.verified && (
+              <Badge
+                variant="secondary"
+                className="bg-blue-100 text-blue-800 border-blue-200"
+              >
+                ✓ Verified
+              </Badge>
+            )}
+          </div>
           {community.description && (
             <CardDescription>{community.description}</CardDescription>
           )}

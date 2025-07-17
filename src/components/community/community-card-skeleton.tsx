@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react"
 import { Avatar, AvatarFallback } from "../ui/avatar"
-import { Card, CardDescription, CardTitle } from "../ui/card"
+import { Card } from "../ui/card"
 import { Skeleton } from "../ui/skeleton"
 
 export const CommunityCardSkeleton = () => {
@@ -19,7 +18,6 @@ export const CommunityCardSkeleton = () => {
         </div>
       </div>
       <div>
-        <Skeleton className="h-10 w-20 mr-2 inline-block" />
         <Skeleton className="h-10 w-16 inline-block" />
       </div>
     </Card>

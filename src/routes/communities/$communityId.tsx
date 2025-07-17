@@ -1,14 +1,30 @@
-import { useSuspenseQuery } from "@tanstack/react-query"
-import { useNavigate, createFileRoute } from "@tanstack/react-router"
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from "@tanstack/react-query"
+import { createFileRoute, useNavigate } from "@tanstack/react-router"
 import { PlusCircle } from "lucide-react"
+import { useState } from "react"
+import { toast } from "sonner"
 import { EditCommunityForm } from "src/components/community/edit-community-form"
 import { EventManagementCard } from "src/components/event/event-management-card"
 import { Layout } from "src/components/layout"
+import { Badge } from "src/components/ui/badge"
 import { Button } from "src/components/ui/button"
 import { Card } from "src/components/ui/card"
-import { Badge } from "src/components/ui/badge"
 import { Separator } from "src/components/ui/separator"
+import { joinCommunity, leaveCommunity } from "src/services/community.api"
 import { communityQueries, eventQueries } from "src/services/queries"
+import { useAuthentication } from "~/lib/auth/client"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "../../components/ui/dialog"
 
 export const Route = createFileRoute("/communities/$communityId")({
   loader: async ({ params, context }) => {
@@ -20,8 +36,11 @@ export const Route = createFileRoute("/communities/$communityId")({
 })
 
 function RouteComponent() {
+  const queryClient = useQueryClient()
+  const { isAuthenticated } = useAuthentication()
   const { communityId } = Route.useParams()
   const navigate = useNavigate()
+  const [showLeaveDialog, setShowLeaveDialog] = useState(false)
 
   const { data: community } = useSuspenseQuery(
     communityQueries.detail(+communityId),
@@ -31,7 +50,48 @@ function RouteComponent() {
     eventQueries.list({ communityId: +communityId }),
   )
 
+  const joinMutation = useMutation({
+    mutationFn: joinCommunity,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: communityQueries.all })
+      toast.success(`You're now a member of ${community.name}`)
+    },
+  })
+
+  const leaveMutation = useMutation({
+    mutationFn: leaveCommunity,
+    onSuccess: async (r) => {
+      r
+      await queryClient.invalidateQueries({ queryKey: communityQueries.all })
+      setShowLeaveDialog(false)
+      toast.success(`You're no longer part of ${community.name}`)
+    },
+  })
+
+  const handleJoin = (communityId: number) => {
+    if (!isAuthenticated) {
+      toast.error("You need to be logged in to join a community.", {
+        action: {
+          label: "Sign in",
+          onClick: () => navigate({ to: "/sign-in" }),
+        },
+      })
+      return
+    }
+
+    joinMutation.mutate({ data: { communityId } })
+  }
+
+  const handleLeave = (communityId: number) => {
+    setShowLeaveDialog(true)
+  }
+
+  const confirmLeave = () => {
+    leaveMutation.mutate({ data: { communityId: community.id } })
+  }
+
   const isAdmin = community.userRole === "admin"
+  const isMember = community.isMember
 
   return (
     <Layout className="items-center gap-6 max-w-4xl mx-auto py-8 w-full">
@@ -50,20 +110,42 @@ function RouteComponent() {
           </div>
           <p className="text-muted-foreground mt-1">Community Management</p>
         </div>
-        {isAdmin && (
-          <Button
-            className="mt-4 sm:mt-0"
-            onClick={() =>
-              navigate({
-                to: "/events/submit",
-                search: { communityId: +communityId },
-              })
-            }
-          >
-            <PlusCircle className="mr-2 h-4 w-4" />
-            New Event
-          </Button>
-        )}
+        <div className="flex gap-2">
+          {!isAdmin && isAuthenticated && (
+            <>
+              {isMember ? (
+                <Button
+                  variant="destructive"
+                  onClick={() => handleLeave(community.id)}
+                  disabled={leaveMutation.isPending}
+                >
+                  Leave Community
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => handleJoin(community.id)}
+                  disabled={joinMutation.isPending}
+                >
+                  Join Community
+                </Button>
+              )}
+            </>
+          )}
+          {isAdmin && (
+            <Button
+              className="mt-4 sm:mt-0"
+              onClick={() =>
+                navigate({
+                  to: "/events/submit",
+                  search: { communityId: +communityId },
+                })
+              }
+            >
+              <PlusCircle className="mr-2 h-4 w-4" />
+              New Event
+            </Button>
+          )}
+        </div>
       </div>
 
       <Card className="w-full p-6">
@@ -121,6 +203,33 @@ function RouteComponent() {
           </div>
         </Card>
       )}
+
+      <Dialog open={showLeaveDialog} onOpenChange={setShowLeaveDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Leave Community</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to leave "{community.name}"?
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setShowLeaveDialog(false)}
+              disabled={leaveMutation.isPending}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={confirmLeave}
+              disabled={leaveMutation.isPending}
+            >
+              {leaveMutation.isPending ? "Leaving..." : "Leave Community"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </Layout>
   )
 }

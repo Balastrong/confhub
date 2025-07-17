@@ -23,17 +23,12 @@ export const Navigation = () => {
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Communities</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="flex flex-col gap-2 p-4 w-[350px]">
-              <NavigationMenuLink to="/communities">
-                <ListItem title="Discover">Find communities to join.</ListItem>
-              </NavigationMenuLink>
-              <NavigationMenuLink to="/communities/create">
-                <ListItem title="Create">Start your own community.</ListItem>
-              </NavigationMenuLink>
-            </ul>
-          </NavigationMenuContent>
+          <NavigationMenuLink
+            className={navigationMenuTriggerStyle()}
+            to="/communities"
+          >
+            Communities
+          </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink

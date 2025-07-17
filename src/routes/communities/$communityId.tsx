@@ -149,7 +149,7 @@ function RouteComponent() {
       </div>
 
       <Card className="w-full p-6">
-        <h2 className="text-xl font-semibold mb-4">Community Events</h2>
+        <h2 className="text-xl font-semibold mb-4">Upcoming Events</h2>
         <Separator className="mb-4" />
 
         {eventsQuery.data.length > 0 ? (

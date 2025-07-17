@@ -23,6 +23,7 @@ export type Community = typeof communityTable.$inferSelect
 export type CommunityWithMember = Community & {
   isMember: boolean
   memberCount: number
+  upcomingEventsCount?: number
 }
 
 export const communityRelations = relations(communityTable, ({ many }) => ({

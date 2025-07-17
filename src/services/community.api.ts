@@ -1,11 +1,12 @@
 import { createServerFn, json } from "@tanstack/react-start"
-import { and, eq, getTableColumns, sql } from "drizzle-orm"
+import { and, eq, getTableColumns, sql, gt } from "drizzle-orm"
 import { z } from "zod"
 import { db } from "~/lib/db"
 import {
   communityTable,
   usersInCommunityTable,
 } from "~/lib/db/schema/community"
+import { eventTable } from "~/lib/db/schema/event"
 import { generateSlug } from "~/lib/utils"
 import { userMiddleware, userRequiredMiddleware } from "./auth.api"
 import {
@@ -55,6 +56,8 @@ export const getCommunities = createServerFn()
   .handler(async ({ data, context: { userSession } }) => {
     const userId = userSession?.user?.id
 
+    const today = new Date().toISOString().split("T")[0] // Current date in YYYY-MM-DD format
+
     return await db
       .select({
         ...getTableColumns(communityTable),
@@ -62,6 +65,13 @@ export const getCommunities = createServerFn()
           select count(*)::int
           from ${usersInCommunityTable}
           where ${usersInCommunityTable.communityId} = ${communityTable.id}
+        )`,
+        upcomingEventsCount: sql<number>`(
+          select count(*)::int
+          from ${eventTable}
+          where ${eventTable.communityId} = ${communityTable.id}
+          and ${eventTable.date} >= ${today}
+          and ${eventTable.draft} = false
         )`,
         isMember: sql<boolean>`${usersInCommunityTable.role} is not null`,
         userRole: usersInCommunityTable.role,
@@ -82,10 +92,19 @@ export const getCommunity = createServerFn()
   .validator(z.object({ id: z.number() }))
   .middleware([userMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
+    const today = new Date().toISOString().split("T")[0] // Current date in YYYY-MM-DD format
+
     const [community] = await db
       .select({
         ...getTableColumns(communityTable),
         isMember: sql<boolean>`${usersInCommunityTable.role} is not null`,
+        upcomingEventsCount: sql<number>`(
+          select count(*)::int
+          from ${eventTable}
+          where ${eventTable.communityId} = ${communityTable.id}
+          and ${eventTable.date} >= ${today}
+          and ${eventTable.draft} = false
+        )`,
         userRole: usersInCommunityTable.role,
       })
       .from(communityTable)
@@ -110,10 +129,19 @@ export const getCommunityBySlug = createServerFn()
   .validator(z.object({ slug: z.string() }))
   .middleware([userMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
+    const today = new Date().toISOString().split("T")[0] // Current date in YYYY-MM-DD format
+
     const [community] = await db
       .select({
         ...getTableColumns(communityTable),
         isMember: sql<boolean>`${usersInCommunityTable.role} is not null`,
+        upcomingEventsCount: sql<number>`(
+          select count(*)::int
+          from ${eventTable}
+          where ${eventTable.communityId} = ${communityTable.id}
+          and ${eventTable.date} >= ${today}
+          and ${eventTable.draft} = false
+        )`,
         userRole: usersInCommunityTable.role,
       })
       .from(communityTable)

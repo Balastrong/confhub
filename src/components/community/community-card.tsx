@@ -43,6 +43,13 @@ export function CommunityCard({
             </CardDescription>
           )}
           <CardDescription>
+            {community.upcomingEventsCount !== undefined && (
+              <>
+                {community.upcomingEventsCount} upcoming{" "}
+                {community.upcomingEventsCount === 1 ? "event" : "events"}
+                {" • "}
+              </>
+            )}
             {community.memberCount}{" "}
             {community.memberCount === 1 ? "member" : "members"}
           </CardDescription>

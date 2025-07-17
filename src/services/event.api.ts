@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start"
-import { and, arrayOverlaps, eq, gt, ilike, inArray, or } from "drizzle-orm"
+import { and, arrayOverlaps, eq, gt, ilike, inArray, lt, or } from "drizzle-orm"
 import { z } from "zod"
 import { db } from "~/lib/db"
 import { eventTable, usersInCommunityTable } from "~/lib/db/schema"
@@ -46,6 +46,15 @@ export const getEvents = createServerFn()
       const startDate = data.startDate || formatDate(new Date())
       filters.push(
         or(gt(eventTable.date, startDate), gt(eventTable.dateEnd, startDate)),
+      )
+    }
+
+    if (data.endDate) {
+      filters.push(
+        or(
+          lt(eventTable.date, data.endDate),
+          lt(eventTable.dateEnd, data.endDate),
+        ),
       )
     }
 

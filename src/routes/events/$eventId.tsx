@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router"
-import { useSuspenseQuery } from "@tanstack/react-query"
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query"
 import {} from "@tanstack/react-router"
 import { ArrowLeft } from "lucide-react"
 import { ButtonLink } from "src/components/button-link"
 import { SubmitForm } from "src/components/event/submit-form"
 import { Layout } from "src/components/layout"
-import { eventQueries } from "src/services/queries"
+import { communityQueries, eventQueries } from "src/services/queries"
 
 export const Route = createFileRoute("/events/$eventId")({
   component: RouteComponent,
@@ -16,16 +16,21 @@ function RouteComponent() {
 
   const { data: event } = useSuspenseQuery(eventQueries.detail(+eventId))
 
+  const { data: community } = useQuery({
+    ...communityQueries.detail(event.communityId!),
+    enabled: !!event.communityId,
+  })
+
   return (
     <Layout className="items-center gap-2">
-      {event.communityId && (
+      {event.communityId && community && (
         <div className="w-full">
           <ButtonLink
             variant="ghost"
             size="sm"
             className="mb-2"
-            to="/communities/$communityId"
-            params={{ communityId: String(event.communityId) }}
+            to="/communities/$communitySlug"
+            params={{ communitySlug: community.slug }}
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to community

@@ -89,12 +89,18 @@ export const getCommunities = createServerFn()
   })
 
 export const getCommunity = createServerFn()
-  .validator(z.object({ id: z.number() }))
+  .validator(
+    z
+      .object({ id: z.number().optional(), slug: z.string().optional() })
+      .refine((data) => data.id !== undefined || data.slug !== undefined, {
+        message: "Either id or slug must be provided",
+      }),
+  )
   .middleware([userMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
     const today = new Date().toISOString().split("T")[0] // Current date in YYYY-MM-DD format
 
-    const [community] = await db
+    const query = db
       .select({
         ...getTableColumns(communityTable),
         isMember: sql<boolean>`${usersInCommunityTable.role} is not null`,
@@ -115,8 +121,13 @@ export const getCommunity = createServerFn()
           eq(usersInCommunityTable.userId, userSession?.user?.id || ""),
         ),
       )
-      .where(eq(communityTable.id, data.id))
       .limit(1)
+
+    // Apply where clause based on provided parameter
+    const [community] =
+      data.id !== undefined
+        ? await query.where(eq(communityTable.id, data.id))
+        : await query.where(eq(communityTable.slug, data.slug as string))
 
     if (!community) {
       throw new Error("Community not found")

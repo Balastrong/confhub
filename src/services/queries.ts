@@ -66,4 +66,10 @@ export const communityQueries = {
       queryKey: [...communityQueries.all, "detail", communityId],
       queryFn: () => getCommunity({ data: { id: communityId } }),
     }),
+  detailBySlug: (communitySlug: string) =>
+    queryOptions({
+      queryKey: [...communityQueries.all, "detailBySlug", communitySlug],
+      queryFn: () => getCommunity({ data: { slug: communitySlug } }),
+      enabled: !!communitySlug,
+    }),
 }

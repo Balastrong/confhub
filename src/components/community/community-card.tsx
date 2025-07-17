@@ -58,9 +58,9 @@ export function CommunityCard({
       <div>
         <ButtonLink
           className="mr-2"
-          to={`/communities/$communityId`}
+          to={`/communities/$communitySlug`}
           variant={"secondary"}
-          params={{ communityId: community.id.toString() }}
+          params={{ communitySlug: community.slug }}
         >
           View
         </ButtonLink>

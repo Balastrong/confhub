@@ -26,10 +26,10 @@ import {
   DialogTitle,
 } from "../../components/ui/dialog"
 
-export const Route = createFileRoute("/communities/$communityId")({
+export const Route = createFileRoute("/communities/$communitySlug")({
   loader: async ({ params, context }) => {
-    await context.queryClient.ensureQueryData(
-      communityQueries.detail(+params.communityId),
+    return await context.queryClient.ensureQueryData(
+      communityQueries.detailBySlug(params.communitySlug),
     )
   },
   component: RouteComponent,
@@ -38,16 +38,12 @@ export const Route = createFileRoute("/communities/$communityId")({
 function RouteComponent() {
   const queryClient = useQueryClient()
   const { isAuthenticated } = useAuthentication()
-  const { communityId } = Route.useParams()
+  const community = Route.useLoaderData()
   const navigate = useNavigate()
   const [showLeaveDialog, setShowLeaveDialog] = useState(false)
 
-  const { data: community } = useSuspenseQuery(
-    communityQueries.detail(+communityId),
-  )
-
   const eventsQuery = useSuspenseQuery(
-    eventQueries.list({ communityId: +communityId }),
+    eventQueries.list({ communityId: community.id }),
   )
 
   const joinMutation = useMutation({
@@ -137,7 +133,7 @@ function RouteComponent() {
               onClick={() =>
                 navigate({
                   to: "/events/submit",
-                  search: { communityId: +communityId },
+                  search: { communityId: community.id },
                 })
               }
             >
@@ -182,7 +178,7 @@ function RouteComponent() {
                 onClick={() =>
                   navigate({
                     to: "/events/submit",
-                    search: { communityId: +communityId },
+                    search: { communityId: community.id },
                   })
                 }
               >
@@ -199,7 +195,7 @@ function RouteComponent() {
           <h2 className="text-xl font-semibold mb-4">Community Settings</h2>
           <Separator className="mb-6" />
           <div className="flex justify-center w-full">
-            <EditCommunityForm communityId={+communityId} />
+            <EditCommunityForm communityId={community.id} />
           </div>
         </Card>
       )}

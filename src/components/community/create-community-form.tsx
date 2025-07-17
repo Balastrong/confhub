@@ -18,8 +18,8 @@ export const CreateCommunityForm = () => {
       queryClient.invalidateQueries(communityQueries.list())
       toast.success("Community created successfully")
       router.navigate({
-        to: "/communities/$communityId",
-        params: { communityId: community.id.toString() },
+        to: "/communities/$communitySlug",
+        params: { communitySlug: community.slug },
       })
     },
   })

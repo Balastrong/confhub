@@ -20,7 +20,7 @@ import { Route as CommunitiesIndexRouteImport } from './routes/communities/index
 import { Route as EventsSubmitRouteImport } from './routes/events/submit'
 import { Route as EventsEventIdRouteImport } from './routes/events/$eventId'
 import { Route as CommunitiesCreateRouteImport } from './routes/communities/create'
-import { Route as CommunitiesCommunityIdRouteImport } from './routes/communities/$communityId'
+import { Route as CommunitiesCommunitySlugRouteImport } from './routes/communities/$communitySlug'
 import { ServerRoute as ApiAuthSplatServerRouteImport } from './routes/api/auth.$'
 
 const rootServerRouteImport = createServerRootRoute()
@@ -70,11 +70,12 @@ const CommunitiesCreateRoute = CommunitiesCreateRouteImport.update({
   path: '/communities/create',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CommunitiesCommunityIdRoute = CommunitiesCommunityIdRouteImport.update({
-  id: '/communities/$communityId',
-  path: '/communities/$communityId',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const CommunitiesCommunitySlugRoute =
+  CommunitiesCommunitySlugRouteImport.update({
+    id: '/communities/$communitySlug',
+    path: '/communities/$communitySlug',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiAuthSplatServerRoute = ApiAuthSplatServerRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -87,7 +88,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
-  '/communities/$communityId': typeof CommunitiesCommunityIdRoute
+  '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
   '/communities/create': typeof CommunitiesCreateRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
@@ -99,7 +100,7 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
-  '/communities/$communityId': typeof CommunitiesCommunityIdRoute
+  '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
   '/communities/create': typeof CommunitiesCreateRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
@@ -112,7 +113,7 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
-  '/communities/$communityId': typeof CommunitiesCommunityIdRoute
+  '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
   '/communities/create': typeof CommunitiesCreateRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
@@ -126,7 +127,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
-    | '/communities/$communityId'
+    | '/communities/$communitySlug'
     | '/communities/create'
     | '/events/$eventId'
     | '/events/submit'
@@ -138,7 +139,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
-    | '/communities/$communityId'
+    | '/communities/$communitySlug'
     | '/communities/create'
     | '/events/$eventId'
     | '/events/submit'
@@ -150,7 +151,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
-    | '/communities/$communityId'
+    | '/communities/$communitySlug'
     | '/communities/create'
     | '/events/$eventId'
     | '/events/submit'
@@ -163,7 +164,7 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   SignInRoute: typeof SignInRoute
   SignUpRoute: typeof SignUpRoute
-  CommunitiesCommunityIdRoute: typeof CommunitiesCommunityIdRoute
+  CommunitiesCommunitySlugRoute: typeof CommunitiesCommunitySlugRoute
   CommunitiesCreateRoute: typeof CommunitiesCreateRoute
   EventsEventIdRoute: typeof EventsEventIdRoute
   EventsSubmitRoute: typeof EventsSubmitRoute
@@ -256,11 +257,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommunitiesCreateRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/communities/$communityId': {
-      id: '/communities/$communityId'
-      path: '/communities/$communityId'
-      fullPath: '/communities/$communityId'
-      preLoaderRoute: typeof CommunitiesCommunityIdRouteImport
+    '/communities/$communitySlug': {
+      id: '/communities/$communitySlug'
+      path: '/communities/$communitySlug'
+      fullPath: '/communities/$communitySlug'
+      preLoaderRoute: typeof CommunitiesCommunitySlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -283,7 +284,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   SignInRoute: SignInRoute,
   SignUpRoute: SignUpRoute,
-  CommunitiesCommunityIdRoute: CommunitiesCommunityIdRoute,
+  CommunitiesCommunitySlugRoute: CommunitiesCommunitySlugRoute,
   CommunitiesCreateRoute: CommunitiesCreateRoute,
   EventsEventIdRoute: EventsEventIdRoute,
   EventsSubmitRoute: EventsSubmitRoute,

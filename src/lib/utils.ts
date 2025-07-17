@@ -82,3 +82,18 @@ export function getFirstAndLast(
 
   return { firstSunday, lastSaturday }
 }
+
+export function generateSlug(name: string): string {
+  // Convert to lowercase and remove special characters
+  const baseSlug = name
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "") // Remove special characters except spaces and hyphens
+    .replace(/\s+/g, "-") // Replace spaces with hyphens
+    .replace(/-+/g, "-") // Replace multiple hyphens with single hyphen
+    .replace(/^-|-$/g, "") // Remove leading and trailing hyphens
+
+  // Generate a 4-character random string
+  const randomString = Math.random().toString(36).substring(2, 6).toLowerCase()
+
+  return `${baseSlug}-${randomString}`
+}

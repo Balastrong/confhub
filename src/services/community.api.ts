@@ -6,6 +6,7 @@ import {
   communityTable,
   usersInCommunityTable,
 } from "~/lib/db/schema/community"
+import { generateSlug } from "~/lib/utils"
 import { userMiddleware, userRequiredMiddleware } from "./auth.api"
 import {
   CommunityFiltersSchema,
@@ -19,7 +20,15 @@ export const createCommunity = createServerFn()
   .validator(CreateCommunitySchema)
   .middleware([userRequiredMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
-    const [community] = await db.insert(communityTable).values(data).returning()
+    const slug = generateSlug(data.name)
+
+    const [community] = await db
+      .insert(communityTable)
+      .values({
+        ...data,
+        slug,
+      })
+      .returning()
 
     await db.insert(usersInCommunityTable).values({
       userId: userSession.user.id,
@@ -88,6 +97,34 @@ export const getCommunity = createServerFn()
         ),
       )
       .where(eq(communityTable.id, data.id))
+      .limit(1)
+
+    if (!community) {
+      throw new Error("Community not found")
+    }
+
+    return community
+  })
+
+export const getCommunityBySlug = createServerFn()
+  .validator(z.object({ slug: z.string() }))
+  .middleware([userMiddleware])
+  .handler(async ({ data, context: { userSession } }) => {
+    const [community] = await db
+      .select({
+        ...getTableColumns(communityTable),
+        isMember: sql<boolean>`${usersInCommunityTable.role} is not null`,
+        userRole: usersInCommunityTable.role,
+      })
+      .from(communityTable)
+      .leftJoin(
+        usersInCommunityTable,
+        and(
+          eq(usersInCommunityTable.communityId, communityTable.id),
+          eq(usersInCommunityTable.userId, userSession?.user?.id || ""),
+        ),
+      )
+      .where(eq(communityTable.slug, data.slug))
       .limit(1)
 
     if (!community) {

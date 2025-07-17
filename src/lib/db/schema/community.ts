@@ -12,6 +12,7 @@ import { relations } from "drizzle-orm"
 export const communityTable = pgTable("communities", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   name: text().notNull(),
+  slug: text().notNull().unique(),
   description: text(),
   logoUrl: text("logo_url"),
   homeUrl: text("home_url"),

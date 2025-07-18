@@ -4,7 +4,7 @@ import { drizzle } from "drizzle-orm/neon-http"
 
 let connectionString = process.env.DATABASE_URL!
 
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV !== "production") {
   connectionString = "postgres://postgres:postgres@db.localtest.me:5432/main"
   neonConfig.fetchEndpoint = (host) => {
     const [protocol, port] =

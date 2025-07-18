@@ -12,11 +12,11 @@ async function seed() {
 
   try {
     // Clear existing data (optional - comment out if you want to preserve existing data)
-    // await db.delete(usersInCommunityTable)
-    // await db.delete(eventTable)
-    // await db.delete(communityTable)
-    // await db.delete(userTable)
-    // console.log("🧹 Cleared existing data")
+    await db.delete(usersInCommunityTable)
+    await db.delete(eventTable)
+    await db.delete(communityTable)
+    await db.delete(userTable)
+    console.log("🧹 Cleared existing data")
 
     // Insert sample users
     const users = await db
@@ -125,12 +125,22 @@ async function seed() {
 
     console.log(`✅ Created ${communities.length} communities`)
 
+    // Helper function to generate slug from event name
+    const generateSlug = (name: string) => {
+      return name
+        .toLowerCase()
+        .replace(/[^a-z0-9 -]/g, "") // Remove special characters
+        .replace(/\s+/g, "-") // Replace spaces with hyphens
+        .replace(/-+/g, "-") // Replace multiple hyphens with single hyphen
+    }
+
     // Insert sample events
     const events = await db
       .insert(eventTable)
       .values([
         {
           name: "React Conference 2025",
+          slug: generateSlug("React Conference 2025"),
           description:
             "The biggest React conference of the year featuring talks from core team members and industry leaders",
           date: "2025-09-15",
@@ -147,6 +157,7 @@ async function seed() {
         },
         {
           name: "JS Nation 2025",
+          slug: generateSlug("JS Nation 2025"),
           description:
             "Two days of JavaScript talks, workshops, and networking with the community",
           date: "2025-06-01",
@@ -163,6 +174,7 @@ async function seed() {
         },
         {
           name: "DevOps Days Berlin",
+          slug: generateSlug("DevOps Days Berlin"),
           description:
             "Learn about the latest DevOps practices and tools from industry experts",
           date: "2025-10-20",
@@ -179,6 +191,7 @@ async function seed() {
         },
         {
           name: "Web3 Summit",
+          slug: generateSlug("Web3 Summit"),
           description:
             "Exploring the future of decentralized web and blockchain technologies",
           date: "2025-11-10",
@@ -195,6 +208,7 @@ async function seed() {
         },
         {
           name: "PyCon 2025",
+          slug: generateSlug("PyCon 2025"),
           description:
             "The largest annual gathering for the Python programming community",
           date: "2025-05-15",
@@ -211,6 +225,7 @@ async function seed() {
         },
         {
           name: "React Native EU",
+          slug: generateSlug("React Native EU"),
           description:
             "European React Native conference focusing on mobile development",
           date: "2025-09-01",
@@ -227,6 +242,7 @@ async function seed() {
         },
         {
           name: "TypeScript Congress",
+          slug: generateSlug("TypeScript Congress"),
           description:
             "Online conference dedicated to TypeScript and type-safe development",
           date: "2025-04-10",
@@ -243,6 +259,7 @@ async function seed() {
         },
         {
           name: "Kubernetes Community Days",
+          slug: generateSlug("Kubernetes Community Days"),
           description:
             "Community-driven event focused on Kubernetes and container orchestration",
           date: "2025-08-15",
@@ -259,6 +276,7 @@ async function seed() {
         },
         {
           name: "DeFi Innovation Summit",
+          slug: generateSlug("DeFi Innovation Summit"),
           description:
             "Exploring the latest innovations in decentralized finance",
           date: "2025-12-05",
@@ -275,6 +293,7 @@ async function seed() {
         },
         {
           name: "AI & Python Workshop",
+          slug: generateSlug("AI & Python Workshop"),
           description:
             "Hands-on workshop on AI and machine learning with Python",
           date: "2025-07-20",

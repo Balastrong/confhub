@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query"
-import {} from "@tanstack/react-router"
 import { ArrowLeft } from "lucide-react"
 import { ButtonLink } from "src/components/button-link"
 import { SubmitForm } from "src/components/event/submit-form"

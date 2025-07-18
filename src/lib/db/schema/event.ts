@@ -16,6 +16,7 @@ export const eventModeEnum = pgEnum("eventMode", [
 
 export const eventTable = pgTable("events", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  slug: text(),
   name: text().notNull(),
   description: text(),
   date: date().notNull(),

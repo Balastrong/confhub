@@ -6,6 +6,7 @@ import { eventTable, usersInCommunityTable } from "~/lib/db/schema"
 import { CreateEventSchema, EventFiltersSchema } from "./event.schema"
 import { userRequiredMiddleware } from "./auth.api"
 import { formatDate } from "~/lib/date"
+import { generateSlug } from "~/lib/utils"
 
 export const getEvents = createServerFn()
   .validator(EventFiltersSchema)
@@ -89,9 +90,14 @@ export const upsertEvent = createServerFn()
     const { id, ...eventData } = data
 
     if (id == null) {
+      const slug = generateSlug(data.name)
+
       const [newEvent] = await db
         .insert(eventTable)
-        .values(eventData)
+        .values({
+          ...eventData,
+          slug,
+        })
         .returning()
 
       return newEvent

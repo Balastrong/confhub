@@ -3,8 +3,8 @@ import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 
 type Props = {
-  label: string
-  type?: "text" | "email" | "password"
+  label: string | JSX.Element
+  type?: "text" | "email" | "password" | "url"
   required?: boolean
 }
 
@@ -13,8 +13,10 @@ export const TextField = ({ label, type = "text", required }: Props) => {
 
   return (
     <Label htmlFor={field.name}>
-      {label}
-      {required ? " *" : ""}
+      <div className="flex items-center gap-2">
+        {label}
+        {required ? " *" : ""}
+      </div>
       <Input
         name={field.name}
         id={field.name}

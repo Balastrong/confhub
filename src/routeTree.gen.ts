@@ -17,6 +17,7 @@ import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CommunitiesIndexRouteImport } from './routes/communities/index'
+import { Route as EventsSubmitProRouteImport } from './routes/events/submit-pro'
 import { Route as EventsSubmitRouteImport } from './routes/events/submit'
 import { Route as EventsEventIdRouteImport } from './routes/events/$eventId'
 import { Route as CommunitiesCreateRouteImport } from './routes/communities/create'
@@ -53,6 +54,11 @@ const IndexRoute = IndexRouteImport.update({
 const CommunitiesIndexRoute = CommunitiesIndexRouteImport.update({
   id: '/communities/',
   path: '/communities/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsSubmitProRoute = EventsSubmitProRouteImport.update({
+  id: '/events/submit-pro',
+  path: '/events/submit-pro',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EventsSubmitRoute = EventsSubmitRouteImport.update({
@@ -92,6 +98,7 @@ export interface FileRoutesByFullPath {
   '/communities/create': typeof CommunitiesCreateRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
+  '/events/submit-pro': typeof EventsSubmitProRoute
   '/communities': typeof CommunitiesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -104,6 +111,7 @@ export interface FileRoutesByTo {
   '/communities/create': typeof CommunitiesCreateRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
+  '/events/submit-pro': typeof EventsSubmitProRoute
   '/communities': typeof CommunitiesIndexRoute
 }
 export interface FileRoutesById {
@@ -117,6 +125,7 @@ export interface FileRoutesById {
   '/communities/create': typeof CommunitiesCreateRoute
   '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
+  '/events/submit-pro': typeof EventsSubmitProRoute
   '/communities/': typeof CommunitiesIndexRoute
 }
 export interface FileRouteTypes {
@@ -131,6 +140,7 @@ export interface FileRouteTypes {
     | '/communities/create'
     | '/events/$eventId'
     | '/events/submit'
+    | '/events/submit-pro'
     | '/communities'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -143,6 +153,7 @@ export interface FileRouteTypes {
     | '/communities/create'
     | '/events/$eventId'
     | '/events/submit'
+    | '/events/submit-pro'
     | '/communities'
   id:
     | '__root__'
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/communities/create'
     | '/events/$eventId'
     | '/events/submit'
+    | '/events/submit-pro'
     | '/communities/'
   fileRoutesById: FileRoutesById
 }
@@ -168,6 +180,7 @@ export interface RootRouteChildren {
   CommunitiesCreateRoute: typeof CommunitiesCreateRoute
   EventsEventIdRoute: typeof EventsEventIdRoute
   EventsSubmitRoute: typeof EventsSubmitRoute
+  EventsSubmitProRoute: typeof EventsSubmitProRoute
   CommunitiesIndexRoute: typeof CommunitiesIndexRoute
 }
 export interface FileServerRoutesByFullPath {
@@ -236,6 +249,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommunitiesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/events/submit-pro': {
+      id: '/events/submit-pro'
+      path: '/events/submit-pro'
+      fullPath: '/events/submit-pro'
+      preLoaderRoute: typeof EventsSubmitProRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/events/submit': {
       id: '/events/submit'
       path: '/events/submit'
@@ -288,6 +308,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommunitiesCreateRoute: CommunitiesCreateRoute,
   EventsEventIdRoute: EventsEventIdRoute,
   EventsSubmitRoute: EventsSubmitRoute,
+  EventsSubmitProRoute: EventsSubmitProRoute,
   CommunitiesIndexRoute: CommunitiesIndexRoute,
 }
 export const routeTree = rootRouteImport

@@ -43,7 +43,7 @@ export const CreateEventSchema = z.object({
   country: z.string().nullish(),
   city: z.string().nullish(),
   cfpClosingDate: z.string().date().nullish(),
-  tags: z.array(z.string()).min(1),
+  tags: z.array(z.string()),
   communityId: z.number().nullish(),
   draft: z.boolean().nullish(),
 })

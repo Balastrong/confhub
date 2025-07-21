@@ -136,3 +136,5 @@ dist
 .output
 .tanstack-start/build
 .tanstack
+
+data-entry/data.json

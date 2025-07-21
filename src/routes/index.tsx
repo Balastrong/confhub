@@ -1,4 +1,8 @@
-import { ErrorComponent, useNavigate, createFileRoute } from "@tanstack/react-router"
+import {
+  ErrorComponent,
+  useNavigate,
+  createFileRoute,
+} from "@tanstack/react-router"
 import React from "react"
 import { ErrorBoundary } from "react-error-boundary"
 import { EventCardSkeleton } from "src/components/event/event-card-skeleton"
@@ -43,7 +47,7 @@ function Home() {
         >
           <EventFiltersBar filters={filters} onSetFilters={setFilters} />
         </ErrorBoundary>
-        <div className="flex flex-col gap-4">
+        <div className="grid grid-cols-3 gap-4">
           <ErrorBoundary
             fallbackRender={(props) => <ErrorComponent error={props.error} />}
           >

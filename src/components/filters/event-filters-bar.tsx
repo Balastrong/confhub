@@ -57,28 +57,29 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
         className="w-full"
       >
         <AccordionItem value="filters" className="border-none">
-          <div className="flex items-center justify-between w-full py-1">
-            <AccordionTrigger className="py-0 hover:no-underline flex-1">
-              <div className="flex items-center gap-2">
-                <FilterIcon className="h-5 w-5 text-primary" />
-                <h2 className="text-lg font-medium">Event Filters</h2>
-                {activeFiltersCount > 0 && (
-                  <Badge variant="secondary">{activeFiltersCount}</Badge>
-                )}
-              </div>
-            </AccordionTrigger>
+          <AccordionTrigger className="py-0">
+            <div className="flex items-center gap-2">
+              <FilterIcon className="h-5 w-5 text-primary" />
+              <h2 className="text-lg font-medium">Event Filters</h2>
+              {activeFiltersCount > 0 && (
+                <Badge variant="secondary">{activeFiltersCount}</Badge>
+              )}
+            </div>
             {activeFiltersCount > 0 && (
               <Button
                 size="sm"
                 variant="ghost"
-                onClick={clearFilters}
-                className="flex items-center gap-1 ml-2 -mb-2"
+                onClick={(e) => {
+                  e.preventDefault()
+                  clearFilters()
+                }}
+                className="flex items-center gap-1 ml-auto mr-2 -mt-2 -mb-2 no-underline"
               >
                 <X className="h-4 w-4" />
                 <span>Clear all</span>
               </Button>
             )}
-          </div>
+          </AccordionTrigger>
           <AccordionContent className="pt-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-end">
               {/* Name filter */}

@@ -131,6 +131,7 @@ dist
 .pnp.*
 
 .vinxi
+.vercel
 .netlify
 .nitro
 .output

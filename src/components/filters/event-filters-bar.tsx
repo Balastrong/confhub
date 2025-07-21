@@ -1,6 +1,7 @@
 import { format } from "date-fns"
 import { CalendarIcon, FilterIcon, X } from "lucide-react"
 import React from "react"
+import { getEventModeConfig } from "src/lib/event-modes"
 import { EventFilters, EventModes } from "src/services/event.schema"
 import {
   Accordion,
@@ -216,20 +217,25 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                       )}
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      {EventModes.map((mode) => (
-                        <Badge
-                          key={mode}
-                          className="cursor-pointer"
-                          onClick={() => toggleArrayItem("modes", mode)}
-                          variant={
-                            filters.modes?.includes(mode)
-                              ? "default"
-                              : "outline"
-                          }
-                        >
-                          {mode}
-                        </Badge>
-                      ))}
+                      {EventModes.map((mode) => {
+                        const modeConfig = getEventModeConfig(mode)
+                        const IconComponent = modeConfig.icon
+                        return (
+                          <Badge
+                            key={mode}
+                            className="cursor-pointer flex items-center gap-1"
+                            onClick={() => toggleArrayItem("modes", mode)}
+                            variant={
+                              filters.modes?.includes(mode)
+                                ? "default"
+                                : "outline"
+                            }
+                          >
+                            <IconComponent className="h-3 w-3" />
+                            {modeConfig.label}
+                          </Badge>
+                        )
+                      })}
                     </div>
                   </div>
 

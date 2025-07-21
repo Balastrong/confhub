@@ -9,6 +9,7 @@ import {
   Link2,
 } from "lucide-react"
 import { formatDate } from "src/lib/date"
+import { getEventModeConfig, EVENT_MODE_CONFIG } from "src/lib/event-modes"
 import { useAppForm } from "src/lib/form"
 import {
   CreateEvent,
@@ -48,7 +49,7 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
       date: defaultEvent?.date || formatDate(new Date()),
       dateEnd: defaultEvent?.dateEnd || null,
       cfpUrl: defaultEvent?.cfpUrl || null,
-      mode: defaultEvent?.mode || "In person",
+      mode: defaultEvent?.mode || "in-person",
       country: defaultEvent?.country || "",
       city: defaultEvent?.city || null,
       cfpClosingDate: defaultEvent?.cfpClosingDate || null,
@@ -150,15 +151,18 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
                       <div className="flex gap-2 flex-wrap">
                         {EventModes.map((mode) => {
                           const isSelected = field.state.value === mode
+                          const modeConfig = getEventModeConfig(mode)
+                          const IconComponent = modeConfig.icon
                           return (
                             <Badge
                               key={mode}
-                              className="cursor-pointer px-4 py-2 text-sm transition-all hover:scale-105"
+                              className="cursor-pointer px-4 py-2 text-sm transition-all hover:scale-105 flex items-center gap-2"
                               role="radio"
                               onClick={() => field.handleChange(mode)}
                               variant={isSelected ? "default" : "outline"}
                             >
-                              {mode}
+                              <IconComponent className="h-4 w-4" />
+                              {modeConfig.label}
                             </Badge>
                           )
                         })}

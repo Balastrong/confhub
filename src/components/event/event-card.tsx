@@ -1,5 +1,6 @@
 import { getRouteApi } from "@tanstack/react-router"
 import { formatDate } from "src/lib/date"
+import { getEventModeConfig } from "src/lib/event-modes"
 import { FullEvent } from "src/services/event.schema"
 import { Badge } from "../ui/badge"
 import {
@@ -46,9 +47,30 @@ export const EventCard = ({ event }: Props) => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <p>
-          {event.city && event.country && `${event.city}, ${event.country}`}
-        </p>
+        <div className="space-y-2">
+          <div className="flex items-center gap-2">
+            {event.city && event.country && (
+              <span>{`${event.city}, ${event.country}`}</span>
+            )}
+            {event.mode && (
+              <Badge
+                variant="secondary"
+                className="text-xs flex items-center gap-1"
+              >
+                {(() => {
+                  const modeConfig = getEventModeConfig(event.mode)
+                  const IconComponent = modeConfig.icon
+                  return (
+                    <>
+                      <IconComponent className="h-3 w-3" />
+                      {modeConfig.label}
+                    </>
+                  )
+                })()}
+              </Badge>
+            )}
+          </div>
+        </div>
         {event.cfpUrl && (
           <p>
             <a

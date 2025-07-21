@@ -74,12 +74,12 @@ export const EventCard = ({ event }: Props) => {
         )}
       </CardContent>
       <CardFooter>
-        <div className="flex gap-1">
+        <div className="flex flex-wrap gap-1">
           {event.tags?.map((tag) => (
             <Badge
               key={tag}
               variant={tags.includes(tag) ? "default" : "outline"}
-              className="capitalize"
+              className="capitalize mb-1"
             >
               {tag}
             </Badge>

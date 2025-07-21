@@ -6,7 +6,7 @@ import {
   Scripts,
 } from "@tanstack/react-router"
 import * as React from "react"
-import { Header } from "src/components/header"
+import { Header } from "~/components/header/header"
 import { Toaster } from "src/components/ui/sonner"
 import { authQueries } from "src/services/queries"
 import css from "~/globals.css?url"

@@ -2,42 +2,27 @@ import React from "react"
 import { cn } from "src/lib/utils"
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "./ui/navigation-menu"
+} from "../ui/navigation-menu"
+import { NAV_LINKS } from "./header"
 
 export const Navigation = () => {
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuLink
-            className={navigationMenuTriggerStyle()}
-            to="/events/submit"
-          >
-            Submit Event
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink
-            className={navigationMenuTriggerStyle()}
-            to="/communities"
-          >
-            Communities
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink
-            className={navigationMenuTriggerStyle()}
-            to="/calendar"
-          >
-            Calendar
-          </NavigationMenuLink>
-        </NavigationMenuItem>
+        {NAV_LINKS.map(({ to, label }) => (
+          <NavigationMenuItem key={to}>
+            <NavigationMenuLink
+              className={navigationMenuTriggerStyle()}
+              to={to}
+            >
+              {label}
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        ))}
       </NavigationMenuList>
     </NavigationMenu>
   )

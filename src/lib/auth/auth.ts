@@ -2,12 +2,14 @@ import { betterAuth } from "better-auth"
 import { drizzleAdapter } from "better-auth/adapters/drizzle"
 import { db } from "../db"
 import { reactStartCookies } from "better-auth/react-start"
+import { mcp } from "better-auth/plugins"
 import * as schema from "../db/schema"
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "pg",
     schema: {
+      ...schema,
       user: schema.userTable,
       account: schema.accountTable,
       session: schema.sessionTable,
@@ -23,5 +25,10 @@ export const auth = betterAuth({
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     },
   },
-  plugins: [reactStartCookies()],
+  plugins: [
+    mcp({
+      loginPage: "/sign-in",
+    }),
+    reactStartCookies(),
+  ],
 })

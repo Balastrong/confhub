@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start"
 import { createServerFileRoute } from "@tanstack/react-start/server"
+import z from "zod"
 import { auth } from "~/lib/auth/auth"
 import { formatDate } from "~/lib/date"
 import { getCommunities } from "~/services/community.api"
@@ -35,7 +36,7 @@ interface Tool {
 }
 
 // Define our time tool
-const timeTools: Tool[] = [
+const tools: Tool[] = [
   {
     name: "get_current_time",
     description: "Get the current date and time",
@@ -125,7 +126,7 @@ function handleListTools(): MCPResponse {
   return {
     jsonrpc: "2.0",
     result: {
-      tools: timeTools,
+      tools: tools,
     },
   }
 }
@@ -170,17 +171,21 @@ async function handleCallTool(
   if (name === "get_next_event") {
     const { tags } = args
 
+    const validTags = z.array(z.string().trim()).optional().safeParse(tags).data
+
     const upcomingEvents = await getEvents({
       data: {
         startDate: formatDate(new Date()),
-        limit: 10,
-        tags: tags && tags.length > 0 ? tags : undefined,
+        limit: 1,
+        tags: validTags,
       },
     })
 
     if (upcomingEvents.length === 0) {
       const tagsText =
-        tags && tags.length > 0 ? ` with tags: ${tags.join(", ")}` : ""
+        validTags && validTags.length > 0
+          ? ` with tags: ${validTags.join(", ")}`
+          : ""
       return {
         jsonrpc: "2.0",
         result: {
@@ -196,7 +201,9 @@ async function handleCallTool(
 
     const event = upcomingEvents[0]
     const tagsText =
-      tags && tags.length > 0 ? ` matching tags: ${tags.join(", ")}` : ""
+      validTags && validTags.length > 0
+        ? ` matching tags: ${validTags.join(", ")}`
+        : ""
     return {
       jsonrpc: "2.0",
       result: {
@@ -253,7 +260,7 @@ These are the upcoming events for the communities you are part of: ${JSON.string
     error: {
       code: -32601,
       message: "Method not found",
-      data: { availableTools: timeTools.map((t) => t.name) },
+      data: { availableTools: tools.map((t) => t.name) },
     },
   }
 }
@@ -284,7 +291,7 @@ export const ServerRoute = createServerFileRoute("/api/mcp").methods({
       version: "1.0.0",
       description: "An MCP server that provides current time information",
       capabilities: ["tools"],
-      tools: timeTools,
+      tools: tools,
     })
   },
 

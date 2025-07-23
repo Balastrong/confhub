@@ -218,40 +218,60 @@ async function handleCallTool(
   }
 
   if (name === "get_user_upcoming_events") {
-    const session = await auth.api.getMcpSession({
-      headers: headers,
-    })
-    if (!session) {
-      throw new Response(null, {
-        status: 401,
+    try {
+      const session = await auth.api.getMcpSession({
+        headers: headers,
       })
-    }
 
-    const communities = await getCommunities({
-      data: { ownCommunitiesOnly: true },
-    })
-
-    const communityIds = communities.map((c) => c.id)
-    const communityNames = communities.map((c) => c.name)
-
-    const upcomingEvents = await getEvents({
-      data: {
-        communityId: communityIds,
-        startDate: new Date().toISOString(),
-      },
-    })
-
-    return {
-      jsonrpc: "2.0",
-      result: {
-        content: [
-          {
-            type: "text",
-            text: `You are part of these communities: ${communityNames.join(", ")}.
-These are the upcoming events for the communities you are part of: ${JSON.stringify(upcomingEvents)}`,
+      if (!session) {
+        return {
+          jsonrpc: "2.0",
+          error: {
+            code: -32603,
+            message: "Authentication required",
+            data: { error: "No valid session found" },
           },
-        ],
-      },
+        }
+      }
+
+      const communities = await getCommunities({
+        data: { userId: session.userId },
+      })
+
+      const communityIds = communities.map((c) => c.id)
+      const communityNames = communities.map((c) => c.name)
+
+      const upcomingEvents = await getEvents({
+        data: {
+          communityId: communityIds,
+          startDate: formatDate(new Date()),
+        },
+      })
+
+      return {
+        jsonrpc: "2.0",
+        result: {
+          content: [
+            {
+              type: "text",
+              text: `You are part of these communities: ${communityNames.join(", ")}.
+These are the upcoming events for the communities you are part of: ${JSON.stringify(upcomingEvents)}`,
+            },
+          ],
+        },
+      }
+    } catch (error) {
+      console.error("Error in get_user_upcoming_events:", error)
+      return {
+        jsonrpc: "2.0",
+        error: {
+          code: -32603,
+          message: "Internal error",
+          data: {
+            error: error instanceof Error ? error.message : "Unknown error",
+          },
+        },
+      }
     }
   }
 

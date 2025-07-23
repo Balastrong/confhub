@@ -54,7 +54,7 @@ export const getCommunities = createServerFn()
   .validator(CommunityFiltersSchema)
   .middleware([userMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
-    const userId = userSession?.user?.id
+    const userId = data.userId ?? userSession?.user?.id
 
     const today = new Date().toISOString().split("T")[0] // Current date in YYYY-MM-DD format
 

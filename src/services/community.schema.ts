@@ -20,5 +20,6 @@ export type UpdateCommunityInput = z.infer<typeof UpdateCommunitySchema>
 
 export const CommunityFiltersSchema = z.object({
   ownCommunitiesOnly: z.boolean().optional(),
+  userId: z.string().optional(),
 })
 export type CommunityFilters = z.infer<typeof CommunityFiltersSchema>

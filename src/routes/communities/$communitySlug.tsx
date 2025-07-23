@@ -3,7 +3,7 @@ import {
   useQueryClient,
   useSuspenseQuery,
 } from "@tanstack/react-query"
-import { createFileRoute, useNavigate } from "@tanstack/react-router"
+import { createFileRoute, useNavigate, useRouter } from "@tanstack/react-router"
 import { PlusCircle } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
@@ -28,7 +28,7 @@ import {
 
 export const Route = createFileRoute("/communities/$communitySlug")({
   loader: async ({ params, context }) => {
-    return await context.queryClient.ensureQueryData(
+    await context.queryClient.ensureQueryData(
       communityQueries.detailBySlug(params.communitySlug),
     )
   },
@@ -38,8 +38,12 @@ export const Route = createFileRoute("/communities/$communitySlug")({
 function RouteComponent() {
   const queryClient = useQueryClient()
   const { isAuthenticated } = useAuthentication()
-  const community = Route.useLoaderData()
+  const { communitySlug } = Route.useParams()
+  const { data: community } = useSuspenseQuery(
+    communityQueries.detailBySlug(communitySlug),
+  )
   const navigate = useNavigate()
+  const router = useRouter()
   const [showLeaveDialog, setShowLeaveDialog] = useState(false)
 
   const eventsQuery = useSuspenseQuery(
@@ -50,6 +54,7 @@ function RouteComponent() {
     mutationFn: joinCommunity,
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: communityQueries.all })
+      router.invalidate()
       toast.success(`You're now a member of ${community.name}`)
     },
   })
@@ -57,8 +62,8 @@ function RouteComponent() {
   const leaveMutation = useMutation({
     mutationFn: leaveCommunity,
     onSuccess: async (r) => {
-      r
       await queryClient.invalidateQueries({ queryKey: communityQueries.all })
+      router.invalidate()
       setShowLeaveDialog(false)
       toast.success(`You're no longer part of ${community.name}`)
     },
@@ -78,7 +83,7 @@ function RouteComponent() {
     joinMutation.mutate({ data: { communityId } })
   }
 
-  const handleLeave = (communityId: number) => {
+  const handleLeave = () => {
     setShowLeaveDialog(true)
   }
 
@@ -112,7 +117,7 @@ function RouteComponent() {
               {isMember ? (
                 <Button
                   variant="destructive"
-                  onClick={() => handleLeave(community.id)}
+                  onClick={() => handleLeave()}
                   disabled={leaveMutation.isPending}
                 >
                   Leave Community

@@ -40,7 +40,11 @@ export const getEvents = createServerFn()
     }
 
     if (data.communityId) {
-      filters.push(eq(eventTable.communityId, data.communityId))
+      if (Array.isArray(data.communityId)) {
+        filters.push(inArray(eventTable.communityId, data.communityId))
+      } else {
+        filters.push(eq(eventTable.communityId, data.communityId))
+      }
     }
 
     if (data.startDate || data.startDate === undefined) {

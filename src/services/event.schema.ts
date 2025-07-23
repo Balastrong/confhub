@@ -20,7 +20,7 @@ export const EventFiltersSchema = z
       .transform((value) => (value?.length ? value : undefined)),
     country: z.string(),
     hasCfpOpen: z.boolean().transform((value) => value || undefined),
-    communityId: z.number().nullish(),
+    communityId: z.union([z.number(), z.array(z.number())]).nullish(),
     communityDraft: z.boolean().nullish(),
     startDate: z.string().date().nullish(),
     endDate: z.string().date().nullish(),

@@ -178,8 +178,6 @@ async function handleCallTool(
       },
     })
 
-    console.log("Upcoming events:", upcomingEvents)
-
     if (upcomingEvents.length === 0) {
       const tagsText =
         tags && tags.length > 0 ? ` with tags: ${tags.join(", ")}` : ""

@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
   validateSearch: EventFiltersSchema,
 })
 
-const skeletons = Array.from({ length: 2 })
+const skeletons = Array.from({ length: 3 })
 
 function Home() {
   const filters = Route.useSearch()

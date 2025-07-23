@@ -147,33 +147,20 @@ async function handleCallTool(
   const { name, arguments: args = {} } = params
 
   if (name === "get_current_time") {
-    try {
-      const { timezone, format } = args
+    const { timezone, format } = args
 
-      const formattedTime = formatTime(new Date(), format, timezone)
+    const formattedTime = formatTime(new Date(), format, timezone)
 
-      return {
-        jsonrpc: "2.0",
-        result: {
-          content: [
-            {
-              type: "text",
-              text: `Current time: ${formattedTime}${timezone ? ` (${timezone})` : " (UTC)"}`,
-            },
-          ],
-        },
-      }
-    } catch (error) {
-      return {
-        jsonrpc: "2.0",
-        error: {
-          code: -32603,
-          message: "Internal error",
-          data: {
-            error: error instanceof Error ? error.message : "Unknown error",
+    return {
+      jsonrpc: "2.0",
+      result: {
+        content: [
+          {
+            type: "text",
+            text: `Current time: ${formattedTime}${timezone ? ` (${timezone})` : " (UTC)"}`,
           },
-        },
-      }
+        ],
+      },
     }
   }
 

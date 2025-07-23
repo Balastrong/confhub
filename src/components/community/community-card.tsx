@@ -19,6 +19,14 @@ export function CommunityCard({
         <div>
           <div className="flex items-center gap-2">
             <CardTitle className="text-lg">{community.name}</CardTitle>
+            {community.isMember && (
+              <Badge
+                variant="secondary"
+                className="bg-green-100 text-green-800 border-green-200"
+              >
+                ✓ Member
+              </Badge>
+            )}
             {community.verified && (
               <Badge
                 variant="secondary"

@@ -4,6 +4,8 @@ import { eq } from "drizzle-orm/sql/expressions/conditions"
 import { auth } from "~/lib/auth/auth"
 import { db } from "~/lib/db"
 import { userTable } from "~/lib/db/schema"
+import { getCommunities } from "~/services/community.api"
+import { getEvents } from "~/services/event.api"
 
 // MCP Protocol Types
 interface MCPRequest {
@@ -54,6 +56,14 @@ const timeTools: Tool[] = [
         },
       },
       required: [],
+    },
+  },
+  {
+    name: "get_user_upcoming_events",
+    description:
+      "Get upcoming events for the authenticated user based on their communities",
+    inputSchema: {
+      type: "object",
     },
   },
 ]
@@ -146,6 +156,36 @@ async function handleCallTool(
     }
   }
 
+  if (name === "get_user_upcoming_events") {
+    console.log("HEYY")
+    const communities = await getCommunities({
+      data: { ownCommunitiesOnly: true },
+    })
+
+    const communityIds = communities.map((c) => c.id)
+    const communityNames = communities.map((c) => c.name)
+
+    const upcomingEvents = await getEvents({
+      data: {
+        communityId: communityIds,
+        startDate: new Date().toISOString(),
+      },
+    })
+
+    return {
+      jsonrpc: "2.0",
+      result: {
+        content: [
+          {
+            type: "text",
+            text: `You are part of these communities: ${communityNames.join(", ")}.
+These are the upcoming events for the communities you are part of: ${JSON.stringify(upcomingEvents)}`,
+          },
+        ],
+      },
+    }
+  }
+
   return {
     jsonrpc: "2.0",
     error: {
@@ -175,7 +215,7 @@ function handleInitialize(): MCPResponse {
 }
 
 export const ServerRoute = createServerFileRoute("/api/mcp2").methods({
-  GET: ({ request }) => {
+  GET: () => {
     // For GET requests, return server information
     return Response.json({
       name: "ConfHub MCP Time Server",
@@ -213,12 +253,10 @@ export const ServerRoute = createServerFileRoute("/api/mcp2").methods({
           response = handleListTools()
           break
         case "tools/call":
-          // session contains the access token record with scopes and user ID
           const session = await auth.api.getMcpSession({
             headers: request.headers,
           })
           if (!session) {
-            //this is important and you must return 401
             return new Response(null, {
               status: 401,
             })

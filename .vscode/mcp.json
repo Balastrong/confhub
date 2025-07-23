@@ -1,8 +1,8 @@
 {
   "servers": {
-    "confhub-time": {
+    "confhub": {
       "type": "http",
-      "url": "http://localhost:3000/api/mcp2"
+      "url": "http://localhost:3000/api/mcp"
     }
   }
 }

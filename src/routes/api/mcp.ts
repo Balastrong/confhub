@@ -1,4 +1,9 @@
+import { createServerFn } from "@tanstack/react-start"
 import { createServerFileRoute } from "@tanstack/react-start/server"
+import { auth } from "~/lib/auth/auth"
+import { formatDate } from "~/lib/date"
+import { getCommunities } from "~/services/community.api"
+import { getEvents } from "~/services/event.api"
 
 // MCP Protocol Types
 interface MCPRequest {
@@ -51,6 +56,22 @@ const timeTools: Tool[] = [
       required: [],
     },
   },
+  {
+    name: "get_next_event",
+    description: "Get the next upcoming tech event",
+    inputSchema: {
+      type: "object",
+      required: [],
+    },
+  },
+  {
+    name: "get_user_upcoming_events",
+    description:
+      "Get upcoming events for the authenticated user based on their communities",
+    inputSchema: {
+      type: "object",
+    },
+  },
 ]
 
 // Helper function to format time based on requested format
@@ -98,15 +119,17 @@ function handleListTools(): MCPResponse {
   }
 }
 
-function handleCallTool(params: any): MCPResponse {
+async function handleCallTool(
+  params: any,
+  headers: Headers,
+): Promise<MCPResponse> {
   const { name, arguments: args = {} } = params
 
   if (name === "get_current_time") {
     try {
-      const now = new Date()
       const { timezone, format } = args
 
-      const formattedTime = formatTime(now, format, timezone)
+      const formattedTime = formatTime(new Date(), format, timezone)
 
       return {
         jsonrpc: "2.0",
@@ -130,6 +153,80 @@ function handleCallTool(params: any): MCPResponse {
           },
         },
       }
+    }
+  }
+
+  if (name === "get_next_event") {
+    const upcomingEvents = await getEvents({
+      data: {
+        startDate: formatDate(new Date()),
+        limit: 1,
+      },
+    })
+
+    if (upcomingEvents.length === 0) {
+      return {
+        jsonrpc: "2.0",
+        result: {
+          content: [
+            {
+              type: "text",
+              text: "No upcoming events found.",
+            },
+          ],
+        },
+      }
+    }
+
+    const event = upcomingEvents[0]
+    return {
+      jsonrpc: "2.0",
+      result: {
+        content: [
+          {
+            type: "text",
+            text: `The next event will be ${JSON.stringify(event)}`,
+          },
+        ],
+      },
+    }
+  }
+
+  if (name === "get_user_upcoming_events") {
+    const session = await auth.api.getMcpSession({
+      headers: headers,
+    })
+    if (!session) {
+      throw new Response(null, {
+        status: 401,
+      })
+    }
+
+    const communities = await getCommunities({
+      data: { ownCommunitiesOnly: true },
+    })
+
+    const communityIds = communities.map((c) => c.id)
+    const communityNames = communities.map((c) => c.name)
+
+    const upcomingEvents = await getEvents({
+      data: {
+        communityId: communityIds,
+        startDate: new Date().toISOString(),
+      },
+    })
+
+    return {
+      jsonrpc: "2.0",
+      result: {
+        content: [
+          {
+            type: "text",
+            text: `You are part of these communities: ${communityNames.join(", ")}.
+These are the upcoming events for the communities you are part of: ${JSON.stringify(upcomingEvents)}`,
+          },
+        ],
+      },
     }
   }
 
@@ -162,7 +259,7 @@ function handleInitialize(): MCPResponse {
 }
 
 export const ServerRoute = createServerFileRoute("/api/mcp").methods({
-  GET: ({ request }) => {
+  GET: () => {
     // For GET requests, return server information
     return Response.json({
       name: "ConfHub MCP Time Server",
@@ -200,7 +297,7 @@ export const ServerRoute = createServerFileRoute("/api/mcp").methods({
           response = handleListTools()
           break
         case "tools/call":
-          response = handleCallTool(body.params)
+          response = await handleCallTool(body.params, request.headers)
           break
         default:
           response = {
@@ -222,6 +319,10 @@ export const ServerRoute = createServerFileRoute("/api/mcp").methods({
 
       return Response.json(response)
     } catch (error) {
+      if (error instanceof Response) {
+        return error
+      }
+
       return Response.json({
         jsonrpc: "2.0",
         error: {

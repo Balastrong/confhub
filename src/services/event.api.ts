@@ -70,6 +70,7 @@ export const getEvents = createServerFn()
       .from(eventTable)
       .where(whereCondition)
       .orderBy(eventTable.date)
+      .limit(data.limit || 20)
   })
 
 export const getEvent = createServerFn()

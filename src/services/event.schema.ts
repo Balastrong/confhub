@@ -24,6 +24,7 @@ export const EventFiltersSchema = z
     communityDraft: z.boolean().nullish(),
     startDate: z.string().date().nullish(),
     endDate: z.string().date().nullish(),
+    limit: z.number().int().min(1).max(100).default(20),
   })
   .partial()
 

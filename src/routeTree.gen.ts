@@ -22,7 +22,6 @@ import { Route as EventsSubmitRouteImport } from './routes/events/submit'
 import { Route as EventsEventIdRouteImport } from './routes/events/$eventId'
 import { Route as CommunitiesCreateRouteImport } from './routes/communities/create'
 import { Route as CommunitiesCommunitySlugRouteImport } from './routes/communities/$communitySlug'
-import { ServerRoute as ApiMcp2ServerRouteImport } from './routes/api/mcp2'
 import { ServerRoute as ApiMcpServerRouteImport } from './routes/api/mcp'
 import { ServerRoute as DotwellKnownOpenidConfigurationServerRouteImport } from './routes/[.]well-known/openid-configuration'
 import { ServerRoute as ApiAuthSplatServerRouteImport } from './routes/api/auth.$'
@@ -85,11 +84,6 @@ const CommunitiesCommunitySlugRoute =
     path: '/communities/$communitySlug',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ApiMcp2ServerRoute = ApiMcp2ServerRouteImport.update({
-  id: '/api/mcp2',
-  path: '/api/mcp2',
-  getParentRoute: () => rootServerRouteImport,
-} as any)
 const ApiMcpServerRoute = ApiMcpServerRouteImport.update({
   id: '/api/mcp',
   path: '/api/mcp',
@@ -205,47 +199,34 @@ export interface RootRouteChildren {
 export interface FileServerRoutesByFullPath {
   '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationServerRoute
   '/api/mcp': typeof ApiMcpServerRoute
-  '/api/mcp2': typeof ApiMcp2ServerRoute
   '/api/auth/$': typeof ApiAuthSplatServerRoute
 }
 export interface FileServerRoutesByTo {
   '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationServerRoute
   '/api/mcp': typeof ApiMcpServerRoute
-  '/api/mcp2': typeof ApiMcp2ServerRoute
   '/api/auth/$': typeof ApiAuthSplatServerRoute
 }
 export interface FileServerRoutesById {
   __root__: typeof rootServerRouteImport
   '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationServerRoute
   '/api/mcp': typeof ApiMcpServerRoute
-  '/api/mcp2': typeof ApiMcp2ServerRoute
   '/api/auth/$': typeof ApiAuthSplatServerRoute
 }
 export interface FileServerRouteTypes {
   fileServerRoutesByFullPath: FileServerRoutesByFullPath
-  fullPaths:
-    | '/.well-known/openid-configuration'
-    | '/api/mcp'
-    | '/api/mcp2'
-    | '/api/auth/$'
+  fullPaths: '/.well-known/openid-configuration' | '/api/mcp' | '/api/auth/$'
   fileServerRoutesByTo: FileServerRoutesByTo
-  to:
-    | '/.well-known/openid-configuration'
-    | '/api/mcp'
-    | '/api/mcp2'
-    | '/api/auth/$'
+  to: '/.well-known/openid-configuration' | '/api/mcp' | '/api/auth/$'
   id:
     | '__root__'
     | '/.well-known/openid-configuration'
     | '/api/mcp'
-    | '/api/mcp2'
     | '/api/auth/$'
   fileServerRoutesById: FileServerRoutesById
 }
 export interface RootServerRouteChildren {
   DotwellKnownOpenidConfigurationServerRoute: typeof DotwellKnownOpenidConfigurationServerRoute
   ApiMcpServerRoute: typeof ApiMcpServerRoute
-  ApiMcp2ServerRoute: typeof ApiMcp2ServerRoute
   ApiAuthSplatServerRoute: typeof ApiAuthSplatServerRoute
 }
 
@@ -332,13 +313,6 @@ declare module '@tanstack/react-router' {
 }
 declare module '@tanstack/react-start/server' {
   interface ServerFileRoutesByPath {
-    '/api/mcp2': {
-      id: '/api/mcp2'
-      path: '/api/mcp2'
-      fullPath: '/api/mcp2'
-      preLoaderRoute: typeof ApiMcp2ServerRouteImport
-      parentRoute: typeof rootServerRouteImport
-    }
     '/api/mcp': {
       id: '/api/mcp'
       path: '/api/mcp'
@@ -383,7 +357,6 @@ const rootServerRouteChildren: RootServerRouteChildren = {
   DotwellKnownOpenidConfigurationServerRoute:
     DotwellKnownOpenidConfigurationServerRoute,
   ApiMcpServerRoute: ApiMcpServerRoute,
-  ApiMcp2ServerRoute: ApiMcp2ServerRoute,
   ApiAuthSplatServerRoute: ApiAuthSplatServerRoute,
 }
 export const serverRouteTree = rootServerRouteImport

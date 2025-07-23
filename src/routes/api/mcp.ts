@@ -58,9 +58,20 @@ const timeTools: Tool[] = [
   },
   {
     name: "get_next_event",
-    description: "Get the next upcoming tech event",
+    description:
+      "Get the next upcoming tech event, you can filter by tags or topics",
     inputSchema: {
       type: "object",
+      properties: {
+        tags: {
+          type: "array",
+          items: {
+            type: "string",
+          },
+          description:
+            "Optional array of tags to filter events by. Tags should be lowercase.",
+        },
+      },
       required: [],
     },
   },
@@ -157,21 +168,28 @@ async function handleCallTool(
   }
 
   if (name === "get_next_event") {
+    const { tags } = args
+
     const upcomingEvents = await getEvents({
       data: {
         startDate: formatDate(new Date()),
-        limit: 1,
+        limit: 10,
+        tags: tags && tags.length > 0 ? tags : undefined,
       },
     })
 
+    console.log("Upcoming events:", upcomingEvents)
+
     if (upcomingEvents.length === 0) {
+      const tagsText =
+        tags && tags.length > 0 ? ` with tags: ${tags.join(", ")}` : ""
       return {
         jsonrpc: "2.0",
         result: {
           content: [
             {
               type: "text",
-              text: "No upcoming events found.",
+              text: `No upcoming events found${tagsText}.`,
             },
           ],
         },
@@ -179,13 +197,15 @@ async function handleCallTool(
     }
 
     const event = upcomingEvents[0]
+    const tagsText =
+      tags && tags.length > 0 ? ` matching tags: ${tags.join(", ")}` : ""
     return {
       jsonrpc: "2.0",
       result: {
         content: [
           {
             type: "text",
-            text: `The next event will be ${JSON.stringify(event)}`,
+            text: `The next event${tagsText} will be ${JSON.stringify(event)}`,
           },
         ],
       },

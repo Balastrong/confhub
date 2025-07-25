@@ -28,10 +28,6 @@ export const auth = betterAuth({
   plugins: [
     mcp({
       loginPage: "/sign-in",
-      oidcConfig: {
-        loginPage: "/sign-in",
-        allowDynamicClientRegistration: true,
-      },
     }),
     reactStartCookies(),
   ],

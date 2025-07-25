@@ -35,5 +35,5 @@ export const auth = betterAuth({
     }),
     reactStartCookies(),
   ],
-  baseURL: import.meta.env.VITE_SERVER_URL || "http://localhost:3000",
+  baseURL: process.env.URL || "http://localhost:3000",
 })

@@ -21,12 +21,7 @@ function RouteComponent() {
       <div className="w-full max-w-3xl mx-auto px-4">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-2xl font-bold">Public Communities</h1>
-          <ButtonLink
-            to="/communities/create"
-            className="bg-[#0f172a] text-white hover:bg-[#1e293b] rounded-lg"
-          >
-            Create Community
-          </ButtonLink>
+          <ButtonLink to="/communities/create">Create Community</ButtonLink>
         </div>
         <Suspense fallback={<CommunityCardSkeletons />}>
           <Communities />

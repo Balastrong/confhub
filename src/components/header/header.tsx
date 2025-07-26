@@ -47,7 +47,10 @@ export const Header = () => {
       <div className="flex gap-2 items-center justify-between">
         <div className="flex gap-2 items-center">
           <div className="text-xl leading-loose mr-2">
-            <Link to="/" className={`rounded`}>
+            <Link
+              to="/"
+              className={`rounded hover:text-accent transition-colors`}
+            >
               ConfHub
             </Link>
           </div>

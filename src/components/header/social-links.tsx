@@ -21,7 +21,7 @@ export const SocialLinks = ({ className = "" }: { className?: string }) => (
         href={href}
         target="_blank"
         rel="noreferrer"
-        className={`p-1 rounded`}
+        className={`p-1 rounded hover:bg-accent hover:text-accent-foreground transition-colors`}
         aria-label={label}
       >
         <Icon className="w-4 h-4" />

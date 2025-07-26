@@ -169,7 +169,7 @@ export const EventsCalendar = ({
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 border border-gray-200">
+    <div className="bg-card rounded-lg shadow-md p-4 border border-border">
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center space-x-1">
           <Button
@@ -201,7 +201,7 @@ export const EventsCalendar = ({
           onClick={goToToday}
           variant="outline"
           size="sm"
-          className="flex items-center gap-1"
+          className="flex items-center gap-1 border-accent text-accent hover:bg-accent hover:text-accent-foreground"
         >
           <Calendar className="h-4 w-4 mr-1" />
           Today
@@ -212,7 +212,7 @@ export const EventsCalendar = ({
         {DAYS.map((day) => (
           <div
             key={day}
-            className="text-center font-medium text-gray-500 text-sm py-2"
+            className="text-center font-medium text-muted-foreground text-sm py-2"
           >
             {day}
           </div>
@@ -228,15 +228,17 @@ export const EventsCalendar = ({
                 key={`${weekIndex}-${dayIndex}`}
                 className={cn(
                   "border rounded min-h-[6rem] flex flex-col p-1 relative transition-colors",
-                  cell.isCurrentMonth ? "bg-white" : "bg-gray-50 text-gray-400",
-                  isCurrentDay && "ring-2 ring-primary ring-offset-1",
-                  "hover:bg-gray-50",
+                  cell.isCurrentMonth
+                    ? "bg-card"
+                    : "bg-muted text-muted-foreground",
+                  isCurrentDay && "ring-2 ring-accent ring-offset-1",
+                  "hover:bg-muted/50",
                 )}
               >
                 <span
                   className={cn(
                     "text-sm font-medium h-6 w-6 flex items-center justify-center rounded-full",
-                    isCurrentDay && "bg-primary text-primary-foreground",
+                    isCurrentDay && "bg-accent text-accent-foreground",
                   )}
                 >
                   {cell.date.getDate()}

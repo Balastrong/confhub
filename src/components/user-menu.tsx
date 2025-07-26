@@ -13,7 +13,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu"
-import { Switch } from "./ui/switch"
 
 const ItemLink = createLink(DropdownMenuItem)
 
@@ -60,19 +59,6 @@ export function UserMenu() {
         >
           Profile
         </ItemLink>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <div className="flex items-center justify-between w-full">
-            Dark Mode
-            <Switch
-              // checked={theme === "dark"}
-              disabled
-              //   onCheckedChange={() =>
-              //     setTheme(theme === "light" ? "dark" : "light")
-              //   }
-            />
-          </div>
-        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
           className="text-red-600 cursor-pointer"

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { SignedIn } from "../auth/signed-in"
 import { SignedOut } from "../auth/signed-out"
 import { ButtonLink } from "../button-link"
+import { ThemeSelector } from "../theme-selector"
 import { Button } from "../ui/button"
 import { UserMenu } from "../user-menu"
 import { MobileNavigation } from "./mobile-navigation"
@@ -64,6 +65,9 @@ export const Header = () => {
         <div className="flex gap-2 md:gap-4 items-center">
           {/* Social icons - hidden on small screens */}
           <SocialLinks className="hidden sm:flex gap-2 md:gap-4 items-center" />
+
+          {/* Theme selector - always visible */}
+          <ThemeSelector />
 
           {/* User menu / Sign in - always visible */}
           <SignedIn>

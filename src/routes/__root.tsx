@@ -9,6 +9,7 @@ import * as React from "react"
 import { Header } from "~/components/header/header"
 import { Toaster } from "src/components/ui/sonner"
 import { authQueries } from "src/services/queries"
+import { themeScript } from "~/lib/theme-script"
 import css from "~/globals.css?url"
 
 export const Route = createRootRouteWithContext<{
@@ -43,6 +44,11 @@ export const Route = createRootRouteWithContext<{
         href: "/favicon.png",
       },
     ],
+    scripts: [
+      {
+        children: themeScript,
+      },
+    ],
   }),
   component: RootComponent,
 })
@@ -66,7 +72,7 @@ const TanStackRouterDevtools =
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html>
+    <html suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>

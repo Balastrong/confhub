@@ -227,7 +227,7 @@ export const EventsCalendar = ({
               <div
                 key={`${weekIndex}-${dayIndex}`}
                 className={cn(
-                  "border rounded min-h-[6rem] flex flex-col p-1 relative transition-colors",
+                  "border rounded min-h-24 flex flex-col p-1 relative transition-colors",
                   cell.isCurrentMonth
                     ? "bg-card"
                     : "bg-muted text-muted-foreground",
@@ -260,7 +260,7 @@ export const EventsCalendar = ({
                                 getColorFromName(event.name),
                                 leftRounded ? "rounded-l-md" : "",
                                 rightRounded ? "rounded-r-md" : "",
-                                "shadow-sm hover:opacity-90 cursor-pointer",
+                                "shadow-xs hover:opacity-90 cursor-pointer",
                               )}
                             >
                               <span className="absolute inset-0 flex items-center justify-start text-white text-xs px-1 truncate">

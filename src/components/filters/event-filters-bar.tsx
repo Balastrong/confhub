@@ -50,7 +50,7 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
   }
 
   return (
-    <Card className="p-4 mb-6 shadow-sm">
+    <Card className="p-4 mb-6 shadow-xs">
       <Accordion
         type="single"
         collapsible

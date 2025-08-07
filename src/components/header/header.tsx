@@ -43,7 +43,7 @@ export const Header = () => {
   }
 
   return (
-    <header className="px-4 py-2 max-w-screen-2xl mx-auto" role="banner">
+    <header className="px-4 py-2 max-w-(--breakpoint-2xl) mx-auto" role="banner">
       {/* Desktop Header */}
       <div className="flex gap-2 items-center justify-between">
         <div className="flex gap-2 items-center">

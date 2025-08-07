@@ -9,8 +9,8 @@ import * as React from "react"
 import { Header } from "~/components/header/header"
 import { Toaster } from "src/components/ui/sonner"
 import { authQueries } from "src/services/queries"
-import { themeScript } from "~/lib/theme-script"
 import css from "~/globals.css?url"
+import { ThemeProvider } from "~/hooks/useTheme"
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient
@@ -44,22 +44,9 @@ export const Route = createRootRouteWithContext<{
         href: "/favicon.png",
       },
     ],
-    scripts: [
-      {
-        children: themeScript,
-      },
-    ],
   }),
-  component: RootComponent,
+  shellComponent: RootDocument,
 })
-
-function RootComponent() {
-  return (
-    <RootDocument>
-      <Outlet />
-    </RootDocument>
-  )
-}
 
 const TanStackRouterDevtools =
   process.env.NODE_ENV === "production"
@@ -77,14 +64,16 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <Header />
-        <hr />
-        {children}
-        <Scripts />
-        <Toaster />
-        <React.Suspense>
-          <TanStackRouterDevtools />
-        </React.Suspense>
+        <ThemeProvider>
+          <Header />
+          <hr />
+          {children}
+          <Scripts />
+          <Toaster />
+          <React.Suspense>
+            <TanStackRouterDevtools />
+          </React.Suspense>
+        </ThemeProvider>
       </body>
     </html>
   )

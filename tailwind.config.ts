@@ -80,5 +80,16 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function ({
+      addVariant,
+    }: {
+      addVariant: (name: string, definition: string) => void
+    }) {
+      addVariant("light", "&:is(.light *)")
+      addVariant("dark", "&:is(.dark *)")
+      addVariant("system", "&:is(.system *)")
+    },
+  ],
 }

@@ -270,7 +270,7 @@ export const EventsCalendar = ({
               <div
                 key={`${weekIndex}-${dayIndex}`}
                 className={cn(
-                  "border rounded min-h-24 flex flex-col p-1 relative transition-colors",
+                  "group/calendar-day border rounded min-h-24 flex flex-col p-1 relative transition-colors",
                   cell.isCurrentMonth
                     ? "bg-card"
                     : "bg-muted text-muted-foreground",
@@ -392,6 +392,22 @@ export const EventsCalendar = ({
                     }
                     return <div key={slotIndex} className="w-full h-5"></div>
                   })}
+                </div>
+
+                <div className="absolute inset-x-1 bottom-1 z-10 opacity-0 translate-y-1 pointer-events-none transition-all duration-150 group-hover/calendar-day:opacity-100 group-hover/calendar-day:translate-y-0 group-hover/calendar-day:pointer-events-auto">
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="xs"
+                    className="w-full h-5 py-0 px-1 text-[11px] justify-center border border-dashed border-accent bg-accent/5 text-accent-foreground hover:bg-accent/20"
+                  >
+                    <Link
+                      to="/events/submit"
+                      // search={{ date: formatDate(cell.date) }} // Prefill date on the full form
+                    >
+                      Add event
+                    </Link>
+                  </Button>
                 </div>
               </div>
             )

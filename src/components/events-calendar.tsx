@@ -7,6 +7,7 @@ import {
   Loader2,
   MapPin,
 } from "lucide-react"
+import { Link } from "@tanstack/react-router"
 import { cn, getColorFromName } from "src/lib/utils"
 import { FullEvent } from "src/services/event.schema"
 import { Badge } from "./ui/badge"
@@ -171,6 +172,23 @@ export const EventsCalendar = ({
     onCurrentDateChange(new Date(new Date().setDate(1)))
   }
 
+  // Count events that intersect the currently visible month
+  const monthStart = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth(),
+    1,
+  )
+  const monthEnd = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 1,
+    0,
+  )
+  const monthStartStr = formatDate(monthStart)
+  const monthEndStr = formatDate(monthEnd)
+  const eventsInMonthCount = events.filter(
+    (e) => e.date <= monthEndStr && e.dateEnd >= monthStartStr,
+  ).length
+
   return (
     <div className="bg-card rounded-lg shadow-md p-4 border border-border">
       <div className="flex justify-between items-center mb-6">
@@ -193,15 +211,34 @@ export const EventsCalendar = ({
           </Button>
         </div>
 
-        <h2 className="text-xl font-bold relative">
-          {currentDate.toLocaleString("default", {
-            month: "long",
-            year: "numeric",
-          })}
-          {isLoading && (
-            <Loader2 className="size-6 animate-spin absolute -right-8 top-1/2 -translate-y-1/2" />
-          )}
-        </h2>
+        <div className="text-center">
+          <h2 className="text-xl font-bold">
+            {currentDate.toLocaleString("default", {
+              month: "long",
+              year: "numeric",
+            })}
+          </h2>
+          <p className="text-xs text-muted-foreground mt-1 h-4 flex items-center justify-center gap-1">
+            {isLoading ? (
+              <>
+                <Loader2 className="size-3 animate-spin" /> loading events...
+              </>
+            ) : (
+              <>
+                {eventsInMonthCount}{" "}
+                {eventsInMonthCount === 1 ? "event" : "events"} this month{" "}
+                {eventsInMonthCount === 0 && (
+                  <Link
+                    to="/events/submit"
+                    className="underline hover:text-primary"
+                  >
+                    (submit one)
+                  </Link>
+                )}
+              </>
+            )}
+          </p>
+        </div>
 
         <Button
           onClick={goToToday}
@@ -258,7 +295,11 @@ export const EventsCalendar = ({
                       const leftRounded = cellDateStr === event.date
                       const rightRounded = cellDateStr === event.dateEnd
                       return (
-                        <HoverCard key={slotIndex}>
+                        <HoverCard
+                          key={slotIndex}
+                          openDelay={100}
+                          closeDelay={50}
+                        >
                           <HoverCardTrigger asChild>
                             <div
                               className={cn(

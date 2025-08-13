@@ -33,6 +33,7 @@ export const CreateCommunityForm = () => {
         name: formData.get("name") as string,
         description: (formData.get("description") as string) || undefined,
         logoUrl: (formData.get("logoUrl") as string) || undefined,
+        homeUrl: (formData.get("homeUrl") as string) || undefined,
       },
     })
   }
@@ -53,6 +54,10 @@ export const CreateCommunityForm = () => {
       <Label htmlFor="logoUrl">
         Logo URL
         <Input id="logoUrl" name="logoUrl" type="url" />
+      </Label>
+      <Label htmlFor="homeUrl">
+        Homepage URL
+        <Input id="homeUrl" name="homeUrl" type="url" />
       </Label>
       <Button disabled={createCommunityMutation.isPending}>
         Create Community

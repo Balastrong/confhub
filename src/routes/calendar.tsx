@@ -1,5 +1,9 @@
 import { useQuery } from "@tanstack/react-query"
-import { getRouteApi, useNavigate, createFileRoute } from "@tanstack/react-router"
+import {
+  getRouteApi,
+  useNavigate,
+  createFileRoute,
+} from "@tanstack/react-router"
 import { useMemo, useState } from "react"
 import { z } from "zod"
 import { EventsCalendar } from "src/components/events-calendar"
@@ -32,7 +36,7 @@ function RouteComponent() {
     [currentDate],
   )
 
-  const { data: events } = useQuery({
+  const { data: events, isLoading } = useQuery({
     ...eventQueries.list({
       startDate: formatDate(firstSunday),
       endDate: formatDate(lastSaturday),
@@ -53,6 +57,7 @@ function RouteComponent() {
         events={events ?? []}
         currentDate={currentDate}
         onCurrentDateChange={setCurrentDate}
+        isLoading={isLoading}
       />
     </Layout>
   )

@@ -4,6 +4,7 @@ import {
   ChevronRight,
   Clock,
   ExternalLink,
+  Loader2,
   MapPin,
 } from "lucide-react"
 import { cn, getColorFromName } from "src/lib/utils"
@@ -24,12 +25,14 @@ type EventsCalendarProps = {
   events: DatedFullEvent[]
   currentDate: Date
   onCurrentDateChange: (date: Date) => void
+  isLoading: boolean
 }
 
 export const EventsCalendar = ({
   events,
   onCurrentDateChange,
   currentDate,
+  isLoading,
 }: EventsCalendarProps) => {
   // Updated generateCalendar to include cells outside the month with a flag
   const generateCalendar = () => {
@@ -190,11 +193,14 @@ export const EventsCalendar = ({
           </Button>
         </div>
 
-        <h2 className="text-xl font-bold">
+        <h2 className="text-xl font-bold relative">
           {currentDate.toLocaleString("default", {
             month: "long",
             year: "numeric",
           })}
+          {isLoading && (
+            <Loader2 className="size-6 animate-spin absolute -right-8 top-1/2 -translate-y-1/2" />
+          )}
         </h2>
 
         <Button

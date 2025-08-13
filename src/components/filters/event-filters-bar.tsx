@@ -147,20 +147,14 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                 </div>
                 <Popover>
                   <PopoverTrigger asChild>
-                    <Button
-                      id="start-date"
-                      variant="outline"
-                      className="w-full justify-start text-left font-normal"
-                    >
+                    <div className="flex items-center gap-2 h-10 px-3 rounded-md border border-input bg-background cursor-pointer">
                       <CalendarIcon className="mr-2 h-4 w-4" />
-                      {filters.startDate ? (
-                        format(new Date(filters.startDate), "PPP")
-                      ) : (
-                        <span className="text-muted-foreground">
-                          Pick a date
-                        </span>
-                      )}
-                    </Button>
+                      <span className="text-sm text-muted-foreground">
+                        {filters.startDate
+                          ? format(new Date(filters.startDate), "PPP")
+                          : "Pick a date"}
+                      </span>
+                    </div>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0" align="start">
                     <Calendar

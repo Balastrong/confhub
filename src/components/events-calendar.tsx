@@ -6,6 +6,7 @@ import {
   ExternalLink,
   Loader2,
   MapPin,
+  Plus,
 } from "lucide-react"
 import { Link } from "@tanstack/react-router"
 import { cn, getColorFromName } from "src/lib/utils"
@@ -278,6 +279,23 @@ export const EventsCalendar = ({
                   "hover:bg-muted/50",
                 )}
               >
+                <div className="absolute top-1 right-1 z-10 opacity-0 pointer-events-none transition-all duration-150 group-hover/calendar-day:opacity-100 group-hover/calendar-day:pointer-events-auto">
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="xs"
+                    className="h-5 py-0 px-1 text-[11px] justify-center border border-dashed border-accent bg-accent/5 text-accent-foreground hover:bg-accent/20"
+                  >
+                    <Link
+                      to="/events/submit"
+                      // search={{ date: formatDate(cell.date) }} // Prefill date on the full form
+                    >
+                      <Plus className="h-3 w-3 ml-1" />
+                      Add event
+                    </Link>
+                  </Button>
+                </div>
+
                 <span
                   className={cn(
                     "text-sm font-medium h-6 w-6 flex items-center justify-center rounded-full",
@@ -394,21 +412,7 @@ export const EventsCalendar = ({
                   })}
                 </div>
 
-                <div className="absolute inset-x-1 bottom-1 z-10 opacity-0 translate-y-1 pointer-events-none transition-all duration-150 group-hover/calendar-day:opacity-100 group-hover/calendar-day:translate-y-0 group-hover/calendar-day:pointer-events-auto">
-                  <Button
-                    asChild
-                    variant="ghost"
-                    size="xs"
-                    className="w-full h-5 py-0 px-1 text-[11px] justify-center border border-dashed border-accent bg-accent/5 text-accent-foreground hover:bg-accent/20"
-                  >
-                    <Link
-                      to="/events/submit"
-                      // search={{ date: formatDate(cell.date) }} // Prefill date on the full form
-                    >
-                      Add event
-                    </Link>
-                  </Button>
-                </div>
+                {/** moved Add event button near day label (top-right) to avoid layout changes */}
               </div>
             )
           })

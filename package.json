@@ -13,6 +13,7 @@
     "db:studio": "drizzle-kit studio",
     "db:seed": "tsx src/lib/db/seed.ts",
     "db:entry": "tsx data-entry/script.ts",
+    "db:entry:prod": "DOTENV_CONFIG_PATH=.env.production.local tsx -r dotenv/config data-entry/script.ts",
     "tsc": "tsc --noEmit",
     "format": "prettier --write **.{ts,tsx,json,md,json}"
   },

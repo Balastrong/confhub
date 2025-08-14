@@ -146,7 +146,7 @@ function RouteComponent() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Reviews & Comments</CardTitle>
+              <CardTitle>Comments</CardTitle>
             </CardHeader>
             <CardContent>
               {event?.id != null && <EventComments eventId={event.id} />}

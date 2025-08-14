@@ -5,6 +5,7 @@ import { SignedOut } from "~/components/auth/signed-out"
 import { Button } from "~/components/ui/button"
 import { Textarea } from "~/components/ui/textarea"
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar"
+import { Skeleton } from "~/components/ui/skeleton"
 import { formatDateTime } from "~/lib/date"
 import {
   authQueries,
@@ -13,15 +14,18 @@ import {
   useDeleteEventCommentMutation,
 } from "~/services/queries"
 import { ButtonLink } from "../button-link"
+import { useAuthentication } from "~/lib/auth/client"
 
 export function EventComments({ eventId }: { eventId: number }) {
-  const { data: comments } = useQuery(commentQueries.listByEvent(eventId))
-  const { data: session } = useQuery(authQueries.user())
+  const { data: comments, isLoading: commentsLoading } = useQuery(
+    commentQueries.listByEvent(eventId),
+  )
+  const { userSession } = useAuthentication()
   const [text, setText] = useState("")
   const max = 500
   const createComment = useCreateEventCommentMutation()
   const deleteComment = useDeleteEventCommentMutation()
-  const currentUserId = session?.user?.id as string | undefined
+  const currentUserId = userSession?.user?.id
 
   const submit = async () => {
     const content = text.trim()
@@ -80,13 +84,17 @@ export function EventComments({ eventId }: { eventId: number }) {
         </div>
       </SignedOut>
 
-      <ThreadedComments
-        comments={comments || []}
-        eventId={eventId}
-        createComment={createComment}
-        deleteComment={deleteComment}
-        currentUserId={currentUserId}
-      />
+      {commentsLoading ? (
+        <CommentsSkeletonList />
+      ) : (
+        <ThreadedComments
+          comments={comments || []}
+          eventId={eventId}
+          createComment={createComment}
+          deleteComment={deleteComment}
+          currentUserId={currentUserId}
+        />
+      )}
     </div>
   )
 }
@@ -286,6 +294,24 @@ function CommentNode({
           ))}
         </div>
       )}
+    </div>
+  )
+}
+
+function CommentsSkeletonList({ count = 3 }: { count?: number }) {
+  return (
+    <div className="space-y-3">
+      {Array.from({ length: count }).map((_, i) => (
+        <div key={i} className="flex items-start gap-3">
+          <Skeleton className="h-8 w-8 rounded-full" />
+          <div className="flex-1 space-y-2">
+            <Skeleton className="h-4 w-32" />
+            <Skeleton className="h-3 w-24" />
+            <Skeleton className="h-4 w-5/6" />
+            <Skeleton className="h-4 w-3/5" />
+          </div>
+        </div>
+      ))}
     </div>
   )
 }

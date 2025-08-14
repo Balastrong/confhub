@@ -48,18 +48,7 @@ export const Route = createRootRouteWithContext<{
         href: "/favicon.png",
       },
     ],
-    scripts: [
-      {
-        src: "https://www.googletagmanager.com/gtag/js?id=G-BGV8RCHJPH",
-      },
-      {
-        children: `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-BGV8RCHJPH');`,
-      },
-    ],
+    scripts: process.env.NODE_ENV === "production" ? analyticsScripts : [],
   }),
   shellComponent: RootDocument,
 })

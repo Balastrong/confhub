@@ -1,6 +1,7 @@
 import { useFieldContext } from "src/lib/form"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
+import { JSX } from "react"
 
 type Props = {
   label: string | JSX.Element

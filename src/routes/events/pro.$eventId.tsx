@@ -6,7 +6,7 @@ import { SubmitForm } from "src/components/event/submit-form"
 import { Layout } from "src/components/layout"
 import { communityQueries, eventQueries } from "src/services/queries"
 
-export const Route = createFileRoute("/events/$eventId")({
+export const Route = createFileRoute("/events/pro/$eventId")({
   component: RouteComponent,
 })
 

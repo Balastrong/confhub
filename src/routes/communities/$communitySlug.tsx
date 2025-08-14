@@ -210,7 +210,7 @@ function RouteComponent() {
                   isAdmin
                     ? (event) => {
                         navigate({
-                          to: "/events/$eventId",
+                          to: "/events/pro/$eventId",
                           params: { eventId: `${event.id}` },
                         })
                       }

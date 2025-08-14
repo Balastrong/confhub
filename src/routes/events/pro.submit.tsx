@@ -7,7 +7,7 @@ import { z } from "zod"
 import { ButtonLink } from "~/components/button-link"
 import { communityQueries } from "~/services/queries"
 
-export const Route = createFileRoute("/events/submit-pro")({
+export const Route = createFileRoute("/events/pro/submit")({
   component: RouteComponent,
   validateSearch: z.object({
     communityId: z.number().optional(),

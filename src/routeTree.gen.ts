@@ -17,11 +17,11 @@ import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CommunitiesIndexRouteImport } from './routes/communities/index'
-import { Route as EventsSubmitProRouteImport } from './routes/events/submit-pro'
 import { Route as EventsSubmitRouteImport } from './routes/events/submit'
-import { Route as EventsEventIdRouteImport } from './routes/events/$eventId'
 import { Route as CommunitiesCreateRouteImport } from './routes/communities/create'
 import { Route as CommunitiesCommunitySlugRouteImport } from './routes/communities/$communitySlug'
+import { Route as EventsProSubmitRouteImport } from './routes/events/pro.submit'
+import { Route as EventsProEventIdRouteImport } from './routes/events/pro.$eventId'
 import { ServerRoute as ApiMcpServerRouteImport } from './routes/api/mcp'
 import { ServerRoute as DotwellKnownOpenidConfigurationServerRouteImport } from './routes/[.]well-known/openid-configuration'
 import { ServerRoute as ApiAuthSplatServerRouteImport } from './routes/api/auth.$'
@@ -58,19 +58,9 @@ const CommunitiesIndexRoute = CommunitiesIndexRouteImport.update({
   path: '/communities/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const EventsSubmitProRoute = EventsSubmitProRouteImport.update({
-  id: '/events/submit-pro',
-  path: '/events/submit-pro',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const EventsSubmitRoute = EventsSubmitRouteImport.update({
   id: '/events/submit',
   path: '/events/submit',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EventsEventIdRoute = EventsEventIdRouteImport.update({
-  id: '/events/$eventId',
-  path: '/events/$eventId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CommunitiesCreateRoute = CommunitiesCreateRouteImport.update({
@@ -84,6 +74,16 @@ const CommunitiesCommunitySlugRoute =
     path: '/communities/$communitySlug',
     getParentRoute: () => rootRouteImport,
   } as any)
+const EventsProSubmitRoute = EventsProSubmitRouteImport.update({
+  id: '/events/pro/submit',
+  path: '/events/pro/submit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsProEventIdRoute = EventsProEventIdRouteImport.update({
+  id: '/events/pro/$eventId',
+  path: '/events/pro/$eventId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiMcpServerRoute = ApiMcpServerRouteImport.update({
   id: '/api/mcp',
   path: '/api/mcp',
@@ -109,10 +109,10 @@ export interface FileRoutesByFullPath {
   '/sign-up': typeof SignUpRoute
   '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
   '/communities/create': typeof CommunitiesCreateRoute
-  '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
-  '/events/submit-pro': typeof EventsSubmitProRoute
   '/communities': typeof CommunitiesIndexRoute
+  '/events/pro/$eventId': typeof EventsProEventIdRoute
+  '/events/pro/submit': typeof EventsProSubmitRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -122,10 +122,10 @@ export interface FileRoutesByTo {
   '/sign-up': typeof SignUpRoute
   '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
   '/communities/create': typeof CommunitiesCreateRoute
-  '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
-  '/events/submit-pro': typeof EventsSubmitProRoute
   '/communities': typeof CommunitiesIndexRoute
+  '/events/pro/$eventId': typeof EventsProEventIdRoute
+  '/events/pro/submit': typeof EventsProSubmitRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -136,10 +136,10 @@ export interface FileRoutesById {
   '/sign-up': typeof SignUpRoute
   '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
   '/communities/create': typeof CommunitiesCreateRoute
-  '/events/$eventId': typeof EventsEventIdRoute
   '/events/submit': typeof EventsSubmitRoute
-  '/events/submit-pro': typeof EventsSubmitProRoute
   '/communities/': typeof CommunitiesIndexRoute
+  '/events/pro/$eventId': typeof EventsProEventIdRoute
+  '/events/pro/submit': typeof EventsProSubmitRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -151,10 +151,10 @@ export interface FileRouteTypes {
     | '/sign-up'
     | '/communities/$communitySlug'
     | '/communities/create'
-    | '/events/$eventId'
     | '/events/submit'
-    | '/events/submit-pro'
     | '/communities'
+    | '/events/pro/$eventId'
+    | '/events/pro/submit'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -164,10 +164,10 @@ export interface FileRouteTypes {
     | '/sign-up'
     | '/communities/$communitySlug'
     | '/communities/create'
-    | '/events/$eventId'
     | '/events/submit'
-    | '/events/submit-pro'
     | '/communities'
+    | '/events/pro/$eventId'
+    | '/events/pro/submit'
   id:
     | '__root__'
     | '/'
@@ -177,10 +177,10 @@ export interface FileRouteTypes {
     | '/sign-up'
     | '/communities/$communitySlug'
     | '/communities/create'
-    | '/events/$eventId'
     | '/events/submit'
-    | '/events/submit-pro'
     | '/communities/'
+    | '/events/pro/$eventId'
+    | '/events/pro/submit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -191,10 +191,10 @@ export interface RootRouteChildren {
   SignUpRoute: typeof SignUpRoute
   CommunitiesCommunitySlugRoute: typeof CommunitiesCommunitySlugRoute
   CommunitiesCreateRoute: typeof CommunitiesCreateRoute
-  EventsEventIdRoute: typeof EventsEventIdRoute
   EventsSubmitRoute: typeof EventsSubmitRoute
-  EventsSubmitProRoute: typeof EventsSubmitProRoute
   CommunitiesIndexRoute: typeof CommunitiesIndexRoute
+  EventsProEventIdRoute: typeof EventsProEventIdRoute
+  EventsProSubmitRoute: typeof EventsProSubmitRoute
 }
 export interface FileServerRoutesByFullPath {
   '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationServerRoute
@@ -274,25 +274,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommunitiesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/events/submit-pro': {
-      id: '/events/submit-pro'
-      path: '/events/submit-pro'
-      fullPath: '/events/submit-pro'
-      preLoaderRoute: typeof EventsSubmitProRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/events/submit': {
       id: '/events/submit'
       path: '/events/submit'
       fullPath: '/events/submit'
       preLoaderRoute: typeof EventsSubmitRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/events/$eventId': {
-      id: '/events/$eventId'
-      path: '/events/$eventId'
-      fullPath: '/events/$eventId'
-      preLoaderRoute: typeof EventsEventIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/communities/create': {
@@ -307,6 +293,20 @@ declare module '@tanstack/react-router' {
       path: '/communities/$communitySlug'
       fullPath: '/communities/$communitySlug'
       preLoaderRoute: typeof CommunitiesCommunitySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/pro/submit': {
+      id: '/events/pro/submit'
+      path: '/events/pro/submit'
+      fullPath: '/events/pro/submit'
+      preLoaderRoute: typeof EventsProSubmitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/pro/$eventId': {
+      id: '/events/pro/$eventId'
+      path: '/events/pro/$eventId'
+      fullPath: '/events/pro/$eventId'
+      preLoaderRoute: typeof EventsProEventIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -345,10 +345,10 @@ const rootRouteChildren: RootRouteChildren = {
   SignUpRoute: SignUpRoute,
   CommunitiesCommunitySlugRoute: CommunitiesCommunitySlugRoute,
   CommunitiesCreateRoute: CommunitiesCreateRoute,
-  EventsEventIdRoute: EventsEventIdRoute,
   EventsSubmitRoute: EventsSubmitRoute,
-  EventsSubmitProRoute: EventsSubmitProRoute,
   CommunitiesIndexRoute: CommunitiesIndexRoute,
+  EventsProEventIdRoute: EventsProEventIdRoute,
+  EventsProSubmitRoute: EventsProSubmitRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

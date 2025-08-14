@@ -159,7 +159,7 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
                               className="cursor-pointer px-4 py-2 text-sm transition-all hover:scale-105 flex items-center gap-2"
                               role="radio"
                               onClick={() => field.handleChange(mode)}
-                              variant={isSelected ? "default" : "outline-solid"}
+                              variant={isSelected ? "default" : "outline"}
                             >
                               <IconComponent className="h-4 w-4" />
                               {modeConfig.label}
@@ -206,7 +206,7 @@ export const SubmitForm = ({ defaultEvent }: SubmitFormProps = {}) => {
                                   )
                                 : field.pushValue(tag)
                             }
-                            variant={isSelected ? "default" : "outline-solid"}
+                            variant={isSelected ? "default" : "outline"}
                           >
                             {tag}
                           </Badge>

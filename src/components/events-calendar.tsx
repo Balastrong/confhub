@@ -389,19 +389,15 @@ export const EventsCalendar = ({
                                   )}
                                 </div>
 
-                                {event.eventUrl && (
-                                  <div className="pt-2">
-                                    <a
-                                      href={event.eventUrl}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
-                                    >
-                                      <ExternalLink className="h-3 w-3" />
-                                      View Event
-                                    </a>
-                                  </div>
-                                )}
+                                <div className="pt-2">
+                                  <Link
+                                    to="/events/$eventSlug"
+                                    params={{ eventSlug: event.slug }}
+                                    className="text-blue-500 hover:underline"
+                                  >
+                                    View event
+                                  </Link>
+                                </div>
                               </div>
                             </div>
                           </HoverCardContent>

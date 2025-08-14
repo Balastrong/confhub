@@ -1,4 +1,4 @@
-import { getRouteApi } from "@tanstack/react-router"
+import { getRouteApi, Link } from "@tanstack/react-router"
 import { formatDate } from "src/lib/date"
 import { getEventModeConfig } from "src/lib/event-modes"
 import { FullEvent } from "src/services/event.schema"
@@ -23,18 +23,13 @@ export const EventCard = ({ event }: Props) => {
     <Card>
       <CardHeader>
         <CardTitle>
-          {event.eventUrl ? (
-            <a
-              href={event.eventUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500 hover:underline"
-            >
-              {event.name}
-            </a>
-          ) : (
-            event.name
-          )}
+          <Link
+            to="/events/$eventSlug"
+            params={{ eventSlug: event.slug }}
+            className="text-blue-500 hover:underline"
+          >
+            {event.name}
+          </Link>
         </CardTitle>
         <CardDescription>
           {event.date ? (

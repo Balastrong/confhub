@@ -88,6 +88,22 @@ export const getEvent = createServerFn()
     return event
   })
 
+export const getEventBySlug = createServerFn()
+  .validator(
+    z.object({
+      slug: z.string(),
+    }),
+  )
+  .handler(async ({ data }) => {
+    const [event] = await db
+      .select()
+      .from(eventTable)
+      .where(eq(eventTable.slug, data.slug))
+      .limit(1)
+
+    return event
+  })
+
 export const upsertEvent = createServerFn()
   .validator(CreateEventSchema)
   .middleware([userRequiredMiddleware])

@@ -6,7 +6,7 @@ import {
 import { getUserSession } from "./auth.api"
 import { getCommunities, getCommunity } from "./community.api"
 import { CommunityFilters } from "./community.schema"
-import { getEvent, getEvents, upsertEvent } from "./event.api"
+import { getEvent, getEventBySlug, getEvents, upsertEvent } from "./event.api"
 import { EventFilters } from "./event.schema"
 import { getTags } from "./tags.api"
 
@@ -22,6 +22,12 @@ export const eventQueries = {
       queryKey: [...eventQueries.all, "detail", eventId],
       queryFn: () => getEvent({ data: { id: eventId } }),
       enabled: !isNaN(eventId) && !!eventId,
+    }),
+  detailBySlug: (eventSlug: string) =>
+    queryOptions({
+      queryKey: [...eventQueries.all, "detailBySlug", eventSlug],
+      queryFn: () => getEventBySlug({ data: { slug: eventSlug } }),
+      enabled: !!eventSlug,
     }),
 }
 

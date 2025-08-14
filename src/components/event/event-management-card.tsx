@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router"
 import { PencilIcon } from "lucide-react"
 import { formatDate } from "src/lib/date"
 import { FullEvent } from "src/services/event.schema"
@@ -13,7 +14,15 @@ export const EventManagementCard = ({ event, onEdit }: Props) => {
   return (
     <Card className="flex justify-between items-center p-4 gap-4">
       <div>
-        <CardTitle className="text-lg">{event.name}</CardTitle>
+        <CardTitle className="text-lg">
+          <Link
+            to={`/events/$eventSlug`}
+            params={{ eventSlug: event.slug }}
+            className="text-blue-500 hover:underline"
+          >
+            {event.name}
+          </Link>
+        </CardTitle>
         {event.date && (
           <CardDescription>
             {formatDate(new Date(event.date))}

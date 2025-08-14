@@ -18,6 +18,7 @@ import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CommunitiesIndexRouteImport } from './routes/communities/index'
 import { Route as EventsSubmitRouteImport } from './routes/events/submit'
+import { Route as EventsEventSlugRouteImport } from './routes/events/$eventSlug'
 import { Route as CommunitiesCreateRouteImport } from './routes/communities/create'
 import { Route as CommunitiesCommunitySlugRouteImport } from './routes/communities/$communitySlug'
 import { Route as EventsProSubmitRouteImport } from './routes/events/pro.submit'
@@ -61,6 +62,11 @@ const CommunitiesIndexRoute = CommunitiesIndexRouteImport.update({
 const EventsSubmitRoute = EventsSubmitRouteImport.update({
   id: '/events/submit',
   path: '/events/submit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsEventSlugRoute = EventsEventSlugRouteImport.update({
+  id: '/events/$eventSlug',
+  path: '/events/$eventSlug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CommunitiesCreateRoute = CommunitiesCreateRouteImport.update({
@@ -109,6 +115,7 @@ export interface FileRoutesByFullPath {
   '/sign-up': typeof SignUpRoute
   '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
   '/communities/create': typeof CommunitiesCreateRoute
+  '/events/$eventSlug': typeof EventsEventSlugRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities': typeof CommunitiesIndexRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
@@ -122,6 +129,7 @@ export interface FileRoutesByTo {
   '/sign-up': typeof SignUpRoute
   '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
   '/communities/create': typeof CommunitiesCreateRoute
+  '/events/$eventSlug': typeof EventsEventSlugRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities': typeof CommunitiesIndexRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
@@ -136,6 +144,7 @@ export interface FileRoutesById {
   '/sign-up': typeof SignUpRoute
   '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
   '/communities/create': typeof CommunitiesCreateRoute
+  '/events/$eventSlug': typeof EventsEventSlugRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities/': typeof CommunitiesIndexRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
@@ -151,6 +160,7 @@ export interface FileRouteTypes {
     | '/sign-up'
     | '/communities/$communitySlug'
     | '/communities/create'
+    | '/events/$eventSlug'
     | '/events/submit'
     | '/communities'
     | '/events/pro/$eventId'
@@ -164,6 +174,7 @@ export interface FileRouteTypes {
     | '/sign-up'
     | '/communities/$communitySlug'
     | '/communities/create'
+    | '/events/$eventSlug'
     | '/events/submit'
     | '/communities'
     | '/events/pro/$eventId'
@@ -177,6 +188,7 @@ export interface FileRouteTypes {
     | '/sign-up'
     | '/communities/$communitySlug'
     | '/communities/create'
+    | '/events/$eventSlug'
     | '/events/submit'
     | '/communities/'
     | '/events/pro/$eventId'
@@ -191,6 +203,7 @@ export interface RootRouteChildren {
   SignUpRoute: typeof SignUpRoute
   CommunitiesCommunitySlugRoute: typeof CommunitiesCommunitySlugRoute
   CommunitiesCreateRoute: typeof CommunitiesCreateRoute
+  EventsEventSlugRoute: typeof EventsEventSlugRoute
   EventsSubmitRoute: typeof EventsSubmitRoute
   CommunitiesIndexRoute: typeof CommunitiesIndexRoute
   EventsProEventIdRoute: typeof EventsProEventIdRoute
@@ -281,6 +294,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsSubmitRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/events/$eventSlug': {
+      id: '/events/$eventSlug'
+      path: '/events/$eventSlug'
+      fullPath: '/events/$eventSlug'
+      preLoaderRoute: typeof EventsEventSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/communities/create': {
       id: '/communities/create'
       path: '/communities/create'
@@ -345,6 +365,7 @@ const rootRouteChildren: RootRouteChildren = {
   SignUpRoute: SignUpRoute,
   CommunitiesCommunitySlugRoute: CommunitiesCommunitySlugRoute,
   CommunitiesCreateRoute: CommunitiesCreateRoute,
+  EventsEventSlugRoute: EventsEventSlugRoute,
   EventsSubmitRoute: EventsSubmitRoute,
   CommunitiesIndexRoute: CommunitiesIndexRoute,
   EventsProEventIdRoute: EventsProEventIdRoute,

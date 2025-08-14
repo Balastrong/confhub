@@ -11,13 +11,17 @@ import { Layout } from "src/components/layout"
 import { formatDate } from "src/lib/date"
 import { getFirstAndLast } from "src/lib/utils"
 import { eventQueries } from "src/services/queries"
+import { seo } from "~/components/seo"
 
 export const Route = createFileRoute("/calendar")({
   validateSearch: z.object({
-    date: z
-      .string()
-      .date()
-      .catch(() => formatDate(new Date(new Date().setDate(1)))),
+    date: z.iso.date().catch(() => formatDate(new Date(new Date().setDate(1)))),
+  }),
+  head: () => ({
+    meta: seo({
+      title: "Calendar - ConfHub",
+      description: "View your tech events on ConfHub",
+    }),
   }),
   component: RouteComponent,
 })

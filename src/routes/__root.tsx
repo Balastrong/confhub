@@ -11,6 +11,7 @@ import { Toaster } from "src/components/ui/sonner"
 import { authQueries } from "src/services/queries"
 import css from "~/globals.css?url"
 import { ThemeProvider } from "~/hooks/useTheme"
+import { seo } from "~/components/seo"
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient
@@ -29,9 +30,12 @@ export const Route = createRootRouteWithContext<{
         name: "viewport",
         content: "width=device-width, initial-scale=1",
       },
-      {
-        title: "ConfHub!",
-      },
+      ...seo({
+        title: "ConfHub",
+        description:
+          "Find the latest tech conferences and communities on ConfHub",
+        keywords: "conference, tech, events, cfp",
+      }),
     ],
     links: [
       {

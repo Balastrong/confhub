@@ -4,6 +4,7 @@ import { Link2, Send } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
 import { ButtonLink } from "~/components/button-link"
+import { seo } from "~/components/seo"
 import { Button } from "~/components/ui/button"
 import {
   Card,
@@ -20,6 +21,12 @@ import { CreateEventRequestSchema } from "~/services/event-request.schema"
 
 export const Route = createFileRoute("/events/submit")({
   component: RouteComponent,
+  head: () => ({
+    meta: seo({
+      title: "Submit an Event - ConfHub",
+      description: "Submit a new event request on ConfHub",
+    }),
+  }),
 })
 
 function RouteComponent() {

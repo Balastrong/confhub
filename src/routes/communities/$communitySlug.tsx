@@ -25,13 +25,20 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../../components/ui/dialog"
+import { seo } from "~/components/seo"
 
 export const Route = createFileRoute("/communities/$communitySlug")({
   loader: async ({ params, context }) => {
-    await context.queryClient.ensureQueryData(
+    return await context.queryClient.ensureQueryData(
       communityQueries.detailBySlug(params.communitySlug),
     )
   },
+  head: (c) => ({
+    meta: seo({
+      title: (c.loaderData?.name ?? "Community") + " - ConfHub",
+      description: (c.loaderData?.description ?? "Community") + " on ConfHub",
+    }),
+  }),
   component: RouteComponent,
 })
 

@@ -7,16 +7,21 @@ import { Textarea } from "~/components/ui/textarea"
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar"
 import { formatDateTime } from "~/lib/date"
 import {
+  authQueries,
   commentQueries,
   useCreateEventCommentMutation,
+  useDeleteEventCommentMutation,
 } from "~/services/queries"
 import { ButtonLink } from "../button-link"
 
 export function EventComments({ eventId }: { eventId: number }) {
   const { data: comments } = useQuery(commentQueries.listByEvent(eventId))
+  const { data: session } = useQuery(authQueries.user())
   const [text, setText] = useState("")
   const max = 500
   const createComment = useCreateEventCommentMutation()
+  const deleteComment = useDeleteEventCommentMutation()
+  const currentUserId = session?.user?.id as string | undefined
 
   const submit = async () => {
     const content = text.trim()
@@ -79,6 +84,8 @@ export function EventComments({ eventId }: { eventId: number }) {
         comments={comments || []}
         eventId={eventId}
         createComment={createComment}
+        deleteComment={deleteComment}
+        currentUserId={currentUserId}
       />
     </div>
   )
@@ -121,10 +128,14 @@ function ThreadedComments({
   comments,
   eventId,
   createComment,
+  deleteComment,
+  currentUserId,
 }: {
   comments: CommentItem[]
   eventId: number
   createComment: ReturnType<typeof useCreateEventCommentMutation>
+  deleteComment: ReturnType<typeof useDeleteEventCommentMutation>
+  currentUserId?: string
 }) {
   const tree = useMemo(() => buildTree(comments), [comments])
   return (
@@ -136,6 +147,8 @@ function ThreadedComments({
             node={c}
             eventId={eventId}
             createComment={createComment}
+            deleteComment={deleteComment}
+            currentUserId={currentUserId}
           />
         ))
       ) : (
@@ -149,10 +162,14 @@ function CommentNode({
   node,
   eventId,
   createComment,
+  deleteComment,
+  currentUserId,
 }: {
   node: TreeComment
   eventId: number
   createComment: ReturnType<typeof useCreateEventCommentMutation>
+  deleteComment: ReturnType<typeof useDeleteEventCommentMutation>
+  currentUserId?: string
 }) {
   const [replyOpen, setReplyOpen] = useState(false)
   const [replyText, setReplyText] = useState("")
@@ -169,6 +186,15 @@ function CommentNode({
   const onReply = async (e: React.FormEvent) => {
     e.preventDefault()
     await submitReply()
+  }
+
+  const isOwner = currentUserId && node.userId === currentUserId
+  const onDelete = async () => {
+    // Basic confirm to prevent accidental deletes
+    if (!isOwner) return
+    const confirmed = window.confirm("Delete this comment?")
+    if (!confirmed) return
+    await deleteComment.mutateAsync({ data: { id: node.id } })
   }
 
   return (
@@ -199,6 +225,19 @@ function CommentNode({
             >
               {replyOpen ? "Cancel" : "Reply"}
             </button>
+            {isOwner ? (
+              <>
+                <span className="mx-2 text-muted-foreground">·</span>
+                <button
+                  type="button"
+                  className="text-xs text-muted-foreground hover:underline mt-1"
+                  onClick={onDelete}
+                  disabled={deleteComment.isPending}
+                >
+                  {deleteComment.isPending ? "Deleting..." : "Delete"}
+                </button>
+              </>
+            ) : null}
           </SignedIn>
         </div>
       </div>
@@ -241,6 +280,8 @@ function CommentNode({
               node={r}
               eventId={eventId}
               createComment={createComment}
+              deleteComment={deleteComment}
+              currentUserId={currentUserId}
             />
           ))}
         </div>

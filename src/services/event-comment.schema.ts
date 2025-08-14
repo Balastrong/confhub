@@ -8,3 +8,9 @@ export const CreateEventCommentSchema = z.object({
 })
 
 export type CreateEventComment = z.infer<typeof CreateEventCommentSchema>
+
+export const DeleteEventCommentSchema = z.object({
+  id: z.uuid(),
+})
+
+export type DeleteEventComment = z.infer<typeof DeleteEventCommentSchema>

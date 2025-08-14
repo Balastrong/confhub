@@ -16,6 +16,7 @@ import { formatDate } from "src/lib/date"
 import { getEventModeConfig } from "src/lib/event-modes"
 import { communityQueries, eventQueries } from "src/services/queries"
 import { seo } from "~/components/seo"
+import { EventComments } from "~/components/event/comments"
 
 export const Route = createFileRoute("/events/$eventSlug")({
   loader: async ({ params, context }) => {
@@ -148,10 +149,7 @@ function RouteComponent() {
               <CardTitle>Reviews & Comments</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground">
-                Coming soon: users will be able to add reviews and comments
-                about this event.
-              </p>
+              {event?.id != null && <EventComments eventId={event.id} />}
             </CardContent>
           </Card>
         </div>

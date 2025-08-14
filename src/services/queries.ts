@@ -9,6 +9,8 @@ import { CommunityFilters } from "./community.schema"
 import { getEvent, getEventBySlug, getEvents, upsertEvent } from "./event.api"
 import { EventFilters } from "./event.schema"
 import { getTags } from "./tags.api"
+import { createEventComment, listEventComments } from "./event-comment.api"
+import { CreateEventComment } from "./event-comment.schema"
 
 export const eventQueries = {
   all: ["events"],
@@ -78,4 +80,27 @@ export const communityQueries = {
       queryFn: () => getCommunity({ data: { slug: communitySlug } }),
       enabled: !!communitySlug,
     }),
+}
+
+export const commentQueries = {
+  all: ["eventComments"],
+  listByEvent: (eventId: number) =>
+    queryOptions({
+      queryKey: [...commentQueries.all, "listByEvent", eventId],
+      queryFn: () => listEventComments({ data: { eventId } }),
+      enabled: !isNaN(eventId) && !!eventId,
+    }),
+}
+
+export const useCreateEventCommentMutation = () => {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: (payload: { data: CreateEventComment }) =>
+      createEventComment(payload),
+    onSuccess: (created) => {
+      queryClient.invalidateQueries({
+        queryKey: [...commentQueries.all, "listByEvent", created.eventId],
+      })
+    },
+  })
 }

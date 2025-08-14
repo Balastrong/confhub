@@ -12,6 +12,7 @@ import { authQueries } from "src/services/queries"
 import css from "~/globals.css?url"
 import { ThemeProvider } from "~/hooks/useTheme"
 import { seo } from "~/components/seo"
+import { analyticsScripts } from "~/lib/analytics"
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient

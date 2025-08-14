@@ -23,6 +23,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
+  DialogTrigger,
   DialogTitle,
 } from "../../components/ui/dialog"
 import { seo } from "~/components/seo"
@@ -107,13 +108,52 @@ function RouteComponent() {
         <div>
           <div className="flex items-center gap-3">
             <h1 className="text-3xl font-bold">{community.name}</h1>
-            {community.verified && (
-              <Badge
-                variant="secondary"
-                className="bg-blue-100 text-blue-800 border-blue-200"
-              >
-                ✓ Verified
-              </Badge>
+            {community.verified ? (
+              <Badge variant="accent">✓ Verified</Badge>
+            ) : (
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button size="xs" variant="outline">
+                    Claim
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Claim Community</DialogTitle>
+                    <DialogDescription className="flex flex-col gap-2">
+                      <p>
+                        Some communities have been manually created with
+                        publicly available data to group the events.
+                      </p>
+                      <p>
+                        Is this your community? Please DM me on{" "}
+                        <a
+                          href="https://www.linkedin.com/in/leonardo-montini/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline"
+                        >
+                          LinkedIn
+                        </a>{" "}
+                        or{" "}
+                        <a
+                          href="https://x.com/Balastrong"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline"
+                        >
+                          Twitter
+                        </a>{" "}
+                        to claim it!
+                      </p>
+                      <p>
+                        You'll be able to edit Community details and (soon™)
+                        manage your own events.
+                      </p>
+                    </DialogDescription>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
             )}
           </div>
           <p className="text-muted-foreground mt-1">Community Management</p>

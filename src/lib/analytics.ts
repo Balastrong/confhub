@@ -1,4 +1,4 @@
-const analyticsScripts: React.DetailedHTMLProps<
+export const analyticsScripts: React.DetailedHTMLProps<
   React.ScriptHTMLAttributes<HTMLScriptElement>,
   HTMLScriptElement
 >[] = [

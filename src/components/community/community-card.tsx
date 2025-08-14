@@ -27,14 +27,7 @@ export function CommunityCard({
                 ✓ Member
               </Badge>
             )}
-            {community.verified && (
-              <Badge
-                variant="secondary"
-                className="bg-blue-100 text-blue-800 border-blue-200"
-              >
-                ✓ Verified
-              </Badge>
-            )}
+            {community.verified && <Badge variant="accent">✓ Verified</Badge>}
           </div>
           {community.description && (
             <CardDescription>{community.description}</CardDescription>

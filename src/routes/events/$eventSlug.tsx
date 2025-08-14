@@ -17,6 +17,7 @@ import { getEventModeConfig } from "src/lib/event-modes"
 import { communityQueries, eventQueries } from "src/services/queries"
 import { seo } from "~/components/seo"
 import { EventComments } from "~/components/event/comments"
+import { EventRsvp } from "~/components/event/rsvp"
 
 export const Route = createFileRoute("/events/$eventSlug")({
   loader: async ({ params, context }) => {
@@ -251,6 +252,8 @@ function RouteComponent() {
               </CardContent>
             </Card>
           )}
+
+          {event?.id != null && <EventRsvp eventId={event.id} />}
 
           {event?.tags && event.tags.length > 0 && (
             <Card>

@@ -45,8 +45,13 @@ export const updateUser = createServerFn()
   .validator(UserMetaSchema)
   .middleware([userRequiredMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
+    const update: Record<string, unknown> = { name: data.username }
+    if (data.imageUrl) {
+      update.image = data.imageUrl
+    }
+
     await db
       .update(userTable)
-      .set({ name: data.username })
+      .set(update)
       .where(eq(userTable.id, userSession.user.id))
   })

@@ -2,6 +2,10 @@ import { z } from "zod"
 
 export const UserMetaSchema = z.object({
   username: z.string().min(3).max(20),
+  imageUrl: z
+    .url({ message: "Must be a valid URL" })
+    .optional()
+    .or(z.literal("").transform(() => undefined)),
 })
 
 export type UserMeta = z.infer<typeof UserMetaSchema>

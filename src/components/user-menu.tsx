@@ -33,7 +33,7 @@ export function UserMenu() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage alt="User avatar" />
+            <AvatarImage alt="User avatar" src={userSession.user.image ?? ""} />
             <AvatarFallback>
               <User className="h-4 w-4" />
             </AvatarFallback>

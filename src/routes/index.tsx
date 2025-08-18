@@ -33,10 +33,10 @@ function Home() {
   return (
     <Layout>
       <div className="mb-9 text-center">
-        <h1 className="text-4xl font-bold tracking-tight mb-3">
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
           Tech Events & Conferences
         </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
           Discover the best tech conferences, meetups, and workshops happening
           around the world.
         </p>
@@ -47,7 +47,7 @@ function Home() {
         >
           <EventFiltersBar filters={filters} onSetFilters={setFilters} />
         </ErrorBoundary>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           <ErrorBoundary
             fallbackRender={(props) => <ErrorComponent error={props.error} />}
           >

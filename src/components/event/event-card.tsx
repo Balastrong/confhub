@@ -20,18 +20,18 @@ export const EventCard = ({ event }: Props) => {
   const { tags = [] } = getRouteApi("/").useSearch()
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>
+    <Card className="h-full flex flex-col">
+      <CardHeader className="pb-3">
+        <CardTitle className="text-lg sm:text-xl leading-snug">
           <Link
             to="/events/$eventSlug"
             params={{ eventSlug: event.slug }}
-            className="text-blue-500 hover:underline"
+            className="text-blue-500 hover:underline line-clamp-2"
           >
             {event.name}
           </Link>
         </CardTitle>
-        <CardDescription>
+        <CardDescription className="text-xs sm:text-sm">
           {event.date ? (
             <>
               {formatDate(new Date(event.date))}
@@ -41,16 +41,18 @@ export const EventCard = ({ event }: Props) => {
           ) : null}
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex-1 pt-0 pb-3">
         <div className="space-y-2">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 text-sm">
             {event.city && event.country && (
-              <span>{`${event.city}, ${event.country}`}</span>
+              <span className="shrink-0">
+                {`${event.city}, ${event.country}`}
+              </span>
             )}
             {event.mode && (
               <Badge
                 variant="secondary"
-                className="text-xs flex items-center gap-1"
+                className="text-[10px] uppercase tracking-wide flex items-center gap-1 py-0.5"
               >
                 {(() => {
                   const modeConfig = getEventModeConfig(event.mode)
@@ -67,7 +69,7 @@ export const EventCard = ({ event }: Props) => {
           </div>
         </div>
         {event.cfpUrl && (
-          <p>
+          <p className="mt-2 text-sm">
             <a
               href={event.cfpUrl}
               target="_blank"
@@ -80,7 +82,7 @@ export const EventCard = ({ event }: Props) => {
                   className={
                     new Date(event.cfpClosingDate) < new Date()
                       ? "text-red-500"
-                      : "text-green-500"
+                      : "text-green-600"
                   }
                 >
                   ({event.cfpClosingDate})
@@ -90,13 +92,13 @@ export const EventCard = ({ event }: Props) => {
           </p>
         )}
       </CardContent>
-      <CardFooter>
+      <CardFooter className="pt-0">
         <div className="flex flex-wrap gap-1">
           {event.tags?.map((tag) => (
             <Badge
               key={tag}
               variant={tags.includes(tag) ? "default" : "outline"}
-              className="capitalize mb-1"
+              className="capitalize mb-1 text-xs"
             >
               {tag}
             </Badge>

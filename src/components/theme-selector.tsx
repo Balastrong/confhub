@@ -14,7 +14,12 @@ export function ThemeSelector() {
   }
 
   return (
-    <Button variant="ghost" size="sm" onClick={cycleTheme}>
+    <Button
+      variant="ghost"
+      size="sm"
+      onClick={cycleTheme}
+      aria-label={"Click to cycle themes"}
+    >
       <Sun className="h-4 w-4 light:not-system:inline hidden" />
       <Moon className="h-4 w-4 dark:not-system:inline hidden" />
       <Monitor className="h-4 w-4 system:inline hidden" />

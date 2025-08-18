@@ -49,7 +49,11 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
   }
 
   return (
-    <Card className="p-4 mb-6 shadow-xs">
+    <Card
+      className="p-4 mb-6 shadow-xs"
+      aria-label="Event filters"
+      role="region"
+    >
       <Accordion
         type="single"
         collapsible
@@ -60,9 +64,17 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
           <AccordionTrigger className="py-0">
             <div className="flex items-center gap-2">
               <FilterIcon className="h-5 w-5 text-primary" />
-              <h2 className="text-lg font-medium">Event Filters</h2>
+              <h2 className="text-lg font-medium" id="event-filters-heading">
+                Event Filters
+              </h2>
               {activeFiltersCount > 0 && (
-                <Badge variant="secondary">{activeFiltersCount}</Badge>
+                <Badge
+                  variant="secondary"
+                  aria-label={`${activeFiltersCount} active filter${activeFiltersCount === 1 ? "" : "s"}`}
+                  aria-live="polite"
+                >
+                  {activeFiltersCount}
+                </Badge>
               )}
             </div>
             {activeFiltersCount > 0 && (
@@ -74,6 +86,7 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                   clearFilters()
                 }}
                 className="flex items-center gap-1 ml-auto mr-2 -mt-2 -mb-2 no-underline"
+                aria-label="Clear all active filters"
               >
                 <X className="h-4 w-4" />
                 <span>Clear all</span>
@@ -94,6 +107,7 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                         setQuery("")
                         setFilter("query", undefined)
                       }}
+                      aria-label="Clear name filter"
                     />
                   )}
                 </div>
@@ -103,7 +117,11 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   className="w-full"
+                  aria-describedby="event-name-hint"
                 />
+                <p id="event-name-hint" className="sr-only">
+                  Type to filter events by their name
+                </p>
               </div>
 
               {/* CFP filter */}
@@ -115,6 +133,7 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                   {filters.hasCfpOpen && (
                     <ClearButton
                       onClick={() => toggleBooleanItem("hasCfpOpen")}
+                      aria-label="Clear CFP status filter"
                     />
                   )}
                 </div>
@@ -123,6 +142,7 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                     id="cfp-open-switch"
                     checked={!!filters.hasCfpOpen}
                     onCheckedChange={() => toggleBooleanItem("hasCfpOpen")}
+                    aria-describedby="cfp-open-switch-desc"
                   />
                   <span className="text-sm text-muted-foreground">
                     {filters.hasCfpOpen
@@ -130,6 +150,9 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                       : "All events"}
                   </span>
                 </div>
+                <p id="cfp-open-switch-desc" className="sr-only">
+                  Toggle to only show events with an open call for papers
+                </p>
               </div>
 
               {/* Date filter */}
@@ -141,19 +164,31 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                   {filters.startDate && (
                     <ClearButton
                       onClick={() => setFilter("startDate", undefined)}
+                      aria-label="Clear start date filter"
                     />
                   )}
                 </div>
                 <Popover>
                   <PopoverTrigger asChild>
-                    <div className="flex items-center gap-2 h-10 px-3 rounded-md border border-input bg-background cursor-pointer">
+                    <button
+                      type="button"
+                      className="flex items-center gap-2 h-10 px-3 rounded-md border border-input bg-background cursor-pointer text-left"
+                      aria-label={
+                        filters.startDate
+                          ? `Change start date filter, currently ${format(
+                              new Date(filters.startDate),
+                              "PPP",
+                            )}`
+                          : "Pick a start date"
+                      }
+                    >
                       <CalendarIcon className="mr-2 h-4 w-4" />
                       <span className="text-sm text-muted-foreground">
                         {filters.startDate
                           ? format(new Date(filters.startDate), "PPP")
                           : "Pick a date"}
                       </span>
-                    </div>
+                    </button>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0" align="start">
                     <Calendar
@@ -170,6 +205,7 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                         )
                       }
                       initialFocus
+                      aria-label="Calendar to pick start date"
                     />
                   </PopoverContent>
                 </Popover>
@@ -206,6 +242,7 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                       {(filters.modes?.length || 0) > 0 && (
                         <ClearButton
                           onClick={() => setFilter("modes", undefined)}
+                          aria-label="Clear event mode filters"
                         />
                       )}
                     </div>
@@ -216,8 +253,20 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                         return (
                           <Badge
                             key={mode}
-                            className="cursor-pointer flex items-center gap-1"
+                            className="cursor-pointer flex items-center gap-1 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2"
                             onClick={() => toggleArrayItem("modes", mode)}
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter" || e.key === " ") {
+                                e.preventDefault()
+                                toggleArrayItem("modes", mode)
+                              }
+                            }}
+                            tabIndex={0}
+                            role="checkbox"
+                            aria-checked={
+                              filters.modes?.includes(mode) || false
+                            }
+                            aria-label={`Filter by ${modeConfig.label} events`}
                             variant={
                               filters.modes?.includes(mode)
                                 ? "default"
@@ -239,6 +288,7 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                       {(filters.tags?.length || 0) > 0 && (
                         <ClearButton
                           onClick={() => setFilter("tags", undefined)}
+                          aria-label="Clear tag filters"
                         />
                       )}
                     </div>
@@ -259,15 +309,19 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
   )
 }
 
-function ClearButton({ onClick }: { onClick: () => void }) {
+function ClearButton({
+  onClick,
+  ...props
+}: { onClick: () => void } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <Button
       size="sm"
       variant="ghost"
       className="h-5 px-2 -mb-2"
       onClick={onClick}
+      {...props}
     >
-      <X className="h-3 w-3" />
+      <X className="h-3 w-3" aria-hidden="true" />
     </Button>
   )
 }

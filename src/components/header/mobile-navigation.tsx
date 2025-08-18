@@ -12,7 +12,7 @@ export const MobileNavigation = ({
         <Link
           key={to}
           to={to}
-          className={`px-3 py-2 text-sm hover:bg-accent rounded-md`}
+          className={`px-3 py-2 text-sm hover:bg-accent rounded-md data-[status=active]:bg-accent/50`}
           onClick={onLinkClick}
         >
           {label}

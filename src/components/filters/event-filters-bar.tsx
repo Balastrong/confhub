@@ -1,6 +1,5 @@
 import { format } from "date-fns"
 import { CalendarIcon, FilterIcon, X } from "lucide-react"
-import React from "react"
 import { getEventModeConfig } from "src/lib/event-modes"
 import { EventFilters, EventModes } from "src/services/event.schema"
 import {
@@ -244,16 +243,10 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                       )}
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      <React.Suspense
-                        fallback={
-                          <Badge variant="outline">Loading tags...</Badge>
-                        }
-                      >
-                        <Tags
-                          selectedTags={filters.tags ?? []}
-                          onToggleTag={(tag) => toggleArrayItem("tags", tag)}
-                        />
-                      </React.Suspense>
+                      <Tags
+                        selectedTags={filters.tags ?? []}
+                        onToggleTag={(tag) => toggleArrayItem("tags", tag)}
+                      />
                     </div>
                   </div>
                 </AccordionContent>

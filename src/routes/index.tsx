@@ -1,7 +1,7 @@
 import {
+  createFileRoute,
   ErrorComponent,
   useNavigate,
-  createFileRoute,
 } from "@tanstack/react-router"
 import React from "react"
 import { ErrorBoundary } from "react-error-boundary"
@@ -10,11 +10,14 @@ import { EventsList } from "src/components/event/events-list"
 import { EventFiltersBar } from "src/components/filters/event-filters-bar"
 import { Layout } from "src/components/layout"
 import { EventFilters, EventFiltersSchema } from "src/services/event.schema"
-import { tagQueries } from "src/services/queries"
+import { eventQueries, tagQueries } from "src/services/queries"
 
 export const Route = createFileRoute("/")({
-  beforeLoad: ({ context }) => {
+  beforeLoad: async ({ context }) => {
     context.queryClient.ensureQueryData(tagQueries.list())
+    await context.queryClient.ensureQueryData(
+      eventQueries.list(EventFiltersSchema.parse({})),
+    )
   },
   component: Home,
   validateSearch: EventFiltersSchema,

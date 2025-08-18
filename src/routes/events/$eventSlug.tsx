@@ -33,10 +33,13 @@ export const Route = createFileRoute("/events/$eventSlug")({
 
     return event
   },
-  head: (c) => ({
+  head: ({ loaderData }) => ({
     meta: seo({
-      title: (c.loaderData?.name ?? "Event") + " - ConfHub",
-      description: c.loaderData?.description ?? "Event details on ConfHub",
+      title: loaderData?.name ?? "Event",
+      description: loaderData?.description ?? "Event details on ConfHub",
+      keywords:
+        "event, conference" +
+        (loaderData?.tags ? `, ${loaderData.tags.join(", ")}` : ""),
     }),
   }),
   component: RouteComponent,

@@ -34,10 +34,11 @@ export const Route = createFileRoute("/communities/$communitySlug")({
       communityQueries.detailBySlug(params.communitySlug),
     )
   },
-  head: (c) => ({
+  head: ({ loaderData }) => ({
     meta: seo({
-      title: (c.loaderData?.name ?? "Community") + " - ConfHub",
-      description: (c.loaderData?.description ?? "Community") + " on ConfHub",
+      title: loaderData?.name ?? "Community",
+      description: (loaderData?.description ?? "Community") + " on ConfHub",
+      type: "profile",
     }),
   }),
   component: RouteComponent,

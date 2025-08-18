@@ -19,7 +19,7 @@ export const Route = createFileRoute("/calendar")({
   }),
   head: () => ({
     meta: seo({
-      title: "Calendar - ConfHub",
+      title: "Calendar",
       description: "View your tech events on ConfHub",
     }),
   }),

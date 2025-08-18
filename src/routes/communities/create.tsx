@@ -7,7 +7,7 @@ export const Route = createFileRoute("/communities/create")({
   component: RouteComponent,
   head: () => ({
     meta: seo({
-      title: "Create a Community - ConfHub",
+      title: "Create a Community",
       description: "Create a new community on ConfHub",
     }),
   }),

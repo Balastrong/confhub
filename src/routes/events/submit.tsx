@@ -23,7 +23,7 @@ export const Route = createFileRoute("/events/submit")({
   component: RouteComponent,
   head: () => ({
     meta: seo({
-      title: "Submit an Event - ConfHub",
+      title: "Submit an Event",
       description: "Submit a new event request on ConfHub",
     }),
   }),

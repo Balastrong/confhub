@@ -34,8 +34,9 @@ export const Route = createRootRouteWithContext<{
       ...seo({
         title: "ConfHub",
         description:
-          "Find the latest tech conferences and communities on ConfHub",
+          "Find the latest tech conferences and communities worldwide on ConfHub, leave reviews and interact with other attendees.",
         keywords: "conference, tech, events, cfp",
+        disableTitleSuffix: true,
       }),
     ],
     links: [
@@ -65,7 +66,7 @@ const TanStackRouterDevtools =
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>

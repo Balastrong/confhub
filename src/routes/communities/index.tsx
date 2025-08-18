@@ -16,7 +16,7 @@ export const Route = createFileRoute("/communities/")({
   },
   head: () => ({
     meta: seo({
-      title: "Public Communities - ConfHub",
+      title: "Public Communities",
       description: "Explore and join public communities on ConfHub",
     }),
   }),

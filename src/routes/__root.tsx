@@ -3,6 +3,7 @@ import {
   createRootRouteWithContext,
   HeadContent,
   Outlet,
+  ScriptOnce,
   Scripts,
 } from "@tanstack/react-router"
 import * as React from "react"
@@ -50,7 +51,7 @@ export const Route = createRootRouteWithContext<{
         href: "/favicon.png",
       },
     ],
-    scripts: process.env.NODE_ENV === "production" ? analyticsScripts : [],
+    //scripts: process.env.NODE_ENV !== "production" ? analyticsScripts : [],
   }),
   shellComponent: RootDocument,
 })
@@ -69,6 +70,20 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
+        {process.env.NODE_ENV === "production" && (
+          <>
+            <script
+              src="https://www.googletagmanager.com/gtag/js?id=G-BGV8RCHJPH"
+              async
+            />
+            <script>
+              {`window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BGV8RCHJPH');`}
+            </script>
+          </>
+        )}
       </head>
       <body>
         <ThemeProvider>

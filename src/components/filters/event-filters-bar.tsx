@@ -24,6 +24,7 @@ import { Switch } from "~/components/ui/switch"
 import { formatDate } from "~/lib/date"
 import { Tags } from "./tags"
 import { useEventFilters } from "./useEventFilters"
+import { CountrySelect } from "./country-select"
 
 type Props = {
   filters: EventFilters
@@ -41,6 +42,7 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
     !!filters.startDate,
     (filters.modes?.length || 0) > 0,
     (filters.tags?.length || 0) > 0,
+    !!filters.country,
   ].filter(Boolean).length
 
   const clearFilters = () => {
@@ -94,7 +96,7 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
             )}
           </AccordionTrigger>
           <AccordionContent className="pt-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-end">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
               {/* Name filter */}
               <div className="space-y-2">
                 <div className="flex items-end justify-between">
@@ -172,7 +174,7 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                   <PopoverTrigger asChild>
                     <button
                       type="button"
-                      className="flex items-center gap-2 h-10 px-3 rounded-md border border-input bg-background cursor-pointer text-left"
+                      className="flex w-full items-center gap-2 h-10 px-3 rounded-md border border-input bg-background cursor-pointer text-left"
                       aria-label={
                         filters.startDate
                           ? `Change start date filter, currently ${format(
@@ -209,6 +211,23 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                     />
                   </PopoverContent>
                 </Popover>
+              </div>
+
+              {/* Country filter */}
+              <div className="space-y-2 md:col-span-2 lg:col-span-1">
+                <div className="flex items-end justify-between">
+                  <Label className="font-medium">Country</Label>
+                  {filters.country && (
+                    <ClearButton
+                      onClick={() => setFilter("country", undefined)}
+                    />
+                  )}
+                </div>
+                <CountrySelect
+                  value={filters.country}
+                  onChange={(value) => setFilter("country", value)}
+                  placeholder="All countries"
+                />
               </div>
             </div>
 

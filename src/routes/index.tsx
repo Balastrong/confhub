@@ -10,14 +10,17 @@ import { EventsList } from "src/components/event/events-list"
 import { EventFiltersBar } from "src/components/filters/event-filters-bar"
 import { Layout } from "src/components/layout"
 import { EventFilters, EventFiltersSchema } from "src/services/event.schema"
-import { eventQueries, tagQueries } from "src/services/queries"
+import { eventQueries, tagQueries, countryQueries } from "src/services/queries"
 
 export const Route = createFileRoute("/")({
   beforeLoad: async ({ context }) => {
-    context.queryClient.ensureQueryData(tagQueries.list())
-    await context.queryClient.ensureQueryData(
-      eventQueries.list(EventFiltersSchema.parse({})),
-    )
+    await Promise.all([
+      context.queryClient.ensureQueryData(tagQueries.list()),
+      context.queryClient.ensureQueryData(countryQueries.list()),
+      context.queryClient.ensureQueryData(
+        eventQueries.list(EventFiltersSchema.parse({})),
+      ),
+    ])
   },
   component: Home,
   validateSearch: EventFiltersSchema,

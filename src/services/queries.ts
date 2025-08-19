@@ -9,6 +9,7 @@ import { CommunityFilters } from "./community.schema"
 import { getEvent, getEventBySlug, getEvents, upsertEvent } from "./event.api"
 import { EventFilters } from "./event.schema"
 import { getTags } from "./tags.api"
+import { getCountries } from "./countries.api"
 import {
   createEventComment,
   deleteEventComment,
@@ -60,6 +61,15 @@ export const tagQueries = {
     queryOptions({
       queryKey: [...tagQueries.all, "list"],
       queryFn: () => getTags(),
+    }),
+}
+
+export const countryQueries = {
+  all: ["countries"],
+  list: () =>
+    queryOptions({
+      queryKey: [...countryQueries.all, "list"],
+      queryFn: () => getCountries(),
     }),
 }
 

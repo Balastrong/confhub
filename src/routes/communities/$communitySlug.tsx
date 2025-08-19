@@ -160,7 +160,7 @@ function RouteComponent() {
           <p className="text-muted-foreground mt-1">Community Management</p>
         </div>
         <div className="flex gap-2">
-          {!isAdmin && isAuthenticated && (
+          {isAuthenticated && (
             <>
               {isMember ? (
                 <Button
@@ -178,21 +178,21 @@ function RouteComponent() {
                   Join Community
                 </Button>
               )}
+              {isAdmin && (
+                <Button
+                  className="mt-4 sm:mt-0"
+                  onClick={() =>
+                    navigate({
+                      to: "/events/submit",
+                      search: { communityId: community.id },
+                    })
+                  }
+                >
+                  <PlusCircle className="mr-2 h-4 w-4" />
+                  New Event
+                </Button>
+              )}
             </>
-          )}
-          {isAdmin && (
-            <Button
-              className="mt-4 sm:mt-0"
-              onClick={() =>
-                navigate({
-                  to: "/events/submit",
-                  search: { communityId: community.id },
-                })
-              }
-            >
-              <PlusCircle className="mr-2 h-4 w-4" />
-              New Event
-            </Button>
           )}
         </div>
       </div>

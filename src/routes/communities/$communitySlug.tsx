@@ -26,7 +26,7 @@ import {
   DialogTrigger,
   DialogTitle,
 } from "../../components/ui/dialog"
-import { seo } from "~/components/seo"
+import { seo } from "~/lib/seo"
 
 export const Route = createFileRoute("/communities/$communitySlug")({
   loader: async ({ params, context }) => {

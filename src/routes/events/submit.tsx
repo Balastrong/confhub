@@ -4,7 +4,7 @@ import { Link2, Send } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
 import { ButtonLink } from "~/components/button-link"
-import { seo } from "~/components/seo"
+import { seo } from "~/lib/seo"
 import { Button } from "~/components/ui/button"
 import {
   Card,

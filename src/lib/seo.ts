@@ -25,7 +25,6 @@ export interface SeoParams {
   descriptionMaxLength?: number
   disableTitleSuffix?: boolean
   titleTemplate?: string | ((base: string, site: string) => string)
-  extra?: Array<React.MetaHTMLAttributes<HTMLMetaElement>>
 }
 
 const DEFAULTS = {
@@ -129,17 +128,5 @@ export function seo(
       meta.push({ name: "twitter:image:alt", content: primary.alt })
   }
 
-  if (params.extra) meta.push(...params.extra)
-
-  // Dedupe by name/property
-  const seen = new Set<string>()
-  return meta.filter((m) => {
-    if (!m) return false
-    const key =
-      (m.name ? `n:${m.name}` : "") + (m.property ? `p:${m.property}` : "")
-    if (!key) return true
-    if (seen.has(key)) return false
-    seen.add(key)
-    return true
-  })
+  return meta
 }

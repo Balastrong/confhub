@@ -15,7 +15,7 @@ import {
 import { formatDate } from "src/lib/date"
 import { getEventModeConfig } from "src/lib/event-modes"
 import { communityQueries, eventQueries } from "src/services/queries"
-import { seo } from "~/components/seo"
+import { seo } from "~/lib/seo"
 import { EventComments } from "~/components/event/comments"
 import { EventRsvp } from "~/components/event/rsvp"
 

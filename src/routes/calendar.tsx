@@ -11,7 +11,7 @@ import { Layout } from "src/components/layout"
 import { formatDate } from "src/lib/date"
 import { getFirstAndLast } from "src/lib/utils"
 import { eventQueries } from "src/services/queries"
-import { seo } from "~/components/seo"
+import { seo } from "~/lib/seo"
 
 export const Route = createFileRoute("/calendar")({
   validateSearch: z.object({

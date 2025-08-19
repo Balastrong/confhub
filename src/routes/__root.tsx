@@ -11,7 +11,7 @@ import { Toaster } from "src/components/ui/sonner"
 import { authQueries } from "src/services/queries"
 import css from "~/globals.css?url"
 import { ThemeProvider } from "~/hooks/useTheme"
-import { seo } from "~/components/seo"
+import { seo } from "~/lib/seo"
 import { analyticsScripts } from "~/lib/analytics"
 
 export const Route = createRootRouteWithContext<{

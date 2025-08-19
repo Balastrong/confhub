@@ -31,5 +31,4 @@ export const auth = betterAuth({
     }),
     reactStartCookies(),
   ],
-  baseURL: process.env.URL || "http://localhost:3000",
 })

@@ -157,7 +157,7 @@ function RouteComponent() {
               </Dialog>
             )}
           </div>
-          <p className="text-muted-foreground mt-1">Community Management</p>
+          <p className="text-muted-foreground mt-1">{community.description}</p>
         </div>
         <div className="flex gap-2">
           {isAuthenticated && (

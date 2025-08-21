@@ -20,91 +20,91 @@ export const EventCard = ({ event }: Props) => {
   const { tags = [] } = getRouteApi("/").useSearch()
 
   return (
-    <Card className="h-full flex flex-col">
-      <CardHeader className="pb-3">
-        <CardTitle className="text-lg sm:text-xl leading-snug">
-          <Link
-            to="/events/$eventSlug"
-            params={{ eventSlug: event.slug }}
-            className="text-blue-500 hover:underline line-clamp-2"
-          >
+    <Link
+      to="/events/$eventSlug"
+      params={{ eventSlug: event.slug }}
+      className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-lg"
+    >
+      <Card className="h-full flex flex-col transition duration-200 ease-out hover:bg-card/60 hover:shadow-md hover:-translate-y-0.5 focus-visible:shadow-md will-change-transform rounded-lg">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-lg sm:text-xl leading-snug">
             {event.name}
-          </Link>
-        </CardTitle>
-        <CardDescription className="text-xs sm:text-sm">
-          {event.date ? (
-            <>
-              {formatDate(new Date(event.date))}
-              {event.dateEnd && " - "}
-              {event.dateEnd ? formatDate(new Date(event.dateEnd)) : null}
-            </>
-          ) : null}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="flex-1 pt-0 pb-3">
-        <div className="space-y-2">
-          <div className="flex flex-wrap items-center gap-2 text-sm">
-            {event.city && event.country && (
-              <span className="shrink-0">
-                {`${event.city}, ${event.country}`}
-              </span>
-            )}
-            {event.mode && (
-              <Badge
-                variant="secondary"
-                className="text-[10px] uppercase tracking-wide flex items-center gap-1 py-0.5"
-              >
-                {(() => {
-                  const modeConfig = getEventModeConfig(event.mode)
-                  const IconComponent = modeConfig.icon
-                  return (
-                    <>
-                      <IconComponent className="h-3 w-3" />
-                      {modeConfig.label}
-                    </>
-                  )
-                })()}
-              </Badge>
-            )}
-          </div>
-        </div>
-        {event.cfpUrl && (
-          <p className="mt-2 text-sm">
-            <a
-              href={event.cfpUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500 hover:underline"
-            >
-              Call for Paper{" "}
-              {event.cfpClosingDate ? (
-                <span
-                  className={
-                    new Date(event.cfpClosingDate) < new Date()
-                      ? "text-red-500"
-                      : "text-green-600"
-                  }
-                >
-                  ({event.cfpClosingDate})
+          </CardTitle>
+          <CardDescription className="text-xs sm:text-sm">
+            {event.date ? (
+              <>
+                {formatDate(new Date(event.date))}
+                {event.dateEnd && " - "}
+                {event.dateEnd ? formatDate(new Date(event.dateEnd)) : null}
+              </>
+            ) : null}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="flex-1 pt-0 pb-3">
+          <div className="space-y-2">
+            <div className="flex flex-wrap items-center gap-2 text-sm">
+              {event.city && event.country && (
+                <span className="shrink-0">
+                  {`${event.city}, ${event.country}`}
                 </span>
-              ) : null}
-            </a>
-          </p>
-        )}
-      </CardContent>
-      <CardFooter className="pt-0">
-        <div className="flex flex-wrap gap-1">
-          {event.tags?.map((tag) => (
-            <Badge
-              key={tag}
-              variant={tags.includes(tag) ? "default" : "outline"}
-              className="capitalize mb-1 text-xs"
-            >
-              {tag}
-            </Badge>
-          ))}
-        </div>
-      </CardFooter>
-    </Card>
+              )}
+              {event.mode && (
+                <Badge
+                  variant="secondary"
+                  className="text-[10px] uppercase tracking-wide flex items-center gap-1 py-0.5"
+                >
+                  {(() => {
+                    const modeConfig = getEventModeConfig(event.mode)
+                    const IconComponent = modeConfig.icon
+                    return (
+                      <>
+                        <IconComponent className="h-3 w-3" />
+                        {modeConfig.label}
+                      </>
+                    )
+                  })()}
+                </Badge>
+              )}
+            </div>
+          </div>
+          {event.cfpUrl && (
+            <p className="mt-2 text-sm">
+              <a
+                href={event.cfpUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:underline"
+              >
+                Call for Paper{" "}
+                {event.cfpClosingDate ? (
+                  <span
+                    className={
+                      new Date(event.cfpClosingDate) < new Date()
+                        ? "text-red-500"
+                        : "text-green-600"
+                    }
+                  >
+                    ({event.cfpClosingDate})
+                  </span>
+                ) : null}
+              </a>
+            </p>
+          )}
+        </CardContent>
+        <CardFooter className="pt-0">
+          <div className="flex flex-wrap gap-1">
+            {event.tags?.map((tag) => (
+              <Badge
+                key={tag}
+                variant={tags.includes(tag) ? "default" : "outline"}
+                className="capitalize mb-1 text-xs"
+              >
+                {tag}
+              </Badge>
+            ))}
+          </div>
+        </CardFooter>
+      </Card>
+    </Link>
   )
 }

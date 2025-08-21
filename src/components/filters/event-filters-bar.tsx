@@ -51,23 +51,14 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
   }
 
   return (
-    <Card
-      className="p-4 mb-6 shadow-xs"
-      aria-label="Event filters"
-      role="region"
-    >
-      <Accordion
-        type="single"
-        collapsible
-        defaultValue="filters"
-        className="w-full"
-      >
+    <Card className="p-4 shadow-xs" aria-label="Event filters" role="region">
+      <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="filters" className="border-none">
           <AccordionTrigger className="py-0">
             <div className="flex items-center gap-2">
               <FilterIcon className="h-5 w-5 text-primary" />
               <h2 className="text-lg font-medium" id="event-filters-heading">
-                Event Filters
+                Filters Events
               </h2>
               {activeFiltersCount > 0 && (
                 <Badge
@@ -233,13 +224,8 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
 
             <Separator className="my-4" />
 
-            <Accordion
-              type="single"
-              collapsible
-              defaultValue="item-1"
-              className="w-full"
-            >
-              <AccordionItem value="item-1" className="border-none">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="extra-filters" className="border-none">
                 <AccordionTrigger className="py-2">
                   <div className="flex items-center gap-2">
                     <span>Additional Filters</span>

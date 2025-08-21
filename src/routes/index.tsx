@@ -47,7 +47,7 @@ function Home() {
           around the world.
         </p>
       </div>
-      <div className="flex flex-col gap-4 w-full">
+      <div className="flex flex-col gap-6 w-full">
         <ErrorBoundary
           fallbackRender={(props) => <ErrorComponent error={props.error} />}
         >

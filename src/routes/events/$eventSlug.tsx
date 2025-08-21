@@ -1,7 +1,11 @@
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query"
-import { createFileRoute, Link } from "@tanstack/react-router"
+import {
+  createFileRoute,
+  Link,
+  useCanGoBack,
+  useRouter,
+} from "@tanstack/react-router"
 import { CalendarDays, ExternalLink, MapPin, Tag } from "lucide-react"
-import { ButtonLink } from "src/components/button-link"
 import { Layout } from "src/components/layout"
 import { Avatar, AvatarFallback, AvatarImage } from "src/components/ui/avatar"
 import { Badge } from "src/components/ui/badge"
@@ -15,9 +19,9 @@ import {
 import { formatDate } from "src/lib/date"
 import { getEventModeConfig } from "src/lib/event-modes"
 import { communityQueries, eventQueries } from "src/services/queries"
-import { seo } from "~/lib/seo"
 import { EventComments } from "~/components/event/comments"
 import { EventRsvp } from "~/components/event/rsvp"
+import { seo } from "~/lib/seo"
 
 export const Route = createFileRoute("/events/$eventSlug")({
   loader: async ({ params, context }) => {
@@ -56,20 +60,22 @@ function RouteComponent() {
 
   const modeConfig = event?.mode ? getEventModeConfig(event.mode) : null
 
+  const router = useRouter()
+  const canGoBack = useCanGoBack()
+
   return (
     <Layout className="items-center gap-6 max-w-5xl mx-auto py-8 w-full">
       {/* Header */}
       <div className="w-full">
-        {community && (
-          <ButtonLink
-            to="/communities/$communitySlug"
-            params={{ communitySlug: community.slug }}
+        {canGoBack && (
+          <Button
             variant="ghost"
             size="sm"
             className="mb-3"
+            onClick={() => router.history.back()}
           >
-            ← Back to {community.name}
-          </ButtonLink>
+            ← Back
+          </Button>
         )}
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>

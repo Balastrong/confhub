@@ -5,6 +5,8 @@ applyTo: "data-entry/data.json"
 I will send in chat one or more links, please fetch them one by one and read the content.
 Each link is the homepage of a tech event and you should find the information needed to fill the data.json file for each event.
 
+If you see that the link I sent you is not an event but a list of events, try to find the individual event pages and extract the information from there. Use the real event links, not the aggregator link.
+
 ## data.json structure
 
 - The file must contain an array of events (objects)
@@ -37,6 +39,10 @@ export const CreateEventSchema = z.object({
 })
 ```
 
+### Tags
+
 Keep tags between 0 and 5, if you find more than 5 tags, choose the most relevant ones.
 
 Tags must be all lowercase.
+
+Do not use "conference", "event" or similar terms that are not specific to the technology or topic being discussed.

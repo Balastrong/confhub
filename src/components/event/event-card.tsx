@@ -69,11 +69,25 @@ export const EventCard = ({ event }: Props) => {
           </div>
           {event.cfpUrl && (
             <p className="mt-2 text-sm">
-              <a
-                href={event.cfpUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 hover:underline"
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  window.open(event.cfpUrl!, "_blank", "noopener,noreferrer")
+                }}
+                aria-label={`Open call for papers page${
+                  event.cfpClosingDate
+                    ? ` (closes on ${event.cfpClosingDate})`
+                    : ""
+                }`}
+                title={`Call for Papers${
+                  event.cfpClosingDate
+                    ? ` – closes ${event.cfpClosingDate}`
+                    : ""
+                }`}
+                className="text-blue-500 hover:underline underline-offset-2 p-0 m-0 bg-transparent border-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-400 rounded"
+                data-analytics="event-cfp-link"
               >
                 Call for Paper{" "}
                 {event.cfpClosingDate ? (
@@ -87,7 +101,7 @@ export const EventCard = ({ event }: Props) => {
                     ({event.cfpClosingDate})
                   </span>
                 ) : null}
-              </a>
+              </button>
             </p>
           )}
         </CardContent>

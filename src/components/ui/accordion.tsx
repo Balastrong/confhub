@@ -9,7 +9,7 @@ import { cn } from "src/lib/utils"
 const Accordion = AccordionPrimitive.Root
 
 const AccordionItem = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Item>,
+  React.ComponentRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item
@@ -20,28 +20,62 @@ const AccordionItem = React.forwardRef<
 ))
 AccordionItem.displayName = "AccordionItem"
 
+type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6
+type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
+
+function getHeadingTag(level: HeadingLevel): HeadingTag {
+  switch (level) {
+    case 1:
+      return "h1"
+    case 2:
+      return "h2"
+    case 3:
+      return "h3"
+    case 4:
+      return "h4"
+    case 5:
+      return "h5"
+    case 6:
+    default:
+      return "h6"
+  }
+}
+
+type AccordionTriggerProps = React.ComponentPropsWithoutRef<
+  typeof AccordionPrimitive.Trigger
+> & {
+  headingLevel?: HeadingLevel
+}
+
 const AccordionTrigger = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Header className="flex">
-    <AccordionPrimitive.Trigger
-      ref={ref}
-      className={cn(
-        "flex cursor-pointer flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180",
-        className,
+  React.ComponentRef<typeof AccordionPrimitive.Trigger>,
+  AccordionTriggerProps
+>(({ className, children, headingLevel = 3, ...props }, ref) => {
+  const Heading = getHeadingTag(headingLevel)
+  return (
+    <AccordionPrimitive.Header className="flex w-full" asChild>
+      {React.createElement(
+        Heading,
+        { className: "flex m-0 flex-1 font-inherit font-medium" },
+        <AccordionPrimitive.Trigger
+          ref={ref}
+          className={cn(
+            "flex cursor-pointer flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180",
+            className,
+          )}
+          {...props}
+        >
+          {children}
+          <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
+        </AccordionPrimitive.Trigger>,
       )}
-      {...props}
-    >
-      {children}
-      <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
-    </AccordionPrimitive.Trigger>
-  </AccordionPrimitive.Header>
-))
+    </AccordionPrimitive.Header>
+  )
+})
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName
 
 const AccordionContent = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Content>,
+  React.ComponentRef<typeof AccordionPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
 >(({ className, children, ...props }, ref) => {
   const [mounted, setMounted] = React.useState(false)

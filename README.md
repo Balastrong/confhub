@@ -14,7 +14,7 @@ What you can do:
 - ➕ Submit your own events and update community pages
 
 > [!TIP]
-> 🚀 Explore ConfHub live => https://confhub.tech
+> Explore ConfHub live => https://confhub.tech 🚀
 
 ## Tech highlights
 

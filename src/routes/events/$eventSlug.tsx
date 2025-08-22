@@ -1,10 +1,5 @@
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query"
-import {
-  createFileRoute,
-  Link,
-  useCanGoBack,
-  useRouter,
-} from "@tanstack/react-router"
+import { createFileRoute, Link, useRouter } from "@tanstack/react-router"
 import { CalendarDays, ExternalLink, MapPin, Tag } from "lucide-react"
 import { Layout } from "src/components/layout"
 import { Avatar, AvatarFallback, AvatarImage } from "src/components/ui/avatar"
@@ -29,7 +24,7 @@ export const Route = createFileRoute("/events/$eventSlug")({
       eventQueries.detailBySlug(params.eventSlug),
     )
 
-    if (event?.communityId) {
+    if (event.communityId) {
       await context.queryClient.ensureQueryData(
         communityQueries.detail(event.communityId),
       )
@@ -50,66 +45,35 @@ export const Route = createFileRoute("/events/$eventSlug")({
 })
 
 function RouteComponent() {
+  const router = useRouter()
   const { eventSlug } = Route.useParams()
   const { data: event } = useSuspenseQuery(eventQueries.detailBySlug(eventSlug))
 
   const { data: community } = useQuery({
-    ...communityQueries.detail(event?.communityId!),
-    enabled: !!event?.communityId,
+    ...communityQueries.detail(event.communityId!),
+    enabled: !!event.communityId,
   })
 
-  const modeConfig = event?.mode ? getEventModeConfig(event.mode) : null
-
-  const router = useRouter()
-  const canGoBack = useCanGoBack()
+  const modeConfig = event.mode ? getEventModeConfig(event.mode) : null
 
   return (
     <Layout className="items-center gap-6 max-w-5xl mx-auto py-8 w-full">
       {/* Header */}
       <div className="w-full">
-        {canGoBack && (
-          <Button
-            variant="ghost"
-            size="sm"
-            className="mb-3"
-            onClick={() => router.history.back()}
-          >
-            ← Back
-          </Button>
-        )}
+        <Button
+          variant="ghost"
+          size="sm"
+          className="mb-3"
+          onClick={() => router.history.back()}
+        >
+          ← Back
+        </Button>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">{event?.name}</h1>
-            <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-              {event?.date && (
-                <span className="inline-flex items-center gap-2">
-                  <CalendarDays className="h-4 w-4" />
-                  <span>
-                    {formatDate(new Date(event.date))}
-                    {event.dateEnd && (
-                      <> - {formatDate(new Date(event.dateEnd))}</>
-                    )}
-                  </span>
-                </span>
-              )}
-              {event?.city && event?.country && (
-                <span className="inline-flex items-center gap-2">
-                  <MapPin className="h-4 w-4" />
-                  {event.city}, {event.country}
-                </span>
-              )}
-              {modeConfig && (
-                <Badge
-                  variant="secondary"
-                  className="inline-flex items-center gap-2"
-                >
-                  <modeConfig.icon className="h-3 w-3" /> {modeConfig.label}
-                </Badge>
-              )}
-            </div>
+            <h1 className="text-3xl font-bold tracking-tight">{event.name}</h1>
           </div>
           <div className="flex gap-2">
-            {event?.cfpUrl && (
+            {event.cfpUrl && (
               <Button asChild variant="outline">
                 <a
                   href={event.cfpUrl}
@@ -121,7 +85,7 @@ function RouteComponent() {
                 </a>
               </Button>
             )}
-            {event?.eventUrl && (
+            {event.eventUrl && (
               <Button asChild>
                 <a
                   href={event.eventUrl}
@@ -140,8 +104,8 @@ function RouteComponent() {
       {/* Body */}
       <div className="grid w-full gap-6 md:grid-cols-3">
         {/* Main content */}
-        <div className="md:col-span-2 flex flex-col gap-6">
-          {event?.description && (
+        <div className="md:col-span-2 flex flex-col gap-6 order-2 md:order-1">
+          {event.description && (
             <Card>
               <CardHeader>
                 <CardTitle>About this event</CardTitle>
@@ -159,19 +123,19 @@ function RouteComponent() {
               <CardTitle>Comments</CardTitle>
             </CardHeader>
             <CardContent>
-              {event?.id != null && <EventComments eventId={event.id} />}
+              {event.id != null && <EventComments eventId={event.id} />}
             </CardContent>
           </Card>
         </div>
 
         {/* Sidebar */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 order-1 md:order-2">
           <Card>
             <CardHeader>
               <CardTitle>Event info</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm">
-              {event?.date && (
+              {event.date && (
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <CalendarDays className="h-4 w-4" />
                   <span>
@@ -182,7 +146,7 @@ function RouteComponent() {
                   </span>
                 </div>
               )}
-              {event?.city && event?.country && (
+              {event.city && event.country && (
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <MapPin className="h-4 w-4" />
                   <span>
@@ -200,7 +164,20 @@ function RouteComponent() {
                   </Badge>
                 </div>
               )}
-              {event?.cfpUrl && (
+              {event.eventUrl && (
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <ExternalLink className="h-4 w-4" />
+                  <a
+                    href={event.eventUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    Visit website
+                  </a>
+                </div>
+              )}
+              {event.cfpUrl && (
                 <div className="pt-2">
                   <a
                     href={event.cfpUrl}
@@ -262,9 +239,9 @@ function RouteComponent() {
             </Card>
           )}
 
-          {event?.id != null && <EventRsvp eventId={event.id} />}
+          {event.id != null && <EventRsvp eventId={event.id} />}
 
-          {event?.tags && event.tags.length > 0 && (
+          {event.tags && event.tags.length > 0 && (
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">

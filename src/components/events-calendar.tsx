@@ -284,7 +284,7 @@ export const EventsCalendar = ({
                     asChild
                     variant="ghost"
                     size="xs"
-                    className="h-5 py-0 px-1 text-[11px] justify-center border border-dashed border-accent bg-accent/5 text-accent-foreground hover:bg-accent/20"
+                    className="h-5 py-0 px-1 text-[11px] justify-center border border-dashed border-accent"
                   >
                     <Link
                       to="/events/submit"

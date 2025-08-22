@@ -1,4 +1,3 @@
-// Simple CLI entrypoint to generate the sitemap.
 // Usage: pnpm run sitemap
 import { sitemap } from "./sitemap"
 import { generateSitemap } from "./generate"

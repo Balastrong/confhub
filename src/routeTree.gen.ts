@@ -23,6 +23,7 @@ import { Route as CommunitiesCreateRouteImport } from './routes/communities/crea
 import { Route as CommunitiesCommunitySlugRouteImport } from './routes/communities/$communitySlug'
 import { Route as EventsProSubmitRouteImport } from './routes/events/pro.submit'
 import { Route as EventsProEventIdRouteImport } from './routes/events/pro.$eventId'
+import { ServerRoute as SitemapDotxmlServerRouteImport } from './routes/sitemap[.]xml'
 import { ServerRoute as ApiMcpServerRouteImport } from './routes/api/mcp'
 import { ServerRoute as DotwellKnownOpenidConfigurationServerRouteImport } from './routes/[.]well-known/openid-configuration'
 import { ServerRoute as ApiAuthSplatServerRouteImport } from './routes/api/auth.$'
@@ -89,6 +90,11 @@ const EventsProEventIdRoute = EventsProEventIdRouteImport.update({
   id: '/events/pro/$eventId',
   path: '/events/pro/$eventId',
   getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlServerRoute = SitemapDotxmlServerRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootServerRouteImport,
 } as any)
 const ApiMcpServerRoute = ApiMcpServerRouteImport.update({
   id: '/api/mcp',
@@ -210,34 +216,47 @@ export interface RootRouteChildren {
   EventsProSubmitRoute: typeof EventsProSubmitRoute
 }
 export interface FileServerRoutesByFullPath {
+  '/sitemap.xml': typeof SitemapDotxmlServerRoute
   '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationServerRoute
   '/api/mcp': typeof ApiMcpServerRoute
   '/api/auth/$': typeof ApiAuthSplatServerRoute
 }
 export interface FileServerRoutesByTo {
+  '/sitemap.xml': typeof SitemapDotxmlServerRoute
   '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationServerRoute
   '/api/mcp': typeof ApiMcpServerRoute
   '/api/auth/$': typeof ApiAuthSplatServerRoute
 }
 export interface FileServerRoutesById {
   __root__: typeof rootServerRouteImport
+  '/sitemap.xml': typeof SitemapDotxmlServerRoute
   '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationServerRoute
   '/api/mcp': typeof ApiMcpServerRoute
   '/api/auth/$': typeof ApiAuthSplatServerRoute
 }
 export interface FileServerRouteTypes {
   fileServerRoutesByFullPath: FileServerRoutesByFullPath
-  fullPaths: '/.well-known/openid-configuration' | '/api/mcp' | '/api/auth/$'
+  fullPaths:
+    | '/sitemap.xml'
+    | '/.well-known/openid-configuration'
+    | '/api/mcp'
+    | '/api/auth/$'
   fileServerRoutesByTo: FileServerRoutesByTo
-  to: '/.well-known/openid-configuration' | '/api/mcp' | '/api/auth/$'
+  to:
+    | '/sitemap.xml'
+    | '/.well-known/openid-configuration'
+    | '/api/mcp'
+    | '/api/auth/$'
   id:
     | '__root__'
+    | '/sitemap.xml'
     | '/.well-known/openid-configuration'
     | '/api/mcp'
     | '/api/auth/$'
   fileServerRoutesById: FileServerRoutesById
 }
 export interface RootServerRouteChildren {
+  SitemapDotxmlServerRoute: typeof SitemapDotxmlServerRoute
   DotwellKnownOpenidConfigurationServerRoute: typeof DotwellKnownOpenidConfigurationServerRoute
   ApiMcpServerRoute: typeof ApiMcpServerRoute
   ApiAuthSplatServerRoute: typeof ApiAuthSplatServerRoute
@@ -333,6 +352,13 @@ declare module '@tanstack/react-router' {
 }
 declare module '@tanstack/react-start/server' {
   interface ServerFileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlServerRouteImport
+      parentRoute: typeof rootServerRouteImport
+    }
     '/api/mcp': {
       id: '/api/mcp'
       path: '/api/mcp'
@@ -375,6 +401,7 @@ export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
 const rootServerRouteChildren: RootServerRouteChildren = {
+  SitemapDotxmlServerRoute: SitemapDotxmlServerRoute,
   DotwellKnownOpenidConfigurationServerRoute:
     DotwellKnownOpenidConfigurationServerRoute,
   ApiMcpServerRoute: ApiMcpServerRoute,

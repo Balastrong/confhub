@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start"
-import { and, eq, sql } from "drizzle-orm"
+import { and, eq, sql, desc } from "drizzle-orm"
 import { db } from "~/lib/db"
-import { eventRsvpTable } from "~/lib/db/schema"
+import { eventRsvpTable, eventTable } from "~/lib/db/schema"
 import { GetRsvpSchema, UpsertRsvpSchema } from "./event-rsvp.schema"
 import { userRequiredMiddleware, userMiddleware } from "./auth.api"
 
@@ -105,4 +105,35 @@ export const getEventRsvpCounts = createServerFn()
     }
 
     return counts
+  })
+
+export const getMyRsvpEvents = createServerFn()
+  .middleware([userRequiredMiddleware])
+  .handler(async ({ context: { userSession } }) => {
+    const rows = await db
+      .select({
+        id: eventTable.id,
+        slug: eventTable.slug,
+        name: eventTable.name,
+        description: eventTable.description,
+        date: eventTable.date,
+        dateEnd: eventTable.dateEnd,
+        eventUrl: eventTable.eventUrl,
+        cfpUrl: eventTable.cfpUrl,
+        cfpClosingDate: eventTable.cfpClosingDate,
+        mode: eventTable.mode,
+        city: eventTable.city,
+        country: eventTable.country,
+        tags: eventTable.tags,
+        draft: eventTable.draft,
+        communityId: eventTable.communityId,
+        rsvpStatus: eventRsvpTable.status,
+        rsvpCreatedAt: eventRsvpTable.createdAt,
+      })
+      .from(eventRsvpTable)
+      .innerJoin(eventTable, eq(eventRsvpTable.eventId, eventTable.id))
+      .where(eq(eventRsvpTable.userId, userSession.user.id))
+      .orderBy(desc(eventRsvpTable.createdAt))
+
+    return rows
   })

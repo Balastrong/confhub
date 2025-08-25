@@ -14,11 +14,10 @@ import {
 
 type Props = {
   event: FullEvent
+  highlightedTags?: string[]
 }
 
-export const EventCard = ({ event }: Props) => {
-  const { tags = [] } = getRouteApi("/").useSearch()
-
+export const EventCard = ({ event, highlightedTags = [] }: Props) => {
   return (
     <Link
       to="/events/$eventSlug"
@@ -110,7 +109,7 @@ export const EventCard = ({ event }: Props) => {
             {event.tags?.map((tag) => (
               <Badge
                 key={tag}
-                variant={tags.includes(tag) ? "default" : "outline"}
+                variant={highlightedTags.includes(tag) ? "default" : "outline"}
                 className="capitalize mb-1 text-xs"
               >
                 {tag}

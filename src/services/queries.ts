@@ -134,14 +134,12 @@ export const rsvpQueries = {
       queryKey: [...rsvpQueries.all, "myRsvp", eventId],
       queryFn: () => getMyRsvpForEvent({ data: { eventId } }),
       enabled: !isNaN(eventId) && !!eventId,
-      staleTime: 2_000,
     }),
   counts: (eventId: number) =>
     queryOptions({
       queryKey: [...rsvpQueries.all, "counts", eventId],
       queryFn: () => getEventRsvpCounts({ data: { eventId } }),
       enabled: !isNaN(eventId) && !!eventId,
-      staleTime: 2_000,
     }),
   myEvents: () =>
     queryOptions({
@@ -156,60 +154,6 @@ export const useUpsertRsvpMutation = (eventId: number) => {
   return useMutation({
     mutationFn: (payload: { data: UpsertRsvp }) =>
       upsertMyRsvpForEvent(payload),
-    onMutate: async (payload) => {
-      await queryClient.cancelQueries({
-        queryKey: [...rsvpQueries.all, "myRsvp", eventId],
-      })
-      await queryClient.cancelQueries({
-        queryKey: [...rsvpQueries.all, "counts", eventId],
-      })
-
-      const prevMy = queryClient.getQueryData([
-        ...rsvpQueries.all,
-        "myRsvp",
-        eventId,
-      ] as const) as { status: "going" | "interested" | "not_going" } | null
-      const prevCounts = queryClient.getQueryData([
-        ...rsvpQueries.all,
-        "counts",
-        eventId,
-      ] as const) as
-        | { going: number; interested: number; not_going: number }
-        | undefined
-
-      if (prevCounts) {
-        const next = { ...prevCounts }
-        const nextStatus = payload.data.status
-        const prevStatus = prevMy?.status
-        if (prevStatus && prevStatus !== nextStatus) {
-          next[prevStatus] = Math.max(0, next[prevStatus] - 1)
-        }
-        next[nextStatus] =
-          (next[nextStatus] ?? 0) + (prevStatus === nextStatus ? 0 : 1)
-        queryClient.setQueryData([...rsvpQueries.all, "counts", eventId], next)
-      }
-
-      queryClient.setQueryData([...rsvpQueries.all, "myRsvp", eventId], {
-        status: payload.data.status,
-      })
-
-      return { prevMy, prevCounts }
-    },
-    onError: (_err, _payload, ctx) => {
-      if (!ctx) return
-      if (ctx.prevMy !== undefined) {
-        queryClient.setQueryData(
-          [...rsvpQueries.all, "myRsvp", eventId],
-          ctx.prevMy,
-        )
-      }
-      if (ctx.prevCounts !== undefined) {
-        queryClient.setQueryData(
-          [...rsvpQueries.all, "counts", eventId],
-          ctx.prevCounts,
-        )
-      }
-    },
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [...rsvpQueries.all, "myRsvp", eventId],
@@ -226,46 +170,6 @@ export const useRemoveRsvpMutation = (eventId: number) => {
   return useMutation({
     mutationFn: (payload: { data: { eventId: number } }) =>
       removeMyRsvpForEvent(payload),
-    onMutate: async () => {
-      await queryClient.cancelQueries({
-        queryKey: [...rsvpQueries.all, "myRsvp", eventId],
-      })
-      await queryClient.cancelQueries({
-        queryKey: [...rsvpQueries.all, "counts", eventId],
-      })
-      const prevMy = queryClient.getQueryData([
-        ...rsvpQueries.all,
-        "myRsvp",
-        eventId,
-      ] as const) as { status: "going" | "interested" | "not_going" } | null
-      const prevCounts = queryClient.getQueryData([
-        ...rsvpQueries.all,
-        "counts",
-        eventId,
-      ] as const) as
-        | { going: number; interested: number; not_going: number }
-        | undefined
-      if (prevCounts && prevMy?.status) {
-        const next = { ...prevCounts }
-        next[prevMy.status] = Math.max(0, next[prevMy.status] - 1)
-        queryClient.setQueryData([...rsvpQueries.all, "counts", eventId], next)
-      }
-      queryClient.setQueryData([...rsvpQueries.all, "myRsvp", eventId], null)
-      return { prevMy, prevCounts }
-    },
-    onError: (_err, _payload, ctx) => {
-      if (!ctx) return
-      queryClient.setQueryData(
-        [...rsvpQueries.all, "myRsvp", eventId],
-        ctx.prevMy,
-      )
-      if (ctx.prevCounts !== undefined) {
-        queryClient.setQueryData(
-          [...rsvpQueries.all, "counts", eventId],
-          ctx.prevCounts,
-        )
-      }
-    },
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [...rsvpQueries.all, "myRsvp", eventId],

@@ -1,4 +1,8 @@
-import { createFileRoute, ErrorComponent } from "@tanstack/react-router"
+import {
+  createFileRoute,
+  ErrorComponent,
+  redirect,
+} from "@tanstack/react-router"
 import { useSuspenseQuery } from "@tanstack/react-query"
 import React from "react"
 import { ErrorBoundary } from "react-error-boundary"
@@ -6,16 +10,21 @@ import { EventCard } from "src/components/event/event-card"
 import { EventCardSkeleton } from "src/components/event/event-card-skeleton"
 import { Layout } from "src/components/layout"
 import { Badge } from "src/components/ui/badge"
-import { Card, CardContent, CardHeader, CardTitle } from "src/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "src/components/ui/card"
 import { rsvpQueries } from "src/services/queries"
 
 export const Route = createFileRoute("/my-events")({
   beforeLoad: ({ context }) => {
     // Ensure user is logged in - this will redirect if not
     if (!context.userSession) {
-      throw new Error("You must be logged in to view your events")
+      throw redirect({ to: "/" })
     }
-    
+
     // Pre-load the user's RSVP events
     context.queryClient.ensureQueryData(rsvpQueries.myEvents())
   },
@@ -35,7 +44,7 @@ function MyEvents() {
           Events you've RSVP'd to
         </p>
       </div>
-      
+
       <ErrorBoundary
         fallbackRender={(props) => <ErrorComponent error={props.error} />}
       >
@@ -66,7 +75,8 @@ function MyEventsList() {
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground">
-            You haven't RSVP'd to any events yet. Browse events and RSVP to see them here!
+            You haven't RSVP'd to any events yet. Browse events and RSVP to see
+            them here!
           </p>
         </CardContent>
       </Card>
@@ -76,7 +86,6 @@ function MyEventsList() {
   return (
     <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
       {rsvpEvents.map((rsvpEvent) => {
-        // Transform the joined data to match the FullEvent type expected by EventCard
         const event = {
           id: rsvpEvent.id,
           slug: rsvpEvent.slug,
@@ -100,13 +109,13 @@ function MyEventsList() {
             <EventCard event={event} />
             {/* Add RSVP status badge */}
             <div className="absolute top-3 right-3">
-              <Badge 
+              <Badge
                 variant={
-                  rsvpEvent.rsvpStatus === "going" 
-                    ? "default" 
-                    : rsvpEvent.rsvpStatus === "interested" 
-                    ? "secondary" 
-                    : "outline"
+                  rsvpEvent.rsvpStatus === "going"
+                    ? "default"
+                    : rsvpEvent.rsvpStatus === "interested"
+                      ? "secondary"
+                      : "outline"
                 }
                 className="capitalize"
               >

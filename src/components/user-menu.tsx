@@ -59,6 +59,13 @@ export function UserMenu() {
         >
           Profile
         </ItemLink>
+        <ItemLink
+          className="cursor-pointer"
+          to="/my-events"
+          onClick={() => setOpen(false)}
+        >
+          My Events
+        </ItemLink>
         <DropdownMenuSeparator />
         <DropdownMenuItem
           className="text-red-600 cursor-pointer"

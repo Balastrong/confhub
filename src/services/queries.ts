@@ -21,6 +21,7 @@ import {
   getEventRsvpCounts,
   removeMyRsvpForEvent,
   upsertMyRsvpForEvent,
+  getMyRsvpEvents,
 } from "./event-rsvp.api"
 import { UpsertRsvp } from "./event-rsvp.schema"
 
@@ -141,6 +142,12 @@ export const rsvpQueries = {
       queryFn: () => getEventRsvpCounts({ data: { eventId } }),
       enabled: !isNaN(eventId) && !!eventId,
       staleTime: 2_000,
+    }),
+  myEvents: () =>
+    queryOptions({
+      queryKey: [...rsvpQueries.all, "myEvents"],
+      queryFn: () => getMyRsvpEvents(),
+      staleTime: 10_000,
     }),
 }
 

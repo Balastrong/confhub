@@ -1,1 +1,0 @@
-ALTER TABLE "communities" ADD COLUMN "logo_url" text;

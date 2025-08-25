@@ -20,12 +20,12 @@ What you can do:
 
 ConfHub is a web app built with TanStack Start, Vite, and React, featuring authentication, event submissions, RSVPs, comments, and powerful filters.
 
-ConfHub runs server-side on the edge (Netlify Edge target) and uses Neon serverless Postgres with Drizzle ORM for a fast, modern developer experience.
+ConfHub runs server-side on the edge (Netlify Edge target) and uses PostgreSQL with Drizzle ORM for a fast, modern developer experience.
 
 - Powered by TanStack: Start, Router, Query, Form
 - React 19, Vite and TypeScript end-to-end
 - UI: Tailwind CSS v4, Radix UI primitives, and lucide-react
-- Data: Neon serverless Postgres + Drizzle ORM; local dev via Docker
+- Data: PostgreSQL + Drizzle ORM; local dev via Docker
 - Auth: Better Auth (email/password + GitHub OAuth)
 - Features: event submissions, RSVPs, comments, communities, and filtering by tags/country/mode
 
@@ -54,20 +54,20 @@ cp .env.example .env.local
 
 Minimum required:
 
-- `DATABASE_URL` — connection string used by Neon HTTP driver (local example provided)
+- `DATABASE_URL` — PostgreSQL connection string (see `.env.example` for local)
 - `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` — for GitHub OAuth (Better Auth)
 
 You can also add `.env.production.local` for production (Netlify) or set variables in the Netlify UI.
 
 ### 3) Start the database (local)
 
-This repo includes a local Postgres and a Neon HTTP proxy so the Neon driver works locally:
+This repo includes a local Postgres via Docker:
 
 ```bash
 docker compose up -d
 ```
 
-Ensure `DATABASE_URL` in your `.env.local` uses the host `db.localtest.me` (see `.env.example`).
+Ensure `DATABASE_URL` in your `.env.local` uses `localhost:5432` (see `.env.example`).
 
 ### 4) Create/migrate the database
 
@@ -116,8 +116,8 @@ There’s also a helper instruction at `.github/instructions/import-event.instru
 Server code reads variables via `process.env`. Minimum set:
 
 - `DATABASE_URL` —
-  - Local example (Docker + Neon proxy): `postgres://postgres:postgres@db.localtest.me/main`
-  - Production: use your Neon-provided connection string
+  - Local example (Docker): `postgresql://postgres:postgres@localhost:5432/main`
+  - Production: use your managed Postgres connection string (e.g., Supabase, RDS, Render)
 - `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` — GitHub OAuth for Better Auth
 - Optional: `LOG_DEBUG=1` to enable extra logs in development
 

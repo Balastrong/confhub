@@ -1,1 +1,0 @@
-ALTER TABLE "communities" ADD COLUMN "verified" boolean DEFAULT false NOT NULL;

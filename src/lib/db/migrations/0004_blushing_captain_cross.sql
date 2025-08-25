@@ -1,1 +1,0 @@
-CREATE TYPE "public"."eventMode" AS ENUM('in-person', 'online', 'hybrid');

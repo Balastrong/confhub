@@ -27,8 +27,10 @@ function RouteComponent() {
       <Card className="w-full">
         <CardHeader>
           <CardTitle>Welcome back</CardTitle>
-          <CardDescription>Sign in with GitHub or your email.</CardDescription>
-          <div className="mt-2">
+          <CardDescription>
+            Sign in with Google, GitHub, or your email.
+          </CardDescription>
+          <div className="my-2">
             <AuthSwitcher mode="sign-in" />
           </div>
         </CardHeader>

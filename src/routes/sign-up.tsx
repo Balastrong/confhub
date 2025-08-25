@@ -28,9 +28,9 @@ function RouteComponent() {
         <CardHeader>
           <CardTitle>Create your account</CardTitle>
           <CardDescription>
-            Join the community. Use a social account or your email.
+            Join the community. Use Google, GitHub, or your email.
           </CardDescription>
-          <div className="mt-2">
+          <div className="my-2">
             <AuthSwitcher mode="sign-up" />
           </div>
         </CardHeader>

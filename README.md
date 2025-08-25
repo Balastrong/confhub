@@ -55,7 +55,14 @@ cp .env.example .env.local
 Minimum required:
 
 - `DATABASE_URL` — PostgreSQL connection string (see `.env.example` for local)
-- `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` — for GitHub OAuth (Better Auth)
+- OAuth (Better Auth):
+  - `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`
+  - `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`
+
+Google OAuth notes:
+
+- Authorized redirect URI should point to your app domain with the auth endpoint, e.g. `http://localhost:3000/api/auth/callback/google` for local dev and `https://YOUR_DOMAIN/api/auth/callback/google` in production.
+- Create credentials in Google Cloud Console (OAuth 2.0 Client ID) for a Web application and add both local and production redirect URIs.
 
 You can also add `.env.production.local` for production (Netlify) or set variables in the Netlify UI.
 
@@ -119,6 +126,7 @@ Server code reads variables via `process.env`. Minimum set:
   - Local example (Docker): `postgresql://postgres:postgres@localhost:5432/main`
   - Production: use your managed Postgres connection string (e.g., Supabase, RDS, Render)
 - `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` — GitHub OAuth for Better Auth
+- `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` — Google OAuth for Better Auth
 - Optional: `LOG_DEBUG=1` to enable extra logs in development
 
 Use `.env.local` for development and `.env.production.local` (or Netlify env) for production.

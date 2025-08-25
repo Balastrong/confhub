@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@tanstack/start-plugin-core@1.131.27':
+    hash: nbopa2udd4so5zubsqmvicezz4
+    path: patches/@tanstack__start-plugin-core@1.131.27.patch
+
 importers:
 
   .:
@@ -6184,7 +6189,7 @@ snapshots:
 
   '@tanstack/react-start-plugin@1.131.27(@netlify/blobs@10.0.8)(@tanstack/react-router@1.131.27(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(@vitejs/plugin-react@4.7.0(vite@6.3.5(@types/node@24.3.0)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.43.1)(tsx@4.20.4)(yaml@2.8.1)))(drizzle-orm@0.43.1(@neondatabase/serverless@1.0.1)(@types/pg@8.15.5)(kysely@0.28.5)(pg@8.16.3)(postgres@3.4.7))(vite@6.3.5(@types/node@24.3.0)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.43.1)(tsx@4.20.4)(yaml@2.8.1))':
     dependencies:
-      '@tanstack/start-plugin-core': 1.131.27(@netlify/blobs@10.0.8)(@tanstack/react-router@1.131.27(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(drizzle-orm@0.43.1(@neondatabase/serverless@1.0.1)(@types/pg@8.15.5)(kysely@0.28.5)(pg@8.16.3)(postgres@3.4.7))(vite@6.3.5(@types/node@24.3.0)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.43.1)(tsx@4.20.4)(yaml@2.8.1))
+      '@tanstack/start-plugin-core': 1.131.27(patch_hash=nbopa2udd4so5zubsqmvicezz4)(@netlify/blobs@10.0.8)(@tanstack/react-router@1.131.27(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(drizzle-orm@0.43.1(@neondatabase/serverless@1.0.1)(@types/pg@8.15.5)(kysely@0.28.5)(pg@8.16.3)(postgres@3.4.7))(vite@6.3.5(@types/node@24.3.0)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.43.1)(tsx@4.20.4)(yaml@2.8.1))
       '@vitejs/plugin-react': 4.7.0(vite@6.3.5(@types/node@24.3.0)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.43.1)(tsx@4.20.4)(yaml@2.8.1))
       pathe: 2.0.3
       vite: 6.3.5(@types/node@24.3.0)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.43.1)(tsx@4.20.4)(yaml@2.8.1)
@@ -6373,7 +6378,7 @@ snapshots:
       tiny-invariant: 1.3.3
       tiny-warning: 1.0.3
 
-  '@tanstack/start-plugin-core@1.131.27(@netlify/blobs@10.0.8)(@tanstack/react-router@1.131.27(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(drizzle-orm@0.43.1(@neondatabase/serverless@1.0.1)(@types/pg@8.15.5)(kysely@0.28.5)(pg@8.16.3)(postgres@3.4.7))(vite@6.3.5(@types/node@24.3.0)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.43.1)(tsx@4.20.4)(yaml@2.8.1))':
+  '@tanstack/start-plugin-core@1.131.27(patch_hash=nbopa2udd4so5zubsqmvicezz4)(@netlify/blobs@10.0.8)(@tanstack/react-router@1.131.27(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(drizzle-orm@0.43.1(@neondatabase/serverless@1.0.1)(@types/pg@8.15.5)(kysely@0.28.5)(pg@8.16.3)(postgres@3.4.7))(vite@6.3.5(@types/node@24.3.0)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.43.1)(tsx@4.20.4)(yaml@2.8.1))':
     dependencies:
       '@babel/code-frame': 7.26.2
       '@babel/core': 7.28.3

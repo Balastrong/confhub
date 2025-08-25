@@ -1,0 +1,36 @@
+diff --git a/dist/cjs/nitro-plugin/plugin.cjs b/dist/cjs/nitro-plugin/plugin.cjs
+index 3af751a59abe27b665d3cb7a2e53a1ca4369090c..8fc8b18ba574b16dfb4913d1fc206cd34c5b4e70 100644
+--- a/dist/cjs/nitro-plugin/plugin.cjs
++++ b/dist/cjs/nitro-plugin/plugin.cjs
+@@ -74,6 +74,7 @@ function nitroPlugin(options, getSsrBundle) {
+                 imports: false,
+                 // unjs/unimport for global/magic imports
+                 rollupConfig: {
++                external: ['postgres'],
+                   plugins: [virtualBundlePlugin(getSsrBundle())]
+                 },
+                 virtual: {
+diff --git a/dist/esm/nitro-plugin/plugin.js b/dist/esm/nitro-plugin/plugin.js
+index 85d0e8695e21e4d277d761f0bc514e4f8bec2723..d6d9d78c85bbf642bfe219eef44b82f5c1c3d141 100644
+--- a/dist/esm/nitro-plugin/plugin.js
++++ b/dist/esm/nitro-plugin/plugin.js
+@@ -72,6 +72,7 @@ function nitroPlugin(options, getSsrBundle) {
+                 imports: false,
+                 // unjs/unimport for global/magic imports
+                 rollupConfig: {
++                external: ['postgres'],
+                   plugins: [virtualBundlePlugin(getSsrBundle())]
+                 },
+                 virtual: {
+diff --git a/src/nitro-plugin/plugin.ts b/src/nitro-plugin/plugin.ts
+index a753416426d9bdc609e2f4eb0aae5f530a6a3604..538e8ef30633002c24335dd6d4d7e774aefd8030 100644
+--- a/src/nitro-plugin/plugin.ts
++++ b/src/nitro-plugin/plugin.ts
+@@ -95,6 +95,7 @@ export function nitroPlugin(
+                 scanDirs: [],
+                 imports: false, // unjs/unimport for global/magic imports
+                 rollupConfig: {
++					external: ["postgres"],
+                   plugins: [virtualBundlePlugin(getSsrBundle())],
+                 },
+                 virtual: {

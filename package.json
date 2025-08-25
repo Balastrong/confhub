@@ -78,5 +78,10 @@
     "typescript": "^5.9.2",
     "vite-tsconfig-paths": "^5.1.4"
   },
-  "packageManager": "pnpm@8.15.1+sha1.8adba2d20330c02d3856e18c4eb3819d1d3ca6aa"
+  "packageManager": "pnpm@8.15.1+sha1.8adba2d20330c02d3856e18c4eb3819d1d3ca6aa",
+  "pnpm": {
+    "patchedDependencies": {
+      "@tanstack/start-plugin-core@1.131.27": "patches/@tanstack__start-plugin-core@1.131.27.patch"
+    }
+  }
 }

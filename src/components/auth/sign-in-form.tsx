@@ -44,7 +44,7 @@ export const SignInForm = () => {
 
   return (
     <form
-      className="flex flex-col gap-2 w-full"
+      className="flex flex-col gap-3 w-full"
       onSubmit={(e) => {
         e.preventDefault()
         form.handleSubmit()
@@ -53,17 +53,29 @@ export const SignInForm = () => {
       <form.AppField
         name="email"
         children={(field) => (
-          <field.TextField label="Email" required type="email" />
+          <field.TextField
+            label="Email"
+            required
+            type="email"
+            placeholder="you@example.com"
+            autoComplete="email"
+          />
         )}
       />
       <form.AppField
         name="password"
         children={(field) => (
-          <field.TextField label="Password" required type="password" />
+          <field.TextField
+            label="Password"
+            required
+            type="password"
+            autoComplete="current-password"
+            withPasswordToggle
+          />
         )}
       />
       <form.AppForm>
-        <form.SubmitButton label="Sign In" />
+        <form.SubmitButton label="Sign in" className="w-full mt-2" />
       </form.AppForm>
     </form>
   )

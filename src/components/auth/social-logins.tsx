@@ -1,5 +1,5 @@
-import { useMutation } from "@tanstack/react-query"
 import { GitHubLogoIcon } from "@radix-ui/react-icons"
+import { useMutation } from "@tanstack/react-query"
 import { toast } from "sonner"
 import { authClient } from "~/lib/auth/client"
 import { Button } from "../ui/button"
@@ -25,7 +25,8 @@ export const SocialLogins = () => {
   return (
     <Button
       type="button"
-      variant="outline"
+      variant="secondary"
+      size="lg"
       className="w-full"
       onClick={() => githubSignInMutation.mutate()}
       disabled={githubSignInMutation.isPending}

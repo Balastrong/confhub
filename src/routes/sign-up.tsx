@@ -1,8 +1,16 @@
-import { Link, redirect, createFileRoute } from "@tanstack/react-router"
-import { Layout } from "src/components/layout"
+import { createFileRoute, Link, redirect } from "@tanstack/react-router"
 import { SignUpForm } from "src/components/auth/sign-up-form"
 import { SocialLogins } from "src/components/auth/social-logins"
+import { Layout } from "src/components/layout"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "src/components/ui/card"
 import { Separator } from "src/components/ui/separator"
+import { AuthSwitcher } from "src/components/auth/auth-switcher"
 
 export const Route = createFileRoute("/sign-up")({
   component: RouteComponent,
@@ -15,27 +23,30 @@ export const Route = createFileRoute("/sign-up")({
 
 function RouteComponent() {
   return (
-    <Layout className="items-center gap-2 max-w-md">
-      <div className="flex flex-col gap-4 w-full">
-        <SocialLogins />
-
-        <div className="relative">
-          <Separator />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="bg-background px-2 text-muted-foreground text-sm">
-              or
-            </span>
+    <Layout className="items-center gap-6 max-w-md">
+      <Card className="w-full">
+        <CardHeader>
+          <CardTitle>Create your account</CardTitle>
+          <CardDescription>
+            Join the community. Use a social account or your email.
+          </CardDescription>
+          <div className="mt-2">
+            <AuthSwitcher mode="sign-up" />
           </div>
-        </div>
-
-        <SignUpForm />
-      </div>
-      <small>
-        <Link to="/sign-in" className="group">
-          Do you already have an account?{" "}
-          <span className="underline group-hover:no-underline">Sign In</span>
-        </Link>
-      </small>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-4">
+          <SocialLogins />
+          <div className="relative">
+            <Separator />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="bg-background px-2 text-muted-foreground text-xs uppercase tracking-wide">
+                or
+              </span>
+            </div>
+          </div>
+          <SignUpForm />
+        </CardContent>
+      </Card>
     </Layout>
   )
 }

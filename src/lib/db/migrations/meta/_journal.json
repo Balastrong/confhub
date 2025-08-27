@@ -15,6 +15,13 @@
       "when": 1756284818264,
       "tag": "0001_pink_scream",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1756305071311,
+      "tag": "0002_overrated_the_twelve",
+      "breakpoints": true
     }
   ]
 }

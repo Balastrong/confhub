@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/react-start"
 import z from "zod"
 import { EventFiltersSchema } from "./event.schema"
 import { userRequiredMiddleware } from "./auth.api"
+import { createRateLimitMiddleware } from "./rate-limit.middleware"
 import OpenAI from "openai"
 import { getTags } from "./tags.api"
 import { getCountries } from "./countries.api"
@@ -12,11 +13,22 @@ const model = "openai/gpt-4.1-nano"
 
 export const generateFiltersSchema = createServerFn({ method: "POST" })
   .validator(z.string())
-  .middleware([userRequiredMiddleware])
+  .middleware([
+    userRequiredMiddleware,
+    createRateLimitMiddleware({
+      key: ({ userId }) => `ai:generateFiltersSchema:${userId}`,
+      windows: [
+        { name: "min", limit: 5, windowSec: 60 },
+        { name: "day", limit: 15, windowSec: 60 * 60 * 24 },
+      ],
+    }),
+  ])
   .handler(async ({ data }) => {
-    // TODO Count/Rate limit user
-
     const client = new OpenAI({ baseURL: endpoint, apiKey: token })
+
+    console.log("Done")
+
+    return {} as any
 
     const tags = await getTags()
     const countries = await getCountries()

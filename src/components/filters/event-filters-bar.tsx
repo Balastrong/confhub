@@ -1,4 +1,5 @@
 import { format } from "date-fns"
+import { useState } from "react"
 import { CalendarIcon, FilterIcon, X } from "lucide-react"
 import { getEventModeConfig } from "src/lib/event-modes"
 import { EventFilters, EventModes } from "src/services/event.schema"
@@ -35,6 +36,9 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
   const { query, setQuery, toggleArrayItem, toggleBooleanItem, setFilter } =
     useEventFilters(filters, onSetFilters)
 
+  // Natural language filter (local for now; wiring to API will come later)
+  const [naturalQuery, setNaturalQuery] = useState("")
+
   // Count active filters
   const activeFiltersCount = [
     !!filters.query,
@@ -48,6 +52,7 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
   const clearFilters = () => {
     onSetFilters({})
     setQuery("")
+    setNaturalQuery("")
   }
 
   return (
@@ -88,6 +93,31 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
           </AccordionTrigger>
           <AccordionContent className="pt-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
+              {/* Natural language filter */}
+              <div className="space-y-2 md:col-span-2 lg:col-span-3">
+                <div className="flex items-end justify-between">
+                  <Label htmlFor="nl-filter" className="font-medium">
+                    Natural language filter
+                  </Label>
+                  {naturalQuery && (
+                    <ClearButton
+                      onClick={() => setNaturalQuery("")}
+                      aria-label="Clear natural language filter"
+                    />
+                  )}
+                </div>
+                <Input
+                  id="nl-filter"
+                  placeholder="Describe what you're looking for (e.g., 'React conferences in Europe next month')"
+                  value={naturalQuery}
+                  onChange={(event) => setNaturalQuery(event.target.value)}
+                  className="w-full"
+                  aria-describedby="nl-filter-hint"
+                />
+                <p id="nl-filter-hint" className="sr-only">
+                  Enter a natural language description of the events you want to find
+                </p>
+              </div>
               {/* Name filter */}
               <div className="space-y-2">
                 <div className="flex items-end justify-between">

@@ -48,8 +48,6 @@ Today is ${new Date().toISOString()}.`
     })
 
     const aiSchema = response.choices[0].message.content
-    console.log("System Prompt:", systemPrompt)
-    console.log("AI Schema:", aiSchema)
 
     return EventFiltersSchema.parse(JSON.parse(aiSchema!))
   })

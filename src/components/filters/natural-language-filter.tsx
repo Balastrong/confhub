@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useMutation } from "@tanstack/react-query"
 import { Send, X } from "lucide-react"
 import { toast } from "sonner"
 import { Button } from "~/components/ui/button"
@@ -19,15 +20,19 @@ export function NaturalLanguageFilter({
   className,
 }: Props) {
   const [naturalQuery, setNaturalQuery] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
+  const queryInput = naturalQuery.trim()
+
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: generateFiltersSchema,
+  })
 
   const onSendNaturalQuery = async () => {
-    const trimmed = naturalQuery.trim()
-    if (!trimmed || isLoading) return
+    if (!queryInput || isPending) return
 
     try {
-      setIsLoading(true)
-      const aiFilters = await generateFiltersSchema({ data: trimmed })
+      const aiFilters = await mutateAsync({ data: queryInput })
+      if (!aiFilters) return
+
       onApplyFilters(aiFilters)
       if (aiFilters.query && onUpdateQuery) {
         onUpdateQuery(aiFilters.query)
@@ -37,8 +42,6 @@ export function NaturalLanguageFilter({
         "Failed to generate filters from natural language input. Please try again.",
       )
       console.error("Error generating filters from natural query:", error)
-    } finally {
-      setIsLoading(false)
     }
   }
 
@@ -80,7 +83,7 @@ export function NaturalLanguageFilter({
             type="button"
             className="h-10"
             onClick={onSendNaturalQuery}
-            disabled={!naturalQuery.trim() || isLoading}
+            disabled={!queryInput || isPending}
             aria-label="Send natural language filter"
             title="Send"
           >

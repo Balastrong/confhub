@@ -55,6 +55,7 @@ function RouteComponent() {
       ...filters,
       startDate: formatDate(firstSunday),
       endDate: formatDate(lastSaturday),
+      limit: 100,
     }),
     select: (data) =>
       data

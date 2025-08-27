@@ -1,4 +1,5 @@
-import { getRouteApi, Link } from "@tanstack/react-router"
+import { Link } from "@tanstack/react-router"
+import { ExternalLink } from "lucide-react"
 import { formatDate } from "src/lib/date"
 import { getEventModeConfig } from "src/lib/event-modes"
 import { FullEvent } from "src/services/event.schema"
@@ -22,14 +23,14 @@ export const EventCard = ({ event, highlightedTags = [] }: Props) => {
     <Link
       to="/events/$eventSlug"
       params={{ eventSlug: event.slug }}
-      className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-lg"
+      className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-xl"
     >
-      <Card className="h-full flex flex-col transition duration-200 ease-out hover:bg-card/60 hover:shadow-md hover:-translate-y-0.5 focus-visible:shadow-md will-change-transform rounded-lg">
+      <Card className="relative h-full flex flex-col rounded-xl border border-border/60 bg-card/95 transition-transform duration-300 ease-out hover:shadow-lg hover:-translate-y-1 hover:scale-[1.01] focus-visible:shadow-lg will-change-[transform,box-shadow] before:content-[''] before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-br before:from-primary/10 before:to-transparent before:opacity-0 group-hover:before:opacity-100 before:transition-opacity before:pointer-events-none">
         <CardHeader className="pb-3">
-          <CardTitle className="text-lg sm:text-xl leading-snug">
+          <CardTitle className="text-lg sm:text-xl leading-snug transition-colors group-hover:text-foreground">
             {event.name}
           </CardTitle>
-          <CardDescription className="text-xs sm:text-sm">
+          <CardDescription className="text-xs sm:text-sm text-muted-foreground">
             {event.date ? (
               <>
                 {formatDate(new Date(event.date))}
@@ -41,7 +42,7 @@ export const EventCard = ({ event, highlightedTags = [] }: Props) => {
         </CardHeader>
         <CardContent className="flex-1 pt-0 pb-3">
           <div className="space-y-2">
-            <div className="flex flex-wrap items-center gap-2 text-sm">
+            <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
               {event.city && event.country && (
                 <span className="shrink-0">
                   {`${event.city}, ${event.country}`}
@@ -50,7 +51,7 @@ export const EventCard = ({ event, highlightedTags = [] }: Props) => {
               {event.mode && (
                 <Badge
                   variant="secondary"
-                  className="text-[10px] uppercase tracking-wide flex items-center gap-1 py-0.5"
+                  className="text-[10px] uppercase tracking-wide flex items-center gap-1 py-0.5 transition-colors group-hover:bg-muted"
                 >
                   {(() => {
                     const modeConfig = getEventModeConfig(event.mode)
@@ -85,10 +86,11 @@ export const EventCard = ({ event, highlightedTags = [] }: Props) => {
                     ? ` – closes ${event.cfpClosingDate}`
                     : ""
                 }`}
-                className="text-blue-500 hover:underline underline-offset-2 p-0 m-0 bg-transparent border-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-400 rounded"
+                className="inline-flex items-center gap-1 rounded-full border border-primary/20 bg-muted/30 px-2 py-0.5 text-xs font-medium text-foreground/90 hover:bg-muted/60 hover:border-primary/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
                 data-analytics="event-cfp-link"
               >
-                Call for Paper{" "}
+                Call for Papers
+                <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
                 {event.cfpClosingDate ? (
                   <span
                     className={
@@ -110,7 +112,7 @@ export const EventCard = ({ event, highlightedTags = [] }: Props) => {
               <Badge
                 key={tag}
                 variant={highlightedTags.includes(tag) ? "default" : "outline"}
-                className="capitalize mb-1 text-xs"
+                className="capitalize mb-1 text-xs transition-colors group-hover:bg-muted/40"
               >
                 {tag}
               </Badge>

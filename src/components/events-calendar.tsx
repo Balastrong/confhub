@@ -1,20 +1,19 @@
+import { Link } from "@tanstack/react-router"
 import {
   Calendar,
   ChevronLeft,
   ChevronRight,
   Clock,
-  ExternalLink,
   Loader2,
   MapPin,
-  Plus,
+  Plus
 } from "lucide-react"
-import { Link } from "@tanstack/react-router"
 import { cn, getColorFromName } from "src/lib/utils"
 import { FullEvent } from "src/services/event.schema"
+import { formatDate } from "~/lib/date"
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card"
-import { formatDate } from "~/lib/date"
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
@@ -190,6 +189,12 @@ export const EventsCalendar = ({
     (e) => e.date <= monthEndStr && e.dateEnd >= monthStartStr,
   ).length
 
+  // Determine arrow direction for Today button relative to the actual current month
+  const todayDate = new Date()
+  const currentMonthIndex = currentDate.getFullYear() * 12 + currentDate.getMonth()
+  const todayMonthIndex = todayDate.getFullYear() * 12 + todayDate.getMonth()
+  const monthDelta = currentMonthIndex - todayMonthIndex
+
   return (
     <div className="bg-card rounded-lg shadow-md p-4 border border-border">
       <div className="flex justify-between items-center mb-6">
@@ -247,7 +252,14 @@ export const EventsCalendar = ({
           size="sm"
           className="flex items-center gap-1 border-accent text-accent hover:bg-accent hover:text-accent-foreground"
         >
-          <Calendar className="h-4 w-4 mr-1" />
+          <Calendar className="h-4 w-4" />
+          {monthDelta !== 0 && (
+            monthDelta > 0 ? (
+              <ChevronLeft className="h-4 w-4" />
+            ) : (
+              <ChevronRight className="h-4 w-4" />
+            )
+          )}
           Today
         </Button>
       </div>

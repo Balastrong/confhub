@@ -1,6 +1,6 @@
 import { format } from "date-fns"
 import { useState } from "react"
-import { CalendarIcon, FilterIcon, X } from "lucide-react"
+import { CalendarIcon, FilterIcon, Send, X } from "lucide-react"
 import { getEventModeConfig } from "src/lib/event-modes"
 import { EventFilters, EventModes } from "src/services/event.schema"
 import {
@@ -26,6 +26,8 @@ import { formatDate } from "~/lib/date"
 import { Tags } from "./tags"
 import { useEventFilters } from "./useEventFilters"
 import { CountrySelect } from "./country-select"
+import { generateFiltersSchema } from "~/services/ai.api"
+import { toast } from "sonner"
 
 type Props = {
   filters: EventFilters
@@ -38,6 +40,24 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
 
   // Natural language filter (local for now; wiring to API will come later)
   const [naturalQuery, setNaturalQuery] = useState("")
+
+  const onSendNaturalQuery = async () => {
+    const trimmed = naturalQuery.trim()
+    if (!trimmed) return
+
+    try {
+      const aiFilters = await generateFiltersSchema({ data: trimmed })
+      onSetFilters(aiFilters)
+      if (aiFilters.query) {
+        setQuery(aiFilters.query)
+      }
+    } catch (error) {
+      toast.error(
+        "Failed to generate filters from natural language input. Please try again.",
+      )
+      console.error("Error generating filters from natural query:", error)
+    }
+  }
 
   // Count active filters
   const activeFiltersCount = [
@@ -106,16 +126,35 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                     />
                   )}
                 </div>
-                <Input
-                  id="nl-filter"
-                  placeholder="Describe what you're looking for (e.g., 'React conferences in Europe next month')"
-                  value={naturalQuery}
-                  onChange={(event) => setNaturalQuery(event.target.value)}
-                  className="w-full"
-                  aria-describedby="nl-filter-hint"
-                />
+                <div className="flex gap-2">
+                  <Input
+                    id="nl-filter"
+                    placeholder="Describe what you're looking for (e.g., 'React conferences in Europe next month')"
+                    value={naturalQuery}
+                    onChange={(event) => setNaturalQuery(event.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault()
+                        onSendNaturalQuery()
+                      }
+                    }}
+                    className="w-full"
+                    aria-describedby="nl-filter-hint"
+                  />
+                  <Button
+                    type="button"
+                    className="h-10"
+                    onClick={onSendNaturalQuery}
+                    disabled={!naturalQuery.trim()}
+                    aria-label="Send natural language filter"
+                    title="Send"
+                  >
+                    <Send className="h-4 w-4" />
+                  </Button>
+                </div>
                 <p id="nl-filter-hint" className="sr-only">
-                  Enter a natural language description of the events you want to find
+                  Enter a natural language description of the events you want to
+                  find
                 </p>
               </div>
               {/* Name filter */}

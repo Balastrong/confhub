@@ -7,6 +7,9 @@ import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
 import { generateFiltersSchema } from "~/services/ai.api"
 import type { EventFilters } from "src/services/event.schema"
+import { ButtonLink } from "~/components/button-link"
+import { useAuthentication } from "~/lib/auth/client"
+import { Link } from "@tanstack/react-router"
 
 type Props = {
   onApplyFilters: (newFilters: EventFilters) => void
@@ -19,6 +22,7 @@ export function NaturalLanguageFilter({
   onUpdateQuery,
   className,
 }: Props) {
+  const { isAuthenticated } = useAuthentication()
   const [naturalQuery, setNaturalQuery] = useState("")
   const queryInput = naturalQuery.trim()
 
@@ -27,7 +31,7 @@ export function NaturalLanguageFilter({
   })
 
   const onSendNaturalQuery = async () => {
-    if (!queryInput || isPending) return
+    if (!isAuthenticated || !queryInput || isPending) return
 
     try {
       const aiFilters = await mutateAsync({ data: queryInput })
@@ -52,47 +56,68 @@ export function NaturalLanguageFilter({
           <Label htmlFor="nl-filter" className="font-medium">
             Natural language filter
           </Label>
-          {naturalQuery && (
-            <Button
-              size="sm"
-              variant="ghost"
-              className="h-5 px-2 -mb-2"
-              onClick={() => setNaturalQuery("")}
-              aria-label="Clear natural language filter"
-            >
-              <X className="h-3 w-3" aria-hidden="true" />
-            </Button>
-          )}
         </div>
         <div className="flex gap-2">
-          <Input
-            id="nl-filter"
-            placeholder="Describe what you're looking for (e.g., 'React conferences in Europe next month')"
-            value={naturalQuery}
-            onChange={(event) => setNaturalQuery(event.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                e.preventDefault()
-                onSendNaturalQuery()
+          <div className="relative w-full">
+            <Input
+              id="nl-filter"
+              placeholder={
+                "Describe what you're looking for (e.g., 'React conferences in Italy next month')"
               }
-            }}
-            className="w-full"
-            aria-describedby="nl-filter-hint"
-          />
+              value={naturalQuery}
+              onChange={(event) => setNaturalQuery(event.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault()
+                  onSendNaturalQuery()
+                }
+              }}
+              className="w-full pr-10"
+              aria-describedby="nl-filter-hint"
+              disabled={!isAuthenticated}
+            />
+            {naturalQuery && (
+              <button
+                type="button"
+                className="absolute cursor-pointer inset-y-0 right-2 my-auto flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50"
+                onClick={() => setNaturalQuery("")}
+                aria-label="Clear natural language filter"
+                disabled={!isAuthenticated}
+                title={!isAuthenticated ? "Sign in required" : "Clear"}
+              >
+                <X className="h-4 w-4" aria-hidden="true" />
+              </button>
+            )}
+          </div>
           <Button
             type="button"
             className="h-10"
             onClick={onSendNaturalQuery}
-            disabled={!queryInput || isPending}
+            disabled={!isAuthenticated || !queryInput || isPending}
             aria-label="Send natural language filter"
-            title="Send"
+            title={!isAuthenticated ? "Sign in required" : "Send"}
           >
             <Send className="h-4 w-4" />
           </Button>
         </div>
-        <p id="nl-filter-hint" className="sr-only">
-          Enter a natural language description of the events you want to find
-        </p>
+        {isAuthenticated ? (
+          <p id="nl-filter-hint" className="text-xs text-muted-foreground">
+            This feature is experimental and rate limited to 5 requests per
+            minute, 15 per day
+            <p className="sr-only">
+              Enter a natural language description of the events you want to
+              find
+            </p>
+          </p>
+        ) : (
+          <p id="nl-filter-hint" className="text-xs text-muted-foreground">
+            This feature is only available for logged-in users.{" "}
+            <Link to="/sign-in" className="text-primary hover:underline">
+              Sign in
+            </Link>{" "}
+            to use the natural language filter.
+          </p>
+        )}
       </div>
     </div>
   )

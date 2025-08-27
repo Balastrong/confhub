@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/react-start"
+import { createServerFn, json } from "@tanstack/react-start"
 import z from "zod"
 import { EventFiltersSchema } from "./event.schema"
 import { userRequiredMiddleware } from "./auth.api"
@@ -25,10 +25,6 @@ export const generateFiltersSchema = createServerFn({ method: "POST" })
   ])
   .handler(async ({ data }) => {
     const client = new OpenAI({ baseURL: endpoint, apiKey: token })
-
-    console.log("Done")
-
-    return {} as any
 
     const tags = await getTags()
     const countries = await getCountries()

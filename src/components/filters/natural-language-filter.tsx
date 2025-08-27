@@ -1,52 +1,59 @@
-import { useState } from "react"
 import { useMutation } from "@tanstack/react-query"
+import { Link } from "@tanstack/react-router"
 import { Send, X } from "lucide-react"
+import { useState } from "react"
 import { toast } from "sonner"
+import type { EventFilters } from "src/services/event.schema"
+import { badgeVariants } from "~/components/ui/badge"
 import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
-import { generateFiltersSchema } from "~/services/ai.api"
-import type { EventFilters } from "src/services/event.schema"
-import { ButtonLink } from "~/components/button-link"
+import { useNaturalQueryHistory } from "~/hooks/useNaturalQueryHistory"
 import { useAuthentication } from "~/lib/auth/client"
-import { Link } from "@tanstack/react-router"
+import { generateFiltersSchema } from "~/services/ai.api"
 
 type Props = {
   onApplyFilters: (newFilters: EventFilters) => void
-  onUpdateQuery?: (query: string) => void
   className?: string
 }
 
 export function NaturalLanguageFilter({
   onApplyFilters,
-  onUpdateQuery,
+
   className,
 }: Props) {
   const { isAuthenticated } = useAuthentication()
   const [naturalQuery, setNaturalQuery] = useState("")
   const queryInput = naturalQuery.trim()
 
-  const { mutateAsync, isPending } = useMutation({
+  const { history, add, remove } = useNaturalQueryHistory()
+
+  const { mutate, isPending } = useMutation({
     mutationFn: generateFiltersSchema,
-  })
-
-  const onSendNaturalQuery = async () => {
-    if (!isAuthenticated || !queryInput || isPending) return
-
-    try {
-      const aiFilters = await mutateAsync({ data: queryInput })
+    meta: { disableGlobalErrorHandling: true },
+    onSuccess: (aiFilters, variables: { data: string }) => {
       if (!aiFilters) return
 
       onApplyFilters(aiFilters)
-      if (aiFilters.query && onUpdateQuery) {
-        onUpdateQuery(aiFilters.query)
+
+      const usedQuery = variables?.data ?? queryInput
+      add({ query: usedQuery, filters: aiFilters })
+    },
+    onError: (error) => {
+      if (error.message) {
+        toast.error(error.message)
+      } else {
+        toast.error(
+          "Failed to generate filters from natural language input. Please try again.",
+        )
       }
-    } catch (error) {
-      toast.error(
-        "Failed to generate filters from natural language input. Please try again.",
-      )
       console.error("Error generating filters from natural query:", error)
-    }
+    },
+  })
+
+  const onSendNaturalQuery = () => {
+    if (!isAuthenticated || !queryInput || isPending) return
+    mutate({ data: queryInput })
   }
 
   return (
@@ -100,14 +107,60 @@ export function NaturalLanguageFilter({
             <Send className="h-4 w-4" />
           </Button>
         </div>
+        {isAuthenticated && history.length > 0 && (
+          <div className="flex flex-wrap gap-2" aria-label="Last requests">
+            {history.slice(0, 5).map((item, idx) => {
+              const text =
+                item.query.length > 80
+                  ? `${item.query.slice(0, 80)}…`
+                  : item.query
+              return (
+                <div
+                  key={`${item.timestamp}-${idx}`}
+                  title={item.query}
+                  role="button"
+                  tabIndex={0}
+                  className={`${badgeVariants({ variant: "secondary" })} cursor-pointer inline-flex items-center gap-1`}
+                  onClick={() => {
+                    // Apply stored filters without calling AI again
+                    onApplyFilters(item.filters)
+                    setNaturalQuery(item.query)
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault()
+                      // Apply stored filters without calling AI again
+                      onApplyFilters(item.filters)
+                      setNaturalQuery(item.query)
+                    }
+                  }}
+                >
+                  <span>{text || "(empty)"}</span>
+                  <button
+                    type="button"
+                    aria-label="Remove saved query"
+                    className="ml-1 inline-flex h-4 w-4 items-center justify-center rounded hover:bg-secondary/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      remove(item.query)
+                    }}
+                  >
+                    <X className="h-3 w-3" aria-hidden="true" />
+                  </button>
+                </div>
+              )
+            })}
+          </div>
+        )}
         {isAuthenticated ? (
           <p id="nl-filter-hint" className="text-xs text-muted-foreground">
             This feature is experimental and rate limited to 5 requests per
             minute, 15 per day
-            <p className="sr-only">
+            <span className="sr-only">
               Enter a natural language description of the events you want to
               find
-            </p>
+            </span>
           </p>
         ) : (
           <p id="nl-filter-hint" className="text-xs text-muted-foreground">

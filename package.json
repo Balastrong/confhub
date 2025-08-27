@@ -52,6 +52,7 @@
     "drizzle-orm": "^0.43.1",
     "drizzle-zod": "^0.8.3",
     "lucide-react": "^0.441.0",
+    "openai": "^5.16.0",
     "pg": "^8.16.3",
     "postgres": "^3.4.7",
     "react": "^19.1.1",

@@ -1,6 +1,5 @@
 import { format } from "date-fns"
-import { useState } from "react"
-import { CalendarIcon, FilterIcon, Send, X } from "lucide-react"
+import { CalendarIcon, FilterIcon, X } from "lucide-react"
 import { getEventModeConfig } from "src/lib/event-modes"
 import { EventFilters, EventModes } from "src/services/event.schema"
 import {
@@ -23,11 +22,10 @@ import {
 import { Separator } from "~/components/ui/separator"
 import { Switch } from "~/components/ui/switch"
 import { formatDate } from "~/lib/date"
+import { CountrySelect } from "./country-select"
+import { NaturalLanguageFilter } from "./natural-language-filter"
 import { Tags } from "./tags"
 import { useEventFilters } from "./useEventFilters"
-import { CountrySelect } from "./country-select"
-import { generateFiltersSchema } from "~/services/ai.api"
-import { toast } from "sonner"
 
 type Props = {
   filters: EventFilters
@@ -38,26 +36,7 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
   const { query, setQuery, toggleArrayItem, toggleBooleanItem, setFilter } =
     useEventFilters(filters, onSetFilters)
 
-  // Natural language filter (local for now; wiring to API will come later)
-  const [naturalQuery, setNaturalQuery] = useState("")
-
-  const onSendNaturalQuery = async () => {
-    const trimmed = naturalQuery.trim()
-    if (!trimmed) return
-
-    try {
-      const aiFilters = await generateFiltersSchema({ data: trimmed })
-      onSetFilters(aiFilters)
-      if (aiFilters.query) {
-        setQuery(aiFilters.query)
-      }
-    } catch (error) {
-      toast.error(
-        "Failed to generate filters from natural language input. Please try again.",
-      )
-      console.error("Error generating filters from natural query:", error)
-    }
-  }
+  // Natural language filter has been extracted to its own component
 
   // Count active filters
   const activeFiltersCount = [
@@ -72,11 +51,18 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
   const clearFilters = () => {
     onSetFilters({})
     setQuery("")
-    setNaturalQuery("")
   }
 
   return (
     <Card className="p-4 shadow-xs" aria-label="Event filters" role="region">
+      {/* Natural language filter (extracted component) */}
+      <NaturalLanguageFilter
+        className="mb-4"
+        onApplyFilters={(aiFilters) => {
+          onSetFilters(aiFilters)
+          if (aiFilters.query) setQuery(aiFilters.query)
+        }}
+      />
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="filters" className="border-none">
           <AccordionTrigger className="py-0" headingLevel={2}>
@@ -113,50 +99,6 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
           </AccordionTrigger>
           <AccordionContent className="pt-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
-              {/* Natural language filter */}
-              <div className="space-y-2 md:col-span-2 lg:col-span-3">
-                <div className="flex items-end justify-between">
-                  <Label htmlFor="nl-filter" className="font-medium">
-                    Natural language filter
-                  </Label>
-                  {naturalQuery && (
-                    <ClearButton
-                      onClick={() => setNaturalQuery("")}
-                      aria-label="Clear natural language filter"
-                    />
-                  )}
-                </div>
-                <div className="flex gap-2">
-                  <Input
-                    id="nl-filter"
-                    placeholder="Describe what you're looking for (e.g., 'React conferences in Europe next month')"
-                    value={naturalQuery}
-                    onChange={(event) => setNaturalQuery(event.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        e.preventDefault()
-                        onSendNaturalQuery()
-                      }
-                    }}
-                    className="w-full"
-                    aria-describedby="nl-filter-hint"
-                  />
-                  <Button
-                    type="button"
-                    className="h-10"
-                    onClick={onSendNaturalQuery}
-                    disabled={!naturalQuery.trim()}
-                    aria-label="Send natural language filter"
-                    title="Send"
-                  >
-                    <Send className="h-4 w-4" />
-                  </Button>
-                </div>
-                <p id="nl-filter-hint" className="sr-only">
-                  Enter a natural language description of the events you want to
-                  find
-                </p>
-              </div>
               {/* Name filter */}
               <div className="space-y-2">
                 <div className="flex items-end justify-between">

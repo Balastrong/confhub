@@ -40,7 +40,7 @@ export const eventRsvpTable = pgTable(
     index("event_rsvps_event_status_idx").on(t.eventId, t.status),
     index("event_rsvps_user_status_idx").on(t.userId, t.status),
   ],
-)
+).enableRLS()
 
 export const eventRsvpRelations = relations(eventRsvpTable, ({ one }) => ({
   event: one(eventTable, {

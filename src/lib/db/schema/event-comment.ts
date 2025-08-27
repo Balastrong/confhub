@@ -37,7 +37,7 @@ export const eventCommentTable = pgTable(
     index("event_comments_event_id_idx").on(t.eventId),
     index("event_comments_parent_id_idx").on(t.parentId),
   ],
-)
+).enableRLS()
 
 export const eventCommentRelations = relations(
   eventCommentTable,

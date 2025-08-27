@@ -17,7 +17,7 @@ export const communityTable = pgTable("communities", {
   logoUrl: text("logo_url"),
   homeUrl: text("home_url"),
   verified: boolean().default(false).notNull(),
-})
+}).enableRLS()
 
 export type Community = typeof communityTable.$inferSelect
 export type CommunityWithMember = Community & {
@@ -47,7 +47,7 @@ export const usersInCommunityTable = pgTable(
     role: userInCommunityRole().default("member"),
   },
   (t) => [primaryKey({ columns: [t.userId, t.communityId] })],
-)
+).enableRLS()
 
 export const usersInCommunityRelations = relations(
   usersInCommunityTable,

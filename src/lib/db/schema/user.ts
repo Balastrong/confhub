@@ -16,7 +16,7 @@ export const userTable = pgTable("user", {
   updatedAt: timestamp("updated_at")
     .$defaultFn(() => /* @__PURE__ */ new Date())
     .notNull(),
-})
+}).enableRLS()
 
 export const userRelations = relations(userTable, ({ many }) => ({
   usersInCommunityTable: many(usersInCommunityTable),
@@ -33,7 +33,7 @@ export const sessionTable = pgTable("session", {
   userId: text("user_id")
     .notNull()
     .references(() => userTable.id, { onDelete: "cascade" }),
-})
+}).enableRLS()
 
 export const accountTable = pgTable("account", {
   id: text("id").primaryKey(),
@@ -51,7 +51,7 @@ export const accountTable = pgTable("account", {
   password: text("password"),
   createdAt: timestamp("created_at").notNull(),
   updatedAt: timestamp("updated_at").notNull(),
-})
+}).enableRLS()
 
 export const verificationTable = pgTable("verification", {
   id: text("id").primaryKey(),
@@ -64,7 +64,7 @@ export const verificationTable = pgTable("verification", {
   updatedAt: timestamp("updated_at").$defaultFn(
     () => /* @__PURE__ */ new Date(),
   ),
-})
+}).enableRLS()
 
 export const oauthApplication = pgTable("oauth_application", {
   id: text("id").primaryKey(),
@@ -79,7 +79,7 @@ export const oauthApplication = pgTable("oauth_application", {
   userId: text("user_id"),
   createdAt: timestamp("created_at"),
   updatedAt: timestamp("updated_at"),
-})
+}).enableRLS()
 
 export const oauthAccessToken = pgTable("oauth_access_token", {
   id: text("id").primaryKey(),
@@ -92,7 +92,7 @@ export const oauthAccessToken = pgTable("oauth_access_token", {
   scopes: text("scopes"),
   createdAt: timestamp("created_at"),
   updatedAt: timestamp("updated_at"),
-})
+}).enableRLS()
 
 export const oauthConsent = pgTable("oauth_consent", {
   id: text("id").primaryKey(),
@@ -102,4 +102,4 @@ export const oauthConsent = pgTable("oauth_consent", {
   createdAt: timestamp("created_at"),
   updatedAt: timestamp("updated_at"),
   consentGiven: boolean("consent_given"),
-})
+}).enableRLS()

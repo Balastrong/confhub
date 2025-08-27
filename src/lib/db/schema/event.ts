@@ -30,4 +30,4 @@ export const eventTable = pgTable("events", {
   tags: text().array(),
   draft: boolean("draft").default(false),
   communityId: integer("community_id").references(() => communityTable.id),
-})
+}).enableRLS()

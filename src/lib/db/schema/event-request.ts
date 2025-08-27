@@ -8,4 +8,4 @@ export const eventRequestTable = pgTable("event_requests", {
     .$defaultFn(() => new Date())
     .notNull(),
   userId: text("user_id").references(() => userTable.id),
-})
+}).enableRLS()

@@ -36,8 +36,6 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
   const { query, setQuery, toggleArrayItem, toggleBooleanItem, setFilter } =
     useEventFilters(filters, onSetFilters)
 
-  // Natural language filter has been extracted to its own component
-
   // Count active filters
   const activeFiltersCount = [
     !!filters.query,

@@ -33,11 +33,12 @@ export const generateFiltersSchema = createServerFn({ method: "POST" })
       "Extract event filters and return JSON only.",
       "Allowed keys ONLY: tags, modes, country, hasCfpOpen, startDate.",
       "Omit any key that isn't clearly needed by the user prompt. Do not guess values, EXCEPT tags may be derived from clear hints.",
-      "tags: up to 3; derive from explicit mentions or clear hints; map to closest in valid tags; lowercase; strip '#'; dedupe; if no match, omit.",
-      "modes: include ONLY if explicitly mentioned; allowed: 'in-person', 'hybrid', 'online'.",
-      "country: include ONLY if explicitly named; must be one of valid countries; do not infer from cities/regions.",
-      "hasCfpOpen: include ONLY if CFP status is mentioned by the user; true for open/accepting; false for closed.",
-      "startDate: include ONLY if the user mentioned it; format YYYY-MM-DD;",
+      "tags: up to 3; derive from clear hints; map to closest in valid tags; lowercase; strip '#'; dedupe; if no match, omit.",
+      "modes: allowed: 'in-person', 'hybrid', 'online'.",
+      "country: must be one of valid countries; do not infer from cities/regions.",
+      "hasCfpOpen: true for open/accepting; false for closed.",
+      "startDate: format YYYY-MM-DD;",
+      "If needed for relative dates, today is " + new Date(),
       `Valid tags: ${tags.join(", ")}`,
       `Valid countries: ${countries.join(", ")}`,
       "Output JSON only, no prose or code fences; no nulls or empty arrays; return {} if nothing applies.",
@@ -54,15 +55,13 @@ export const generateFiltersSchema = createServerFn({ method: "POST" })
         },
         { role: "user", content: data },
       ],
-      temperature: 0,
-      top_p: 0,
       model,
-      response_format: { type: "json_object" },
+      // response_format: { type: "json_object" },
     })
 
     const aiSchema = response.choices[0].message.content?.trim()
 
-    console.log(aiSchema)
+    console.log(data, aiSchema)
 
     if (!aiSchema) {
       throw json(

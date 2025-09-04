@@ -7,21 +7,10 @@ import OpenAI from "openai"
 import { getTags } from "./tags.api"
 import { getCountries } from "./countries.api"
 
-const { token, endpoint, model } = (() => {
-  if (process.env.NODE_ENV === "development") {
-    return {
-      token: "ollama",
-      endpoint: "http://localhost:11434/v1",
-      model: "llama3.2:latest",
-    }
-  } else {
-    return {
-      token: process.env.GITHUB_TOKEN!,
-      endpoint: "https://models.github.ai/inference",
-      model: "openai/gpt-4.1-nano",
-    }
-  }
-})()
+const token = process.env.LLM_TOKEN!
+const endpoint = process.env.LLM_ENDPOINT!
+const model = process.env.LLM_MODEL!
+
 export const generateFiltersSchema = createServerFn({ method: "POST" })
   .validator(z.string())
   .middleware([
@@ -40,63 +29,22 @@ export const generateFiltersSchema = createServerFn({ method: "POST" })
     const tags = await getTags()
     const countries = await getCountries()
 
-    const systemPrompt = `You are an information extractor. Convert a user's request into a STRICT JSON object of filters.
-
-OUTPUT CONTRACT (no deviations):
-- Output ONLY a single minified JSON object; no markdown, no code fences, no explanations.
-- Include ONLY these keys when relevant: tags, modes, country, hasCfpOpen, startDate.
-- Omit any key that is not explicitly supported or not mentioned by the user.
-- Never output null, undefined, empty arrays, comments, or trailing commas.
-- Dates MUST be ISO-8601 (YYYY-MM-DD) and represent the earliest concrete date implied by the user. If no date is implied, omit startDate.
-
-TARGET SHAPE (Zod-style, all keys optional):
-z.object({
-  tags: z.array(z.string()), // Allowed values (case-insensitive, match by exact name): ${tags.join(", ")}
-  modes: z.array(z.enum(["in-person", "hybrid", "online"])),
-  country: z.string(), // Only if the user explicitly names a country in this list: ${countries.join(", ")}
-  hasCfpOpen: z.boolean(),
-  startDate: z.string().date().nullish(),
-}).partial()
-
-STRICT RULES:
-- Do not invent information. Use only what the user stated or clearly implied.
-- Tags: select at most 1-3 of the most specific tags explicitly mentioned or clearly synonymous; if none apply, omit tags.
-- Modes: INCLUDE ONLY IF THE USER EXPLICITLY SPECIFIES IT. Never infer from topics or tags (e.g., "Android", "React" do NOT imply any mode). Map synonyms: "online/virtual/remote" -> "online"; "in person/in-person/physical" -> "in-person"; "both" -> "hybrid". If the user does not use such words, omit modes.
-- Country: include only if the user clearly specifies a single country from the allowed list; otherwise omit.
-- hasCfpOpen: true only if the user asks for open CFPs or similar (e.g., "accepting talks", "CFP open"). Otherwise omit.
-- If the request is unrelated or too vague, return {}.
-- Today is ${new Date().toISOString()} for resolving relative dates like "this week" or "next month"; compute a concrete earliest date (YYYY-MM-DD) or omit if unclear.
-
-EXAMPLES (input -> exact output):
-1) "Show me online React events in Italy"
--> {"tags":["react"],"modes":["online"],"country":"Italy"}
-
-2) "in-person javascript or typescript meetups in the US starting next week"
--> {"tags":["javascript","typescript"],"modes":["in-person"],"country":"United States","startDate":"<computed YYYY-MM-DD for next week>"}
-
-3) "Any conferences"
--> {}
-
-4) "Hybrid AI/ML events with CFP accepting"
--> {"tags":["ai","machine learning"],"modes":["hybrid"],"hasCfpOpen":true}
-
-5) "Show me React events in Italy"
--> {"tags":["react"],"country":"Italy"}
-
-6) "Show me React events"
--> {"tags":["react"]}
-
-7) "Android events"
--> {"tags":["android"]}
-
-8) "Android online events"
--> {"tags":["android"],"modes":["online"]}
-
-Do not copy example outputs unless the user query matches. Apply the rules.
-
-Most importantly: do NOT add modes unless the user explicitly specifies them.
-
-Now, given the user request, output ONLY the JSON object with the applicable keys and values. No prose.`
+    const systemPrompt = [
+      "Extract event filters and return JSON only.",
+      "Allowed keys ONLY: tags, modes, country, hasCfpOpen, startDate.",
+      "Omit any key that isn't clearly needed by the user prompt. Do not guess values, EXCEPT tags may be derived from clear hints.",
+      "tags: up to 3; derive from explicit mentions or clear hints; map to closest in valid tags; lowercase; strip '#'; dedupe; if no match, omit.",
+      "modes: include ONLY if explicitly mentioned; allowed: 'in-person', 'hybrid', 'online'.",
+      "country: include ONLY if explicitly named; must be one of valid countries; do not infer from cities/regions.",
+      "hasCfpOpen: include ONLY if CFP status is mentioned by the user; true for open/accepting; false for closed.",
+      "startDate: include ONLY if the user mentioned it; format YYYY-MM-DD;",
+      `Valid tags: ${tags.join(", ")}`,
+      `Valid countries: ${countries.join(", ")}`,
+      "Output JSON only, no prose or code fences; no nulls or empty arrays; return {} if nothing applies.",
+      "Example → User: online React events on 2025-09-15",
+      'Output: {"tags":["react"],"modes":["online"],"startDate":"2025-09-15"}',
+      "Do not use null or empty strings, omit keys instead.",
+    ].join("\n")
 
     const response = await client.chat.completions.create({
       messages: [
@@ -107,8 +55,9 @@ Now, given the user request, output ONLY the JSON object with the applicable key
         { role: "user", content: data },
       ],
       temperature: 0,
-      top_p: 1.0,
+      top_p: 0,
       model,
+      response_format: { type: "json_object" },
     })
 
     const aiSchema = response.choices[0].message.content?.trim()
@@ -137,6 +86,17 @@ Now, given the user request, output ONLY the JSON object with the applicable key
 // Attempts to robustly extract a valid JSON object from a model response.
 // Handles common failure cases: code fences, leading/trailing prose, and extra text.
 function safeParseJson(text: string): any {
+  // 0) Strip any <think>...</think> blocks or leading content ending with </think>
+  if (text.toLowerCase().includes("</think>")) {
+    // Remove well-formed <think>...</think> sections
+    text = text.replace(/<think[\s\S]*?<\/think>/gi, "")
+    // If a stray closing tag remains, keep only what follows the last one
+    const lower = text.toLowerCase()
+    const lastClose = lower.lastIndexOf("</think>")
+    if (lastClose !== -1) {
+      text = text.slice(lastClose + "</think>".length)
+    }
+  }
   // 1) Strip common markdown code fences
   let t = text.trim()
   if (t.startsWith("```")) {

@@ -25,7 +25,9 @@ export function createRouter() {
       },
     },
     mutationCache: new MutationCache({
-      onError: (error: unknown) => {
+      onError: (error: unknown, _1, _2, mutation) => {
+        if (mutation?.meta?.disableGlobalErrorHandling) return
+
         if (error instanceof Error) {
           const zodError = parseZodError(error)
           if (zodError) {

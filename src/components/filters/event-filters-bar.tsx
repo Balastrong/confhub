@@ -22,9 +22,10 @@ import {
 import { Separator } from "~/components/ui/separator"
 import { Switch } from "~/components/ui/switch"
 import { formatDate } from "~/lib/date"
+import { CountrySelect } from "./country-select"
+import { NaturalLanguageFilter } from "./natural-language-filter"
 import { Tags } from "./tags"
 import { useEventFilters } from "./useEventFilters"
-import { CountrySelect } from "./country-select"
 
 type Props = {
   filters: EventFilters
@@ -52,24 +53,37 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
 
   return (
     <Card className="p-4 shadow-xs" aria-label="Event filters" role="region">
+      {/* Natural language filter (extracted component) */}
+      <NaturalLanguageFilter
+        className="mb-4"
+        onApplyFilters={(aiFilters) => {
+          onSetFilters(aiFilters)
+          if (aiFilters.query) setQuery(aiFilters.query)
+        }}
+      />
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="filters" className="border-none">
-          <AccordionTrigger className="py-0" headingLevel={2}>
-            <div className="flex items-center gap-2">
-              <FilterIcon className="h-5 w-5 text-primary" />
-              <span className="text-lg font-medium" id="event-filters-heading">
-                Filters Events
-              </span>
-              {activeFiltersCount > 0 && (
-                <Badge
-                  variant="secondary"
-                  aria-label={`${activeFiltersCount} active filter${activeFiltersCount === 1 ? "" : "s"}`}
-                  aria-live="polite"
+          <div className="flex items-center">
+            <AccordionTrigger className="py-0 flex-1" headingLevel={2}>
+              <div className="flex items-center gap-2">
+                <FilterIcon className="h-5 w-5 text-primary" />
+                <span
+                  className="text-lg font-medium"
+                  id="event-filters-heading"
                 >
-                  {activeFiltersCount}
-                </Badge>
-              )}
-            </div>
+                  Filters Events
+                </span>
+                {activeFiltersCount > 0 && (
+                  <Badge
+                    variant="secondary"
+                    aria-label={`${activeFiltersCount} active filter${activeFiltersCount === 1 ? "" : "s"}`}
+                    aria-live="polite"
+                  >
+                    {activeFiltersCount}
+                  </Badge>
+                )}
+              </div>
+            </AccordionTrigger>
             {activeFiltersCount > 0 && (
               <Button
                 size="sm"
@@ -78,14 +92,14 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                   e.preventDefault()
                   clearFilters()
                 }}
-                className="flex items-center gap-1 ml-auto mr-2 -mt-2 -mb-2 no-underline"
+                className="flex items-center gap-1 ml-2 mr-2 -mt-2 -mb-2 no-underline"
                 aria-label="Clear all active filters"
               >
                 <X className="h-4 w-4" />
                 <span>Clear all</span>
               </Button>
             )}
-          </AccordionTrigger>
+          </div>
           <AccordionContent className="pt-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
               {/* Name filter */}

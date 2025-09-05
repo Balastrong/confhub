@@ -15,6 +15,7 @@ import { formatDate } from "src/lib/date"
 import { getEventModeConfig } from "src/lib/event-modes"
 import { communityQueries, eventQueries } from "src/services/queries"
 import { EventComments } from "~/components/event/comments"
+import { EventCountdown } from "~/components/event/event-countdown"
 import { EventRsvp } from "~/components/event/rsvp"
 import { seo } from "~/lib/seo"
 
@@ -68,11 +69,16 @@ function RouteComponent() {
         >
           ← Back
         </Button>
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="flex flex-col gap-2">
             <h1 className="text-3xl font-bold tracking-tight">{event.name}</h1>
+            {event.date && (
+              <div className="flex">
+                <EventCountdown eventDate={event.date} />
+              </div>
+            )}
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 sm:mt-0 mt-2">
             {event.cfpUrl && (
               <Button asChild variant="outline">
                 <a

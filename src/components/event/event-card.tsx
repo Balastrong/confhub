@@ -12,6 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card"
+import { EventCountdown } from "./event-countdown"
 
 type Props = {
   event: FullEvent
@@ -32,11 +33,16 @@ export const EventCard = ({ event, highlightedTags = [] }: Props) => {
           </CardTitle>
           <CardDescription className="text-xs sm:text-sm text-muted-foreground">
             {event.date ? (
-              <>
-                {formatDate(new Date(event.date))}
-                {event.dateEnd && " - "}
-                {event.dateEnd ? formatDate(new Date(event.dateEnd)) : null}
-              </>
+              <div className="flex flex-col gap-2">
+                <span>
+                  {formatDate(new Date(event.date))}
+                  {event.dateEnd && " - "}
+                  {event.dateEnd ? formatDate(new Date(event.dateEnd)) : null}
+                </span>
+                <div className="flex justify-start">
+                  <EventCountdown eventDate={event.date} />
+                </div>
+              </div>
             ) : null}
           </CardDescription>
         </CardHeader>

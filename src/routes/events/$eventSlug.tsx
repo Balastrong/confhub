@@ -1,6 +1,13 @@
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query"
-import { createFileRoute, Link, useRouter } from "@tanstack/react-router"
+import {
+  createFileRoute,
+  Link,
+  useCanGoBack,
+  useRouter,
+} from "@tanstack/react-router"
+import { isAfter } from "date-fns"
 import { CalendarDays, ExternalLink, MapPin, Tag } from "lucide-react"
+import { AddToCalendar } from "src/components/event/add-to-calendar"
 import { Layout } from "src/components/layout"
 import { Avatar, AvatarFallback, AvatarImage } from "src/components/ui/avatar"
 import { Badge } from "src/components/ui/badge"
@@ -57,6 +64,8 @@ function RouteComponent() {
 
   const modeConfig = event.mode ? getEventModeConfig(event.mode) : null
 
+  const canGoBack = useCanGoBack()
+
   return (
     <Layout className="items-center gap-6 max-w-5xl mx-auto py-8 w-full">
       {/* Header */}
@@ -65,7 +74,11 @@ function RouteComponent() {
           variant="ghost"
           size="sm"
           className="mb-3"
-          onClick={() => router.history.back()}
+          onClick={() =>
+            canGoBack && router.history.length > 1
+              ? router.history.back()
+              : router.navigate({ to: "/" })
+          }
         >
           ← Back
         </Button>
@@ -79,6 +92,20 @@ function RouteComponent() {
             )}
           </div>
           <div className="flex gap-2 sm:mt-0 mt-2">
+            {isAfter(event.date, new Date()) && (
+              <AddToCalendar
+                summary={event.name}
+                description={event.description}
+                url={event.eventUrl}
+                location={[event.city, event.country]
+                  .filter(Boolean)
+                  .join(", ")}
+                start={event.date}
+                end={event.dateEnd ?? undefined}
+                triggerLabel="Add to calendar"
+                buttonVariant="secondary"
+              />
+            )}
             {event.cfpUrl && (
               <Button asChild variant="outline">
                 <a
@@ -184,7 +211,7 @@ function RouteComponent() {
                 </div>
               )}
               {event.cfpUrl && (
-                <div className="pt-2">
+                <div className="pt-2 space-y-1">
                   <a
                     href={event.cfpUrl}
                     target="_blank"
@@ -192,14 +219,32 @@ function RouteComponent() {
                     className="text-primary hover:underline"
                   >
                     Call for Papers
-                    {event.cfpClosingDate && (
-                      <span
-                        className={`ml-2 ${new Date(event.cfpClosingDate) < new Date() ? "text-red-500" : "text-green-600"}`}
-                      >
-                        (closes {formatDate(new Date(event.cfpClosingDate))})
-                      </span>
-                    )}
                   </a>
+                  {event.cfpClosingDate && (
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`${new Date(event.cfpClosingDate) < new Date() ? "text-red-500" : "text-green-600"}`}
+                      >
+                        closes {formatDate(new Date(event.cfpClosingDate))}
+                      </span>
+                      {isAfter(new Date(event.cfpClosingDate), new Date()) && (
+                        <AddToCalendar
+                          summary={`CFP deadline: ${event.name}`}
+                          description={event.description}
+                          url={event.cfpUrl ?? event.eventUrl}
+                          location={[event.city, event.country]
+                            .filter(Boolean)
+                            .join(", ")}
+                          start={event.cfpClosingDate}
+                          end={event.cfpClosingDate}
+                          alarmDaysBefore={7}
+                          triggerLabel="Add to calendar"
+                          buttonVariant="secondary"
+                          buttonSize="xs"
+                        />
+                      )}
+                    </div>
+                  )}
                 </div>
               )}
             </CardContent>
@@ -256,7 +301,7 @@ function RouteComponent() {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
-                  {event.tags.map((t) => (
+                  {event.tags.map((t: string) => (
                     <Badge key={t} variant="outline" className="capitalize">
                       {t}
                     </Badge>

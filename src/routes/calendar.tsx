@@ -11,18 +11,35 @@ import { CalendarFiltersBar } from "~/components/filters/calendar-filters-bar"
 import { seo } from "~/lib/seo"
 import { EventFiltersSchema, type EventFilters } from "~/services/event.schema"
 
+function getQueryKey(filters: EventFilters, date: string) {
+  const currentDate = new Date(date || Date.now())
+
+  const { firstSunday, lastSaturday } = getFirstAndLast(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 1,
+  )
+
+  return {
+    ...eventQueries.list({
+      ...filters,
+      startDate: formatDate(firstSunday),
+      endDate: formatDate(lastSaturday),
+      limit: 100,
+    }),
+  }
+}
+
 export const Route = createFileRoute("/calendar")({
-  beforeLoad: async ({ context }) => {
+  beforeLoad: async ({ context, search }) => {
+    const { date, ...filters } = search
     await Promise.all([
       context.queryClient.ensureQueryData(tagQueries.list()),
       context.queryClient.ensureQueryData(countryQueries.list()),
+      context.queryClient.ensureQueryData(getQueryKey(filters, date)),
     ])
   },
   validateSearch: EventFiltersSchema.extend({
-    date: z
-      .iso
-      .date()
-      .catch(() => formatDate(new Date(new Date().setDate(1)))),
+    date: z.iso.date().catch(() => formatDate(new Date(new Date().setDate(1)))),
   }),
   head: () => ({
     meta: seo({
@@ -38,25 +55,20 @@ function RouteComponent() {
   const { date, ...filters } = Route.useSearch()
   const currentDate = new Date(date || Date.now())
   const setCurrentDate = (date: Date) => {
-    navigate({ from: Route.fullPath, search: { ...filters, date: formatDate(date) } })
+    navigate({
+      from: Route.fullPath,
+      search: { ...filters, date: formatDate(date) },
+    })
   }
   const setFilters = (newFilters: EventFilters) => {
-    navigate({ from: Route.fullPath, search: { ...newFilters, date: formatDate(currentDate) } })
+    navigate({
+      from: Route.fullPath,
+      search: { ...newFilters, date: formatDate(currentDate) },
+    })
   }
 
-  const { firstSunday, lastSaturday } = useMemo(
-    () =>
-      getFirstAndLast(currentDate.getFullYear(), currentDate.getMonth() + 1),
-    [currentDate],
-  )
-
   const { data: events, isLoading } = useQuery({
-    ...eventQueries.list({
-      ...filters,
-      startDate: formatDate(firstSunday),
-      endDate: formatDate(lastSaturday),
-      limit: 100,
-    }),
+    ...getQueryKey(filters, date),
     select: (data) =>
       data
         .filter((event) => event.date)

@@ -30,9 +30,15 @@ import { seo } from "~/lib/seo"
 
 export const Route = createFileRoute("/communities/$communitySlug")({
   loader: async ({ params, context }) => {
-    return await context.queryClient.ensureQueryData(
+    const community = await context.queryClient.ensureQueryData(
       communityQueries.detailBySlug(params.communitySlug),
     )
+
+    context.queryClient.ensureQueryData(
+      eventQueries.list({ communityId: community.id }),
+    )
+
+    return community
   },
   head: ({ loaderData }) => ({
     meta: seo({

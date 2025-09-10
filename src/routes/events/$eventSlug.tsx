@@ -236,7 +236,6 @@ function RouteComponent() {
                             .filter(Boolean)
                             .join(", ")}
                           start={event.cfpClosingDate}
-                          end={event.cfpClosingDate}
                           alarmDaysBefore={7}
                           triggerLabel="Add to calendar"
                           buttonVariant="secondary"

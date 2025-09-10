@@ -111,7 +111,7 @@ export const upsertEvent = createServerFn()
     const { id, ...eventData } = data
 
     if (id == null) {
-      const slug = generateSlug(data.name)
+      const slug = generateSlug(data.name, true)
 
       const [newEvent] = await db
         .insert(eventTable)

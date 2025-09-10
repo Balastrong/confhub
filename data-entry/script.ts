@@ -28,7 +28,7 @@ async function seed() {
     if (events.length) {
       const insertedEvents = await db
         .insert(eventTable)
-        .values(events.map((e) => ({ ...e, slug: generateSlug(e.name) })))
+        .values(events.map((e) => ({ ...e, slug: generateSlug(e.name, true) })))
         .returning()
 
       console.log(`✅ Created ${insertedEvents.length} events`)

@@ -21,7 +21,17 @@ export const createCommunity = createServerFn()
   .validator(CreateCommunitySchema)
   .middleware([userRequiredMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
-    const slug = generateSlug(data.name)
+    let slug = generateSlug(data.name, false)
+
+    const sameSlugCounter = await db
+      .select()
+      .from(communityTable)
+      .where(eq(communityTable.slug, slug))
+      .limit(1)
+
+    if (sameSlugCounter.length > 0) {
+      slug = generateSlug(data.name, true)
+    }
 
     const [community] = await db
       .insert(communityTable)

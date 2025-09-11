@@ -7,7 +7,7 @@
     "dev": "vite dev",
     "build": "vite build",
     "start": "node .output/server/index.mjs",
-    "build:deploy": "pnpm run build && pnpm run db:push",
+    "build:deploy": "pnpm run sitemap && pnpm run build && pnpm run db:push",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
@@ -62,6 +62,7 @@
     "sonner": "^1.7.4",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
+    "tanstack-router-sitemap": "^1.0.13",
     "vite": "^6.3.5",
     "zod": "^4.0.17",
     "zod-validation-error": "^3.5.3"

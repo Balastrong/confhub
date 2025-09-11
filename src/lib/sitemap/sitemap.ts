@@ -1,6 +1,9 @@
 import { FileRouteTypes } from "~/routeTree.gen"
 import { formatDate } from "../date"
 import { Sitemap } from "./sitemap-types"
+import { db } from "~/lib/db"
+import { and, or, eq, gte } from "drizzle-orm"
+import { communityTable, eventTable } from "~/lib/db/schema"
 
 export type TRoutes = FileRouteTypes["fullPaths"]
 
@@ -10,38 +13,37 @@ export const sitemap: Sitemap<TRoutes> = {
   siteUrl: URL,
   routes: {
     "/": {
-      priority: 0.8,
+      lastModified: new Date(),
     },
-    "/communities": {},
-    "/calendar": {},
+    "/communities": { lastModified: new Date() },
+    "/calendar": { lastModified: new Date() },
     "/events/$eventSlug": async () => {
+      // Upcoming + recently ended events (last 30 days)
       const thirtyDaysAgo = formatDate(
         new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
       )
 
-      const result = await fetch(
-        `${URL}/_serverFn/src_services_event_api_ts--getEvents_createServerFn_handler?payload={"data":{"limit":100,"startDate":"${thirtyDaysAgo}"},"context":{}}&createServerFn`,
-      )
-      const events = (await result.json()).result
+      const rows = await db
+        .select({ slug: eventTable.slug })
+        .from(eventTable)
+        .where(
+          and(
+            eq(eventTable.draft, false),
+            or(gte(eventTable.date, thirtyDaysAgo)),
+          ),
+        )
 
-      return events.map((event: { slug: string }) => ({
+      return rows.map((event) => ({
         path: `/events/${event.slug}`,
-        priority: 0.8,
       }))
     },
     "/communities/$communitySlug": async () => {
-      const result = await fetch(
-        `${URL}/_serverFn/src_services_community_api_ts--getCommunities_createServerFn_handler?payload={"data":{},"context":{}}&createServerFn`,
-      )
-      const communities = (await result.json()).result
+      const rows = await db
+        .select({ slug: communityTable.slug })
+        .from(communityTable)
 
-      if (!communities) {
-        return []
-      }
-
-      return communities.map((community: { slug: string }) => ({
+      return rows.map((community) => ({
         path: `/communities/${community.slug}`,
-        priority: 0.8,
       }))
     },
   },

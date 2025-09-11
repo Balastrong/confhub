@@ -2,9 +2,14 @@
 // Usage: pnpm run sitemap
 import { sitemap } from "./sitemap"
 import { generateSitemap } from "./generate"
+import { sql } from "~/lib/db"
 
 async function main() {
-  await generateSitemap(sitemap)
+  try {
+    await generateSitemap(sitemap)
+  } finally {
+    await sql.end({ timeout: 5 })
+  }
 }
 
 main().catch((err) => {

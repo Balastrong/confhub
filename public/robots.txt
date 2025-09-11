@@ -1,0 +1,9 @@
+# robots.txt for confhub.tech
+
+User-agent: *
+Allow: /
+
+# Avoid crawling API endpoints
+Disallow: /api/
+
+Sitemap: https://confhub.tech/sitemap.xml

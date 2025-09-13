@@ -11,17 +11,22 @@ import {
 } from "src/components/ui/card"
 import { Separator } from "src/components/ui/separator"
 import { AuthSwitcher } from "src/components/auth/auth-switcher"
+import { z } from "zod"
 
 export const Route = createFileRoute("/sign-in")({
   component: RouteComponent,
-  beforeLoad: async ({ context }) => {
+  validateSearch: z.object({
+    redirectTo: z.string().optional().catch("/"),
+  }),
+  beforeLoad: async ({ context, search }) => {
     if (context.userSession) {
-      throw redirect({ to: "/" })
+      throw redirect({ to: search.redirectTo })
     }
   },
 })
 
 function RouteComponent() {
+  const { redirectTo } = Route.useSearch()
   return (
     <Layout className="items-center gap-6 max-w-md">
       <Card className="w-full">
@@ -44,7 +49,7 @@ function RouteComponent() {
               </span>
             </div>
           </div>
-          <SignInForm />
+          <SignInForm redirectTo={redirectTo} />
         </CardContent>
       </Card>
     </Layout>

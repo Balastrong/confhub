@@ -89,7 +89,12 @@ function RouteComponent() {
       toast.error("You need to be logged in to join a community.", {
         action: {
           label: "Sign in",
-          onClick: () => navigate({ to: "/sign-in" }),
+          onClick: () => {
+            navigate({
+              to: "/sign-in",
+              search: { redirectTo: router.state.location.href },
+            })
+          },
         },
       })
       return

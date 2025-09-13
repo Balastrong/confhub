@@ -18,7 +18,7 @@ const signIn = async (data: SignInSchema) => {
   return response
 }
 
-export const SignInForm = () => {
+export const SignInForm = ({ redirectTo = "/" }: { redirectTo?: string }) => {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
@@ -28,7 +28,7 @@ export const SignInForm = () => {
       toast.success(`Hey ${response.user.name}, welcome back!`)
 
       queryClient.resetQueries()
-      navigate({ to: "/" })
+      navigate({ to: redirectTo })
     },
   })
 

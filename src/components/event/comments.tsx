@@ -1,22 +1,23 @@
 import { useQuery } from "@tanstack/react-query"
+import { useRouter } from "@tanstack/react-router"
 import { useMemo, useState } from "react"
 import { SignedIn } from "~/components/auth/signed-in"
 import { SignedOut } from "~/components/auth/signed-out"
-import { Button } from "~/components/ui/button"
-import { Textarea } from "~/components/ui/textarea"
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar"
+import { Button } from "~/components/ui/button"
 import { Skeleton } from "~/components/ui/skeleton"
+import { Textarea } from "~/components/ui/textarea"
+import { useAuthentication } from "~/lib/auth/client"
 import { formatDateTime } from "~/lib/date"
 import {
-  authQueries,
   commentQueries,
   useCreateEventCommentMutation,
   useDeleteEventCommentMutation,
 } from "~/services/queries"
 import { ButtonLink } from "../button-link"
-import { useAuthentication } from "~/lib/auth/client"
 
 export function EventComments({ eventId }: { eventId: number }) {
+  const router = useRouter()
   const { data: comments, isLoading: commentsLoading } = useQuery(
     commentQueries.listByEvent(eventId),
   )
@@ -78,7 +79,12 @@ export function EventComments({ eventId }: { eventId: number }) {
       <SignedOut>
         <div className="text-sm text-muted-foreground">
           <span>You must be signed in to leave a comment. </span>
-          <ButtonLink to="/sign-in" variant="link" size="sm">
+          <ButtonLink
+            to="/sign-in"
+            search={{ redirectTo: router.state.location.href }}
+            variant="link"
+            size="sm"
+          >
             Sign in
           </ButtonLink>
         </div>

@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query"
-import { Link } from "@tanstack/react-router"
+import { Link, useRouter } from "@tanstack/react-router"
 import { Send, X } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
@@ -22,6 +22,7 @@ export function NaturalLanguageFilter({
 
   className,
 }: Props) {
+  const router = useRouter()
   const { isAuthenticated } = useAuthentication()
   const [naturalQuery, setNaturalQuery] = useState("")
   const queryInput = naturalQuery.trim()
@@ -165,7 +166,11 @@ export function NaturalLanguageFilter({
         ) : (
           <p id="nl-filter-hint" className="text-xs text-muted-foreground">
             This feature is only available for logged-in users.{" "}
-            <Link to="/sign-in" className="text-primary hover:underline">
+            <Link
+              to="/sign-in"
+              className="text-primary hover:underline"
+              search={{ redirectTo: router.state.location.href }}
+            >
               Sign in
             </Link>{" "}
             to use the natural language filter.

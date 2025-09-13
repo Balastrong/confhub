@@ -1,5 +1,5 @@
 import { HamburgerMenuIcon } from "@radix-ui/react-icons"
-import { Link } from "@tanstack/react-router"
+import { Link, useRouter } from "@tanstack/react-router"
 import { useEffect, useRef, useState } from "react"
 import { SignedIn } from "../auth/signed-in"
 import { SignedOut } from "../auth/signed-out"
@@ -18,6 +18,7 @@ export const NAV_LINKS = [
 ] as const
 
 export const Header = () => {
+  const router = useRouter()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null)
@@ -43,7 +44,10 @@ export const Header = () => {
   }
 
   return (
-    <header className="px-4 py-2 max-w-(--breakpoint-2xl) mx-auto" role="banner">
+    <header
+      className="px-4 py-2 max-w-(--breakpoint-2xl) mx-auto"
+      role="banner"
+    >
       {/* Desktop Header */}
       <div className="flex gap-2 items-center justify-between">
         <div className="flex gap-2 items-center">
@@ -77,14 +81,8 @@ export const Header = () => {
             <ButtonLink
               size={"sm"}
               to="/sign-in"
-              className="hidden sm:inline-flex"
-            >
-              Sign In
-            </ButtonLink>
-            <ButtonLink
-              size={"sm"}
-              to="/sign-in"
-              className="sm:hidden px-2 py-1 text-xs"
+              search={{ redirectTo: router.state.location.href }}
+              className="max-sm:px-2 max-sm:text-xs"
             >
               Sign In
             </ButtonLink>

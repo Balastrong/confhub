@@ -1,4 +1,5 @@
-import { createFileRoute, Link, redirect } from "@tanstack/react-router"
+import { createFileRoute, redirect } from "@tanstack/react-router"
+import { AuthSwitcher } from "src/components/auth/auth-switcher"
 import { SignUpForm } from "src/components/auth/sign-up-form"
 import { SocialLogins } from "src/components/auth/social-logins"
 import { Layout } from "src/components/layout"
@@ -10,18 +11,26 @@ import {
   CardTitle,
 } from "src/components/ui/card"
 import { Separator } from "src/components/ui/separator"
-import { AuthSwitcher } from "src/components/auth/auth-switcher"
+import { sanitizeRedirect } from "src/hooks/usePreviousLocation"
+import { z } from "zod"
 
 export const Route = createFileRoute("/sign-up")({
   component: RouteComponent,
-  beforeLoad: async ({ context }) => {
+  validateSearch: z.object({
+    redirectTo: z.string().optional().catch("/"),
+  }),
+  beforeLoad: async ({ context, search }) => {
+    const safe = sanitizeRedirect(search.redirectTo)
     if (context.userSession) {
-      throw redirect({ to: "/" })
+      throw redirect({ to: safe })
     }
+    return { safeRedirectTo: safe }
   },
 })
 
 function RouteComponent() {
+  const { safeRedirectTo } = Route.useRouteContext()
+
   return (
     <Layout className="items-center gap-6 max-w-md">
       <Card className="w-full">
@@ -35,7 +44,7 @@ function RouteComponent() {
           </div>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
-          <SocialLogins />
+          <SocialLogins callbackURL={safeRedirectTo} />
           <div className="relative">
             <Separator />
             <div className="absolute inset-0 flex items-center justify-center">
@@ -44,7 +53,7 @@ function RouteComponent() {
               </span>
             </div>
           </div>
-          <SignUpForm />
+          <SignUpForm redirectTo={safeRedirectTo} />
         </CardContent>
       </Card>
     </Layout>

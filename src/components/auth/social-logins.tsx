@@ -1,12 +1,13 @@
 import { GitHubLogoIcon } from "@radix-ui/react-icons"
-import { useMutation } from "@tanstack/react-query"
+import { useIsMutating, useMutation } from "@tanstack/react-query"
 import { toast } from "sonner"
 import { authClient } from "~/lib/auth/client"
 import { Button } from "../ui/button"
 
-const signInWithGitHub = async () => {
+const signInWithGitHub = async (callbackURL?: string) => {
   const { error } = await authClient.signIn.social({
     provider: "github",
+    callbackURL,
   })
 
   if (error) {
@@ -14,9 +15,10 @@ const signInWithGitHub = async () => {
   }
 }
 
-const signInWithGoogle = async () => {
+const signInWithGoogle = async (callbackURL?: string) => {
   const { error } = await authClient.signIn.social({
     provider: "google",
+    callbackURL,
   })
 
   if (error) {
@@ -24,16 +26,23 @@ const signInWithGoogle = async () => {
   }
 }
 
-export const SocialLogins = () => {
+type SocialLoginsProps = {
+  callbackURL?: string
+}
+export const SocialLogins = ({ callbackURL }: SocialLoginsProps) => {
+  const isAuthLoading = useIsMutating({ mutationKey: ["auth"] }) > 0
+
   const githubSignInMutation = useMutation({
-    mutationFn: signInWithGitHub,
+    mutationKey: ["auth", "github"],
+    mutationFn: () => signInWithGitHub(callbackURL),
     onError: (error) => {
       toast.error(error.message)
     },
   })
 
   const googleSignInMutation = useMutation({
-    mutationFn: signInWithGoogle,
+    mutationKey: ["auth", "google"],
+    mutationFn: () => signInWithGoogle(callbackURL),
     onError: (error) => {
       toast.error(error.message)
     },
@@ -47,7 +56,7 @@ export const SocialLogins = () => {
         size="sm"
         className="w-full"
         onClick={() => githubSignInMutation.mutate()}
-        disabled={githubSignInMutation.isPending}
+        disabled={isAuthLoading}
       >
         <GitHubLogoIcon className="mr-2 h-4 w-4" />
         Continue with GitHub
@@ -58,7 +67,7 @@ export const SocialLogins = () => {
         size="sm"
         className="w-full"
         onClick={() => googleSignInMutation.mutate()}
-        disabled={googleSignInMutation.isPending}
+        disabled={isAuthLoading}
       >
         {/* Simple Google G icon SVG */}
         <svg

@@ -1,6 +1,14 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { useRouter } from "@tanstack/react-router"
+import {
+  useIsMutating,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query"
+import { useNavigate } from "@tanstack/react-router"
 import { toast } from "sonner"
+import {
+  sanitizeRedirect,
+  usePreviousLocation,
+} from "src/hooks/usePreviousLocation"
 import { useAppForm } from "src/lib/form"
 import { SignUpSchema } from "src/services/auth.schema"
 import { authClient } from "~/lib/auth/client"
@@ -19,17 +27,20 @@ const signUp = async (data: SignUpSchema) => {
   return data
 }
 
-export const SignUpForm = () => {
+export const SignUpForm = ({ redirectTo }: { redirectTo?: string }) => {
   const queryClient = useQueryClient()
-  const router = useRouter()
+  const isAuthLoading = useIsMutating({ mutationKey: ["auth"] }) > 0
+  const navigate = useNavigate()
+  const previousLocation = usePreviousLocation()
 
   const signUpMutation = useMutation({
+    mutationKey: ["auth", "sign-up"],
     mutationFn: signUp,
     onSuccess: () => {
       toast.success("You have successfully signed up.")
-
       queryClient.resetQueries()
-      router.invalidate()
+      const target = sanitizeRedirect(redirectTo ?? previousLocation)
+      navigate({ to: target })
     },
   })
 
@@ -102,7 +113,11 @@ export const SignUpForm = () => {
         )}
       />
       <form.AppForm>
-        <form.SubmitButton label="Create account" className="w-full mt-2" />
+        <form.SubmitButton
+          label="Create account"
+          className="w-full mt-2"
+          disabled={isAuthLoading}
+        />
       </form.AppForm>
     </form>
   )

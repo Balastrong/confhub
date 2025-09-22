@@ -5,6 +5,7 @@ import {
   Outlet,
   ScriptOnce,
   Scripts,
+  useRouter,
 } from "@tanstack/react-router"
 import * as React from "react"
 import { Header } from "~/components/header/header"
@@ -70,6 +71,18 @@ const TanStackRouterDevtools =
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   const { i18n } = useTranslation()
+  const router = useRouter()
+
+  React.useEffect(() => {
+    const handler = () => {
+      router.invalidate()
+    }
+    i18n.on("languageChanged", handler)
+    return () => {
+      i18n.off("languageChanged", handler)
+    }
+  }, [router])
+
   return (
     <html lang={i18n.language} suppressHydrationWarning>
       <head>

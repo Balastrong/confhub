@@ -19,13 +19,14 @@ import { useAppForm } from "~/lib/form"
 import { createEventRequest } from "~/services/event-request.api"
 import { CreateEventRequestSchema } from "~/services/event-request.schema"
 import { useTranslation } from "react-i18next"
+import i18n from "~/lib/i18n"
 
 export const Route = createFileRoute("/events/submit")({
   component: RouteComponent,
   head: () => ({
     meta: seo({
-      title: "Submit an Event",
-      description: "Submit a new event request on ConfHub",
+      title: i18n.t("submit.seoTitle"),
+      description: i18n.t("submit.seoDescription"),
     }),
   }),
 })

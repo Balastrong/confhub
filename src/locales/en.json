@@ -1,0 +1,28 @@
+{
+  "Welcome": "Welcome",
+  "submit": {
+    "header": "Submit an Event",
+    "description": "Share an event with the community by submitting the URL below.",
+    "seoTitle": "Submit an Event",
+    "seoDescription": "Submit a new event request on ConfHub",
+    "card": {
+      "title": "Event Request",
+      "description": "Enter the URL of the event you'd like to see on our platform."
+    },
+    "form": {
+      "urlLabel": "Event URL",
+      "submit": "Submit Event"
+    },
+    "success": {
+      "title": "Thank You!",
+      "description": "Your event request has been submitted successfully.",
+      "hint": "Our team will review your event soon and add it to the platform.",
+      "backHome": "Return to Homepage",
+      "another": "Submit Another Request"
+    },
+    "toast": {
+      "success": "Event request submitted successfully!",
+      "error": "Failed to submit event request"
+    }
+  }
+}

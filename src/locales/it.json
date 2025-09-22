@@ -1,0 +1,28 @@
+{
+  "Welcome": "Benvenuto",
+  "submit": {
+    "header": "Invia un evento",
+    "description": "Condividi un evento con la community inviando l'URL qui sotto.",
+    "seoTitle": "Invia un evento",
+    "seoDescription": "Invia una nuova richiesta di evento su ConfHub",
+    "card": {
+      "title": "Richiesta Evento",
+      "description": "Inserisci l'URL dell'evento che vorresti vedere sulla nostra piattaforma."
+    },
+    "form": {
+      "urlLabel": "URL dell'evento",
+      "submit": "Invia evento"
+    },
+    "success": {
+      "title": "Grazie!",
+      "description": "La tua richiesta di evento è stata inviata con successo.",
+      "hint": "Il nostro team esaminerà presto il tuo evento e lo aggiungerà alla piattaforma.",
+      "backHome": "Torna alla Home",
+      "another": "Invia un'altra richiesta"
+    },
+    "toast": {
+      "success": "Richiesta evento inviata con successo!",
+      "error": "Impossibile inviare la richiesta dell'evento"
+    }
+  }
+}

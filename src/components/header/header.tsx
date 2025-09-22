@@ -10,6 +10,7 @@ import { UserMenu } from "../user-menu"
 import { MobileNavigation } from "./mobile-navigation"
 import { Navigation } from "./navigation"
 import { SocialLinks } from "./social-links"
+import { LanguageToggle } from "../language-toggle"
 
 export const NAV_LINKS = [
   { to: "/events/submit", label: "Submit Event" },
@@ -66,12 +67,16 @@ export const Header = () => {
         </div>
 
         {/* Desktop Right Side - partially hidden on mobile */}
-        <div className="flex gap-2 md:gap-4 items-center">
+        <div className="flex gap-2 items-center">
           {/* Social icons - hidden on small screens */}
           <SocialLinks className="hidden sm:flex gap-2 md:gap-4 items-center" />
 
-          {/* Theme selector - always visible */}
-          <ThemeSelector />
+          <div>
+            <ThemeSelector />
+            {router.state.location.href.endsWith("/submit") && (
+              <LanguageToggle />
+            )}
+          </div>
 
           {/* User menu / Sign in - always visible */}
           <SignedIn>

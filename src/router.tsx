@@ -8,6 +8,7 @@ import { toast } from "sonner"
 import { ZodError } from "zod"
 import { fromError } from "zod-validation-error"
 import { routeTree } from "./routeTree.gen"
+import "~/lib/i18n"
 
 function parseZodError(error: Error) {
   try {

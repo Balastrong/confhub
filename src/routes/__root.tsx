@@ -12,14 +12,17 @@ import { Toaster } from "src/components/ui/sonner"
 import { authQueries } from "src/services/queries"
 import css from "~/globals.css?url"
 import { ThemeProvider } from "~/hooks/useTheme"
+import { setSSRLanguage } from "~/lib/i18n"
 import { seo } from "~/lib/seo"
 import { analyticsScripts } from "~/lib/analytics"
+import { useTranslation } from "react-i18next"
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient
 }>()({
   beforeLoad: async ({ context }) => {
     const userSession = await context.queryClient.fetchQuery(authQueries.user())
+    await setSSRLanguage()
 
     return { userSession }
   },
@@ -66,8 +69,9 @@ const TanStackRouterDevtools =
       )
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  const { i18n } = useTranslation()
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={i18n.language} suppressHydrationWarning>
       <head>
         <HeadContent />
         {process.env.NODE_ENV === "production" && (

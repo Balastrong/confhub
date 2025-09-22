@@ -18,6 +18,7 @@ import { Label } from "~/components/ui/label"
 import { useAppForm } from "~/lib/form"
 import { createEventRequest } from "~/services/event-request.api"
 import { CreateEventRequestSchema } from "~/services/event-request.schema"
+import { useTranslation } from "react-i18next"
 
 export const Route = createFileRoute("/events/submit")({
   component: RouteComponent,
@@ -30,14 +31,15 @@ export const Route = createFileRoute("/events/submit")({
 })
 
 function RouteComponent() {
+  const { t } = useTranslation()
   const createEventRequestMutation = useMutation({
     mutationFn: createEventRequest,
     onSuccess: () => {
-      toast.success("Event request submitted successfully!")
+      toast.success(t("submit.toast.success"))
       setIsSubmitted(true)
     },
     onError: (error) => {
-      toast.error(error.message || "Failed to submit event request")
+      toast.error(error.message || t("submit.toast.error"))
     },
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -62,20 +64,22 @@ function RouteComponent() {
       <div className="max-w-2xl mx-auto p-6 space-y-8">
         <Card className="shadow-lg">
           <CardHeader>
-            <CardTitle className="text-center">Thank You!</CardTitle>
+            <CardTitle className="text-center">
+              {t("submit.success.title")}
+            </CardTitle>
             <CardDescription className="text-center">
-              Your event request has been submitted successfully.
+              {t("submit.success.description")}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="bg-green-50 dark:bg-green-950/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
               <p className="text-green-700 dark:text-green-300 text-center">
-                Our team will review your event soon and add it to the platform.
+                {t("submit.success.hint")}
               </p>
             </div>
             <div className="flex justify-center mt-4">
               <ButtonLink variant="outline" to={"/"}>
-                Return to Homepage
+                {t("submit.success.backHome")}
               </ButtonLink>
               <Button
                 onClick={() => {
@@ -84,7 +88,7 @@ function RouteComponent() {
                 }}
                 className="ml-4"
               >
-                Submit Another Request
+                {t("submit.success.another")}
               </Button>
             </div>
           </CardContent>
@@ -96,18 +100,16 @@ function RouteComponent() {
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-8">
       <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">Submit an Event</h1>
-        <p className="text-muted-foreground">
-          Share an event with the community by submitting the URL below.
-        </p>
+        <h1 className="text-3xl font-bold tracking-tight">
+          {t("submit.header")}
+        </h1>
+        <p className="text-muted-foreground">{t("submit.description")}</p>
       </div>
 
       <Card className="shadow-lg">
         <CardHeader>
-          <CardTitle>Event Request</CardTitle>
-          <CardDescription>
-            Enter the URL of the event you'd like to see on our platform.
-          </CardDescription>
+          <CardTitle>{t("submit.card.title")}</CardTitle>
+          <CardDescription>{t("submit.card.description")}</CardDescription>
         </CardHeader>
         <CardContent>
           <form
@@ -124,7 +126,8 @@ function RouteComponent() {
                   <field.TextField
                     label={
                       <>
-                        <Link2 className="h-4 w-4" /> Event URL
+                        <Link2 className="h-4 w-4" />{" "}
+                        {t("submit.form.urlLabel")}
                       </>
                     }
                     required
@@ -134,7 +137,10 @@ function RouteComponent() {
               />
             </div>
             <form.AppForm>
-              <form.SubmitButton label={"Submit Event"} className="w-full" />
+              <form.SubmitButton
+                label={t("submit.form.submit")}
+                className="w-full"
+              />
             </form.AppForm>
           </form>
         </CardContent>

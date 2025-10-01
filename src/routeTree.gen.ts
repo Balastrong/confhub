@@ -8,8 +8,6 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createServerRootRoute } from '@tanstack/react-start/server'
-
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignUpRouteImport } from './routes/sign-up'
 import { Route as SignInRouteImport } from './routes/sign-in'
@@ -22,13 +20,11 @@ import { Route as EventsSubmitRouteImport } from './routes/events/submit'
 import { Route as EventsEventSlugRouteImport } from './routes/events/$eventSlug'
 import { Route as CommunitiesCreateRouteImport } from './routes/communities/create'
 import { Route as CommunitiesCommunitySlugRouteImport } from './routes/communities/$communitySlug'
+import { Route as ApiMcpRouteImport } from './routes/api/mcp'
+import { Route as DotwellKnownOpenidConfigurationRouteImport } from './routes/[.]well-known/openid-configuration'
 import { Route as EventsProSubmitRouteImport } from './routes/events/pro.submit'
 import { Route as EventsProEventIdRouteImport } from './routes/events/pro.$eventId'
-import { ServerRoute as ApiMcpServerRouteImport } from './routes/api/mcp'
-import { ServerRoute as DotwellKnownOpenidConfigurationServerRouteImport } from './routes/[.]well-known/openid-configuration'
-import { ServerRoute as ApiAuthSplatServerRouteImport } from './routes/api/auth.$'
-
-const rootServerRouteImport = createServerRootRoute()
+import { Route as ApiAuthSplatRouteImport } from './routes/api/auth.$'
 
 const SignUpRoute = SignUpRouteImport.update({
   id: '/sign-up',
@@ -86,6 +82,17 @@ const CommunitiesCommunitySlugRoute =
     path: '/communities/$communitySlug',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiMcpRoute = ApiMcpRouteImport.update({
+  id: '/api/mcp',
+  path: '/api/mcp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DotwellKnownOpenidConfigurationRoute =
+  DotwellKnownOpenidConfigurationRouteImport.update({
+    id: '/.well-known/openid-configuration',
+    path: '/.well-known/openid-configuration',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const EventsProSubmitRoute = EventsProSubmitRouteImport.update({
   id: '/events/pro/submit',
   path: '/events/pro/submit',
@@ -96,21 +103,10 @@ const EventsProEventIdRoute = EventsProEventIdRouteImport.update({
   path: '/events/pro/$eventId',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiMcpServerRoute = ApiMcpServerRouteImport.update({
-  id: '/api/mcp',
-  path: '/api/mcp',
-  getParentRoute: () => rootServerRouteImport,
-} as any)
-const DotwellKnownOpenidConfigurationServerRoute =
-  DotwellKnownOpenidConfigurationServerRouteImport.update({
-    id: '/.well-known/openid-configuration',
-    path: '/.well-known/openid-configuration',
-    getParentRoute: () => rootServerRouteImport,
-  } as any)
-const ApiAuthSplatServerRoute = ApiAuthSplatServerRouteImport.update({
+const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
-  getParentRoute: () => rootServerRouteImport,
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -120,11 +116,14 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationRoute
+  '/api/mcp': typeof ApiMcpRoute
   '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
   '/communities/create': typeof CommunitiesCreateRoute
   '/events/$eventSlug': typeof EventsEventSlugRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities': typeof CommunitiesIndexRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
   '/events/pro/submit': typeof EventsProSubmitRoute
 }
@@ -135,11 +134,14 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationRoute
+  '/api/mcp': typeof ApiMcpRoute
   '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
   '/communities/create': typeof CommunitiesCreateRoute
   '/events/$eventSlug': typeof EventsEventSlugRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities': typeof CommunitiesIndexRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
   '/events/pro/submit': typeof EventsProSubmitRoute
 }
@@ -151,11 +153,14 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationRoute
+  '/api/mcp': typeof ApiMcpRoute
   '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
   '/communities/create': typeof CommunitiesCreateRoute
   '/events/$eventSlug': typeof EventsEventSlugRoute
   '/events/submit': typeof EventsSubmitRoute
   '/communities/': typeof CommunitiesIndexRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
   '/events/pro/submit': typeof EventsProSubmitRoute
 }
@@ -168,11 +173,14 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
+    | '/.well-known/openid-configuration'
+    | '/api/mcp'
     | '/communities/$communitySlug'
     | '/communities/create'
     | '/events/$eventSlug'
     | '/events/submit'
     | '/communities'
+    | '/api/auth/$'
     | '/events/pro/$eventId'
     | '/events/pro/submit'
   fileRoutesByTo: FileRoutesByTo
@@ -183,11 +191,14 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
+    | '/.well-known/openid-configuration'
+    | '/api/mcp'
     | '/communities/$communitySlug'
     | '/communities/create'
     | '/events/$eventSlug'
     | '/events/submit'
     | '/communities'
+    | '/api/auth/$'
     | '/events/pro/$eventId'
     | '/events/pro/submit'
   id:
@@ -198,11 +209,14 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
+    | '/.well-known/openid-configuration'
+    | '/api/mcp'
     | '/communities/$communitySlug'
     | '/communities/create'
     | '/events/$eventSlug'
     | '/events/submit'
     | '/communities/'
+    | '/api/auth/$'
     | '/events/pro/$eventId'
     | '/events/pro/submit'
   fileRoutesById: FileRoutesById
@@ -214,46 +228,16 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   SignInRoute: typeof SignInRoute
   SignUpRoute: typeof SignUpRoute
+  DotwellKnownOpenidConfigurationRoute: typeof DotwellKnownOpenidConfigurationRoute
+  ApiMcpRoute: typeof ApiMcpRoute
   CommunitiesCommunitySlugRoute: typeof CommunitiesCommunitySlugRoute
   CommunitiesCreateRoute: typeof CommunitiesCreateRoute
   EventsEventSlugRoute: typeof EventsEventSlugRoute
   EventsSubmitRoute: typeof EventsSubmitRoute
   CommunitiesIndexRoute: typeof CommunitiesIndexRoute
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   EventsProEventIdRoute: typeof EventsProEventIdRoute
   EventsProSubmitRoute: typeof EventsProSubmitRoute
-}
-export interface FileServerRoutesByFullPath {
-  '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationServerRoute
-  '/api/mcp': typeof ApiMcpServerRoute
-  '/api/auth/$': typeof ApiAuthSplatServerRoute
-}
-export interface FileServerRoutesByTo {
-  '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationServerRoute
-  '/api/mcp': typeof ApiMcpServerRoute
-  '/api/auth/$': typeof ApiAuthSplatServerRoute
-}
-export interface FileServerRoutesById {
-  __root__: typeof rootServerRouteImport
-  '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationServerRoute
-  '/api/mcp': typeof ApiMcpServerRoute
-  '/api/auth/$': typeof ApiAuthSplatServerRoute
-}
-export interface FileServerRouteTypes {
-  fileServerRoutesByFullPath: FileServerRoutesByFullPath
-  fullPaths: '/.well-known/openid-configuration' | '/api/mcp' | '/api/auth/$'
-  fileServerRoutesByTo: FileServerRoutesByTo
-  to: '/.well-known/openid-configuration' | '/api/mcp' | '/api/auth/$'
-  id:
-    | '__root__'
-    | '/.well-known/openid-configuration'
-    | '/api/mcp'
-    | '/api/auth/$'
-  fileServerRoutesById: FileServerRoutesById
-}
-export interface RootServerRouteChildren {
-  DotwellKnownOpenidConfigurationServerRoute: typeof DotwellKnownOpenidConfigurationServerRoute
-  ApiMcpServerRoute: typeof ApiMcpServerRoute
-  ApiAuthSplatServerRoute: typeof ApiAuthSplatServerRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -335,6 +319,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommunitiesCommunitySlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/mcp': {
+      id: '/api/mcp'
+      path: '/api/mcp'
+      fullPath: '/api/mcp'
+      preLoaderRoute: typeof ApiMcpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/.well-known/openid-configuration': {
+      id: '/.well-known/openid-configuration'
+      path: '/.well-known/openid-configuration'
+      fullPath: '/.well-known/openid-configuration'
+      preLoaderRoute: typeof DotwellKnownOpenidConfigurationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/events/pro/submit': {
       id: '/events/pro/submit'
       path: '/events/pro/submit'
@@ -349,30 +347,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsProEventIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-  }
-}
-declare module '@tanstack/react-start/server' {
-  interface ServerFileRoutesByPath {
-    '/api/mcp': {
-      id: '/api/mcp'
-      path: '/api/mcp'
-      fullPath: '/api/mcp'
-      preLoaderRoute: typeof ApiMcpServerRouteImport
-      parentRoute: typeof rootServerRouteImport
-    }
-    '/.well-known/openid-configuration': {
-      id: '/.well-known/openid-configuration'
-      path: '/.well-known/openid-configuration'
-      fullPath: '/.well-known/openid-configuration'
-      preLoaderRoute: typeof DotwellKnownOpenidConfigurationServerRouteImport
-      parentRoute: typeof rootServerRouteImport
-    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
       fullPath: '/api/auth/$'
-      preLoaderRoute: typeof ApiAuthSplatServerRouteImport
-      parentRoute: typeof rootServerRouteImport
+      preLoaderRoute: typeof ApiAuthSplatRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -384,23 +364,26 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   SignInRoute: SignInRoute,
   SignUpRoute: SignUpRoute,
+  DotwellKnownOpenidConfigurationRoute: DotwellKnownOpenidConfigurationRoute,
+  ApiMcpRoute: ApiMcpRoute,
   CommunitiesCommunitySlugRoute: CommunitiesCommunitySlugRoute,
   CommunitiesCreateRoute: CommunitiesCreateRoute,
   EventsEventSlugRoute: EventsEventSlugRoute,
   EventsSubmitRoute: EventsSubmitRoute,
   CommunitiesIndexRoute: CommunitiesIndexRoute,
+  ApiAuthSplatRoute: ApiAuthSplatRoute,
   EventsProEventIdRoute: EventsProEventIdRoute,
   EventsProSubmitRoute: EventsProSubmitRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-const rootServerRouteChildren: RootServerRouteChildren = {
-  DotwellKnownOpenidConfigurationServerRoute:
-    DotwellKnownOpenidConfigurationServerRoute,
-  ApiMcpServerRoute: ApiMcpServerRoute,
-  ApiAuthSplatServerRoute: ApiAuthSplatServerRoute,
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
 }
-export const serverRouteTree = rootServerRouteImport
-  ._addFileChildren(rootServerRouteChildren)
-  ._addFileTypes<FileServerRouteTypes>()

@@ -1,29 +1,29 @@
-import { createServerFn, json } from "@tanstack/react-start"
+import { createMiddleware, createServerFn, json } from "@tanstack/react-start"
 import z from "zod"
 import { EventFiltersSchema } from "./event.schema"
 import { userRequiredMiddleware } from "./auth.api"
-import { createRateLimitMiddleware } from "./rate-limit.middleware"
+import { rateLimitGuard } from "./rate-limit.guard"
 import OpenAI from "openai"
 import { getTags } from "./tags.api"
 import { getCountries } from "./countries.api"
 
-const token = process.env.LLM_TOKEN!
-const endpoint = process.env.LLM_ENDPOINT!
-const model = process.env.LLM_MODEL!
-
 export const generateFiltersSchema = createServerFn({ method: "POST" })
-  .validator(z.string())
-  .middleware([
-    userRequiredMiddleware,
-    createRateLimitMiddleware({
-      key: ({ userId }) => `ai:generateFiltersSchema:${userId}`,
+  .inputValidator(z.string())
+  .middleware([userRequiredMiddleware])
+  .handler(async ({ data, context: { userSession } }) => {
+    await rateLimitGuard({
+      prefix: "ai:generateFiltersSchema:",
+      userId: userSession.user.id,
       windows: [
         { name: "min", limit: 5, windowSec: 60 },
         { name: "day", limit: 15, windowSec: 60 * 60 * 24 },
       ],
-    }),
-  ])
-  .handler(async ({ data }) => {
+    })
+
+    const token = process.env.LLM_TOKEN!
+    const endpoint = process.env.LLM_ENDPOINT!
+    const model = process.env.LLM_MODEL!
+
     const client = new OpenAI({ baseURL: endpoint, apiKey: token })
 
     const tags = await getTags()

@@ -16,7 +16,7 @@ function parseZodError(error: Error) {
   } catch {}
 }
 
-export function createRouter() {
+export function getRouter() {
   const queryClient: QueryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -65,7 +65,6 @@ export function createRouter() {
     router.subscribe("onBeforeLoad", console.log)
     router.subscribe("onBeforeNavigate", console.log)
     router.subscribe("onBeforeRouteMount", console.log)
-    router.subscribe("onInjectedHtml", console.log)
     router.subscribe("onLoad", console.log)
     router.subscribe("onRendered", console.log)
     router.subscribe("onResolved", console.log)
@@ -76,6 +75,6 @@ export function createRouter() {
 
 declare module "@tanstack/react-router" {
   interface Register {
-    router: ReturnType<typeof createRouter>
+    router: ReturnType<typeof getRouter>
   }
 }

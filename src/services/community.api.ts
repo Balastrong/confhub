@@ -18,7 +18,7 @@ import {
 import { setResponseStatus } from "@tanstack/react-start/server"
 
 export const createCommunity = createServerFn()
-  .validator(CreateCommunitySchema)
+  .inputValidator(CreateCommunitySchema)
   .middleware([userRequiredMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
     let slug = generateSlug(data.name, false)
@@ -61,7 +61,7 @@ const isMemberQuery = (userId?: string) =>
     : sql<boolean>`false`
 
 export const getCommunities = createServerFn()
-  .validator(CommunityFiltersSchema)
+  .inputValidator(CommunityFiltersSchema)
   .middleware([userMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
     const userId = data.userId ?? userSession?.user?.id
@@ -99,7 +99,7 @@ export const getCommunities = createServerFn()
   })
 
 export const getCommunity = createServerFn()
-  .validator(
+  .inputValidator(
     z
       .object({ id: z.number().optional(), slug: z.string().optional() })
       .refine((data) => data.id !== undefined || data.slug !== undefined, {
@@ -147,7 +147,7 @@ export const getCommunity = createServerFn()
   })
 
 export const getCommunityBySlug = createServerFn()
-  .validator(z.object({ slug: z.string() }))
+  .inputValidator(z.object({ slug: z.string() }))
   .middleware([userMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
     const today = new Date().toISOString().split("T")[0] // Current date in YYYY-MM-DD format
@@ -184,7 +184,7 @@ export const getCommunityBySlug = createServerFn()
   })
 
 export const joinCommunity = createServerFn()
-  .validator(JoinCommunitySchema)
+  .inputValidator(JoinCommunitySchema)
   .middleware([userRequiredMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
     await db.insert(usersInCommunityTable).values({
@@ -194,7 +194,7 @@ export const joinCommunity = createServerFn()
   })
 
 export const leaveCommunity = createServerFn()
-  .validator(JoinCommunitySchema)
+  .inputValidator(JoinCommunitySchema)
   .middleware([userRequiredMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
     await db
@@ -208,7 +208,7 @@ export const leaveCommunity = createServerFn()
   })
 
 export const updateCommunity = createServerFn()
-  .validator(UpdateCommunitySchema)
+  .inputValidator(UpdateCommunitySchema)
   .middleware([userRequiredMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
     const userRole = await getUserRoleInCommunity({
@@ -233,7 +233,7 @@ export const updateCommunity = createServerFn()
   })
 
 export const getUserRoleInCommunity = createServerFn()
-  .validator(z.object({ communityId: z.number() }))
+  .inputValidator(z.object({ communityId: z.number() }))
   .middleware([userRequiredMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
     const [userInCommunity] = await db

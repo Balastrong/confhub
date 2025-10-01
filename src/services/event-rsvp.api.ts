@@ -6,7 +6,7 @@ import { GetRsvpSchema, UpsertRsvpSchema } from "./event-rsvp.schema"
 import { userRequiredMiddleware, userMiddleware } from "./auth.api"
 
 export const getMyRsvpForEvent = createServerFn()
-  .validator(GetRsvpSchema)
+  .inputValidator(GetRsvpSchema)
   .middleware([userMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
     if (!userSession) return null
@@ -26,7 +26,7 @@ export const getMyRsvpForEvent = createServerFn()
   })
 
 export const upsertMyRsvpForEvent = createServerFn()
-  .validator(UpsertRsvpSchema)
+  .inputValidator(UpsertRsvpSchema)
   .middleware([userRequiredMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
     const { eventId, status } = data
@@ -66,7 +66,7 @@ export const upsertMyRsvpForEvent = createServerFn()
   })
 
 export const removeMyRsvpForEvent = createServerFn()
-  .validator(GetRsvpSchema)
+  .inputValidator(GetRsvpSchema)
   .middleware([userRequiredMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
     await db
@@ -82,7 +82,7 @@ export const removeMyRsvpForEvent = createServerFn()
   })
 
 export const getEventRsvpCounts = createServerFn()
-  .validator(GetRsvpSchema)
+  .inputValidator(GetRsvpSchema)
   .handler(async ({ data }) => {
     const rows = await db
       .select({

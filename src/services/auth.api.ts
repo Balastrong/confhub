@@ -1,5 +1,5 @@
 import { createMiddleware, createServerFn, json } from "@tanstack/react-start"
-import { getWebRequest } from "@tanstack/react-start/server"
+import { getRequest } from "@tanstack/react-start/server"
 import { eq } from "drizzle-orm"
 import { auth } from "~/lib/auth/auth"
 import { db } from "~/lib/db"
@@ -8,7 +8,7 @@ import { UserMetaSchema } from "./auth.schema"
 
 export const getUserSession = createServerFn({ method: "GET" }).handler(
   async () => {
-    const request = getWebRequest()
+    const request = getRequest()
 
     if (!request?.headers) {
       return null
@@ -16,7 +16,9 @@ export const getUserSession = createServerFn({ method: "GET" }).handler(
 
     const userSession = await auth.api.getSession({ headers: request.headers })
 
-    return userSession
+    if (!userSession) return null
+
+    return { user: userSession.user, session: userSession.session }
   },
 )
 
@@ -42,7 +44,7 @@ export const userRequiredMiddleware = createMiddleware({ type: "function" })
   })
 
 export const updateUser = createServerFn()
-  .validator(UserMetaSchema)
+  .inputValidator(UserMetaSchema)
   .middleware([userRequiredMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
     const update: Record<string, unknown> = { name: data.username }

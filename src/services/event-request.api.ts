@@ -5,7 +5,7 @@ import { CreateEventRequestSchema } from "./event-request.schema"
 import { userMiddleware } from "./auth.api"
 
 export const createEventRequest = createServerFn()
-  .validator(CreateEventRequestSchema)
+  .inputValidator(CreateEventRequestSchema)
   .middleware([userMiddleware])
   .handler(async ({ data, context }) => {
     const userId = context.userSession?.user?.id

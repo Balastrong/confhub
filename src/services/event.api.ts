@@ -9,7 +9,7 @@ import { formatDate } from "~/lib/date"
 import { generateSlug } from "~/lib/utils"
 
 export const getEvents = createServerFn()
-  .validator(EventFiltersSchema)
+  .inputValidator(EventFiltersSchema)
   .handler(async ({ data }) => {
     const filters = []
 
@@ -74,7 +74,7 @@ export const getEvents = createServerFn()
   })
 
 export const getEvent = createServerFn()
-  .validator(
+  .inputValidator(
     z.object({
       id: z.number(),
     }),
@@ -89,7 +89,7 @@ export const getEvent = createServerFn()
   })
 
 export const getEventBySlug = createServerFn()
-  .validator(
+  .inputValidator(
     z.object({
       slug: z.string(),
     }),
@@ -105,7 +105,7 @@ export const getEventBySlug = createServerFn()
   })
 
 export const upsertEvent = createServerFn()
-  .validator(CreateEventSchema)
+  .inputValidator(CreateEventSchema)
   .middleware([userRequiredMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
     const { id, ...eventData } = data

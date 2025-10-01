@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start"
-import { createServerFileRoute } from "@tanstack/react-start/server"
+import { createFileRoute } from "@tanstack/react-router"
 import z from "zod"
 import { auth } from "~/lib/auth/auth"
 import { formatDate } from "~/lib/date"
@@ -283,81 +283,89 @@ function handleInitialize(): MCPResponse {
   }
 }
 
-export const ServerRoute = createServerFileRoute("/api/mcp").methods({
-  GET: () => {
-    // For GET requests, return server information
-    return Response.json({
-      name: "ConfHub MCP Time Server",
-      version: "1.0.0",
-      description: "An MCP server that provides current time information",
-      capabilities: ["tools"],
-      tools: tools,
-    })
-  },
-
-  POST: async ({ request }) => {
-    try {
-      const body: MCPRequest = await request.json()
-
-      // Validate MCP request format
-      if (body.jsonrpc !== "2.0") {
+export const Route = createFileRoute("/api/mcp")({
+  server: {
+    handlers: {
+      GET: () => {
+        // For GET requests, return server information
         return Response.json({
-          jsonrpc: "2.0",
-          id: body.id,
-          error: {
-            code: -32600,
-            message: "Invalid Request - jsonrpc must be '2.0'",
-          },
+          name: "ConfHub MCP Time Server",
+          version: "1.0.0",
+          description: "An MCP server that provides current time information",
+          capabilities: ["tools"],
+          tools: tools,
         })
-      }
+      },
 
-      let response: MCPResponse
+      POST: async ({ request }) => {
+        try {
+          const body: MCPRequest = await request.json()
 
-      // Handle different MCP methods
-      switch (body.method) {
-        case "initialize":
-          response = handleInitialize()
-          break
-        case "tools/list":
-          response = handleListTools()
-          break
-        case "tools/call":
-          response = await handleCallTool(body.params, request.headers)
-          break
-        default:
-          response = {
+          // Validate MCP request format
+          if (body.jsonrpc !== "2.0") {
+            return Response.json({
+              jsonrpc: "2.0",
+              id: body.id,
+              error: {
+                code: -32600,
+                message: "Invalid Request - jsonrpc must be '2.0'",
+              },
+            })
+          }
+
+          let response: MCPResponse
+
+          // Handle different MCP methods
+          switch (body.method) {
+            case "initialize":
+              response = handleInitialize()
+              break
+            case "tools/list":
+              response = handleListTools()
+              break
+            case "tools/call":
+              response = await handleCallTool(body.params, request.headers)
+              break
+            default:
+              response = {
+                jsonrpc: "2.0",
+                error: {
+                  code: -32601,
+                  message: "Method not found",
+                  data: {
+                    availableMethods: [
+                      "initialize",
+                      "tools/list",
+                      "tools/call",
+                    ],
+                  },
+                },
+              }
+          }
+
+          // Include request ID in response if provided
+          if (body.id !== undefined) {
+            response.id = body.id
+          }
+
+          return Response.json(response)
+        } catch (error) {
+          if (error instanceof Response) {
+            return error
+          }
+
+          return Response.json({
             jsonrpc: "2.0",
             error: {
-              code: -32601,
-              message: "Method not found",
+              code: -32700,
+              message: "Parse error",
               data: {
-                availableMethods: ["initialize", "tools/list", "tools/call"],
+                error: error instanceof Error ? error.message : "Invalid JSON",
               },
             },
-          }
-      }
-
-      // Include request ID in response if provided
-      if (body.id !== undefined) {
-        response.id = body.id
-      }
-
-      return Response.json(response)
-    } catch (error) {
-      if (error instanceof Response) {
-        return error
-      }
-
-      return Response.json({
-        jsonrpc: "2.0",
-        error: {
-          code: -32700,
-          message: "Parse error",
-          data: {
-            error: error instanceof Error ? error.message : "Invalid JSON",
-          },
-        },
-      })
-    }
+          })
+        }
+      },
+    },
   },
 })

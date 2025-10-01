@@ -1,7 +1,8 @@
+import netlify from "@netlify/vite-plugin-tanstack-start"
 import { tanstackStart } from "@tanstack/react-start/plugin/vite"
+import viteReact from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
 import tsConfigPaths from "vite-tsconfig-paths"
-import viteReact from "@vitejs/plugin-react"
 
 export default defineConfig({
   server: {
@@ -11,7 +12,8 @@ export default defineConfig({
     tsConfigPaths({
       projects: ["./tsconfig.json"],
     }),
-    tanstackStart({ target: "netlify-edge", customViteReactPlugin: true }),
+    tanstackStart(),
+    netlify({ edgeSSR: true }),
     viteReact(),
   ],
 })

@@ -11,7 +11,7 @@ import {
 import { randomUUID } from "node:crypto"
 
 export const listEventComments = createServerFn()
-  .validator(
+  .inputValidator(
     z.object({
       eventId: z.number(),
     }),
@@ -39,7 +39,7 @@ export const listEventComments = createServerFn()
   })
 
 export const createEventComment = createServerFn()
-  .validator(CreateEventCommentSchema)
+  .inputValidator(CreateEventCommentSchema)
   .middleware([userRequiredMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
     const [inserted] = await db
@@ -58,7 +58,7 @@ export const createEventComment = createServerFn()
   })
 
 export const deleteEventComment = createServerFn()
-  .validator(DeleteEventCommentSchema)
+  .inputValidator(DeleteEventCommentSchema)
   .middleware([userRequiredMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
     // Ensure the comment exists and belongs to the current user

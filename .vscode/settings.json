@@ -7,5 +7,11 @@
   },
   "files.readonlyInclude": {
     "**/routeTree.gen.ts": true
-  }
+  },
+  "demoTime.defaultFileType": "json",
+  "workbench.statusBar.visible": true,
+  "workbench.editor.showTabs": "multiple",
+  "workbench.activityBar.location": "default",
+  "demoTime.previousEnabled": true,
+  "demoTime.api.enabled": true
 }

@@ -24,6 +24,7 @@ import { Route as ApiMcpRouteImport } from './routes/api/mcp'
 import { Route as DotwellKnownOpenidConfigurationRouteImport } from './routes/[.]well-known/openid-configuration'
 import { Route as EventsProSubmitRouteImport } from './routes/events/pro.submit'
 import { Route as EventsProEventIdRouteImport } from './routes/events/pro.$eventId'
+import { Route as ApiDemoNameRouteImport } from './routes/api/demo.$name'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth.$'
 
 const SignUpRoute = SignUpRouteImport.update({
@@ -103,6 +104,11 @@ const EventsProEventIdRoute = EventsProEventIdRouteImport.update({
   path: '/events/pro/$eventId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiDemoNameRoute = ApiDemoNameRouteImport.update({
+  id: '/api/demo/$name',
+  path: '/api/demo/$name',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -124,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/events/submit': typeof EventsSubmitRoute
   '/communities': typeof CommunitiesIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/demo/$name': typeof ApiDemoNameRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
   '/events/pro/submit': typeof EventsProSubmitRoute
 }
@@ -142,6 +149,7 @@ export interface FileRoutesByTo {
   '/events/submit': typeof EventsSubmitRoute
   '/communities': typeof CommunitiesIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/demo/$name': typeof ApiDemoNameRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
   '/events/pro/submit': typeof EventsProSubmitRoute
 }
@@ -161,6 +169,7 @@ export interface FileRoutesById {
   '/events/submit': typeof EventsSubmitRoute
   '/communities/': typeof CommunitiesIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/demo/$name': typeof ApiDemoNameRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
   '/events/pro/submit': typeof EventsProSubmitRoute
 }
@@ -181,6 +190,7 @@ export interface FileRouteTypes {
     | '/events/submit'
     | '/communities'
     | '/api/auth/$'
+    | '/api/demo/$name'
     | '/events/pro/$eventId'
     | '/events/pro/submit'
   fileRoutesByTo: FileRoutesByTo
@@ -199,6 +209,7 @@ export interface FileRouteTypes {
     | '/events/submit'
     | '/communities'
     | '/api/auth/$'
+    | '/api/demo/$name'
     | '/events/pro/$eventId'
     | '/events/pro/submit'
   id:
@@ -217,6 +228,7 @@ export interface FileRouteTypes {
     | '/events/submit'
     | '/communities/'
     | '/api/auth/$'
+    | '/api/demo/$name'
     | '/events/pro/$eventId'
     | '/events/pro/submit'
   fileRoutesById: FileRoutesById
@@ -236,6 +248,7 @@ export interface RootRouteChildren {
   EventsSubmitRoute: typeof EventsSubmitRoute
   CommunitiesIndexRoute: typeof CommunitiesIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
+  ApiDemoNameRoute: typeof ApiDemoNameRoute
   EventsProEventIdRoute: typeof EventsProEventIdRoute
   EventsProSubmitRoute: typeof EventsProSubmitRoute
 }
@@ -347,6 +360,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsProEventIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/demo/$name': {
+      id: '/api/demo/$name'
+      path: '/api/demo/$name'
+      fullPath: '/api/demo/$name'
+      preLoaderRoute: typeof ApiDemoNameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
@@ -372,6 +392,7 @@ const rootRouteChildren: RootRouteChildren = {
   EventsSubmitRoute: EventsSubmitRoute,
   CommunitiesIndexRoute: CommunitiesIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
+  ApiDemoNameRoute: ApiDemoNameRoute,
   EventsProEventIdRoute: EventsProEventIdRoute,
   EventsProSubmitRoute: EventsProSubmitRoute,
 }

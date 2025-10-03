@@ -10,9 +10,7 @@ export const getUserSession = createServerFn({ method: "GET" }).handler(
   async () => {
     const request = getRequest()
 
-    if (!request?.headers) {
-      return null
-    }
+    if (!request?.headers) return null
 
     const userSession = await auth.api.getSession({ headers: request.headers })
 
@@ -22,15 +20,13 @@ export const getUserSession = createServerFn({ method: "GET" }).handler(
   },
 )
 
-export const userMiddleware = createMiddleware({ type: "function" }).server(
-  async ({ next }) => {
-    const userSession = await getUserSession()
+export const userMiddleware = createMiddleware().server(async ({ next }) => {
+  const userSession = await getUserSession()
 
-    return next({ context: { userSession } })
-  },
-)
+  return next({ context: { userSession } })
+})
 
-export const userRequiredMiddleware = createMiddleware({ type: "function" })
+export const userRequiredMiddleware = createMiddleware()
   .middleware([userMiddleware])
   .server(async ({ next, context }) => {
     if (!context.userSession) {

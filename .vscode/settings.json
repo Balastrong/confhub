@@ -13,5 +13,6 @@
   "workbench.editor.showTabs": "multiple",
   "workbench.activityBar.location": "default",
   "demoTime.previousEnabled": true,
-  "demoTime.api.enabled": true
+  "demoTime.highlightBlur": 0.8,
+  "demoTime.api.enabled": false
 }

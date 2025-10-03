@@ -81,6 +81,8 @@ layout: section
 
 # Next 5 minutes all we'll see is on the client
 
+Showing what a router can (and should) do for you
+
 ---
 layout: section
 ---

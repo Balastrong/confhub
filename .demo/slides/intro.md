@@ -34,58 +34,38 @@ layout: section
 # TODO WHY?
 
 ---
-layout: quote
----
-
-# TypeScript isn't the same as type-safety.
-# Real type-safety looks like JavaScript again.
-
-&mdash; Tanner Linsley
-
----
 layout: default
 ---
 
 # TanStack Start strengths
 
-## Type-safety
-without actually having to write types
-
-## Full-stack
-only when you need it, client is fine
-
-## Developer experience
-The framework helps you, doesn't fight you
-
----
-layout: section
----
-
-# Router == Framework
-
-- Data fetching is tied to routes
-- Share data between pages
-- Protect routes
-
-Picking a router means defining your entire app architecture
+- **Type-safety**: without actually having to write types
+- **Isomorphism**: comprehensive control over what runs where (client vs server)
+- **Developer experience**: the framework helps you, doesn't fight you
+- **Framework agnostic**: shared core, you can use it with React and Solid (and... ?)
 
 ---
 layout: default
 ---
 
-# New React app? Sure, let's use a SSR framework!
+# Router == Framework (?)
+
+- Data fetching is tied to routes (preloading, caching, etc)
+- Share client state between pages
+- File-based routing
+
+Picking a router means defining most of your app architecture
 
 ---
 layout: section
 ---
 
-# Next 5 minutes all we'll see is on the client
+# Start = Router with Server Capabilities
 
-Showing what a router can (and should) do for you
+TanStack Router covers ~80% of the functionalities
 
 ---
 layout: section
 ---
 
-# Everything is type-safe
-
+# Let's see what it can do

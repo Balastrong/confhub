@@ -11,7 +11,7 @@ No more guessing about the shape or presence of search params.
 layout: section
 ---
 
-# The URL is your new state manager
+# The URL is your new global state manager
 
 ---
 layout: default
@@ -19,7 +19,12 @@ layout: default
 
 # URL is a global state manager?
 
-- All components can access the URL
-- You can bookmark & share the state of your app
+- All components can access (read and write) the URL
+- You can listen to changes in the URL and react accordingly
+
+<br />
+
+Bonus features you get for free:
+- You can bookmark & share the **state** of your app
 - You can safely refresh the page
 - You can use the browser's back/forward buttons

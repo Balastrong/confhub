@@ -13,7 +13,7 @@ export default defineConfig({
       projects: ["./tsconfig.json"],
     }),
     tanstackStart(),
-    netlify({ edgeSSR: true }),
+    // netlify({ edgeSSR: true }),
     viteReact(),
   ],
 })

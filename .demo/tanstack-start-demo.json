@@ -14,16 +14,6 @@
       ]
     },
     {
-      "title": "Show the end slide",
-      "description": "Show the end slide.",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": ".demo/slides/intro-end.md"
-        }
-      ]
-    },
-    {
       "id": "demo-mgankfbh-9xy0",
       "title": "Typesafe slide",
       "steps": [
@@ -40,7 +30,7 @@
         {
           "action": "highlight",
           "path": "src/components/event/event-management-card.tsx",
-          "position": "19",
+          "position": "18:24",
           "highlightWholeLine": true
         },
         {

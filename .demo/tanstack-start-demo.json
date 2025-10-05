@@ -315,7 +315,7 @@
       "title": "Middleware Use Demo",
       "steps": [
         {
-          "action": "openFile",
+          "action": "open",
           "path": "src/services/event-request.api.ts"
         }
       ]
@@ -372,8 +372,38 @@
           "command": "workbench.action.focusLeftGroup"
         },
         {
-          "action": "openFile",
+          "action": "open",
           "path": "src/routes/api/demo.$name.ts"
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdojotw-yt73",
+      "title": "RSC Slide",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": ".demo/slides/start/rsc.md"
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdojotw-yt73",
+      "title": "Adoption Slide",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": ".demo/slides/start/adoption.md"
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdojotw-yt73",
+      "title": "Closing Slide",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": ".demo/slides/start/closing.md"
         }
       ]
     }

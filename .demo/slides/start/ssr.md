@@ -17,22 +17,3 @@ layout: default
   - Fast and smooth as in a SPA
 
 _There are options to customize this behavior_
-
-
----
-layout: default
----
-
-# SSR Example
-
-```tsx
-export const Route = createFileRoute('/products')({
-  ssr: true, // Default true, can also be false or 'data-only'
-  loader: async () => {
-    // This runs on server during SSR (first navigation)
-    // Will run on client during client-side navigations
-    const response = await fetch('/api/products')
-    return response.json()
-  },
-})
-```

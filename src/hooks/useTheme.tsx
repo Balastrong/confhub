@@ -1,6 +1,10 @@
 import { ScriptOnce } from "@tanstack/react-router"
 import { createContext, ReactNode, use, useEffect, useState } from "react"
-import { createClientOnlyFn, createIsomorphicFn } from "@tanstack/react-start"
+import {
+  createClientOnlyFn,
+  createIsomorphicFn,
+  createServerOnlyFn,
+} from "@tanstack/react-start"
 import { z } from "zod"
 
 const UserThemeSchema = z.enum(["light", "dark", "system"]).catch("system")
@@ -21,6 +25,10 @@ const getStoredUserTheme = createIsomorphicFn()
 const setStoredTheme = createClientOnlyFn((theme: UserTheme) => {
   const validatedTheme = UserThemeSchema.parse(theme)
   localStorage.setItem(themeStorageKey, validatedTheme)
+})
+
+export const getSecret = createServerOnlyFn(() => {
+  return process.env.SECRET_KEY
 })
 
 const getSystemTheme = createIsomorphicFn()

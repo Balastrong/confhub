@@ -3,18 +3,18 @@ theme: default
 layout: section
 ---
 
-# Keep your Router aware of your data loading needs
+# External data loading 🤝 routing
 
-This is more connected to routing than you can imagine
+The two things are deeply connected
 
 ---
 layout: default
 ---
 
-# Data loaders & Routing
+# Keeping your router aware of how external data is loaded
 
-- Prefetching makes navigation feel faster
-- Data-ready routes mean smoother transitions (less loading spinners)
+- Data loading can begin during navigation
+  - Even before rendering (preloading)
 - Data bound to routes might benefit from caching
   - Router has a built-in cache
   - ...or just use TanStack Query

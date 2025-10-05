@@ -13,7 +13,7 @@ layout: section
 
 # Server Functions
 
-A simple function call within the server, fetchable from the client
+The code remains only in the server bundle, but the client can call it
 
 ---
 layout: default

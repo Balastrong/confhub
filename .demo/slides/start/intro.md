@@ -7,7 +7,7 @@ layout: default
 
 - Full-document SSR
 - Streaming
-- Server Routes & API Routes
+- Stable endpoints
 - Server Functions
 - Middleware & Context
 - Full-Stack Bundling
@@ -50,19 +50,3 @@ layout: section
 ---
 
 # ...a full-stack framework literally inside a vite plugin
-
----
-layout: section
----
-
-# What happens now? Isomorphic by default
-
----
-layout: default
----
-
-# What does isomorphic mean here?
-
-- By default, your code runs on both server and client
-- You can choose to run code only on server or client
-- You can define different behaviors for server and client

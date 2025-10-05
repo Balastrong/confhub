@@ -3,6 +3,14 @@ theme: default
 layout: section
 ---
 
+# How can I run code on the server, but call it from the client?
+
+`createServerOnlyFn` would throw an error if used on the client
+
+---
+layout: section
+---
+
 # Server Functions
 
 A simple function call within the server, fetchable from the client
@@ -13,12 +21,18 @@ layout: default
 
 # A Server Function
 
-- Runs only on the server (code does not reach the client bundle)
+The safest way to manage secrets, database connections, etc.
+
+- Runs only on the server
+  - The code is not included in client bundle
+  - Creates an HTTP endpoint
 - Can be called from the client or server seamlessly
-  - Server: A simple async function
-  - Client: An HTTP endpoint hit with a fetch
+  - Server: Runs the function directly
+  - Client: Makes a fetch request to the generated endpoint
+
+<br />
 
 ```ts
-// Client or server, doesn't matter
-const response = await getSomethingFromServer()
+// Client or server, it always works
+const response = await getNumber()
 ```

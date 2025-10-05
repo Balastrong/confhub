@@ -174,7 +174,76 @@
       ]
     },
     {
-      "id": "demo-qgad1fb1-9xy1",
+      "id": "demo-qgad1fb1-651r",
+      "title": "Start ssr slide",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": ".demo/slides/start/ssr.md"
+        }
+      ]
+    },
+    {
+      "id": "demo-185edkfbh-cj31",
+      "title": "Start SSR Demo",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/routes/communities/$communitySlug.tsx",
+          "startPlaceholder": "export const Route",
+          "endPlaceholder": "},",
+          "highlightWholeLine": true
+        }
+      ]
+    },
+    {
+      "id": "demo-qgad1fb1-5xy1",
+      "title": "Start isomorphic slide",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": ".demo/slides/start/isomorphic.md"
+        }
+      ]
+    },
+    {
+      "id": "demo-185edkfbh-9xy1",
+      "title": "Isomorphic Demo 1",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/hooks/useTheme.tsx",
+          "position": "3",
+          "highlightWholeLine": true
+        }
+      ]
+    },
+    {
+      "id": "demo-185edkfbh-9xy2",
+      "title": "Isomorphic Demo 2",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/hooks/useTheme.tsx",
+          "position": "14:19",
+          "highlightWholeLine": true
+        }
+      ]
+    },
+    {
+      "id": "demo-185edkfbh-9xy3",
+      "title": "Isomorphic Demo 3",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/hooks/useTheme.tsx",
+          "position": "21:24",
+          "highlightWholeLine": true
+        }
+      ]
+    },
+    {
+      "id": "demo-qg5d3fb1-9xy1",
       "title": "Server fn intro slide",
       "steps": [
         {
@@ -252,7 +321,7 @@
       ]
     },
     {
-      "id": "demo-1ga5e1bh-9xy1",
+      "id": "demo-1g35e1bh-9xy1",
       "title": "Middleware Chain Demo",
       "steps": [
         {
@@ -264,7 +333,7 @@
       ]
     },
     {
-      "id": "demo-1ga5e1bh-9xy1",
+      "id": "demo-1ga5e6bh-9xy1",
       "title": "Middleware Required Demo",
       "steps": [
         {
@@ -276,7 +345,7 @@
       ]
     },
     {
-      "id": "demo-qg83hfb1-9xy1",
+      "id": "demo-qg8dh3b1-9xy1",
       "title": "Server Routes slides",
       "steps": [
         {
@@ -289,6 +358,19 @@
       "id": "demo-1gadsfbh-9er1",
       "title": "Server Route Demo",
       "steps": [
+        {
+          "action": "openWebsite",
+          "url": "http://localhost:3000/api/demo/Leonardo",
+          "openInVSCode": true
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.action.splitEditorToRightGroup"
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.action.focusLeftGroup"
+        },
         {
           "action": "openFile",
           "path": "src/routes/api/demo.$name.ts"

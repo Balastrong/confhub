@@ -1,8 +1,8 @@
 import { createServerFn } from "@tanstack/react-start"
 
-export const mySimpleServerFunction = createServerFn().handler(
-  () => "Hello from the server!",
-)
+export const mySimpleServerFunction = createServerFn().handler(() => {
+  return "Hello from the server!"
+})
 
 export const myValidatedServerFunction = createServerFn()
   .inputValidator((data: number) => {

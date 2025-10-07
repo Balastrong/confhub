@@ -23,6 +23,7 @@ layout: default
 
 # Middleware features
 
-- Can be chained
+- Can be chained and composed
 - Can abort the request
 - Can modify request/response
+- Can run before/after the main handler (client & server)

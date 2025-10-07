@@ -24,4 +24,5 @@ export const Route = createFileRoute("/api/demo/$name")({
       },
     },
   },
+  // component: () => <div>Hello!</div>,
 })

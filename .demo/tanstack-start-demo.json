@@ -188,7 +188,7 @@
       "steps": [
         {
           "action": "highlight",
-          "path": "src/routes/demo/loaders.tsx",
+          "path": "src/routes/demo/loaders.jsx",
           "position": "13:17"
         }
       ]
@@ -199,12 +199,12 @@
       "steps": [
         {
           "action": "highlight",
-          "path": "src/routes/demo/loaders.tsx",
+          "path": "src/routes/demo/loaders.jsx",
           "position": "19:27"
         },
         {
           "action": "positionCursor",
-          "path": "src/routes/demo/loaders.tsx",
+          "path": "src/routes/demo/loaders.jsx",
           "position": "20,8"
         },
         {
@@ -229,6 +229,40 @@
         {
           "action": "executeVSCodeCommand",
           "command": "workbench.action.splitEditorToRightGroup"
+        }
+      ]
+    },
+    {
+      "id": "demo-qgankfb1-aaa5",
+      "title": "Loaders Demo PendingMs",
+      "steps": [
+        {
+          "action": "write",
+          "content": "\n  pendingMs: 0, // Default is 1000",
+          "path": "src/routes/demo/loaders.jsx",
+          "startPlaceholder": "})"
+        }
+      ]
+    },
+    {
+      "id": "demo-qgankfb1-aaa6",
+      "title": "Loader Demo Stale",
+      "steps": [
+        {
+          "action": "write",
+          "content": "\n  staleTime: 10000, // Default is 0",
+          "path": "src/routes/demo/loaders.jsx",
+          "startPlaceholder": "})"
+        }
+      ]
+    },
+    {
+      "title": "Loaders Demo Preloading",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/router.tsx",
+          "startPlaceholder": "defaultPreload"
         }
       ]
     },

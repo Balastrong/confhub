@@ -6,13 +6,9 @@ layout: default
 # At some point you might need...
 
 - Full-document SSR
-- Streaming
-- Stable endpoints
 - Server Functions
-- Middleware & Context
-- Full-Stack Bundling
-- Universal Deployment
-- End-to-End Type Safety
+- Streaming
+- Public endpoints
 
 ---
 layout: default

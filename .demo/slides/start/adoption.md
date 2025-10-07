@@ -29,6 +29,7 @@ layout: default
 
 - v1 released on... still in RC as I'm writing the slides
 - Stable APIs
+- Active team of maintainers
 - Resources and extensive documentation are coming
   - You can contribute!
 
@@ -47,3 +48,8 @@ layout: default
 
 And...
 
+---
+layout: section
+---
+
+TODO: my youtube channel!

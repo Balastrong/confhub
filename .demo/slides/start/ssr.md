@@ -13,6 +13,7 @@ layout: default
 
 - By default, is performed only on the first load
   - SEO friendly
+  - Supports streaming (also selective)
 - All other navigations are client-side
   - Fast and smooth as in a SPA
 

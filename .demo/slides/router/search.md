@@ -26,5 +26,6 @@ layout: default
 
 Bonus features you get for free:
 - You can bookmark & share the **state** of your app
+- You can Ctrl+Click to bring the state in a new tab
 - You can safely refresh the page
 - You can use the browser's back/forward buttons

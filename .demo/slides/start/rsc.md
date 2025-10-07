@@ -17,13 +17,22 @@ layout: default
 - Can fetch data, access databases, call APIs directly
 - Returns serialized UI to the client
 
+<br />
+
+```tsx
+export const MyServerComponent = async () => {
+  const data = await fetch('https://api.example.com/data').then(res => res.json())
+  return <div>{data.title}</div>
+}
+```
+
 ---
 layout: default
 ---
 
 # Just another way to fetch data in React
 
-- They return UI with data baked in
+- They return Serialized UI with data baked in
 - They're prone to the same issues as other async/server data sources
   - Caching, staleness, deduplication, error handling, loading states
   - ...did anyone say "TanStack Query"?

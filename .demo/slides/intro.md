@@ -31,7 +31,9 @@ Did we really need another React framework?
 layout: section
 ---
 
-# TODO WHY?
+# Having multiple options/choices is usually good
+
+NextJs goes server-first, TanStack Start goes client-first
 
 ---
 layout: default
@@ -39,7 +41,7 @@ layout: default
 
 # TanStack Start strengths
 
-- **Type-safety**: without actually having to write types
+- **Real type-safety**: without you actually having to write types
 - **Isomorphism**: comprehensive control over what runs where (client vs server)
 - **Developer experience**: the framework helps you, doesn't fight you
 - **Framework agnostic**: shared core, you can use it with React and Solid (and... ?)
@@ -50,17 +52,24 @@ layout: default
 
 # Router == Framework (?)
 
-- Data fetching is tied to routes (preloading, caching, etc)
-- Share client state between pages
-- File-based routing
+Modern routers take care of a lot of things:
 
-Picking a router means defining most of your app architecture
+- Rendering and layout structure
+- Data fetching and lifecycle
+- State management
+- Folder structure and code splitting
 
 ---
 layout: section
 ---
 
-# Start = Router with Server Capabilities
+# Picking a router means defining most of your app architecture
+
+---
+layout: section
+---
+
+# Start = Router + Server Capabilities
 
 TanStack Router covers ~80% of the functionalities
 
@@ -68,4 +77,4 @@ TanStack Router covers ~80% of the functionalities
 layout: section
 ---
 
-# Let's see what it can do
+# Let's see what Router already does client side

@@ -5,10 +5,10 @@ layout: default
 
 # Here's what TanStack Start gives you out of the box
 
-- Feature rich, type-safe routing (TanStack Router)
+- Feature rich, seamless type-safe routing (TanStack Router)
 - Server Side Rendering
 - Isomorphic Server Functions
-- Universal Deployment (vite ecosystem)
+- Universal Deployment (vite ecosystem & adapters)
 - Active and helpful community
 
 ---
@@ -44,7 +44,7 @@ layout: two-columns
 
 - **YouTube [@DevLeonardo](https://www.youtube.com/@DevLeonardo)**
   
-  **^^ TanStack videos ^^**
+  **30+ TanStack videos ^**
 - Twitter [@Balastrong](https://twitter.com/Balastrong)
 - GitHub [@Balastrong](https://github.com/Balastrong)
 

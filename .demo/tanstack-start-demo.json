@@ -56,13 +56,13 @@
       ]
     },
     {
-      "id": "demo-mg8aigig-xqn1",
-      "title": "Typesafe Search Demo",
+      "id": "demo-mg8gigig-xqnq",
+      "title": "Search as state Demo",
       "steps": [
         {
-          "action": "highlight",
-          "path": "src/components/header/header.tsx",
-          "position": "86:93",
+          "action": "positionCursor",
+          "path": "src/routes/index.tsx",
+          "position": "32,8",
           "highlightWholeLine": true
         },
         {
@@ -76,13 +76,13 @@
       ]
     },
     {
-      "id": "demo-mg8gigig-xqnq",
-      "title": "Search as state Demo",
+      "id": "demo-mg8aigig-xqn1",
+      "title": "Typesafe Search Demo",
       "steps": [
         {
-          "action": "positionCursor",
-          "path": "src/routes/index.tsx",
-          "position": "32,8",
+          "action": "highlight",
+          "path": "src/components/header/header.tsx",
+          "position": "86:93",
           "highlightWholeLine": true
         },
         {
@@ -428,6 +428,38 @@
       ]
     },
     {
+      "id": "demo-mgdojotb-1hd6",
+      "title": "Get Started",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": ".demo/slides/start/started.md"
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdojotb-dk36",
+      "title": "Builder Demo Terminal",
+      "steps": [
+        {
+          "action": "openTerminal"
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdojotb-dk34",
+      "title": "Builder Demo Command",
+      "steps": [
+        {
+          "action": "executeTerminalCommand",
+          "command": "npx create-tsrouter-app@latest --ui",
+          "autoExecute": true,
+          "insertTypingMode": "character-by-character",
+          "insertTypingSpeed": 100
+        }
+      ]
+    },
+    {
       "id": "demo-mgdojotc-yt73",
       "title": "Closing Slide",
       "steps": [
@@ -437,5 +469,6 @@
         }
       ]
     }
-  ]
+  ],
+  "timer": 35
 }

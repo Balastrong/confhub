@@ -29,9 +29,7 @@ import {
 import { seo } from "~/lib/seo"
 
 export const Route = createFileRoute("/communities/$communitySlug")({
-  ssr: true, // Default true, can also be false or 'data-only'
   loader: async ({ params, context }) => {
-    // See this as a fetch call, we'll see more later
     const community = await context.queryClient.ensureQueryData(
       communityQueries.detailBySlug(params.communitySlug),
     )

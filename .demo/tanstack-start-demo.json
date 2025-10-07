@@ -288,7 +288,7 @@
     },
     {
       "id": "demo-qgad1fb1-651r",
-      "title": "Start ssr slide",
+      "title": "Start SSR slide",
       "steps": [
         {
           "action": "openSlide",
@@ -301,11 +301,8 @@
       "title": "Start SSR Demo",
       "steps": [
         {
-          "action": "highlight",
-          "path": "src/routes/communities/$communitySlug.tsx",
-          "startPlaceholder": "export const Route",
-          "endPlaceholder": "},",
-          "highlightWholeLine": true
+          "action": "open",
+          "path": "src/routes/demo/ssr.tsx"
         }
       ]
     },
@@ -499,6 +496,16 @@
         {
           "action": "open",
           "path": "src/routes/api/demo.$name.ts"
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdojota-ya13",
+      "title": "Unlimited Time Slide",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": ".demo/slides/start/demos.md"
         }
       ]
     },

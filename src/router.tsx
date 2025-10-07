@@ -53,7 +53,7 @@ export function getRouter() {
   const router = routerWithQueryClient(
     createTanStackRouter({
       routeTree,
-      defaultPreload: "intent",
+      defaultPreload: false,
       defaultErrorComponent: ErrorComponent,
       defaultNotFoundComponent: () => "Not found!",
       context: { queryClient },

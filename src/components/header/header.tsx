@@ -14,8 +14,9 @@ import { LanguageToggle } from "../language-toggle"
 
 export const NAV_LINKS = [
   { to: "/events/submit", label: "Submit Event" },
-  { to: "/communities", label: "Communities" },
-  { to: "/calendar", label: "Calendar" },
+  // { to: "/communities", label: "Communities" },
+  // { to: "/calendar", label: "Calendar" },
+  { to: "/demo/loaders", label: "Loader" },
 ] as const
 
 export const Header = () => {
@@ -61,7 +62,7 @@ export const Header = () => {
             </Link>
           </div>
           {/* Desktop Navigation - hidden on mobile */}
-          <div className="hidden md:block">
+          <div>
             <Navigation />
           </div>
         </div>
@@ -98,7 +99,7 @@ export const Header = () => {
             ref={mobileMenuButtonRef}
             variant="ghost"
             size="sm"
-            className="md:hidden p-1"
+            className="hidden p-1"
             onClick={toggleMobileMenu}
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
@@ -118,13 +119,13 @@ export const Header = () => {
         <div
           id="mobile-menu"
           ref={mobileMenuRef}
-          className="md:hidden mt-4 pb-4 border-t pt-4"
+          className="hidden mt-4 pb-4 border-t pt-4"
           role="navigation"
           aria-label="Mobile navigation menu"
         >
           <div className="flex flex-col space-y-3">
             <MobileNavigation onLinkClick={closeMobileMenu} />
-            <SocialLinks className="sm:hidden flex gap-4 px-3 py-2" />
+            <SocialLinks className="hidden gap-4 px-3 py-2" />
           </div>
         </div>
       )}

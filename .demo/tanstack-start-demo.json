@@ -172,6 +172,67 @@
       ]
     },
     {
+      "id": "demo-qgankfb1-aaa1",
+      "title": "Loader Demo 1",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/routes/demo/loaders.tsx",
+          "position": "4:11"
+        }
+      ]
+    },
+    {
+      "id": "demo-qgankfb1-aaa2",
+      "title": "Loader Demo 2",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/routes/demo/loaders.tsx",
+          "position": "13:17"
+        }
+      ]
+    },
+    {
+      "id": "demo-qgankfb1-aaa3",
+      "title": "Loader Demo Types",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/routes/demo/loaders.tsx",
+          "position": "19:27"
+        },
+        {
+          "action": "positionCursor",
+          "path": "src/routes/demo/loaders.tsx",
+          "position": "20,8"
+        },
+        {
+          "action": "waitForTimeout",
+          "timeout": 2000
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "editor.action.showHover"
+        }
+      ]
+    },
+    {
+      "id": "demo-qgankfb1-aaa4",
+      "title": "Loader Demo Browser",
+      "steps": [
+        {
+          "action": "openWebsite",
+          "url": "http://localhost:3000/",
+          "openInVSCode": true
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.action.splitEditorToRightGroup"
+        }
+      ]
+    },
+    {
       "id": "demo-qgankfb1-9dr1",
       "title": "Router outro slide",
       "steps": [

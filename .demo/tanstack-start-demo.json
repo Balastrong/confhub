@@ -510,6 +510,74 @@
       ]
     },
     {
+      "id": "demo-mgdj3dta-yav1",
+      "title": "Query Preloading Demo",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/routes/communities/index.tsx",
+          "startPlaceholder": "export const Route",
+          "endPlaceholder": "},"
+        }
+      ]
+    },
+    {
+      "id": "demo-mgak2dta-p5v1",
+      "title": "Dynamic SEO Demo",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/routes/communities/$communitySlug.tsx",
+          "position": "31:47"
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdj3dta-p5v1",
+      "title": "Protected Routes Demo",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/routes/profile.tsx",
+          "startPlaceholder": "export const Route",
+          "endPlaceholder": "},"
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdj3dta-1jd1",
+      "title": "LLM Demo",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/services/ai.api.ts",
+          "startPlaceholder": "new OpenAI"
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdj3dta-8f5h",
+      "title": "AI Instructions Demo",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": ".github/copilot-instructions.md",
+          "position": "25:43"
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdj3dta-1875",
+      "title": "MCP Server Demo",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/routes/api/mcp.ts",
+          "position": "286:303"
+        }
+      ]
+    },
+    {
       "id": "demo-mgdojota-yt73",
       "title": "RSC Slide",
       "steps": [

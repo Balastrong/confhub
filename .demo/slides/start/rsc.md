@@ -5,8 +5,6 @@ layout: section
 
 # What about React Server Components?
 
-Are they necessarily a paradigm shift?
-
 ---
 layout: default
 ---

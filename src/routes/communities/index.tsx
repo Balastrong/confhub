@@ -1,11 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router"
 import { useSuspenseQuery } from "@tanstack/react-query"
-import {} from "@tanstack/react-router"
+import { createFileRoute } from "@tanstack/react-router"
 import { Suspense } from "react"
+import { ButtonLink } from "src/components/button-link"
 import { CommunityCard } from "src/components/community/community-card"
 import { CommunityCardSkeletons } from "src/components/community/community-card-skeleton"
 import { Layout } from "src/components/layout"
-import { ButtonLink } from "src/components/button-link"
 import { communityQueries } from "src/services/queries"
 import { seo } from "~/lib/seo"
 

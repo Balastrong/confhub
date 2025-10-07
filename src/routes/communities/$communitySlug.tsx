@@ -34,10 +34,6 @@ export const Route = createFileRoute("/communities/$communitySlug")({
       communityQueries.detailBySlug(params.communitySlug),
     )
 
-    context.queryClient.ensureQueryData(
-      eventQueries.list({ communityId: community.id }),
-    )
-
     return community
   },
   head: ({ loaderData }) => ({

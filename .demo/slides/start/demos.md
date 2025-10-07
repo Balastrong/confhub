@@ -3,9 +3,9 @@ theme: default
 layout: section
 ---
 
-# If I had unlimited time today...
+# Quick Patterns Overview
 
-what we could have seen in detail...
+If only I had unlimited time...
 
 ---
 layout: section

@@ -27,11 +27,13 @@ layout: default
 
 # TanStack Start: You're an early adopter
 
-- v1 released on... still in RC as I'm writing the slides
+- Currently in RC phase, v1 right behind the corner
 - Stable APIs
 - Active team of maintainers
-- Resources and extensive documentation are coming
-  - You can contribute!
+- Resources, examples and extensive documentation are coming
+  - You can contribute, share your projects!
+
+<br />
 
 My advice: are you starting a new small/medium project? Go for it!
 

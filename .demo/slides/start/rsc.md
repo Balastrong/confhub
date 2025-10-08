@@ -13,13 +13,13 @@ layout: default
 
 - Asynchronous React components that runs once on the server
 - Can fetch data, access databases, call APIs directly
-- Returns serialized UI to the client
+- Returns serialized UI to the client with data baked in
 
 <br />
 
 ```tsx
-export const MyServerComponent = async () => {
-  const data = await fetch('https://api.example.com/data').then(res => res.json())
+async function MyServerComponent() {
+  const data = await sql`SELECT title FROM posts WHERE id = 1`
   return <div>{data.title}</div>
 }
 ```
@@ -30,7 +30,6 @@ layout: default
 
 # Just another way to fetch data in React
 
-- They return Serialized UI with data baked in
 - They're prone to the same issues as other async/server data sources
   - Caching, staleness, deduplication, error handling, loading states
   - ...did anyone say "TanStack Query"?

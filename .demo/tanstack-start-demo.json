@@ -262,7 +262,9 @@
         {
           "action": "highlight",
           "path": "src/router.tsx",
-          "startPlaceholder": "defaultPreload"
+          "startPlaceholder": "defaultPreload",
+          "endPlaceholder": "defaultPreload",
+          "highlightWholeLine": true
         }
       ]
     },
@@ -500,6 +502,39 @@
       ]
     },
     {
+      "id": "demo-mgdojota-dh3a",
+      "title": "Deployment Slide",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": ".demo/slides/start/deployment.md"
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdd93ta-djs1",
+      "title": "Deployment Demo",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "vite.config.ts",
+          "position": "16",
+          "highlightWholeLine": true
+        }
+      ]
+    },
+    {
+      "id": "demo-mgs83ksa-djs1",
+      "title": "ConfHub Demo",
+      "steps": [
+        {
+          "action": "openWebsite",
+          "url": "https://confhub.tech/",
+          "openInVSCode": true
+        }
+      ]
+    },
+    {
       "id": "demo-mgdojota-ya13",
       "title": "Unlimited Time Slide",
       "steps": [
@@ -551,7 +586,8 @@
         {
           "action": "highlight",
           "path": "src/services/ai.api.ts",
-          "startPlaceholder": "new OpenAI"
+          "startPlaceholder": "new OpenAI",
+          "endPlaceholder": "new OpenAI"
         }
       ]
     },

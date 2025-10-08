@@ -36,10 +36,10 @@ export const Route = createFileRoute("/communities/$communitySlug")({
 
     return community
   },
-  head: ({ loaderData }) => ({
+  head: ({ loaderData: community }) => ({
     meta: seo({
-      title: loaderData?.name ?? "Community",
-      description: (loaderData?.description ?? "Community") + " on ConfHub",
+      title: community?.name ?? "Community",
+      description: (community?.description ?? "Community") + " on ConfHub",
       type: "profile",
     }),
   }),

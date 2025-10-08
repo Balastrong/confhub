@@ -243,8 +243,7 @@
       "steps": [
         {
           "action": "write",
-          "content": "
-  pendingMs: 0, // Default is 1000",
+          "content": "\n  pendingMs: 0, // Default is 1000",
           "path": "src/routes/demo/loaders.jsx",
           "startPlaceholder": "})"
         }
@@ -256,8 +255,7 @@
       "steps": [
         {
           "action": "write",
-          "content": "
-  staleTime: 10000, // Default is 0",
+          "content": "\n  staleTime: 10000, // Default is 0",
           "path": "src/routes/demo/loaders.jsx",
           "startPlaceholder": "})"
         }

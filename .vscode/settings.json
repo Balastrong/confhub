@@ -14,5 +14,7 @@
   "workbench.activityBar.location": "default",
   "demoTime.previousEnabled": true,
   "demoTime.highlightBlur": 0.8,
-  "demoTime.api.enabled": false
+  "demoTime.api.enabled": false,
+  "demoTime.slideHeaderTemplate": ".demo/slides/header.html",
+  "demoTime.customTheme": ".demo/slides/theme.css"
 }

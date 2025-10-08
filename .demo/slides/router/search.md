@@ -5,7 +5,7 @@ layout: section
 
 # Typesafety on Search params
 
-No more guessing about the shape or presence of search params.
+## No more guessing about the shape or presence of search params.
 
 ---
 layout: section

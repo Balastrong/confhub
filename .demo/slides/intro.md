@@ -5,7 +5,7 @@ layout: intro
 
 # TanStack Start: a fresh take on React full-stack applications
 
-ReactJSDay 2025
+## ReactJSDay 2025
 
 ---
 layout: default
@@ -25,7 +25,7 @@ layout: section
 
 # Cool, but why?
 
-Did we really need another React framework?
+## Did we really need another React framework?
 
 ---
 layout: section
@@ -33,7 +33,7 @@ layout: section
 
 # Having multiple options/choices is usually good
 
-NextJs goes server-first, TanStack Start goes client-first
+## NextJs goes server-first, TanStack Start goes client-first
 
 ---
 layout: default
@@ -71,7 +71,7 @@ layout: section
 
 # Start = Router + Server Capabilities
 
-TanStack Router covers ~80% of the functionalities
+## TanStack Router covers ~80% of the functionalities
 
 ---
 layout: section

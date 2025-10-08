@@ -5,7 +5,7 @@ layout: section
 
 # Ok fine, but is this production ready?
 
-Talking about tech is cool, but we're here for the 💰💰💰
+## Talking about tech is cool, but we're here for the 💰💰💰
 
 ---
 layout: default

@@ -5,9 +5,9 @@ layout: section
 
 # Type safety
 
-Everything is fully typed and automatically inferred.
+## Everything is fully typed and automatically inferred.
 
-You don't need to create or override custom types, they just work.
+## You don't need to create or override custom types, they just work.
 
 ---
 layout: quote

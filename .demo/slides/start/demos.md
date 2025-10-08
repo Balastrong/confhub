@@ -5,7 +5,7 @@ layout: section
 
 # Quick Patterns Overview
 
-If only I had unlimited time...
+## If only I had unlimited time...
 
 ---
 layout: section

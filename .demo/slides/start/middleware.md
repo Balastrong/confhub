@@ -5,7 +5,7 @@ layout: section
 
 # Middlewares
 
-Run logic before/after a server function or route
+## Run logic before/after a server function or route
 
 ---
 layout: default

@@ -40,4 +40,4 @@ layout: section
 
 # RSC support in TanStack Start coming soon!
 
-...as just another way of fetching data for a client-first app.
+## ...as just another way of fetching data for a client-first app.

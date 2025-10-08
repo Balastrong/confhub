@@ -5,7 +5,7 @@ layout: section
 
 # How can I run code on the server, but call it from the client?
 
-`createServerOnlyFn` would throw an error if used on the client
+## `createServerOnlyFn` would throw an error if used on the client
 
 ---
 layout: section
@@ -13,7 +13,7 @@ layout: section
 
 # Server Functions
 
-The code remains only in the server bundle, but the client can call it
+## The code remains only in the server bundle, but the client can call it
 
 ---
 layout: default

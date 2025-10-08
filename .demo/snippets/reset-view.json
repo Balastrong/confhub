@@ -1,0 +1,13 @@
+[
+  {
+    "action": "closeAll"
+  },
+  {
+    "action": "executeVSCodeCommand",
+    "command": "workbench.action.closeSidebar"
+  },
+  {
+    "action": "executeVSCodeCommand",
+    "command": "workbench.action.closePanel"
+  }
+]

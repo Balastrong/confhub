@@ -9,6 +9,10 @@
       "title": "Cover",
       "steps": [
         {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
+        {
           "action": "openSlide",
           "path": ".demo/slides/cover.md"
         }
@@ -75,6 +79,10 @@
       "title": "Search slide",
       "steps": [
         {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
+        {
           "action": "openSlide",
           "path": ".demo/slides/router/search.md"
         }
@@ -127,6 +135,10 @@
       "title": "Type Tests slide",
       "steps": [
         {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
+        {
           "action": "openSlide",
           "path": ".demo/slides/router/tests.md"
         }
@@ -170,6 +182,10 @@
       "id": "demo-qgankfb1-9xy1",
       "title": "Data loading slide",
       "steps": [
+        {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
         {
           "action": "openSlide",
           "path": ".demo/slides/router/data-loading.md"
@@ -278,6 +294,10 @@
       "title": "Router outro slide",
       "steps": [
         {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
+        {
           "action": "openSlide",
           "path": ".demo/slides/router/outro.md"
         }
@@ -317,6 +337,10 @@
       "id": "demo-qgad1fb1-5xy1",
       "title": "Start isomorphic slide",
       "steps": [
+        {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
         {
           "action": "openSlide",
           "path": ".demo/slides/start/isomorphic.md"
@@ -376,6 +400,10 @@
       "title": "Server fn intro slide",
       "steps": [
         {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
+        {
           "action": "openSlide",
           "path": ".demo/slides/start/server-fn.md"
         }
@@ -421,6 +449,10 @@
       "id": "demo-qg83hfb1-9xy1",
       "title": "Middleware slides",
       "steps": [
+        {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
         {
           "action": "openSlide",
           "path": ".demo/slides/start/middleware.md"
@@ -478,6 +510,10 @@
       "title": "Server Routes slides",
       "steps": [
         {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
+        {
           "action": "openSlide",
           "path": ".demo/slides/start/server-route.md"
         }
@@ -511,6 +547,10 @@
       "title": "Deployment Slide",
       "steps": [
         {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
+        {
           "action": "openSlide",
           "path": ".demo/slides/start/deployment.md"
         }
@@ -543,6 +583,10 @@
       "id": "demo-mgdojota-ya13",
       "title": "Unlimited Time Slide",
       "steps": [
+        {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
         {
           "action": "openSlide",
           "path": ".demo/slides/start/demos.md"
@@ -623,6 +667,10 @@
       "title": "RSC Slide",
       "steps": [
         {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
+        {
           "action": "openSlide",
           "path": ".demo/slides/start/rsc.md"
         }
@@ -671,9 +719,24 @@
       ]
     },
     {
+      "id": "demo-ajd83hsa-dk36",
+      "title": "Builder Demo Browser",
+      "steps": [
+        {
+          "action": "openWebsite",
+          "url": "http://localhost:8080",
+          "openInVSCode": true
+        }
+      ]
+    },
+    {
       "id": "demo-mgdojotc-yt73",
       "title": "Closing Slide",
       "steps": [
+        {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
         {
           "action": "openSlide",
           "path": ".demo/slides/start/closing.md"

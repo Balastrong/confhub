@@ -5,7 +5,7 @@ layout: section
 
 # How can I run code on the server, but call it from the client?
 
-## `createServerOnlyFn` would throw an error if used on the client
+## Access the database to display some data
 
 ---
 layout: section
@@ -34,5 +34,5 @@ The safest way to manage secrets, database connections, etc.
 
 ```ts
 // Client or server, it always works
-const response = await getNumber()
+const response = await getData()
 ```

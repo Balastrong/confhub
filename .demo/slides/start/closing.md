@@ -3,7 +3,26 @@ theme: monomi
 layout: default
 ---
 
-# Here's what TanStack Start gives you out of the box
+# Want to learn more?
+
+- GitHub Repos (Start is a package in the TanStack/router repo)
+- Official documentation
+- TanStack Discord
+  - Maintainers are very active and helpful
+
+And...
+
+---
+layout: section
+---
+
+TODO: my youtube channel!
+
+---
+layout: default
+---
+
+# What TanStack Start gives you out of the box
 
 - Feature rich, seamless type-safe routing (TanStack Router)
 - Server Side Rendering
@@ -32,7 +51,7 @@ layout: two-columns
 ::right::
 # Leonardo Montini
 
-- Frontend Engineer & DevRel @ Claranet
+- Frontend Engineer & DevRel @ Claranet Italy
 - Open Source Maintainer (TanStack Form)
 - GitHub Star & Microsoft MVP
 

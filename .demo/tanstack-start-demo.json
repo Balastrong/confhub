@@ -5,6 +5,27 @@
   "version": 2,
   "demos": [
     {
+      "id": "demo-k345vfbh-9uv0",
+      "title": "Cover",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": ".demo/slides/cover.md"
+        }
+      ]
+    },
+    {
+      "id": "demo-5s4e3s-9xa0",
+      "title": "Theme Selection",
+      "steps": [
+        {
+          "action": "openSlide",
+          "path": ".demo/slides/theme.md"
+        }
+      ]
+    },
+    {
+      "id": "demo-1s2dkfbh-9xe0",
       "title": "Introduction",
       "steps": [
         {
@@ -40,6 +61,10 @@
           "highlightWholeLine": true
         },
         {
+          "action": "waitForTimeout",
+          "timeout": 2000
+        },
+        {
           "action": "executeVSCodeCommand",
           "command": "editor.action.triggerSuggest"
         }
@@ -63,26 +88,6 @@
           "action": "positionCursor",
           "path": "src/routes/index.tsx",
           "position": "32,8",
-          "highlightWholeLine": true
-        },
-        {
-          "action": "waitForTimeout",
-          "timeout": 1500
-        },
-        {
-          "action": "executeVSCodeCommand",
-          "command": "editor.action.showHover"
-        }
-      ]
-    },
-    {
-      "id": "demo-mg8aigig-xqn1",
-      "title": "Typesafe Search Demo",
-      "steps": [
-        {
-          "action": "highlight",
-          "path": "src/components/header/header.tsx",
-          "position": "86:93",
           "highlightWholeLine": true
         },
         {
@@ -177,7 +182,7 @@
       "steps": [
         {
           "action": "highlight",
-          "path": "src/routes/demo/loaders.tsx",
+          "path": "src/routes/demo/loaders.jsx",
           "position": "4:11"
         }
       ]
@@ -238,7 +243,8 @@
       "steps": [
         {
           "action": "write",
-          "content": "\n  pendingMs: 0, // Default is 1000",
+          "content": "
+  pendingMs: 0, // Default is 1000",
           "path": "src/routes/demo/loaders.jsx",
           "startPlaceholder": "})"
         }
@@ -250,7 +256,8 @@
       "steps": [
         {
           "action": "write",
-          "content": "\n  staleTime: 10000, // Default is 0",
+          "content": "
+  staleTime: 10000, // Default is 0",
           "path": "src/routes/demo/loaders.jsx",
           "startPlaceholder": "})"
         }
@@ -407,7 +414,7 @@
         {
           "action": "highlight",
           "path": "src/services/demo.api.ts",
-          "position": "22:35",
+          "position": "22:37",
           "highlightWholeLine": true
         }
       ]
@@ -580,6 +587,17 @@
       ]
     },
     {
+      "id": "demo-mgdj3dta-8f5h",
+      "title": "AI Instructions Demo",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": ".github/copilot-instructions.md",
+          "position": "25:43"
+        }
+      ]
+    },
+    {
       "id": "demo-mgdj3dta-1jd1",
       "title": "LLM Demo",
       "steps": [
@@ -588,17 +606,6 @@
           "path": "src/services/ai.api.ts",
           "startPlaceholder": "new OpenAI",
           "endPlaceholder": "new OpenAI"
-        }
-      ]
-    },
-    {
-      "id": "demo-mgdj3dta-8f5h",
-      "title": "AI Instructions Demo",
-      "steps": [
-        {
-          "action": "highlight",
-          "path": ".github/copilot-instructions.md",
-          "position": "25:43"
         }
       ]
     },

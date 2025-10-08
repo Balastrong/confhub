@@ -36,22 +36,3 @@ layout: default
 <br />
 
 My advice: are you starting a new small/medium project? Go for it!
-
----
-layout: default
----
-
-# How to learn more?
-
-- GitHub Repos (Start is a package in the TanStack/router repo)
-- Official documentation
-- TanStack Discord
-  - Maintainers are very active and helpful
-
-And...
-
----
-layout: section
----
-
-TODO: my youtube channel!

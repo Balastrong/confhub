@@ -2,10 +2,6 @@ import { createFileRoute } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/demo/ssr")({
   ssr: true, // Default true, can also be false or 'data-only'
-  beforeLoad: () => {
-    console.log("Executes on the server during the initial request")
-    console.log("Executes on the client for subsequent navigation")
-  },
   loader: () => {
     console.log("Executes on the server during the initial request")
     console.log("Executes on the client for subsequent navigation")

@@ -11,7 +11,7 @@ layout: section
 layout: default
 ---
 
-# Keeping your router aware of how external data is loaded
+# When your router knows about data loading
 
 - Data loading can begin during navigation
   - Even before rendering (preloading)

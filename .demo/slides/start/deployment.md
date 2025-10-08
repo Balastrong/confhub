@@ -9,7 +9,7 @@ layout: section
 layout: section
 ---
 
-# Where can I deploy a TanStack Start application? Anywhere!
+# Where can I deploy a TanStack Start application?
 
 ---
 layout: default

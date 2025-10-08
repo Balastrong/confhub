@@ -32,4 +32,6 @@ export const myReallyCoolServerFunction = createServerFn({ method: "POST" })
 
 myReallyCoolServerFunction({ data: "Foo" })
 myReallyCoolServerFunction({ data: 29 })
-myReallyCoolServerFunction({ data: { name: "Leonardo", age: 30 } })
+
+// That's how you would call it (client or server, it doesn't matter)
+const msg = myReallyCoolServerFunction({ data: { name: "Leonardo", age: 30 } })

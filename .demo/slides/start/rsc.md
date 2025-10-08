@@ -11,7 +11,7 @@ layout: default
 
 # RSCs in short
 
-- Asynchronous React components that runs once on the server
+- Asynchronous React components that run once on the server
 - Can fetch data, access databases, call APIs directly
 - Returns serialized UI to the client with data baked in
 

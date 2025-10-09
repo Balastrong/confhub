@@ -19,11 +19,12 @@ layout: default
 
 # TanStack Start strengths
 
-- **TanStack Router**: the best routing library you ever seen
+- **TanStack Router**: the best routing library you've ever seen
 - **Real type-safety**: without you actually having to write types
-- **Isomorphism**: comprehensive control over what runs where (client vs server)
+- **Isomorphism**: SSR & Server functions with a client-first approach
 - **Developer experience**: the framework helps you, doesn't fight you
-- **Vite ecosystem**: fast development and universal deployment
+- **Universal deployment**: using the vite ecosystem & adapters
+- **Community**: Active and helpful, join the official Discord server
 
 ---
 layout: default

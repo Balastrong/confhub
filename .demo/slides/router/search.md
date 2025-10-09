@@ -3,7 +3,9 @@ theme: monomi
 layout: section
 ---
 
-# Typesafety on Search params
+# Typesafety on Search Params
+
+## ...and there's even more
 
 ---
 layout: default

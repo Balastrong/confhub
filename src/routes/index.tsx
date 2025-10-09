@@ -13,15 +13,7 @@ import { EventFilters, EventFiltersSchema } from "src/services/event.schema"
 import { eventQueries, tagQueries, countryQueries } from "src/services/queries"
 
 export const Route = createFileRoute("/")({
-  beforeLoad: async ({ context }) => {
-    await Promise.all([
-      context.queryClient.ensureQueryData(tagQueries.list()),
-      context.queryClient.ensureQueryData(countryQueries.list()),
-      context.queryClient.ensureQueryData(
-        eventQueries.list(EventFiltersSchema.parse({})),
-      ),
-    ])
-  },
+  beforeLoad: ({ context }) => preloadQueries(context),
   component: Home,
   validateSearch: EventFiltersSchema,
 })
@@ -64,4 +56,14 @@ function Home() {
       </div>
     </Layout>
   )
+}
+
+async function preloadQueries(context: any) {
+  await Promise.all([
+    context.queryClient.ensureQueryData(tagQueries.list()),
+    context.queryClient.ensureQueryData(countryQueries.list()),
+    context.queryClient.ensureQueryData(
+      eventQueries.list(EventFiltersSchema.parse({})),
+    ),
+  ])
 }

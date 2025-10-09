@@ -17,20 +17,20 @@ layout: default
 layout: default
 ---
 
-# What TanStack Start gives you out of the box
+# TanStack Start strengths
 
-- The best, feature rich, type-safe routing experience (TanStack Router)
-- Server Side Rendering & Server function
-  - with a client-first approach
-- Universal Deployment (vite ecosystem & adapters)
-- Active and helpful community
-  - Join the official Discord server
+- **TanStack Router**: the best routing library you've ever seen
+- **Real type-safety**: without you actually having to write types
+- **Isomorphism**: SSR & Server functions with a client-first approach
+- **Developer experience**: the framework helps you, doesn't fight you
+- **Universal deployment**: using the vite ecosystem & adapters
+- **Community**: Active and helpful, join the official Discord server
 
 ---
 layout: section
 ---
 
-# Writing web apps will be fun again 🎉🎉
+# Building web apps will be fun again 🎉🎉
 
 ---
 layout: section

@@ -1,7 +1,7 @@
 {
   "$schema": "https://demotime.show/demo-time.schema.json",
-  "title": "Hello World Demo",
-  "description": "Simple intro with a slide and code highlight.",
+  "title": "TanStack Start Demo",
+  "description": "A demo showcasing TanStack Start features",
   "version": 2,
   "demos": [
     {
@@ -109,7 +109,7 @@
           "path": "src/routes/hello.$name.tsx",
           "startPlaceholder": "return <div>",
           "endPlaceholder": "",
-          "content": "  const params = Route.useParams()\n  return <div>Hello {params.name}</div>",
+          "content": "  const params = Route.useParams()\n  return <div className='text-4xl m-4'>Hello {params.name}</div>",
           "insertTypingMode": "character-by-character"
         }
       ]
@@ -212,7 +212,7 @@
     },
     {
       "id": "demo-mg8fz4wd-wq2m",
-      "title": "Param Remove Demo",
+      "title": "Param Add Demo",
       "steps": [
         {
           "action": "positionCursor",
@@ -288,7 +288,7 @@
         {
           "action": "positionCursor",
           "path": "src/routes/index.tsx",
-          "position": "32,8"
+          "position": "24,8"
         },
         {
           "action": "waitForTimeout",
@@ -307,7 +307,7 @@
         {
           "action": "highlight",
           "path": "src/routes/index.tsx",
-          "position": "15:27"
+          "position": "15:19"
         }
       ]
     },
@@ -1004,7 +1004,7 @@
         },
         {
           "action": "openSlide",
-          "path": ".demo/slides/start/closing.md"
+          "path": ".demo/slides/closing.md"
         }
       ],
       "icons": {

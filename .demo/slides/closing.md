@@ -64,7 +64,7 @@ layout: two-columns
 - GitHub [@Balastrong](https://github.com/Balastrong)
 
 </div>
-<div style="float: right">
-    <img src=".demo/slides/img/qrlinkedin.png" alt="LinkedIn QR Code" width="200" height="200" style="border-radius: 10px;"/>
+<div style="float: right; text-align: center;">
+    <img src=".demo/slides/img/qr-agenda.png" alt="Agenda QR Code" width="200" height="200" style="border-radius: 10px;"/>
+    <div style="font-weight: 600; margin-top: 5px">Share your feedback</div>
 </div>
-

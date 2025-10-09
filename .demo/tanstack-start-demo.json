@@ -108,6 +108,7 @@
           "action": "replace",
           "path": "src/routes/hello.$name.tsx",
           "startPlaceholder": "return <div>",
+          "endPlaceholder": "",
           "content": "  const params = Route.useParams()",
           "insertTypingMode": "character-by-character"
         }
@@ -255,22 +256,58 @@
       }
     },
     {
-      "id": "demo-mg8gigig-xqnq",
-      "title": "Search as state Demo",
+      "id": "demo-mg8gigig-abc1",
+      "title": "React State Demo",
       "steps": [
         {
-          "action": "positionCursor",
+          "action": "highlight",
           "path": "src/routes/index.tsx",
-          "position": "32,8",
+          "startPlaceholder": "setFilters",
+          "endPlaceholder": "(",
           "highlightWholeLine": true
+        }
+      ]
+    },
+    {
+      "id": "demo-mg8gigig-abc2",
+      "title": "Search State Demo",
+      "steps": [
+        {
+          "action": "replace",
+          "path": "src/routes/index.tsx",
+          "startPlaceholder": "const [filters, setFilters] = React.useState<EventFilters>({})",
+          "endPlaceholder": "",
+          "contentPath": ".demo/snippets/search-state.txt",
+          "insertTypingMode": "line-by-line",
+          "insertTypingSpeed": 15
         },
         {
           "action": "waitForTimeout",
-          "timeout": 1500
+          "timeout": 2000
+        },
+        {
+          "action": "positionCursor",
+          "path": "src/routes/index.tsx",
+          "position": "32,8"
+        },
+        {
+          "action": "waitForTimeout",
+          "timeout": 200
         },
         {
           "action": "executeVSCodeCommand",
           "command": "editor.action.showHover"
+        }
+      ]
+    },
+    {
+      "id": "demo-mg8gigig-xqnq",
+      "title": "ValidateSearch Demo",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/routes/index.tsx",
+          "position": "15:27"
         }
       ]
     },

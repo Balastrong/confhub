@@ -29,14 +29,7 @@ export const Route = createFileRoute("/")({
 const skeletons = Array.from({ length: 3 })
 
 function Home() {
-  // const [filters, setFilters] = React.useState<EventFilters>({})
-
-  const filters = Route.useSearch()
-
-  const navigate = useNavigate()
-  const setFilters = (newFilters: EventFilters) => {
-    navigate({ from: Route.fullPath, search: newFilters })
-  }
+  const [filters, setFilters] = React.useState<EventFilters>({})
 
   return (
     <Layout>

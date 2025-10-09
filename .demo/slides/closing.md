@@ -30,7 +30,13 @@ layout: default
 layout: section
 ---
 
-# Building web apps will be fun again 🎉🎉
+# Try it now
+<br />
+
+# 🚀 Ship something cool 🚀
+<br />
+
+# Have fun!
 
 ---
 layout: section

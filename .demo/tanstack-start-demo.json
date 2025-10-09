@@ -51,6 +51,40 @@
       }
     },
     {
+      "id": "demo-kdh145fbh-9uv0",
+      "title": "Prepare File Demo",
+      "steps": [
+        {
+          "action": "closeAll"
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.explorer.fileView.focus"
+        },
+        {
+          "action": "open",
+          "path": "src/routes/hello.$name.tsx"
+        },
+        {
+          "action": "openWebsite",
+          "url": "http://localhost:3000/hello/Leonardo",
+          "openInVSCode": true
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.action.splitEditorToRightGroup"
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.action.focusLeftGroup"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
+    },
+    {
       "id": "demo-mgankfbh-9xy0",
       "title": "Typesafe slide",
       "steps": [

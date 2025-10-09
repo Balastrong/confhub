@@ -16,7 +16,11 @@
           "action": "openSlide",
           "path": ".demo/slides/cover.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-5s4e3s-9xa0",
@@ -26,7 +30,11 @@
           "action": "openSlide",
           "path": ".demo/slides/theme.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-1s2dkfbh-9xe0",
@@ -36,7 +44,11 @@
           "action": "openSlide",
           "path": ".demo/slides/intro.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-mgankfbh-9xy0",
@@ -46,7 +58,11 @@
           "action": "openSlide",
           "path": ".demo/slides/router/typesafety.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-mg8fz4wd-wq0m",
@@ -86,7 +102,11 @@
           "action": "openSlide",
           "path": ".demo/slides/router/search.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-mg8gigig-xqnq",
@@ -142,7 +162,11 @@
           "action": "openSlide",
           "path": ".demo/slides/router/tests.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-mgankfb1-9xy1",
@@ -152,7 +176,11 @@
           "action": "openSlide",
           "path": ".demo/slides/router/context.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-mgadkfbh-9xy1",
@@ -190,7 +218,11 @@
           "action": "openSlide",
           "path": ".demo/slides/router/data-loading.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-qgankfb1-aaa1",
@@ -301,7 +333,11 @@
           "action": "openSlide",
           "path": ".demo/slides/router/outro.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-qgad1fb1-9xy1",
@@ -311,7 +347,11 @@
           "action": "openSlide",
           "path": ".demo/slides/start/intro.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-qgad1fb1-651r",
@@ -321,7 +361,11 @@
           "action": "openSlide",
           "path": ".demo/slides/start/ssr.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-185edkfbh-cj31",
@@ -345,7 +389,11 @@
           "action": "openSlide",
           "path": ".demo/slides/start/isomorphic.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-185edkfbh-9xy1",
@@ -407,7 +455,11 @@
           "action": "openSlide",
           "path": ".demo/slides/start/server-fn.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-1gadkfbh-9xy1",
@@ -457,7 +509,11 @@
           "action": "openSlide",
           "path": ".demo/slides/start/middleware.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-1ga5e1bh-9xy1",
@@ -517,7 +573,11 @@
           "action": "openSlide",
           "path": ".demo/slides/start/server-route.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-1gadsfbh-9er1",
@@ -554,7 +614,11 @@
           "action": "openSlide",
           "path": ".demo/slides/start/deployment.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-mgdd93ta-djs1",
@@ -591,7 +655,11 @@
           "action": "openSlide",
           "path": ".demo/slides/start/demos.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-mgdj3dta-yav1",
@@ -674,7 +742,11 @@
           "action": "openSlide",
           "path": ".demo/slides/start/rsc.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-mgdojotb-yt73",
@@ -684,7 +756,11 @@
           "action": "openSlide",
           "path": ".demo/slides/start/adoption.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-mgdojotb-1hd6",
@@ -694,7 +770,11 @@
           "action": "openSlide",
           "path": ".demo/slides/start/started.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     },
     {
       "id": "demo-mgdojotb-dk36",
@@ -741,7 +821,11 @@
           "action": "openSlide",
           "path": ".demo/slides/start/closing.md"
         }
-      ]
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
     }
   ],
   "timer": 35

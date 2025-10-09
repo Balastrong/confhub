@@ -11,7 +11,7 @@ layout: section
 layout: quote
 ---
 
-# TypeScript (in libraries) isn't the same as type-safety.
-# Real type-safety looks like JavaScript again.
+<h1 style="font-size: 2.5em">TypeScript isn't the same as type-safety. <br />
+Real type-safety looks like JavaScript again.</h1>
 
 &mdash; Tanner Linsley

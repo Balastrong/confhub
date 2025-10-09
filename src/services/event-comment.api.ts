@@ -9,6 +9,7 @@ import {
   DeleteEventCommentSchema,
 } from "./event-comment.schema"
 import { randomUUID } from "node:crypto"
+import { loggingMiddleware } from "./log.api"
 
 export const listEventComments = createServerFn()
   .inputValidator(
@@ -40,7 +41,7 @@ export const listEventComments = createServerFn()
 
 export const createEventComment = createServerFn()
   .inputValidator(CreateEventCommentSchema)
-  .middleware([userRequiredMiddleware])
+  .middleware([loggingMiddleware, userRequiredMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
     const [inserted] = await db
       .insert(eventCommentTable)

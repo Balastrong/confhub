@@ -305,53 +305,15 @@
       "title": "ValidateSearch Demo",
       "steps": [
         {
+          "action": "executeVSCodeCommand",
+          "command": "editor.action.hideHover"
+        },
+        {
           "action": "highlight",
           "path": "src/routes/index.tsx",
           "position": "15:19"
         }
       ]
-    },
-    {
-      "id": "demo-mgankfbh-8xy2",
-      "title": "Types",
-      "steps": [
-        {
-          "action": "positionCursor",
-          "path": "node_modules/@tanstack/router-core/src/route.ts",
-          "startPlaceholder": "export interface RemountDepsOptions",
-          "endPlaceholder": ""
-        }
-      ]
-    },
-    {
-      "id": "demo-mgankfbh-8xa8",
-      "title": "Types 2",
-      "steps": [
-        {
-          "action": "positionCursor",
-          "path": "node_modules/@tanstack/router-core/src/routeInfo.ts",
-          "startPlaceholder": "export type ParseRouteW",
-          "endPlaceholder": ""
-        }
-      ]
-    },
-    {
-      "id": "demo-mgankfbh-9xy2",
-      "title": "Type Tests slide",
-      "steps": [
-        {
-          "action": "snippet",
-          "contentPath": ".demo/snippets/reset-view.json"
-        },
-        {
-          "action": "openSlide",
-          "path": ".demo/slides/router/tests.md"
-        }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "vm-active"
-      }
     },
     {
       "id": "demo-mgankfb1-9xy1",
@@ -438,12 +400,12 @@
         {
           "action": "highlight",
           "path": "src/routes/demo/loaders.jsx",
-          "position": "19:27"
+          "position": "20:29"
         },
         {
           "action": "positionCursor",
           "path": "src/routes/demo/loaders.jsx",
-          "position": "20,8"
+          "position": "21,8"
         },
         {
           "action": "waitForTimeout",
@@ -734,7 +696,7 @@
         {
           "action": "highlight",
           "path": "src/services/event-comment.api.ts",
-          "position": "41:58",
+          "position": "42:59",
           "highlightWholeLine": true
         }
       ]

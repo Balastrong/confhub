@@ -30,7 +30,7 @@ layout: default
 
 # Just another way to fetch data in React
 
-- They're prone to the same issues as other async/server data sources
+- Mixing UI with data means suffering from the same issues as other data fetching strategies
   - Caching, staleness, deduplication, error handling, loading states
   - ...did anyone say "TanStack Query"?
 

@@ -471,18 +471,6 @@
       ]
     },
     {
-      "id": "demo-qgankfb1-aaa5",
-      "title": "Loaders Demo PendingMs",
-      "steps": [
-        {
-          "action": "write",
-          "content": "\n  pendingMs: 0, // Default is 1000",
-          "path": "src/routes/demo/loaders.jsx",
-          "startPlaceholder": "})"
-        }
-      ]
-    },
-    {
       "id": "demo-qgankfb1-aaa6",
       "title": "Loader Demo Stale",
       "steps": [
@@ -491,6 +479,9 @@
           "content": "\n  staleTime: 10000, // Default is 0",
           "path": "src/routes/demo/loaders.jsx",
           "startPlaceholder": "})"
+        },
+        {
+          "action": "save"
         }
       ]
     },
@@ -717,8 +708,10 @@
       "title": "Middleware Use Demo",
       "steps": [
         {
-          "action": "open",
-          "path": "src/services/event-request.api.ts"
+          "action": "highlight",
+          "path": "src/services/event-request.api.ts",
+          "startPlaceholder": "export const createEventRequest",
+          "endPlaceholder": "userSession?.user?.id"
         }
       ]
     },
@@ -966,6 +959,10 @@
       "title": "Builder Demo Terminal",
       "steps": [
         {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
+        {
           "action": "openTerminal"
         }
       ]
@@ -977,9 +974,9 @@
         {
           "action": "executeTerminalCommand",
           "command": "npx create-tsrouter-app@latest --ui",
-          "autoExecute": true,
+          // "autoExecute": true,
           "insertTypingMode": "character-by-character",
-          "insertTypingSpeed": 100
+          "insertTypingSpeed": 50
         }
       ]
     },
@@ -987,6 +984,10 @@
       "id": "demo-ajd83hsa-dk36",
       "title": "Builder Demo Browser",
       "steps": [
+        {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
         {
           "action": "openWebsite",
           "url": "http://localhost:8080",

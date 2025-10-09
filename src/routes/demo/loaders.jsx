@@ -14,6 +14,7 @@ export const Route = createFileRoute("/demo/loaders")({
   component: RouteComponent,
   loader: getSlowData,
   pendingComponent: () => <div>Loading...</div>,
+  pendingMs: 0,
 })
 
 function RouteComponent() {

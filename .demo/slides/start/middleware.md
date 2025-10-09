@@ -5,7 +5,7 @@ layout: section
 
 # Server Functions work by exposing HTTP endpoints
 
-## You might want to proect them with authentication
+## You might want to protect them with authentication
 
 ---
 layout: section

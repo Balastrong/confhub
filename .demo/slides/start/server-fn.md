@@ -5,7 +5,7 @@ layout: section
 
 # How can I run code on the server, but call it from the client?
 
-## Access the database to display some data
+## Access the database and return some data
 
 ---
 layout: section

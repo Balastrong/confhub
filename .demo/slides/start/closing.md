@@ -5,18 +5,13 @@ layout: default
 
 # Want to learn more?
 
-- GitHub Repos (Start is a package in the TanStack/router repo)
 - Official documentation
+  - https://tanstack.com (it's a TanStack Start application)
+- Awesome List (https://github.com/Balastrong/awesome-tanstack-start)
+  - Tutorials, examples, boilerplate, resources
+- GitHub Repos (Start is a package in the TanStack/router repo)
 - TanStack Discord
   - Maintainers are very active and helpful
-
-And...
-
----
-layout: default
----
-
-<img src=".demo/slides/img/youtube.png" alt="DevLeonardo Youtube" style="width: 100%; height: auto; object-fit: contain;"/>
 
 ---
 layout: default
@@ -24,11 +19,12 @@ layout: default
 
 # What TanStack Start gives you out of the box
 
-- Feature rich, seamless type-safe routing (TanStack Router)
-- Server Side Rendering
-- Isomorphic Server Functions
+- The best, feature rich, type-safe routing experience (TanStack Router)
+- Server Side Rendering & Server function
+  - with a client-first approach
 - Universal Deployment (vite ecosystem & adapters)
 - Active and helpful community
+  - Join the official Discord server
 
 ---
 layout: section
@@ -40,7 +36,7 @@ layout: section
 layout: section
 ---
 
-# Thank you!
+<h1 style="font-size: 5em">Thank you!</h1>
 
 ---
 layout: two-columns

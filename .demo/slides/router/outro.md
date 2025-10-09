@@ -24,4 +24,4 @@ layout: section
 
 # Keep it simple with an SPA as long as you can
 
-## Go full stack only when you need to
+## If you don't need a full-stack framework, don't use it

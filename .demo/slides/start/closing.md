@@ -13,10 +13,10 @@ layout: default
 And...
 
 ---
-layout: section
+layout: default
 ---
 
-TODO: my youtube channel!
+<img src=".demo/slides/img/youtube.png" alt="DevLeonardo Youtube" style="width: 100%; height: auto; object-fit: contain;"/>
 
 ---
 layout: default

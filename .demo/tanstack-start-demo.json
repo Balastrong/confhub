@@ -78,16 +78,30 @@
           "action": "executeVSCodeCommand",
           "command": "workbench.action.focusLeftGroup"
         }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "vm-active"
-      }
+      ]
+    },
+    {
+      "id": "demo-ajd83s-9xy0",
+      "title": "Path Param Demo",
+      "steps": [
+        {
+          "action": "replace",
+          "path": "src/routes/hello.$name.tsx",
+          "startPlaceholder": "return <div>",
+          "endPlaceholder": "</div>",
+          "content": "const { name } = Route.useParams()\n  return <div className=\"text-4xl m-4\">Hello {name}!</di",
+          "insertTypingMode": "character-by-character"
+        }
+      ]
     },
     {
       "id": "demo-mgankfbh-9xy0",
       "title": "Typesafe slide",
       "steps": [
+        {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
         {
           "action": "openSlide",
           "path": ".demo/slides/router/typesafety.md"

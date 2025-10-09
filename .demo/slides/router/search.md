@@ -5,19 +5,11 @@ layout: section
 
 # Typesafety on Search params
 
-## No more guessing about the shape or presence of search params.
-
----
-layout: section
----
-
-# The URL is your new global state manager
-
 ---
 layout: default
 ---
 
-# URL is a global state manager?
+# The URL is your new global state manager
 
 - All components can access (read and write) the URL
 - You can listen to changes in the URL and react accordingly

@@ -75,8 +75,28 @@
           "command": "workbench.action.splitEditorToRightGroup"
         },
         {
+          "action": "waitForTimeout",
+          "timeout": 1000
+        },
+        {
           "action": "executeVSCodeCommand",
           "command": "workbench.action.focusLeftGroup"
+        },
+        {
+          "action": "waitForTimeout",
+          "timeout": 500
+        },
+        {
+          "action": "pressTab"
+        }
+      ]
+    },
+    {
+      "id": "demo-kfj398s-9xy0",
+      "title": "Create File Demo",
+      "steps": [
+        {
+          "action": "pressEnter"
         }
       ]
     },
@@ -88,9 +108,27 @@
           "action": "replace",
           "path": "src/routes/hello.$name.tsx",
           "startPlaceholder": "return <div>",
-          "endPlaceholder": "</div>",
-          "content": "const { name } = Route.useParams()\n  return <div className=\"text-4xl m-4\">Hello {name}!</di",
+          "content": "  const params = Route.useParams()",
           "insertTypingMode": "character-by-character"
+        }
+      ]
+    },
+    {
+      "id": "demo-ajd83s-9js8",
+      "title": "Path Param Type Demo",
+      "steps": [
+        {
+          "action": "positionCursor",
+          "path": "src/routes/hello.$name.tsx",
+          "position": "8,8"
+        },
+        {
+          "action": "waitForTimeout",
+          "timeout": 1000
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "editor.action.showHover"
         }
       ]
     },
@@ -125,7 +163,7 @@
         {
           "action": "positionCursor",
           "path": "src/components/event/event-management-card.tsx",
-          "position": "19,17",
+          "position": "19,18",
           "highlightWholeLine": true
         },
         {
@@ -135,6 +173,66 @@
         {
           "action": "executeVSCodeCommand",
           "command": "editor.action.triggerSuggest"
+        }
+      ]
+    },
+    {
+      "id": "demo-mg8fz4wd-wq1m",
+      "title": "Param Remove Demo",
+      "steps": [
+        {
+          "action": "positionCursor",
+          "path": "src/components/event/event-management-card.tsx",
+          "position": "20,18",
+          "highlightWholeLine": true
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "editor.action.addCommentLine"
+        },
+        {
+          "action": "waitForTimeout",
+          "timeout": 200
+        },
+        {
+          "action": "positionCursor",
+          "path": "src/components/event/event-management-card.tsx",
+          "position": "18,11"
+        },
+        {
+          "action": "waitForTimeout",
+          "timeout": 1000
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "editor.action.showHover"
+        }
+      ]
+    },
+    {
+      "id": "demo-mg8fz4wd-wq2m",
+      "title": "Param Remove Demo",
+      "steps": [
+        {
+          "action": "positionCursor",
+          "path": "src/components/event/event-management-card.tsx",
+          "position": "20,18",
+          "highlightWholeLine": true
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "editor.action.removeCommentLine"
+        },
+        {
+          "action": "waitForTimeout",
+          "timeout": 200
+        },
+        {
+          "action": "save"
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "editor.action.hideHover"
         }
       ]
     },
@@ -183,7 +281,8 @@
         {
           "action": "positionCursor",
           "path": "node_modules/@tanstack/router-core/src/route.ts",
-          "startPlaceholder": "export interface RemountDepsOptions"
+          "startPlaceholder": "export interface RemountDepsOptions",
+          "endPlaceholder": ""
         }
       ]
     },
@@ -194,7 +293,8 @@
         {
           "action": "positionCursor",
           "path": "node_modules/@tanstack/router-core/src/routeInfo.ts",
-          "startPlaceholder": "export type ParseRoute<T"
+          "startPlaceholder": "export type ParseRouteW",
+          "endPlaceholder": ""
         }
       ]
     },

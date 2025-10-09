@@ -109,7 +109,7 @@
           "path": "src/routes/hello.$name.tsx",
           "startPlaceholder": "return <div>",
           "endPlaceholder": "",
-          "content": "  const params = Route.useParams()",
+          "content": "  const params = Route.useParams()\n  return <div>Hello {params.name}</div>",
           "insertTypingMode": "character-by-character"
         }
       ]
@@ -974,7 +974,6 @@
         {
           "action": "executeTerminalCommand",
           "command": "npx create-tsrouter-app@latest --ui",
-          // "autoExecute": true,
           "insertTypingMode": "character-by-character",
           "insertTypingSpeed": 50
         }

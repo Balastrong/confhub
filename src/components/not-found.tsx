@@ -2,7 +2,7 @@ import { Button } from "./ui/button"
 
 export const NotFoundComponent = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen ">
+    <div className="flex flex-col items-center justify-center min-h-[80vh]">
       <div className="text-6xl mb-4">😵</div>
       <h1 className="text-4xl font-bold  mb-2">404 - Not Found</h1>
       <p className="text-lg mb-8">The page you're looking for doesn't exist.</p>

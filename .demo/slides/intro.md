@@ -61,4 +61,6 @@ layout: section
 layout: section
 ---
 
-# Let's see what Router already does client side
+# Let's see what Router can do
+
+## _Reminder: TanStack Start has all these features + server capabilities_

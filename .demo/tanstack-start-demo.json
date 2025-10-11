@@ -63,11 +63,11 @@
         },
         {
           "action": "open",
-          "path": "src/routes/hello.$name.tsx"
+          "path": "src/routes/hi.$name.$city.tsx"
         },
         {
           "action": "openWebsite",
-          "url": "http://localhost:3000/hello/Leonardo",
+          "url": "http://localhost:3000/hi/Leonardo/Verona",
           "openInVSCode": true
         },
         {
@@ -110,7 +110,7 @@
       "steps": [
         {
           "action": "replace",
-          "path": "src/routes/hello.$name.tsx",
+          "path": "src/routes/hi.$name.$city.tsx",
           "startPlaceholder": "return <div>",
           "endPlaceholder": "",
           "contentPath": ".demo/snippets/file-param.txt",
@@ -125,7 +125,7 @@
       "steps": [
         {
           "action": "positionCursor",
-          "path": "src/routes/hello.$name.tsx",
+          "path": "src/routes/hi.$name.$city.tsx",
           "position": "8,8"
         },
         {

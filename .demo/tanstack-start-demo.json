@@ -109,8 +109,9 @@
           "path": "src/routes/hello.$name.tsx",
           "startPlaceholder": "return <div>",
           "endPlaceholder": "",
-          "content": "  const params = Route.useParams()\n  return <div className='text-4xl m-4'>Hello {params.name}</div>",
-          "insertTypingMode": "character-by-character"
+          "contentPath": ".demo/snippets/file-param.txt",
+          "insertTypingMode": "character-by-character",
+          "insertTypingSpeed": 8
         }
       ]
     },

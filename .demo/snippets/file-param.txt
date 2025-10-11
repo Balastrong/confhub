@@ -1,0 +1,6 @@
+  const params = Route.useParams()
+  return (
+    <div className="text-4xl text-center mt-4 underline">
+      Hello {params.name}!
+    </div>
+  )

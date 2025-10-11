@@ -36,7 +36,7 @@ layout: section
 # 🚀 Ship something cool 🚀
 <br />
 
-# Have fun!
+# Enjoy the process!
 
 ---
 layout: section

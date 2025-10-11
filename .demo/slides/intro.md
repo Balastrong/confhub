@@ -27,6 +27,14 @@ layout: default
 - **Community**: Active and helpful, join the official Discord server
 
 ---
+layout: section
+---
+
+# Start = Router + Server Capabilities
+
+## TanStack Router covers ~80% of the functionalities
+
+---
 layout: default
 ---
 
@@ -34,24 +42,20 @@ layout: default
 
 Modern routers take care of a lot of things:
 
-- Page layout and rendering
-- Data fetching and components lifecycle
-- State management
-- Folder structure and code splitting
+- Components hierarchy and composition
+  - Nested layouts, shared UI, code splitting, bundling
+- Data lifecycle
+  - Loaders/actions, prefetch, caching
+- Rendering control
+  - SSR, streaming, suspense, error boundaries
+- Developer experience
+  - File‑based routing, HMR, devtools
 
 ---
 layout: section
 ---
 
 # Picking a router means defining most of your app architecture
-
----
-layout: section
----
-
-# Start = Router + Server Capabilities
-
-## TanStack Router covers ~80% of the functionalities
 
 ---
 layout: section

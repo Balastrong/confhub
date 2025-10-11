@@ -5,11 +5,7 @@ layout: section
 
 # Let's put this on the internet!
 
----
-layout: section
----
-
-# Where can I deploy a TanStack Start application?
+## Where can I deploy a TanStack Start application?
 
 ---
 layout: default
@@ -22,7 +18,7 @@ Recommended as they built an official adapter:
 - **Netlify**
 - **Cloudflare**
 
-Using the Nitro adapter:
+Using the **Nitro** adapter:
 
 - Vercel
 - Railway

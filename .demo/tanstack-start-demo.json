@@ -75,6 +75,10 @@
           "command": "workbench.action.splitEditorToRightGroup"
         },
         {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.action.closeSidebar"
+        },
+        {
           "action": "waitForTimeout",
           "timeout": 1000
         },

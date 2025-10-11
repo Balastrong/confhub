@@ -267,8 +267,7 @@
         {
           "action": "highlight",
           "path": "src/routes/demo/search.tsx",
-          "startPlaceholder": "setFilters",
-          "endPlaceholder": "(",
+          "position": "19:28",
           "highlightWholeLine": true
         }
       ]
@@ -287,9 +286,17 @@
           "insertTypingSpeed": 15
         },
         {
-          "action": "waitForTimeout",
-          "timeout": 2000
-        },
+          "action": "highlight",
+          "path": "src/routes/demo/search.tsx",
+          "position": "19:33",
+          "highlightWholeLine": true
+        }
+      ]
+    },
+    {
+      "id": "demo-mg8gigig-jdw2",
+      "title": "Search State Hover Demo",
+      "steps": [
         {
           "action": "positionCursor",
           "path": "src/routes/demo/search.tsx",
@@ -298,6 +305,12 @@
         {
           "action": "waitForTimeout",
           "timeout": 200
+        },
+        {
+          "action": "highlight",
+          "path": "src/routes/demo/search.tsx",
+          "position": "19:33",
+          "highlightWholeLine": true
         },
         {
           "action": "executeVSCodeCommand",

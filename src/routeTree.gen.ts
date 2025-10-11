@@ -19,6 +19,7 @@ import { Route as CommunitiesIndexRouteImport } from './routes/communities/index
 import { Route as EventsSubmitRouteImport } from './routes/events/submit'
 import { Route as EventsEventSlugRouteImport } from './routes/events/$eventSlug'
 import { Route as DemoSsrRouteImport } from './routes/demo/ssr'
+import { Route as DemoSearchRouteImport } from './routes/demo/search'
 import { Route as DemoLoadersRouteImport } from './routes/demo/loaders'
 import { Route as CommunitiesCreateRouteImport } from './routes/communities/create'
 import { Route as CommunitiesCommunitySlugRouteImport } from './routes/communities/$communitySlug'
@@ -77,6 +78,11 @@ const EventsEventSlugRoute = EventsEventSlugRouteImport.update({
 const DemoSsrRoute = DemoSsrRouteImport.update({
   id: '/demo/ssr',
   path: '/demo/ssr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoSearchRoute = DemoSearchRouteImport.update({
+  id: '/demo/search',
+  path: '/demo/search',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoLoadersRoute = DemoLoadersRouteImport.update({
@@ -139,6 +145,7 @@ export interface FileRoutesByFullPath {
   '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
   '/communities/create': typeof CommunitiesCreateRoute
   '/demo/loaders': typeof DemoLoadersRoute
+  '/demo/search': typeof DemoSearchRoute
   '/demo/ssr': typeof DemoSsrRoute
   '/events/$eventSlug': typeof EventsEventSlugRoute
   '/events/submit': typeof EventsSubmitRoute
@@ -160,6 +167,7 @@ export interface FileRoutesByTo {
   '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
   '/communities/create': typeof CommunitiesCreateRoute
   '/demo/loaders': typeof DemoLoadersRoute
+  '/demo/search': typeof DemoSearchRoute
   '/demo/ssr': typeof DemoSsrRoute
   '/events/$eventSlug': typeof EventsEventSlugRoute
   '/events/submit': typeof EventsSubmitRoute
@@ -182,6 +190,7 @@ export interface FileRoutesById {
   '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
   '/communities/create': typeof CommunitiesCreateRoute
   '/demo/loaders': typeof DemoLoadersRoute
+  '/demo/search': typeof DemoSearchRoute
   '/demo/ssr': typeof DemoSsrRoute
   '/events/$eventSlug': typeof EventsEventSlugRoute
   '/events/submit': typeof EventsSubmitRoute
@@ -205,6 +214,7 @@ export interface FileRouteTypes {
     | '/communities/$communitySlug'
     | '/communities/create'
     | '/demo/loaders'
+    | '/demo/search'
     | '/demo/ssr'
     | '/events/$eventSlug'
     | '/events/submit'
@@ -226,6 +236,7 @@ export interface FileRouteTypes {
     | '/communities/$communitySlug'
     | '/communities/create'
     | '/demo/loaders'
+    | '/demo/search'
     | '/demo/ssr'
     | '/events/$eventSlug'
     | '/events/submit'
@@ -247,6 +258,7 @@ export interface FileRouteTypes {
     | '/communities/$communitySlug'
     | '/communities/create'
     | '/demo/loaders'
+    | '/demo/search'
     | '/demo/ssr'
     | '/events/$eventSlug'
     | '/events/submit'
@@ -269,6 +281,7 @@ export interface RootRouteChildren {
   CommunitiesCommunitySlugRoute: typeof CommunitiesCommunitySlugRoute
   CommunitiesCreateRoute: typeof CommunitiesCreateRoute
   DemoLoadersRoute: typeof DemoLoadersRoute
+  DemoSearchRoute: typeof DemoSearchRoute
   DemoSsrRoute: typeof DemoSsrRoute
   EventsEventSlugRoute: typeof EventsEventSlugRoute
   EventsSubmitRoute: typeof EventsSubmitRoute
@@ -351,6 +364,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoSsrRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/demo/search': {
+      id: '/demo/search'
+      path: '/demo/search'
+      fullPath: '/demo/search'
+      preLoaderRoute: typeof DemoSearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/demo/loaders': {
       id: '/demo/loaders'
       path: '/demo/loaders'
@@ -429,6 +449,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommunitiesCommunitySlugRoute: CommunitiesCommunitySlugRoute,
   CommunitiesCreateRoute: CommunitiesCreateRoute,
   DemoLoadersRoute: DemoLoadersRoute,
+  DemoSearchRoute: DemoSearchRoute,
   DemoSsrRoute: DemoSsrRoute,
   EventsEventSlugRoute: EventsEventSlugRoute,
   EventsSubmitRoute: EventsSubmitRoute,

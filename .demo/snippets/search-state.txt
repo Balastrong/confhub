@@ -1,6 +1,6 @@
   const filters = Route.useSearch()
 
   const navigate = useNavigate()
-  const setFilters = (newFilters: EventFilters) => {
-    navigate({ from: Route.fullPath, search: newFilters })
+  const setFilters = (search: ItemsFilter) => {
+    navigate({ from: Route.fullPath, search })
   }

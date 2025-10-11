@@ -266,7 +266,7 @@
       "steps": [
         {
           "action": "highlight",
-          "path": "src/routes/index.tsx",
+          "path": "src/routes/demo/search.tsx",
           "startPlaceholder": "setFilters",
           "endPlaceholder": "(",
           "highlightWholeLine": true
@@ -279,8 +279,8 @@
       "steps": [
         {
           "action": "replace",
-          "path": "src/routes/index.tsx",
-          "startPlaceholder": "const [filters, setFilters] = React.useState<EventFilters>({})",
+          "path": "src/routes/demo/search.tsx",
+          "startPlaceholder": "const [filters, setFilters] = React.useState<ItemsFilter>({})",
           "endPlaceholder": "",
           "contentPath": ".demo/snippets/search-state.txt",
           "insertTypingMode": "line-by-line",
@@ -292,8 +292,8 @@
         },
         {
           "action": "positionCursor",
-          "path": "src/routes/index.tsx",
-          "position": "24,8"
+          "path": "src/routes/demo/search.tsx",
+          "position": "20,8"
         },
         {
           "action": "waitForTimeout",
@@ -315,8 +315,8 @@
         },
         {
           "action": "highlight",
-          "path": "src/routes/index.tsx",
-          "position": "15:19"
+          "path": "src/routes/demo/search.tsx",
+          "position": "6:17"
         }
       ]
     },

@@ -11,10 +11,13 @@ layout: default
 
 # Server Side Rendering in TanStack Start
 
-- By default, is performed only on the first load
+### First load (from outside)
+- By default the page is rendered on the server
   - SEO friendly
   - Supports streaming (also selective)
-- All other navigations are client-side
-  - Fast and smooth as in a SPA
+
+### Subsequent navigations (with in the app)
+- Client-side navigation
+  - Fast and smooth SPA feel
 
 _There are options to customize this behavior_

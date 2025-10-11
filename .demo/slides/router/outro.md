@@ -22,6 +22,6 @@ layout: default
 layout: section
 ---
 
-# Keep it simple with an SPA as long as you can
+# Keep it an SPA as long as you can
 
 ## If you don't need a full-stack framework, don't use it

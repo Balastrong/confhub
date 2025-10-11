@@ -17,12 +17,12 @@ layout: default
 
 <br />
 
-```ts
-// ✅ This runs on BOTH server and client
-function formatPrice(price: number) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(price)
-}
+```tsx
+export const Route = createFileRoute("/items")({
+  ssr: true, // Default true, can also be false or 'data-only'
+  loader: () => {
+    // ✅ This can run on BOTH server and client
+  },
+  component: RouteComponent,
+})
 ```

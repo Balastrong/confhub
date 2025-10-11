@@ -339,6 +339,11 @@
       "title": "Context Demo Root",
       "steps": [
         {
+          "action": "positionCursor",
+          "path": "src/routes/__root.tsx",
+          "position": "24,23"
+        },
+        {
           "action": "highlight",
           "path": "src/routes/__root.tsx",
           "startPlaceholder": "export const Route = createRootRouteWithContext<{",
@@ -351,17 +356,14 @@
       "title": "Context Demo Root Higlight",
       "steps": [
         {
-          "action": "positionCursor",
-          "path": "src/routes/__root.tsx",
-          "position": "24,23"
-        },
-        {
-          "action": "waitForTimeout",
-          "timeout": 200
-        },
-        {
           "action": "executeVSCodeCommand",
           "command": "editor.action.showHover"
+        },
+        {
+          "action": "highlight",
+          "path": "src/routes/__root.tsx",
+          "startPlaceholder": "export const Route = createRootRouteWithContext<{",
+          "endPlaceholder": "},"
         }
       ]
     },
@@ -369,6 +371,11 @@
       "id": "demo-msankfbh-9xy3",
       "title": "Context Demo My Events",
       "steps": [
+        {
+          "action": "positionCursor",
+          "path": "src/routes/my-events.tsx",
+          "position": "22,17"
+        },
         {
           "action": "highlight",
           "path": "src/routes/my-events.tsx",
@@ -382,17 +389,14 @@
       "title": "Context Demo Events Higlight",
       "steps": [
         {
-          "action": "positionCursor",
-          "path": "src/routes/my-events.tsx",
-          "position": "22,17"
-        },
-        {
-          "action": "waitForTimeout",
-          "timeout": 200
-        },
-        {
           "action": "executeVSCodeCommand",
           "command": "editor.action.showHover"
+        },
+        {
+          "action": "highlight",
+          "path": "src/routes/my-events.tsx",
+          "startPlaceholder": "export const Route",
+          "endPlaceholder": "},"
         }
       ]
     },
@@ -547,16 +551,6 @@
         "start": "vm",
         "end": "vm-active"
       }
-    },
-    {
-      "id": "demo-185edkfbh-cj31",
-      "title": "Start SSR Demo",
-      "steps": [
-        {
-          "action": "open",
-          "path": "src/routes/demo/ssr.tsx"
-        }
-      ]
     },
     {
       "id": "demo-qgad1fb1-5xy1",

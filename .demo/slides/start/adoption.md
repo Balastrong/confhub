@@ -19,7 +19,7 @@ layout: default
       <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(16,185,129,.15);color:#6ee7b7;font-size:20px">🎉</div>
       <h3 style="margin:0;font-size:1.05em">v1 Released</h3>
     </div>
-    <p style="margin:0;color:var(--slidev-theme-text-secondary,#cbd5e1);font-size:.95em">v1 released on 24/12/2023</p>
+    <p style="margin:0;color:#cbd5e1;font-size:.95em">v1 released on 24/12/2023</p>
   </div>
 
   <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:18px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
@@ -27,7 +27,7 @@ layout: default
       <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(59,130,246,.15);color:#93c5fd;font-size:20px">✅</div>
       <h3 style="margin:0;font-size:1.05em">Mature APIs</h3>
     </div>
-    <p style="margin:0;color:var(--slidev-theme-text-secondary,#cbd5e1);font-size:.95em">Stable and mature APIs</p>
+    <p style="margin:0;color:#cbd5e1;font-size:.95em">Stable and mature APIs</p>
   </div>
 
   <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:18px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
@@ -35,7 +35,7 @@ layout: default
       <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(234,179,8,.15);color:#fde68a;font-size:20px">📚</div>
       <h3 style="margin:0;font-size:1.05em">Rich Documentation</h3>
     </div>
-    <p style="margin:0;color:var(--slidev-theme-text-secondary,#cbd5e1);font-size:.95em">Detailed documentation and resources</p>
+    <p style="margin:0;color:#cbd5e1;font-size:.95em">Detailed documentation and resources</p>
   </div>
 </div>
 
@@ -55,7 +55,7 @@ layout: default
       <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(234,179,8,.15);color:#fde68a;font-size:22px">🚧</div>
       <h3 style="margin:0;font-size:1.1em">RC Phase</h3>
     </div>
-    <p style="margin:0;color:var(--slidev-theme-text-secondary,#cbd5e1);font-size:.95em">Release Candidate with v1 coming really soon</p>
+    <p style="margin:0;color:#cbd5e1;font-size:.95em">Release Candidate with v1 coming really soon</p>
   </div>
 
   <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
@@ -63,7 +63,7 @@ layout: default
       <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(16,185,129,.15);color:#6ee7b7;font-size:22px">✅</div>
       <h3 style="margin:0;font-size:1.1em">Stable APIs</h3>
     </div>
-    <p style="margin:0;color:var(--slidev-theme-text-secondary,#cbd5e1);font-size:.95em">Core APIs are stable and production-ready</p>
+    <p style="margin:0;color:#cbd5e1;font-size:.95em">Core APIs are stable and production-ready</p>
   </div>
 
   <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
@@ -71,7 +71,7 @@ layout: default
       <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(59,130,246,.15);color:#93c5fd;font-size:22px">👥</div>
       <h3 style="margin:0;font-size:1.1em">Maintainers Team</h3>
     </div>
-    <p style="margin:0;color:var(--slidev-theme-text-secondary,#cbd5e1);font-size:.95em">Active team of maintainers committed to the project</p>
+    <p style="margin:0;color:#cbd5e1;font-size:.95em">Active team of maintainers committed to the project</p>
   </div>
 </div>
 

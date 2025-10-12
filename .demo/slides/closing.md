@@ -11,8 +11,10 @@ layout: default
       <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(59,130,246,.15);color:#93c5fd;font-size:22px">📚</div>
       <h3 style="margin:0;font-size:1.1em">Official Documentation</h3>
     </div>
-    <p style="margin:0 0 8px 0;color:#cbd5e1;font-size:.95em">https://tanstack.com</p>
-    <p style="margin:0;color:#cbd5e1;font-size:.9em;font-style:italic">It's a TanStack Start application!</p>
+    <p style="margin:0 0 8px 0;font-size:.95em">
+      <a href="https://tanstack.com" style="color:#93c5fd;text-decoration:underline" target="_blank" rel="noopener noreferrer">tanstack.com</a>
+    </p>
+    <p style="margin:0;color:#cbd5e1;font-size:.9em">It's a TanStack Start application!</p>
   </div>
 
   <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
@@ -20,8 +22,10 @@ layout: default
       <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(16,185,129,.15);color:#6ee7b7;font-size:22px">⭐</div>
       <h3 style="margin:0;font-size:1.1em">Awesome List</h3>
     </div>
-    <p style="margin:0 0 8px 0;color:#cbd5e1;font-size:.95em">github.com/Balastrong/awesome-tanstack-start</p>
-    <p style="margin:0;color:#cbd5e1;font-size:.9em;font-style:italic">Tutorials, examples, boilerplate & resources</p>
+    <p style="margin:0 0 8px 0;font-size:.95em">
+      <a href="github.com/Balastrong/awesome-tanstack-start" style="color:#93c5fd;text-decoration:underline" target="_blank" rel="noopener noreferrer">github.com/Balastrong/awesome-tanstack-start</a>
+    </p>
+    <p style="margin:0;color:#cbd5e1;font-size:.9em">Tutorials, examples, boilerplate & resources</p>
   </div>
 
   <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">

@@ -371,12 +371,6 @@
         {
           "action": "executeVSCodeCommand",
           "command": "editor.action.showHover"
-        },
-        {
-          "action": "highlight",
-          "path": "src/routes/__root.tsx",
-          "startPlaceholder": "export const Route = createRootRouteWithContext<{",
-          "endPlaceholder": "},"
         }
       ]
     },
@@ -404,12 +398,6 @@
         {
           "action": "executeVSCodeCommand",
           "command": "editor.action.showHover"
-        },
-        {
-          "action": "highlight",
-          "path": "src/routes/my-events.tsx",
-          "startPlaceholder": "export const Route",
-          "endPlaceholder": "},"
         }
       ]
     },

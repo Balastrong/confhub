@@ -18,16 +18,16 @@ layout: default
       <h3 style="margin:0;font-size:1.1em">First Load (from outside)</h3>
     </div>
     <div style="margin-bottom:12px">
-      <p style="margin:0 0 8px 0;color:#cbd5e1;font-size:.95em">By default the page is rendered on the server</p>
+      <p style="margin:0 0 8px 0;;font-size:.95em">By default the page is rendered on the server</p>
     </div>
     <div style="display:flex;flex-direction:column;gap:6px">
       <div style="display:flex;align-items:center;gap:8px">
         <div style="width:6px;height:6px;border-radius:50%;background:rgba(16,185,129,.8)"></div>
-        <span style="color:#cbd5e1;font-size:.9em">SEO friendly</span>
+        <span style=";font-size:.9em">SEO friendly</span>
       </div>
       <div style="display:flex;align-items:center;gap:8px">
         <div style="width:6px;height:6px;border-radius:50%;background:rgba(16,185,129,.8)"></div>
-        <span style="color:#cbd5e1;font-size:.9em">Supports streaming (also selective)</span>
+        <span style=";font-size:.9em">Supports streaming (also selective)</span>
       </div>
     </div>
   </div>
@@ -38,21 +38,21 @@ layout: default
       <h3 style="margin:0;font-size:1.1em">Subsequent Navigations</h3>
     </div>
     <div style="margin-bottom:12px">
-      <p style="margin:0 0 8px 0;color:#cbd5e1;font-size:.95em">Within the app</p>
+      <p style="margin:0 0 8px 0;;font-size:.95em">Within the app</p>
     </div>
     <div style="display:flex;flex-direction:column;gap:6px">
       <div style="display:flex;align-items:center;gap:8px">
         <div style="width:6px;height:6px;border-radius:50%;background:rgba(16,185,129,.8)"></div>
-        <span style="color:#cbd5e1;font-size:.9em">Client-side navigation</span>
+        <span style=";font-size:.9em">Client-side navigation</span>
       </div>
       <div style="display:flex;align-items:center;gap:8px">
         <div style="width:6px;height:6px;border-radius:50%;background:rgba(16,185,129,.8)"></div>
-        <span style="color:#cbd5e1;font-size:.9em">Fast and smooth SPA feel</span>
+        <span style=";font-size:.9em">Fast and smooth SPA feel</span>
       </div>
     </div>
   </div>
 </div>
 
 <div style="background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(59,130,246,.1));border:1px solid rgba(99,102,241,.3);border-radius:14px;padding:20px;margin-top:24px;text-align:center">
-  <p style="margin:0;font-style:italic;color:#cbd5e1;font-size:1em">There are options to customize this behavior</p>
+  <p style="margin:0;font-style:italic;;font-size:1em">There are options to customize this behavior</p>
 </div>

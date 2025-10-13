@@ -87,20 +87,20 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang={i18n.language} suppressHydrationWarning>
       <head>
         <HeadContent />
-        {process.env.NODE_ENV === "production" && (
-          <>
-            <script
-              src="https://www.googletagmanager.com/gtag/js?id=G-BGV8RCHJPH"
-              async
-            />
-            <script>
-              {`window.dataLayer = window.dataLayer || [];
+        {/* {process.env.NODE_ENV === "production" && ( */}
+        <>
+          <script
+            src="https://www.googletagmanager.com/gtag/js?id=G-BGV8RCHJPH"
+            async
+          />
+          <script>
+            {`window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-BGV8RCHJPH');`}
-            </script>
-          </>
-        )}
+          </script>
+        </>
+        {/* )} */}
       </head>
       <body>
         <ThemeProvider>

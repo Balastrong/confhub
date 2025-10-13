@@ -11,7 +11,7 @@ layout: default
       <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(59,130,246,.15);color:#93c5fd;font-size:22px">📄</div>
       <h3 style="margin:0;font-size:1.1em">Full-document SSR</h3>
     </div>
-    <p style="margin:0;font-size:.95em">Complete server-side rendering</p>
+    <p style="margin:0;font-size:.95em">Move some or all of your rendering to the server</p>
   </div>
 
   <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
@@ -19,7 +19,7 @@ layout: default
       <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(16,185,129,.15);color:#6ee7b7;font-size:22px">⚙️</div>
       <h3 style="margin:0;font-size:1.1em">Server Functions</h3>
     </div>
-    <p style="margin:0;font-size:.95em">Backend logic made simple</p>
+    <p style="margin:0;font-size:.95em">Backend logic in your frontend codebase</p>
   </div>
 
   <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">

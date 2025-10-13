@@ -49,7 +49,7 @@ layout: default
       <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(234,179,8,.15);color:#fde68a;font-size:20px">🛠️</div>
       <h3 style="margin:0;font-size:1.05em">Developer experience</h3>
     </div>
-    <p style="margin:0;;font-size:.95em">The framework helps you—doesn't fight you</p>
+    <p style="margin:0;;font-size:.95em">The framework helps you, doesn't fight you</p>
   </div>
 
   <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
@@ -65,7 +65,7 @@ layout: default
       <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(139,92,246,.15);color:#d8b4fe;font-size:20px">🤝</div>
       <h3 style="margin:0;font-size:1.05em">Community</h3>
     </div>
-    <p style="margin:0;;font-size:.95em">Active & helpful—join the official Discord</p>
+    <p style="margin:0;;font-size:.95em">Active & helpful, join the official Discord</p>
   </div>
 </div>
 
@@ -115,7 +115,7 @@ Modern routers take care of a lot of things:
       <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(234,179,8,.15);color:#fde68a;font-size:20px">🛠️</div>
       <h3 style="margin:0;font-size:1.05em">Developer Experience</h3>
     </div>
-    <p style="margin:0;;font-size:.95em">File-based routing, HMR & devtools</p>
+    <p style="margin:0;;font-size:.95em">Folder structure, HMR, code splitting & devtools</p>
   </div>
 </div>
 

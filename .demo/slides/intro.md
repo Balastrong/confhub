@@ -95,7 +95,7 @@ Modern routers take care of a lot of things:
   <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:18px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
       <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(99,102,241,.15);color:#a5b4fc;font-size:20px">🧩</div>
-      <h3 style="margin:0;font-size:1.05em">Component Hierarchy</h3>
+      <h3 style="margin:0;font-size:1.05em">Component & Layouts Hierarchy</h3>
     </div>
     <p style="margin:0;;font-size:.95em">Nested layouts, shared UI, component boundaries</p>
   </div>
@@ -105,15 +105,15 @@ Modern routers take care of a lot of things:
       <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(16,185,129,.15);color:#6ee7b7;font-size:20px">🔄</div>
       <h3 style="margin:0;font-size:1.05em">Data Lifecycle</h3>
     </div>
-    <p style="margin:0;;font-size:.95em">Loaders, state management, prefetching & caching</p>
+    <p style="margin:0;;font-size:.95em">Loaders, prefetching & caching</p>
   </div>
 
   <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:18px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-      <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(59,130,246,.15);color:#93c5fd;font-size:20px">🎨</div>
-      <h3 style="margin:0;font-size:1.05em">Rendering Control</h3>
+      <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(59,130,246,.15);color:#93c5fd;font-size:20px">🌐</div>
+      <h3 style="margin:0;font-size:1.05em">State Management</h3>
     </div>
-    <p style="margin:0;;font-size:.95em">SSR, streaming, suspense & error boundaries</p>
+    <p style="margin:0;;font-size:.95em">Global state, context, prop drilling</p>
   </div>
 
   <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:18px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">

@@ -106,12 +106,8 @@ layout: section
 ---
 
 # Try TanStack Start now
-<br />
 
-# 🚀 Ship something cool 🚀
-<br />
-
-# Enjoy the process!
+### 🚀 Ship something cool • 💡 Enjoy the process
 
 ---
 layout: section

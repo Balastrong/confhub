@@ -24,10 +24,10 @@ layout: default
 
   <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
-      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(139,92,246,.15);color:#d8b4fe;font-size:22px">🌊</div>
-      <h3 style="margin:0;font-size:1.1em">Streaming</h3>
+      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(139,92,246,.15);color:#d8b4fe;font-size:22px">🔗</div>
+      <h3 style="margin:0;font-size:1.1em">End to end typesafety</h3>
     </div>
-    <p style="margin:0;font-size:.95em">Progressive content delivery</p>
+    <p style="margin:0;font-size:.95em">Shared types between client & server</p>
   </div>
 
   <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">

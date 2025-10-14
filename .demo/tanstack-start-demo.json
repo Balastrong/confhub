@@ -34,7 +34,8 @@
       "icons": {
         "start": "vm",
         "end": "vm-active"
-      }
+      },
+      "disabled": true
     },
     {
       "id": "demo-1s2dkfbh-9xe0",

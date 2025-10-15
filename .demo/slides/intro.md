@@ -94,6 +94,14 @@ Modern routers take care of a lot of things:
 <div style="display:grid;grid-template-columns:repeat(2,minmax(280px,1fr));gap:18px;margin-top:20px;align-items:stretch">
   <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:18px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(234,179,8,.15);color:#fde68a;font-size:20px">🛠️</div>
+      <h3 style="margin:0;font-size:1.05em">Developer Experience</h3>
+    </div>
+    <p style="margin:0;;font-size:.95em">Folder structure, HMR, code splitting & devtools</p>
+  </div>
+
+  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:18px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
       <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(99,102,241,.15);color:#a5b4fc;font-size:20px">🧩</div>
       <h3 style="margin:0;font-size:1.05em">Component & Layouts Hierarchy</h3>
     </div>
@@ -114,14 +122,6 @@ Modern routers take care of a lot of things:
       <h3 style="margin:0;font-size:1.05em">State Management</h3>
     </div>
     <p style="margin:0;;font-size:.95em">Global state, context, prop drilling</p>
-  </div>
-
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:18px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-      <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(234,179,8,.15);color:#fde68a;font-size:20px">🛠️</div>
-      <h3 style="margin:0;font-size:1.05em">Developer Experience</h3>
-    </div>
-    <p style="margin:0;;font-size:.95em">Folder structure, HMR, code splitting & devtools</p>
   </div>
 </div>
 

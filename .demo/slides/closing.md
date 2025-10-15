@@ -102,12 +102,20 @@ layout: default
 </div>
 
 ---
-layout: section
+layout: default
 ---
 
-# Try TanStack Start now
+<div style="height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center;">
 
-### 🚀 Ship something cool • 💡 Enjoy the process
+  <img src=".demo/slides/img/tanstack-banner.png" width="150" style="margin: 24px auto">
+
+  <span style="font-size: 4em; margin: 0 0 .25em 0; font-weight: 750; line-height: 1.25; text-align: center;">
+    Let your
+    <span style="background: linear-gradient(90deg, #60a5fa, #818cf8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;"><i>typesafe</i></span>
+    <span style="background: linear-gradient(90deg, #34d399, #047857); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; text-decoration: underline; text-decoration-color: rgba(255,255,255,.85); text-underline-offset: 6px; text-decoration-thickness: 4px;">full-stack</span>
+    adventure begin!
+  </span>
+</div>
 
 ---
 layout: section

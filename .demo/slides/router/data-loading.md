@@ -27,6 +27,9 @@ layout: default
       <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(16,185,129,.15);color:#6ee7b7;font-size:22px">💾</div>
       <h3 style="margin:0;font-size:1.1em">Smart Caching</h3>
     </div>
-    <p style="margin:0;;font-size:.95em">Data bound to routes benefits from Route's built-in cache or integrates seamlessly with TanStack Query</p>
+    <p style="margin:0;;font-size:.95em">Data bound to routes benefits from Router's built-in cache</p>
+  </div>
+  <div style="grid-column:1/-1;background:linear-gradient(180deg,rgba(59,130,246,.25),rgba(59,130,246,.1));border:1px solid rgba(59,130,246,.45);border-radius:14px;padding:22px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;gap:12px;color:#dbeafe;width:50%;margin:auto">
+    <h3 style="margin:0;font-size:1.2em">TanStack Router 🤝 TanStack Query</h3>
   </div>
 </div>

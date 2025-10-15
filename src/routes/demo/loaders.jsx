@@ -21,7 +21,7 @@ function RouteComponent() {
   const loaderData = Route.useLoaderData()
 
   return (
-    <div>
+    <div className="text-2xl m-4">
       The answer is: <strong>{loaderData.theAnswer}</strong> at{" "}
       <strong>{loaderData.time}</strong>
     </div>

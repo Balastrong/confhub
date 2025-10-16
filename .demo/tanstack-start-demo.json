@@ -67,6 +67,10 @@
           "path": "src/routes/hi.$name.$city.tsx"
         },
         {
+          "action": "waitForTimeout",
+          "timeout": 200
+        },
+        {
           "action": "openWebsite",
           "url": "http://localhost:3000/hi/Leonardo/Verona",
           "openInVSCode": true

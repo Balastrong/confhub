@@ -17,6 +17,13 @@ layout: section
 layout: default
 ---
 
+<img src=".demo/slides/img/start.png" alt="TanStack Start" style="width: 100%; height: auto; object-fit: contain;" />
+
+
+---
+layout: default
+---
+
 # TanStack Start strengths
 
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:12px;align-items:stretch">

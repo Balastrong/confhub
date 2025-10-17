@@ -9,6 +9,7 @@ import { ZodError } from "zod"
 import { fromError } from "zod-validation-error"
 import { routeTree } from "./routeTree.gen"
 import "~/lib/i18n"
+import { NotFoundComponent } from "./components/not-found"
 
 function parseZodError(error: Error) {
   try {
@@ -55,7 +56,7 @@ export function getRouter() {
       routeTree,
       defaultPreload: "intent",
       defaultErrorComponent: ErrorComponent,
-      defaultNotFoundComponent: () => "Not found!",
+      defaultNotFoundComponent: NotFoundComponent,
       context: { queryClient },
     }),
     queryClient,

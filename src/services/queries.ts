@@ -24,6 +24,7 @@ import {
   getMyRsvpEvents,
 } from "./event-rsvp.api"
 import { UpsertRsvp } from "./event-rsvp.schema"
+import { getEventRequestCount, createEventRequest } from "./event-request.api"
 
 export const eventQueries = {
   all: ["events"],
@@ -189,6 +190,28 @@ export const useDeleteEventCommentMutation = () => {
     onSuccess: (res) => {
       queryClient.invalidateQueries({
         queryKey: [...commentQueries.all, "listByEvent", res.eventId],
+      })
+    },
+  })
+}
+
+export const eventRequestQueries = {
+  all: ["eventRequests"],
+  count: () =>
+    queryOptions({
+      queryKey: [...eventRequestQueries.all, "count"],
+      queryFn: () => getEventRequestCount(),
+      staleTime: 30000, // Cache for 30 seconds
+    }),
+}
+
+export const useCreateEventRequestMutation = () => {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: createEventRequest,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: eventRequestQueries.all,
       })
     },
   })

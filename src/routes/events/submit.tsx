@@ -1,6 +1,6 @@
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQuery } from "@tanstack/react-query"
 import { createFileRoute } from "@tanstack/react-router"
-import { Link2, Send } from "lucide-react"
+import { Link2, Send, Users } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
 import { ButtonLink } from "~/components/button-link"
@@ -20,29 +20,29 @@ import { createEventRequest } from "~/services/event-request.api"
 import { CreateEventRequestSchema } from "~/services/event-request.schema"
 import { useTranslation } from "react-i18next"
 import i18n from "~/lib/i18n"
+import {
+  eventRequestQueries,
+  useCreateEventRequestMutation,
+} from "~/services/queries"
 
 export const Route = createFileRoute("/events/submit")({
-  component: RouteComponent,
+  loader: async ({ context }) => {
+    await context.queryClient.ensureQueryData(eventRequestQueries.count())
+  },
   head: () => ({
     meta: seo({
       title: i18n.t("submit.seoTitle"),
       description: i18n.t("submit.seoDescription"),
     }),
   }),
+  component: RouteComponent,
 })
 
 function RouteComponent() {
   const { t } = useTranslation()
-  const createEventRequestMutation = useMutation({
-    mutationFn: createEventRequest,
-    onSuccess: () => {
-      toast.success(t("submit.toast.success"))
-      setIsSubmitted(true)
-    },
-    onError: (error) => {
-      toast.error(error.message || t("submit.toast.error"))
-    },
-  })
+  const { data: eventRequestCount = 0 } = useQuery(eventRequestQueries.count())
+  const createEventRequestMutation = useCreateEventRequestMutation()
+
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   const form = useAppForm({
@@ -54,9 +54,15 @@ function RouteComponent() {
       onChange: CreateEventRequestSchema,
     },
     onSubmit: async ({ value }) => {
-      await createEventRequestMutation.mutateAsync({
-        data: value,
-      })
+      try {
+        await createEventRequestMutation.mutateAsync({
+          data: value,
+        })
+        toast.success(t("submit.toast.success"))
+        setIsSubmitted(true)
+      } catch (error: any) {
+        toast.error(error.message || t("submit.toast.error"))
+      }
     },
   })
 
@@ -105,6 +111,19 @@ function RouteComponent() {
           {t("submit.header")}
         </h1>
         <p className="text-muted-foreground">{t("submit.description")}</p>
+      </div>
+
+      {/* Event Request Counter */}
+      <div className="flex justify-center">
+        <div className="flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-lg">
+          <Users className="h-4 w-4 text-muted-foreground" />
+          <span className="text-sm text-muted-foreground">
+            <span className="font-semibold text-foreground">
+              {eventRequestCount}
+            </span>{" "}
+            events submitted by the community
+          </span>
+        </div>
       </div>
 
       <Card className="shadow-lg">

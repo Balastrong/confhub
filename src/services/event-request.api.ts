@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start"
+import { count } from "drizzle-orm"
 import { db } from "~/lib/db"
 import { eventRequestTable } from "~/lib/db/schema"
 import { CreateEventRequestSchema } from "./event-request.schema"
@@ -20,3 +21,11 @@ export const createEventRequest = createServerFn()
 
     return newEventRequest
   })
+
+export const getEventRequestCount = createServerFn().handler(async () => {
+  const [result] = await db
+    .select({ count: count() })
+    .from(eventRequestTable)
+
+  return result.count
+})

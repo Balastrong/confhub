@@ -24,6 +24,7 @@ import { communityQueries, eventQueries } from "src/services/queries"
 import { EventComments } from "~/components/event/comments"
 import { EventCountdown } from "~/components/event/event-countdown"
 import { EventRsvp } from "~/components/event/rsvp"
+import { SimilarEvents } from "~/components/event/similar-events"
 import { seo } from "~/lib/seo"
 
 export const Route = createFileRoute("/events/$eventSlug")({
@@ -156,9 +157,14 @@ function RouteComponent() {
               <CardTitle>Comments</CardTitle>
             </CardHeader>
             <CardContent>
-              {event.id != null && <EventComments eventId={event.id} />}
+              <EventComments eventId={event.id} />
             </CardContent>
           </Card>
+
+          <SimilarEvents
+            eventId={event.id}
+            currentEventTags={event.tags || []}
+          />
         </div>
 
         {/* Sidebar */}

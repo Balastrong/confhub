@@ -6,7 +6,7 @@ import {
 import { getUserSession } from "./auth.api"
 import { getCommunities, getCommunity } from "./community.api"
 import { CommunityFilters } from "./community.schema"
-import { getEvent, getEventBySlug, getEvents, upsertEvent } from "./event.api"
+import { getEvent, getEventBySlug, getEvents, getSimilarEvents, upsertEvent } from "./event.api"
 import { EventFilters } from "./event.schema"
 import { getTags } from "./tags.api"
 import { getCountries } from "./countries.api"
@@ -44,6 +44,12 @@ export const eventQueries = {
       queryKey: [...eventQueries.all, "detailBySlug", eventSlug],
       queryFn: () => getEventBySlug({ data: { slug: eventSlug } }),
       enabled: !!eventSlug,
+    }),
+  similar: (eventId: number, limit: number = 3) =>
+    queryOptions({
+      queryKey: [...eventQueries.all, "similar", eventId, limit],
+      queryFn: () => getSimilarEvents({ data: { eventId, limit } }),
+      enabled: !isNaN(eventId) && !!eventId,
     }),
 }
 

@@ -10,7 +10,7 @@ type Props = {
 
 export const SimilarEvents = ({ eventId, currentEventTags = [] }: Props) => {
   const { data: similarEvents, isLoading } = useQuery(
-    eventQueries.similar(eventId, 3),
+    eventQueries.similar(eventId, 2),
   )
 
   if (isLoading) {
@@ -27,7 +27,7 @@ export const SimilarEvents = ({ eventId, currentEventTags = [] }: Props) => {
         <CardTitle>Similar events</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2">
           {similarEvents.map((event) => (
             <EventCard
               key={event.id}

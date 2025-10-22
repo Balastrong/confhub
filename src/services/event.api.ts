@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start"
-import { and, arrayOverlaps, eq, gt, ilike, inArray, lt, or } from "drizzle-orm"
+import { and, arrayOverlaps, eq, gt, ilike, inArray, lt, ne, or } from "drizzle-orm"
 import { z } from "zod"
 import { db } from "~/lib/db"
 import { eventTable, usersInCommunityTable } from "~/lib/db/schema"
@@ -168,4 +168,87 @@ export const upsertEvent = createServerFn()
 
       return updatedEvent
     }
+  })
+
+export const getSimilarEvents = createServerFn()
+  .inputValidator(
+    z.object({
+      eventId: z.number(),
+      limit: z.number().min(1).max(10).default(3),
+    }),
+  )
+  .handler(async ({ data }) => {
+    // Get the current event details
+    const [currentEvent] = await db
+      .select()
+      .from(eventTable)
+      .where(eq(eventTable.id, data.eventId))
+
+    if (!currentEvent) {
+      return []
+    }
+
+    // Score-based similarity search
+    // We'll fetch events and score them based on:
+    // 1. Shared tags (highest priority)
+    // 2. Same country
+    // 3. Name similarity is harder in SQL, so we'll skip it for simplicity
+    
+    const filters = [
+      eq(eventTable.draft, false),
+      ne(eventTable.id, data.eventId), // Exclude current event
+    ]
+
+    // Add condition to find events with overlapping tags OR same country
+    const hasTags = currentEvent.tags && currentEvent.tags.length > 0
+    const hasCountry = currentEvent.country != null
+
+    if (hasTags && hasCountry) {
+      filters.push(
+        or(
+          arrayOverlaps(eventTable.tags, currentEvent.tags!),
+          eq(eventTable.country, currentEvent.country!),
+        )!,
+      )
+    } else if (hasTags) {
+      filters.push(arrayOverlaps(eventTable.tags, currentEvent.tags!))
+    } else if (hasCountry) {
+      filters.push(eq(eventTable.country, currentEvent.country!))
+    }
+
+    const whereCondition = filters.length > 0 ? and(...filters) : undefined
+
+    const similarEvents = await db
+      .select()
+      .from(eventTable)
+      .where(whereCondition)
+      .orderBy(eventTable.date)
+      .limit(50) // Fetch more than needed for scoring
+
+    // Score events based on similarity
+    const scoredEvents = similarEvents
+      .map((event) => {
+        let score = 0
+
+        // Score for shared tags (3 points per tag)
+        if (currentEvent.tags && event.tags) {
+          const sharedTags = currentEvent.tags.filter((tag) =>
+            event.tags?.includes(tag),
+          )
+          score += sharedTags.length * 3
+        }
+
+        // Score for same country (2 points)
+        if (currentEvent.country && event.country === currentEvent.country) {
+          score += 2
+        }
+
+        return { event, score }
+      })
+      .filter((item) => item.score > 0) // Only include events with some similarity
+      .sort((a, b) => b.score - a.score) // Sort by score descending
+      .slice(0, data.limit) // Take top N
+      .map((item) => item.event)
+
+    return scoredEvents
   })

@@ -4,7 +4,7 @@ import {
   useSuspenseQuery,
 } from "@tanstack/react-query"
 import { createFileRoute, useNavigate, useRouter } from "@tanstack/react-router"
-import { PlusCircle } from "lucide-react"
+import { PlusCircle, Users } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
 import { EditCommunityForm } from "src/components/community/edit-community-form"
@@ -116,61 +116,76 @@ function RouteComponent() {
 
   return (
     <Layout className="items-center gap-6 max-w-4xl mx-auto py-8 w-full">
-      <div className="w-full flex flex-col sm:flex-row justify-between items-center bg-muted/50 p-6 rounded-lg">
-        <div>
-          <div className="flex items-center gap-3">
-            <h1 className="text-3xl font-bold">{community.name}</h1>
-            {community.verified ? (
-              <Badge variant="accent">✓ Verified</Badge>
-            ) : (
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button size="xs" variant="outline">
-                    Claim
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Claim Community</DialogTitle>
-                    <DialogDescription className="flex flex-col gap-2">
-                      <p>
-                        Some communities have been manually created with
-                        publicly available data to group the events.
-                      </p>
-                      <p>
-                        Is this your community? Please DM me on{" "}
-                        <a
-                          href="https://www.linkedin.com/in/leonardo-montini/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary hover:underline"
-                        >
-                          LinkedIn
-                        </a>{" "}
-                        or{" "}
-                        <a
-                          href="https://x.com/Balastrong"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary hover:underline"
-                        >
-                          Twitter
-                        </a>{" "}
-                        to claim it!
-                      </p>
-                      <p>
-                        You'll be able to edit Community details and (soon™)
-                        manage your own events.
-                      </p>
-                    </DialogDescription>
-                  </DialogHeader>
-                </DialogContent>
-              </Dialog>
-            )}
+      <div className="w-full bg-muted/50 p-8 rounded-lg">
+        <div className="flex flex-col sm:flex-row gap-6 items-start">
+          {community.logoUrl && (
+            <img
+              src={community.logoUrl}
+              alt={`${community.name} logo`}
+              className="size-28 rounded-lg object-cover shadow-md"
+            />
+          )}
+          <div className="flex-1 space-y-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <h1 className="text-3xl font-bold">{community.name}</h1>
+              {community.verified ? (
+                <Badge variant="accent">✓ Verified</Badge>
+              ) : (
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button size="xs" variant="outline">
+                      Claim
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Claim Community</DialogTitle>
+                      <DialogDescription className="flex flex-col gap-2">
+                        <p>
+                          Some communities have been manually created with
+                          publicly available data to group the events.
+                        </p>
+                        <p>
+                          Is this your community? Please DM me on{" "}
+                          <a
+                            href="https://www.linkedin.com/in/leonardo-montini/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-primary hover:underline"
+                          >
+                            LinkedIn
+                          </a>{" "}
+                          or{" "}
+                          <a
+                            href="https://x.com/Balastrong"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-primary hover:underline"
+                          >
+                            Twitter
+                          </a>{" "}
+                          to claim it!
+                        </p>
+                        <p>
+                          You'll be able to edit Community details and (soon™)
+                          manage your own events.
+                        </p>
+                      </DialogDescription>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
+              )}
+            </div>
+            <p className="text-muted-foreground text-base">
+              {community.description}
+            </p>
+            <div className="flex items-center gap-1 text-sm text-muted-foreground">
+              <Users className="size-4" />
+              <span>{community.memberCount} members</span>
+            </div>
           </div>
-          <p className="text-muted-foreground mt-1">{community.description}</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2 mt-6">
           {isAuthenticated && (
             <>
               {isMember ? (
@@ -191,7 +206,6 @@ function RouteComponent() {
               )}
               {isAdmin && (
                 <Button
-                  className="mt-4 sm:mt-0"
                   onClick={() =>
                     navigate({
                       to: "/events/submit",

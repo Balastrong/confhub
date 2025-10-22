@@ -113,6 +113,11 @@ export const getCommunity = createServerFn()
     const query = db
       .select({
         ...getTableColumns(communityTable),
+        memberCount: sql<number>`(
+          select count(*)::int
+          from ${usersInCommunityTable}
+          where ${usersInCommunityTable.communityId} = ${communityTable.id}
+        )`,
         isMember: sql<boolean>`${usersInCommunityTable.role} is not null`,
         upcomingEventsCount: sql<number>`(
           select count(*)::int
@@ -155,6 +160,11 @@ export const getCommunityBySlug = createServerFn()
     const [community] = await db
       .select({
         ...getTableColumns(communityTable),
+        memberCount: sql<number>`(
+          select count(*)::int
+          from ${usersInCommunityTable}
+          where ${usersInCommunityTable.communityId} = ${communityTable.id}
+        )`,
         isMember: sql<boolean>`${usersInCommunityTable.role} is not null`,
         upcomingEventsCount: sql<number>`(
           select count(*)::int

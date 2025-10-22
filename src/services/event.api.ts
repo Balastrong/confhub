@@ -234,6 +234,7 @@ export const getSimilarEvents = createServerFn()
       .limit(50) // Fetch more than needed for scoring
 
     // Score events based on similarity
+    const now = new Date()
     const scoredEvents = similarEvents
       .map((event) => {
         let score = 0
@@ -249,6 +250,12 @@ export const getSimilarEvents = createServerFn()
         // Score for same country (2 points)
         if (currentEvent.country && event.country === currentEvent.country) {
           score += 2
+        }
+
+        // Bonus for future events (5 points)
+        const eventDate = new Date(event.dateEnd || event.date)
+        if (eventDate > now) {
+          score += 5
         }
 
         return { event, score }

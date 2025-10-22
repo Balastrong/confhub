@@ -157,13 +157,14 @@ function RouteComponent() {
               <CardTitle>Comments</CardTitle>
             </CardHeader>
             <CardContent>
-              {event.id != null && <EventComments eventId={event.id} />}
+              <EventComments eventId={event.id} />
             </CardContent>
           </Card>
 
-          {event.id != null && (
-            <SimilarEvents eventId={event.id} currentEventTags={event.tags || []} />
-          )}
+          <SimilarEvents
+            eventId={event.id}
+            currentEventTags={event.tags || []}
+          />
         </div>
 
         {/* Sidebar */}

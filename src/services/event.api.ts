@@ -1,5 +1,15 @@
 import { createServerFn } from "@tanstack/react-start"
-import { and, arrayOverlaps, eq, gt, ilike, inArray, lt, ne, or } from "drizzle-orm"
+import {
+  and,
+  arrayOverlaps,
+  eq,
+  gt,
+  ilike,
+  inArray,
+  lt,
+  ne,
+  or,
+} from "drizzle-orm"
 import { z } from "zod"
 import { db } from "~/lib/db"
 import { eventTable, usersInCommunityTable } from "~/lib/db/schema"
@@ -178,7 +188,6 @@ export const getSimilarEvents = createServerFn()
     }),
   )
   .handler(async ({ data }) => {
-    // Get the current event details
     const [currentEvent] = await db
       .select()
       .from(eventTable)
@@ -192,8 +201,7 @@ export const getSimilarEvents = createServerFn()
     // We'll fetch events and score them based on:
     // 1. Shared tags (highest priority)
     // 2. Same country
-    // 3. Name similarity is harder in SQL, so we'll skip it for simplicity
-    
+
     const filters = [
       eq(eventTable.draft, false),
       ne(eventTable.id, data.eventId), // Exclude current event

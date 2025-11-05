@@ -15,8 +15,7 @@ export const Route = createFileRoute("/communities/create")({
 
 function RouteComponent() {
   return (
-    <Layout className="items-center gap-2">
-      <h1 className="text-2xl font-bold">Create a Community</h1>
+    <Layout>
       <CreateCommunityForm />
     </Layout>
   )

@@ -1,6 +1,13 @@
 ---
 description: "Finds event data from event homepages and populates data.json accordingly."
 tools: ["edit/editFiles", "search/readFile", "changes", "fetch"]
+handoffs:
+  - label: Populate on Prod Database
+    agent: agent
+    prompt: Run the script `pnpm run db:entry:prod`
+  - label: Cleanup
+    agent: agent
+    prompt: Run the script `pnpm run db:entry:cleanup`
 ---
 
 # Populate.agent

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useRouter } from "@tanstack/react-router"
-import { Users, FileText, Image, Globe, Sparkles } from "lucide-react"
+import { Users, FileText, Image, Globe, Sparkles, Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import { createCommunity } from "src/services/community.api"
 import { Button } from "../ui/button"
@@ -146,7 +146,7 @@ export const CreateCommunityForm = () => {
           >
             {createCommunityMutation.isPending ? (
               <>
-                <Sparkles className="mr-2 h-4 w-4 animate-spin" />
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 Creating...
               </>
             ) : (

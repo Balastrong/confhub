@@ -7,6 +7,7 @@ handoffs:
   - label: Cleanup
     agent: agent
     prompt: Run the script `pnpm run db:entry:cleanup`
+    send: true
 ---
 
 # Populate Agent

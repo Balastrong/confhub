@@ -1,28 +1,48 @@
-import React, { useEffect, useState, act } from "react"
-import { describe, it, expect, vi, afterEach } from "vitest"
+// @vitest-environment jsdom
+
+import React, { act } from "react"
+import { afterEach, describe, expect, it, vi } from "vitest"
 import { createRoot } from "react-dom/client"
+
 import { useDebounce } from "./useDebounce"
 
-// Simple harness to render the hook and expose controls
-function HookViewer(props: { value: unknown; time?: number }) {
+function TestComponent(props: { value: unknown; time?: number }) {
   const debounced = useDebounce(props.value, props.time as number)
   return React.createElement(
-    "span",
-    { "data-testid": "out" },
-    String(debounced),
+    "div",
+    { "data-testid": "value" },
+    String(debounced as unknown as string),
   )
 }
 
-function TestHarness(props: {
-  initialValue: unknown
-  time?: number
-  register: (api: { setValue: (v: unknown) => void }) => void
-}) {
-  const [val, setVal] = useState(props.initialValue)
-  useEffect(() => {
-    props.register({ setValue: setVal })
-  }, [props])
-  return React.createElement(HookViewer, { value: val, time: props.time })
+function setup(initialValue: unknown, time?: number) {
+  const container = document.createElement("div")
+  document.body.appendChild(container)
+  const root = createRoot(container)
+
+  const renderWith = (value: unknown, t?: number) =>
+    React.createElement(TestComponent, { value, time: t })
+
+  act(() => {
+    root.render(renderWith(initialValue, time))
+  })
+
+  return {
+    container,
+    root,
+    rerender: (value: unknown, t?: number) =>
+      act(() => {
+        root.render(renderWith(value, t))
+      }),
+    unmount: () =>
+      act(() => {
+        root.unmount()
+        container.remove()
+      }),
+    getValueText: () =>
+      (container.querySelector('[data-testid="value"]') as HTMLElement)
+        ?.textContent || "",
+  }
 }
 
 afterEach(() => {
@@ -32,135 +52,66 @@ afterEach(() => {
 })
 
 describe("useDebounce", () => {
-  it("debounces value changes with default delay and resets timer on change", () => {
+  it("returns the initial value immediately and updates after default delay", () => {
     vi.useFakeTimers()
+    const { getValueText, rerender, unmount } = setup("a")
 
-    const container = document.createElement("div")
-    document.body.appendChild(container)
-    const root = createRoot(container)
+    expect(getValueText()).toBe("a")
 
-    let controls: { setValue: (v: unknown) => void } | null = null
+    rerender("b")
+    expect(getValueText()).toBe("a")
 
-    act(() => {
-      root.render(
-        React.createElement(TestHarness, {
-          initialValue: "a",
-          // no time provided -> default 200ms inside hook
-          register: (api) => {
-            controls = api
-          },
-        }),
-      )
-    })
+    vi.advanceTimersByTime(199)
+    expect(getValueText()).toBe("a")
 
-    const getOutput = () =>
-      container.querySelector('[data-testid="out"]')?.textContent
+    vi.advanceTimersByTime(1)
+    expect(getValueText()).toBe("b")
 
-    expect(getOutput()).toBe("a")
-
-    // Change value: should not update immediately
-    act(() => controls!.setValue("b"))
-    expect(getOutput()).toBe("a")
-
-    // Advance just before default delay
-    act(() => {
-      vi.advanceTimersByTime(199)
-    })
-    expect(getOutput()).toBe("a")
-
-    // Change again before timer fires to ensure reset
-    act(() => controls!.setValue("c"))
-    expect(getOutput()).toBe("a")
-
-    // Still not updated before 200ms from last change
-    act(() => {
-      vi.advanceTimersByTime(199)
-    })
-    expect(getOutput()).toBe("a")
-
-    // Now after full debounce period from latest change
-    act(() => {
-      vi.advanceTimersByTime(1)
-    })
-    expect(getOutput()).toBe("c")
-
-    act(() => root.unmount())
+    unmount()
   })
 
-  it("uses custom delay when provided", () => {
+  it("respects a custom debounce time", () => {
     vi.useFakeTimers()
+    const { getValueText, rerender, unmount } = setup("x", 50)
 
-    const container = document.createElement("div")
-    document.body.appendChild(container)
-    const root = createRoot(container)
+    expect(getValueText()).toBe("x")
+    rerender("y", 50)
 
-    let controls: { setValue: (v: unknown) => void } | null = null
+    vi.advanceTimersByTime(49)
+    expect(getValueText()).toBe("x")
 
-    act(() => {
-      root.render(
-        React.createElement(TestHarness, {
-          initialValue: 1,
-          time: 500,
-          register: (api) => {
-            controls = api
-          },
-        }),
-      )
-    })
+    vi.advanceTimersByTime(1)
+    expect(getValueText()).toBe("y")
 
-    const getOutput = () =>
-      container.querySelector('[data-testid="out"]')?.textContent
-
-    expect(getOutput()).toBe("1")
-
-    act(() => controls!.setValue(2))
-    expect(getOutput()).toBe("1")
-
-    act(() => {
-      vi.advanceTimersByTime(499)
-    })
-    expect(getOutput()).toBe("1")
-
-    act(() => {
-      vi.advanceTimersByTime(1)
-    })
-    expect(getOutput()).toBe("2")
-
-    act(() => root.unmount())
+    unmount()
   })
 
-  it("cleans up pending timeout on unmount", () => {
+  it("updates only with the last value after rapid changes", () => {
     vi.useFakeTimers()
-    const clearSpy = vi.spyOn(globalThis, "clearTimeout")
+    const { getValueText, rerender, unmount } = setup("1", 100)
 
-    const container = document.createElement("div")
-    document.body.appendChild(container)
-    const root = createRoot(container)
+    rerender("2", 100)
+    vi.advanceTimersByTime(50)
+    rerender("3", 100)
+    vi.advanceTimersByTime(50)
+    // Still within the latest debounce window
+    expect(getValueText()).toBe("1")
 
-    let controls: { setValue: (v: unknown) => void } | null = null
+    vi.advanceTimersByTime(100)
+    expect(getValueText()).toBe("3")
 
-    act(() => {
-      root.render(
-        React.createElement(TestHarness, {
-          initialValue: "x",
-          time: 300,
-          register: (api) => {
-            controls = api
-          },
-        }),
-      )
-    })
+    unmount()
+  })
 
-    // Schedule a debounced update
-    act(() => controls!.setValue("y"))
-    // Unmount before the timer fires
-    act(() => root.unmount())
+  it("cleans up pending timers on unmount (no stray timers)", () => {
+    vi.useFakeTimers()
+    const { rerender, unmount } = setup("start", 200)
 
-    // Advancing timers should not cause state updates, and clearTimeout should be called
-    act(() => {
-      vi.advanceTimersByTime(1000)
-    })
+    rerender("next", 200)
+    // Unmount before the debounce elapses
+    unmount()
 
-    expect(clearSpy).toHaveBeenCalled()
+    // If cleanup ran, there should be no pending timers left
+    expect(vi.getTimerCount()).toBe(0)
   })
 })

@@ -7,6 +7,7 @@ handoffs:
   - label: Populate on Prod Database
     agent: Populate
     prompt: Run the script `pnpm run db:entry:prod`
+    send: true
 ---
 
 # Fetch Events Agent

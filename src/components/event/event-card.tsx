@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router"
 import { ExternalLink } from "lucide-react"
 import { formatDate } from "src/lib/date"
 import { getEventModeConfig } from "src/lib/event-modes"
+import { cn } from "src/lib/utils"
 import { FullEvent } from "src/services/event.schema"
 import { Badge } from "../ui/badge"
 import {
@@ -26,7 +27,7 @@ export const EventCard = ({ event, highlightedTags = [] }: Props) => {
       params={{ eventSlug: event.slug }}
       className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-xl"
     >
-      <Card className="relative h-full flex flex-col rounded-xl border border-border/60 bg-card/95 transition-transform duration-300 ease-out hover:shadow-lg hover:-translate-y-1 hover:scale-[1.01] focus-visible:shadow-lg will-change-[transform,box-shadow] before:content-[''] before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-br before:from-primary/10 before:to-transparent before:opacity-0 group-hover:before:opacity-100 before:transition-opacity before:pointer-events-none">
+      <Card className="relative h-full flex flex-col rounded-xl border border-border/60 bg-card/95 transition-transform duration-300 ease-out hover:shadow-lg hover:-translate-y-1 hover:scale-[1.01] focus-visible:shadow-lg will-change-[transform,box-shadow] before:content-[''] before:absolute before:inset-0 before:rounded-xl before:bg-linear-to-br before:from-primary/10 before:to-transparent before:opacity-0 group-hover:before:opacity-100 before:transition-opacity before:pointer-events-none">
         <CardHeader className="pb-3">
           <CardTitle className="text-lg sm:text-xl leading-snug transition-colors group-hover:text-foreground">
             {event.name}
@@ -114,15 +115,23 @@ export const EventCard = ({ event, highlightedTags = [] }: Props) => {
         </CardContent>
         <CardFooter className="pt-0">
           <div className="flex flex-wrap gap-1">
-            {event.tags?.map((tag) => (
-              <Badge
-                key={tag}
-                variant={highlightedTags.includes(tag) ? "default" : "outline"}
-                className="capitalize mb-1 text-xs transition-colors group-hover:bg-muted/40"
-              >
-                {tag}
-              </Badge>
-            ))}
+            {event.tags?.map((tag) => {
+              const isHighlighted = highlightedTags.includes(tag)
+              return (
+                <Badge
+                  key={tag}
+                  variant={isHighlighted ? "default" : "outline"}
+                  className={cn(
+                    "capitalize mb-1 text-xs transition-colors",
+                    isHighlighted
+                      ? "group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-sm"
+                      : "group-hover:bg-muted/40",
+                  )}
+                >
+                  {tag}
+                </Badge>
+              )
+            })}
           </div>
         </CardFooter>
       </Card>

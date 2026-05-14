@@ -1,7 +1,7 @@
 import { format } from "date-fns"
 import { CalendarIcon, FilterIcon, X } from "lucide-react"
 import { getEventModeConfig } from "src/lib/event-modes"
-import { EventFilters, EventModes } from "src/services/event.schema"
+import { EventFilters, EventModes } from "src/services/event/schema"
 import {
   Accordion,
   AccordionContent,

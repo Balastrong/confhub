@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router"
 import { PencilIcon } from "lucide-react"
 import { formatDate } from "src/lib/date"
-import { FullEvent } from "src/services/event.schema"
+import { FullEvent } from "src/services/event/schema"
 import { Button } from "../ui/button"
 import { Card, CardDescription, CardTitle } from "../ui/card"
 

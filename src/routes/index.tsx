@@ -9,8 +9,10 @@ import { EventCardSkeleton } from "src/components/event/event-card-skeleton"
 import { EventsList } from "src/components/event/events-list"
 import { EventFiltersBar } from "src/components/filters/event-filters-bar"
 import { Layout } from "src/components/layout"
-import { EventFilters, EventFiltersSchema } from "src/services/event.schema"
-import { eventQueries, tagQueries, countryQueries } from "src/services/queries"
+import { EventFilters, EventFiltersSchema } from "src/services/event/schema"
+import { countryQueries } from "src/services/countries/queries"
+import { eventQueries } from "src/services/event/queries"
+import { tagQueries } from "src/services/tags/queries"
 
 export const Route = createFileRoute("/")({
   beforeLoad: ({ context }) => preloadQueries(context),

@@ -16,7 +16,8 @@ export const myValidatedServerFunction = createServerFn()
     ({ data: age }) => `Hello from the server! You are ${age} years old!`,
   )
 
-myValidatedServerFunction({ data: "Foo" })
+// myValidatedServerFunction({ data: "Foo" })
+// myValidatedServerFunction({ data: "Foo" })
 myValidatedServerFunction({ data: 29 })
 
 import { z } from "zod"
@@ -30,8 +31,11 @@ export const myReallyCoolServerFunction = createServerFn({ method: "POST" })
     return `Hello ${person.name} from the server! You are ${person.age} years old!`
   })
 
-myReallyCoolServerFunction({ data: "Foo" })
-myReallyCoolServerFunction({ data: 29 })
+// myReallyCoolServerFunction({ data: "Foo" })
+// myReallyCoolServerFunction({ data: 29 })
+
+// myReallyCoolServerFunction({ data: "Foo" })
+// myReallyCoolServerFunction({ data: 29 })
 
 // That's how you would call it (client or server, it doesn't matter)
 const msg = myReallyCoolServerFunction({ data: { name: "Leonardo", age: 30 } })

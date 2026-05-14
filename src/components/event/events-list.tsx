@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from "@tanstack/react-query"
 import { EventCard } from "./event-card"
-import { eventQueries } from "src/services/queries"
+import { eventQueries } from "src/services/event/queries"
 import { getRouteApi } from "@tanstack/react-router"
 
 export const EventsList = () => {

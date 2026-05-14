@@ -5,7 +5,7 @@ import { SubmitForm } from "src/components/event/submit-form"
 import { Layout } from "src/components/layout"
 import { z } from "zod"
 import { ButtonLink } from "~/components/button-link"
-import { communityQueries } from "~/services/queries"
+import { communityQueries } from "~/services/community/queries"
 
 export const Route = createFileRoute("/events/pro/submit")({
   component: RouteComponent,

@@ -1,5 +1,5 @@
+import type { getEvents } from "./api"
 import { z } from "zod"
-import { getEvents } from "./event.api"
 
 const EventModeSchema = z.union([
   z.literal("in-person"),

@@ -15,8 +15,8 @@ import {
   CardHeader,
   CardTitle,
 } from "src/components/ui/card"
-import { rsvpQueries } from "src/services/queries"
-import { FullEvent } from "~/services/event.schema"
+import { rsvpQueries } from "src/services/event-rsvp/queries"
+import { FullEvent } from "~/services/event/schema"
 
 export const Route = createFileRoute("/my-events")({
   beforeLoad: ({ context }) => {

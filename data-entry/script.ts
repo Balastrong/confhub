@@ -3,7 +3,7 @@ import { db } from "../src/lib/db/index"
 import { eventTable } from "../src/lib/db/schema"
 import fs from "fs"
 import path from "path"
-import { CreateEvent, CreateEventSchema } from "~/services/event.schema"
+import { CreateEvent, CreateEventSchema } from "~/services/event/schema"
 
 async function loadDataFromJson(): Promise<CreateEvent[]> {
   try {

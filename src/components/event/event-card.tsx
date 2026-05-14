@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router"
 import { ExternalLink } from "lucide-react"
 import { formatDate } from "src/lib/date"
 import { getEventModeConfig } from "src/lib/event-modes"
-import { FullEvent } from "src/services/event.schema"
+import { FullEvent } from "src/services/event/schema"
 import { Badge } from "../ui/badge"
 import {
   Card,

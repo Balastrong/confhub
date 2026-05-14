@@ -14,8 +14,9 @@ import { Badge } from "src/components/ui/badge"
 import { Button } from "src/components/ui/button"
 import { Card } from "src/components/ui/card"
 import { Separator } from "src/components/ui/separator"
-import { joinCommunity, leaveCommunity } from "src/services/community.api"
-import { communityQueries, eventQueries } from "src/services/queries"
+import { joinCommunity, leaveCommunity } from "src/services/community/api"
+import { communityQueries } from "src/services/community/queries"
+import { eventQueries } from "src/services/event/queries"
 import { useAuthentication } from "~/lib/auth/client"
 import {
   Dialog,

@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select"
-import { countryQueries } from "~/services/queries"
+import { countryQueries } from "~/services/countries/queries"
 
 type Props = {
   value?: string

@@ -5,11 +5,13 @@ import { EventsCalendar } from "src/components/events-calendar"
 import { Layout } from "src/components/layout"
 import { formatDate } from "src/lib/date"
 import { getFirstAndLast } from "src/lib/utils"
-import { countryQueries, eventQueries, tagQueries } from "src/services/queries"
+import { countryQueries } from "src/services/countries/queries"
+import { eventQueries } from "src/services/event/queries"
+import { tagQueries } from "src/services/tags/queries"
 import { z } from "zod"
 import { CalendarFiltersBar } from "~/components/filters/calendar-filters-bar"
 import { seo } from "~/lib/seo"
-import { EventFiltersSchema, type EventFilters } from "~/services/event.schema"
+import { EventFiltersSchema, type EventFilters } from "~/services/event/schema"
 
 function getQueryKey(filters: EventFilters, date: string) {
   const currentDate = new Date(date || Date.now())

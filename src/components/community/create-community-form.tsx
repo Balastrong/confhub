@@ -2,11 +2,11 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useRouter } from "@tanstack/react-router"
 import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
-import { createCommunity } from "src/services/community.api"
+import { createCommunity } from "src/services/community/api"
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
-import { communityQueries } from "src/services/queries"
+import { communityQueries } from "src/services/community/queries"
 
 export const CreateCommunityForm = () => {
   const router = useRouter()

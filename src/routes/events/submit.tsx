@@ -16,8 +16,8 @@ import {
 import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
 import { useAppForm } from "~/lib/form"
-import { createEventRequest } from "~/services/event-request.api"
-import { CreateEventRequestSchema } from "~/services/event-request.schema"
+import { createEventRequest } from "~/services/event-request/api"
+import { CreateEventRequestSchema } from "~/services/event-request/schema"
 import { useTranslation } from "react-i18next"
 import i18n from "~/lib/i18n"
 

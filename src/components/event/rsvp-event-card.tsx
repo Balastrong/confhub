@@ -1,5 +1,5 @@
-import type { RsvpStatus } from "src/services/event-rsvp.schema"
-import type { FullEvent } from "src/services/event.schema"
+import type { RsvpStatus } from "src/services/event-rsvp/schema"
+import type { FullEvent } from "src/services/event/schema"
 import { Badge } from "../ui/badge"
 import { EventCard } from "./event-card"
 

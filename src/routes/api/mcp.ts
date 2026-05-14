@@ -3,8 +3,8 @@ import { createFileRoute } from "@tanstack/react-router"
 import z from "zod"
 import { auth } from "~/lib/auth/auth"
 import { formatDate } from "~/lib/date"
-import { getCommunities } from "~/services/community.api"
-import { getEvents } from "~/services/event.api"
+import { getCommunities } from "~/services/community/api"
+import { getEvents } from "~/services/event/api"
 
 // MCP Protocol Types
 interface MCPRequest {

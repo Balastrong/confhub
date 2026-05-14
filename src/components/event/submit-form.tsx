@@ -16,12 +16,10 @@ import {
   CreateEventSchema,
   EventModes,
   FullEvent,
-} from "src/services/event.schema"
-import {
-  communityQueries,
-  tagQueries,
-  useUpsertEventMutation,
-} from "src/services/queries"
+} from "src/services/event/schema"
+import { useUpsertEventMutation } from "src/services/event/queries"
+import { communityQueries } from "src/services/community/queries"
+import { tagQueries } from "src/services/tags/queries"
 import { SignedIn } from "../auth/signed-in"
 import { Badge } from "../ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"

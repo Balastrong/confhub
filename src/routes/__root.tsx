@@ -10,7 +10,7 @@ import {
 import * as React from "react"
 import { Header } from "~/components/header/header"
 import { Toaster } from "src/components/ui/sonner"
-import { authQueries } from "src/services/queries"
+import { authQueries } from "src/services/auth/queries"
 import css from "~/globals.css?url"
 import { ThemeProvider } from "~/hooks/useTheme"
 import { setSSRLanguage } from "~/lib/i18n"

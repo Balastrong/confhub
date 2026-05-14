@@ -10,7 +10,6 @@ export const UserMetaSchema = z.object({
 
 export type UserMeta = z.infer<typeof UserMetaSchema>
 
-// TODO: Refine password === confirmPassword
 export const SignUpSchema = z.object({
   username: UserMetaSchema.shape.username,
   email: z.string().email(),

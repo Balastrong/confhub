@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react"
-import type { EventFilters } from "src/services/event.schema"
+import type { EventFilters } from "src/services/event/schema"
 
 export type NaturalQueryHistoryItem = {
   query: string

@@ -1,6 +1,6 @@
 import { FilterIcon, X } from "lucide-react"
 import { getEventModeConfig } from "src/lib/event-modes"
-import { EventFilters, EventModes } from "src/services/event.schema"
+import { EventFilters, EventModes } from "src/services/event/schema"
 import { Badge } from "~/components/ui/badge"
 import { Button } from "~/components/ui/button"
 import { Card } from "~/components/ui/card"
@@ -86,7 +86,9 @@ export function CalendarFiltersBar({ filters, onSetFilters }: Props) {
           <div className="flex items-end justify-between">
             <Label className="font-medium">Country</Label>
             {filters.country && (
-              <SmallClearButton onClick={() => setFilter("country", undefined)} />
+              <SmallClearButton
+                onClick={() => setFilter("country", undefined)}
+              />
             )}
           </div>
           <CountrySelect

@@ -10,7 +10,7 @@ import {
   usePreviousLocation,
 } from "src/hooks/usePreviousLocation"
 import { useAppForm } from "src/lib/form"
-import { SignUpSchema } from "src/services/auth.schema"
+import { SignUpSchema } from "src/services/auth/schema"
 import { authClient } from "~/lib/auth/client"
 
 const signUp = async (data: SignUpSchema) => {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { ObjectKeysByValueType } from "src/lib/types"
 import { useDebounce } from "src/lib/useDebounce"
-import { EventFilters } from "src/services/event.schema"
+import { EventFilters } from "src/services/event/schema"
 
 type FilterBooleanKeys = keyof ObjectKeysByValueType<EventFilters, boolean>
 type FiltersArrayKeys = keyof ObjectKeysByValueType<EventFilters, string[]>

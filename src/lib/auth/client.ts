@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from "@tanstack/react-query"
 import { createAuthClient } from "better-auth/react"
-import { authQueries } from "~/services/queries"
+import { authQueries } from "~/services/auth/queries"
 
 export const authClient = createAuthClient({
   baseURL: import.meta.env.VITE_SERVER_URL,

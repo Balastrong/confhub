@@ -6,10 +6,10 @@ import {
   Clock,
   Loader2,
   MapPin,
-  Plus
+  Plus,
 } from "lucide-react"
 import { cn, getColorFromName } from "src/lib/utils"
-import { FullEvent } from "src/services/event.schema"
+import { FullEvent } from "src/services/event/schema"
 import { formatDate } from "~/lib/date"
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
@@ -191,7 +191,8 @@ export const EventsCalendar = ({
 
   // Determine arrow direction for Today button relative to the actual current month
   const todayDate = new Date()
-  const currentMonthIndex = currentDate.getFullYear() * 12 + currentDate.getMonth()
+  const currentMonthIndex =
+    currentDate.getFullYear() * 12 + currentDate.getMonth()
   const todayMonthIndex = todayDate.getFullYear() * 12 + todayDate.getMonth()
   const monthDelta = currentMonthIndex - todayMonthIndex
 
@@ -253,13 +254,12 @@ export const EventsCalendar = ({
           className="flex items-center gap-1 border-accent text-accent hover:bg-accent hover:text-accent-foreground"
         >
           <Calendar className="h-4 w-4" />
-          {monthDelta !== 0 && (
-            monthDelta > 0 ? (
+          {monthDelta !== 0 &&
+            (monthDelta > 0 ? (
               <ChevronLeft className="h-4 w-4" />
             ) : (
               <ChevronRight className="h-4 w-4" />
-            )
-          )}
+            ))}
           Today
         </Button>
       </div>

@@ -13,7 +13,7 @@ import {
   commentQueries,
   useCreateEventCommentMutation,
   useDeleteEventCommentMutation,
-} from "~/services/queries"
+} from "~/services/event-comment/queries"
 import { ButtonLink } from "../button-link"
 
 export function EventComments({ eventId }: { eventId: number }) {

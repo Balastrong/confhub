@@ -6,7 +6,7 @@ import {
   rsvpQueries,
   useRemoveRsvpMutation,
   useUpsertRsvpMutation,
-} from "~/services/queries"
+} from "~/services/event-rsvp/queries"
 import { SignedIn } from "~/components/auth/signed-in"
 import { SignedOut } from "~/components/auth/signed-out"
 import { toast } from "sonner"

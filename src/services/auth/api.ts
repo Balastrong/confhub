@@ -1,22 +1,13 @@
 import { createMiddleware, createServerFn, json } from "@tanstack/react-start"
-import { getRequest } from "@tanstack/react-start/server"
-import { eq } from "drizzle-orm"
-import { auth } from "~/lib/auth/auth"
-import { db } from "~/lib/db"
-import { userTable } from "~/lib/db/schema"
-import { UserMetaSchema } from "./auth.schema"
+import { getRequestHeaders } from "@tanstack/react-start/server"
+import { UserMetaSchema } from "./schema"
+import { authService } from "./service.server"
 
 export const getUserSession = createServerFn({ method: "GET" }).handler(
   async () => {
-    const request = getRequest()
+    const headers = getRequestHeaders()
 
-    if (!request?.headers) return null
-
-    const userSession = await auth.api.getSession({ headers: request.headers })
-
-    if (!userSession) return null
-
-    return { user: userSession.user, session: userSession.session }
+    return authService.getSession(headers)
   },
 )
 
@@ -39,17 +30,9 @@ export const userRequiredMiddleware = createMiddleware()
     return next({ context: { userSession: context.userSession } })
   })
 
-export const updateUser = createServerFn()
+export const updateUser = createServerFn({ method: "POST" })
   .inputValidator(UserMetaSchema)
   .middleware([userRequiredMiddleware])
   .handler(async ({ data, context: { userSession } }) => {
-    const update: Record<string, unknown> = { name: data.username }
-    if (data.imageUrl) {
-      update.image = data.imageUrl
-    }
-
-    await db
-      .update(userTable)
-      .set(update)
-      .where(eq(userTable.id, userSession.user.id))
+    await authService.updateUser(userSession.user.id, data)
   })

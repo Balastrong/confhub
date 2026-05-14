@@ -4,7 +4,8 @@ import { ArrowLeft } from "lucide-react"
 import { ButtonLink } from "src/components/button-link"
 import { SubmitForm } from "src/components/event/submit-form"
 import { Layout } from "src/components/layout"
-import { communityQueries, eventQueries } from "src/services/queries"
+import { communityQueries } from "src/services/community/queries"
+import { eventQueries } from "src/services/event/queries"
 
 export const Route = createFileRoute("/events/pro/$eventId")({
   component: RouteComponent,

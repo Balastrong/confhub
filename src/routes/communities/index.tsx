@@ -5,7 +5,7 @@ import { ButtonLink } from "src/components/button-link"
 import { CommunityCard } from "src/components/community/community-card"
 import { CommunityCardSkeletons } from "src/components/community/community-card-skeleton"
 import { Layout } from "src/components/layout"
-import { communityQueries } from "src/services/queries"
+import { communityQueries } from "src/services/community/queries"
 import { seo } from "~/lib/seo"
 
 export const Route = createFileRoute("/communities/")({

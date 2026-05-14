@@ -1,13 +1,13 @@
 {
   "$schema": "https://demotime.show/demo-time.schema.json",
-  "title": "TanStack Start Demo",
-  "description": "A demo showcasing TanStack Start features",
-  "version": 2,
-  "demos": [
+  "title": "TanStack Start: a fresh take on React full-stack applications",
+  "description": "A client-first tour of TanStack Start showing colocated server logic, SSR, and SPA-style workflows without clunky full-stack mental models.",
+  "version": 3,
+  "scenes": [
     {
       "id": "demo-k345vfbh-9uv0",
       "title": "Cover",
-      "steps": [
+      "moves": [
         {
           "action": "snippet",
           "contentPath": ".demo/snippets/reset-view.json"
@@ -23,24 +23,9 @@
       }
     },
     {
-      "id": "demo-5s4e3s-9xa0",
-      "title": "Theme Selection",
-      "steps": [
-        {
-          "action": "openSlide",
-          "path": ".demo/slides/theme.md"
-        }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "vm-active"
-      },
-      "disabled": true
-    },
-    {
       "id": "demo-1s2dkfbh-9xe0",
       "title": "Introduction",
-      "steps": [
+      "moves": [
         {
           "action": "openSlide",
           "path": ".demo/slides/intro.md"
@@ -54,7 +39,7 @@
     {
       "id": "demo-kdh145fbh-9uv0",
       "title": "Prepare File Demo",
-      "steps": [
+      "moves": [
         {
           "action": "closeAll"
         },
@@ -103,7 +88,7 @@
     {
       "id": "demo-kfj398s-9xy0",
       "title": "Create File Demo",
-      "steps": [
+      "moves": [
         {
           "action": "pressEnter"
         }
@@ -112,7 +97,7 @@
     {
       "id": "demo-ajd83s-9xy0",
       "title": "Path Param Demo",
-      "steps": [
+      "moves": [
         {
           "action": "replace",
           "path": "src/routes/hi.$name.$city.tsx",
@@ -127,7 +112,7 @@
     {
       "id": "demo-ajd83s-9js8",
       "title": "Path Param Type Demo",
-      "steps": [
+      "moves": [
         {
           "action": "positionCursor",
           "path": "src/routes/hi.$name.$city.tsx",
@@ -146,7 +131,7 @@
     {
       "id": "demo-mgankfbh-9xy0",
       "title": "Typesafe slide",
-      "steps": [
+      "moves": [
         {
           "action": "snippet",
           "contentPath": ".demo/snippets/reset-view.json"
@@ -164,7 +149,7 @@
     {
       "id": "demo-mg8fz4wd-wq0m",
       "title": "Typesafe Link",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/components/event/event-management-card.tsx",
@@ -190,7 +175,7 @@
     {
       "id": "demo-mg8fz4wd-wq1m",
       "title": "Param Remove Demo",
-      "steps": [
+      "moves": [
         {
           "action": "positionCursor",
           "path": "src/components/event/event-management-card.tsx",
@@ -223,7 +208,7 @@
     {
       "id": "demo-mg8fz4wd-wq2m",
       "title": "Param Add Demo",
-      "steps": [
+      "moves": [
         {
           "action": "positionCursor",
           "path": "src/components/event/event-management-card.tsx",
@@ -250,7 +235,7 @@
     {
       "id": "demo-mgankfbh-9xy1",
       "title": "Search slide",
-      "steps": [
+      "moves": [
         {
           "action": "snippet",
           "contentPath": ".demo/snippets/reset-view.json"
@@ -268,7 +253,7 @@
     {
       "id": "demo-mg8gigig-abc1",
       "title": "React State Demo",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/routes/demo/search.tsx",
@@ -280,7 +265,7 @@
     {
       "id": "demo-mg8gigig-abc2",
       "title": "Search State Demo",
-      "steps": [
+      "moves": [
         {
           "action": "replace",
           "path": "src/routes/demo/search.tsx",
@@ -301,7 +286,7 @@
     {
       "id": "demo-mg8gigig-jdw2",
       "title": "Search State Hover Demo",
-      "steps": [
+      "moves": [
         {
           "action": "positionCursor",
           "path": "src/routes/demo/search.tsx",
@@ -326,7 +311,7 @@
     {
       "id": "demo-mg8gigig-xqnq",
       "title": "ValidateSearch Demo",
-      "steps": [
+      "moves": [
         {
           "action": "executeVSCodeCommand",
           "command": "editor.action.hideHover"
@@ -341,7 +326,7 @@
     {
       "id": "demo-mgankfb1-9xy1",
       "title": "Context slide",
-      "steps": [
+      "moves": [
         {
           "action": "openSlide",
           "path": ".demo/slides/router/context.md"
@@ -355,7 +340,7 @@
     {
       "id": "demo-mgadkfbh-9xy1",
       "title": "Context Demo Root",
-      "steps": [
+      "moves": [
         {
           "action": "positionCursor",
           "path": "src/routes/__root.tsx",
@@ -372,7 +357,7 @@
     {
       "id": "demo-mgadkfbh-9xy2",
       "title": "Context Demo Root Higlight",
-      "steps": [
+      "moves": [
         {
           "action": "executeVSCodeCommand",
           "command": "editor.action.showHover"
@@ -382,7 +367,7 @@
     {
       "id": "demo-msankfbh-9xy3",
       "title": "Context Demo My Events",
-      "steps": [
+      "moves": [
         {
           "action": "positionCursor",
           "path": "src/routes/my-events.tsx",
@@ -399,7 +384,7 @@
     {
       "id": "demo-mgadkfbh-9xy4",
       "title": "Context Demo Events Higlight",
-      "steps": [
+      "moves": [
         {
           "action": "executeVSCodeCommand",
           "command": "editor.action.showHover"
@@ -409,7 +394,7 @@
     {
       "id": "demo-qgankfb1-9xy1",
       "title": "Data loading slide",
-      "steps": [
+      "moves": [
         {
           "action": "snippet",
           "contentPath": ".demo/snippets/reset-view.json"
@@ -427,7 +412,7 @@
     {
       "id": "demo-qgankfb1-aaa1",
       "title": "Loader Demo 1",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/routes/demo/loaders.jsx",
@@ -438,7 +423,7 @@
     {
       "id": "demo-qgankfb1-aaa2",
       "title": "Loader Demo 2",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/routes/demo/loaders.jsx",
@@ -449,7 +434,7 @@
     {
       "id": "demo-qgankfb1-aaa3",
       "title": "Loader Demo Types",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/routes/demo/loaders.jsx",
@@ -473,7 +458,7 @@
     {
       "id": "demo-qgankfb1-aaa4",
       "title": "Loader Demo Browser",
-      "steps": [
+      "moves": [
         {
           "action": "openWebsite",
           "url": "http://localhost:3000/",
@@ -488,12 +473,13 @@
     {
       "id": "demo-qgankfb1-aaa6",
       "title": "Loader Demo Stale",
-      "steps": [
+      "moves": [
         {
-          "action": "write",
-          "content": "\n  staleTime: 10000, // Default is 0",
+          "action": "insert",
+          "position": "16",
+          "content": "  staleTime: 10000, // Default is 0\n",
           "path": "src/routes/demo/loaders.jsx",
-          "startPlaceholder": "})"
+          "insertTypingMode": "instant"
         },
         {
           "action": "save"
@@ -501,8 +487,9 @@
       ]
     },
     {
+      "id": "demo-qgankfb1-aaa7",
       "title": "Loaders Demo Preloading",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/router.tsx",
@@ -515,7 +502,7 @@
     {
       "id": "demo-qgankfb1-9dr1",
       "title": "Router outro slide",
-      "steps": [
+      "moves": [
         {
           "action": "snippet",
           "contentPath": ".demo/snippets/reset-view.json"
@@ -533,7 +520,7 @@
     {
       "id": "demo-qgad1fb1-9xy1",
       "title": "Start intro slide",
-      "steps": [
+      "moves": [
         {
           "action": "openSlide",
           "path": ".demo/slides/start/intro.md"
@@ -547,7 +534,7 @@
     {
       "id": "demo-qgad1fb1-651r",
       "title": "Start SSR slide",
-      "steps": [
+      "moves": [
         {
           "action": "openSlide",
           "path": ".demo/slides/start/ssr.md"
@@ -561,7 +548,7 @@
     {
       "id": "demo-qgad1fb1-5xy1",
       "title": "Start isomorphic slide",
-      "steps": [
+      "moves": [
         {
           "action": "snippet",
           "contentPath": ".demo/snippets/reset-view.json"
@@ -579,7 +566,7 @@
     {
       "id": "demo-185edkfbh-9xy1",
       "title": "Isomorphic Demo 1",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/hooks/useTheme.tsx",
@@ -591,7 +578,7 @@
     {
       "id": "demo-185edkfbh-9xy2",
       "title": "Isomorphic Demo 2",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/hooks/useTheme.tsx",
@@ -603,7 +590,7 @@
     {
       "id": "demo-185edkfbh-9xy3",
       "title": "Isomorphic Demo 3",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/hooks/useTheme.tsx",
@@ -615,7 +602,7 @@
     {
       "id": "demo-185edkfbh-9xy4",
       "title": "Isomorphic Demo 4",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/hooks/useTheme.tsx",
@@ -627,7 +614,7 @@
     {
       "id": "demo-qg5d3fb1-9xy1",
       "title": "Server fn intro slide",
-      "steps": [
+      "moves": [
         {
           "action": "snippet",
           "contentPath": ".demo/snippets/reset-view.json"
@@ -645,7 +632,7 @@
     {
       "id": "demo-1gadkfbh-9xy1",
       "title": "Server Fn Demo 1",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/services/demo.api.ts",
@@ -657,7 +644,7 @@
     {
       "id": "demo-1gadkfbh-9xy2",
       "title": "Server Fn Demo 2",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/services/demo.api.ts",
@@ -669,7 +656,7 @@
     {
       "id": "demo-1gadkfbh-9xy3",
       "title": "Server Fn Demo 3",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/services/demo.api.ts",
@@ -681,7 +668,7 @@
     {
       "id": "demo-qg83hfb1-9xy1",
       "title": "Middleware slides",
-      "steps": [
+      "moves": [
         {
           "action": "snippet",
           "contentPath": ".demo/snippets/reset-view.json"
@@ -699,7 +686,7 @@
     {
       "id": "demo-1ga5e1bh-9xy1",
       "title": "Middleware Def Demo",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/services/auth.api.ts",
@@ -711,7 +698,7 @@
     {
       "id": "demo-1ga5e1bh-9xy2",
       "title": "Middleware Use Demo",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/services/event-request.api.ts",
@@ -723,7 +710,7 @@
     {
       "id": "demo-1g35e1bh-9xy1",
       "title": "Middleware Chain Demo",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/services/auth.api.ts",
@@ -735,7 +722,7 @@
     {
       "id": "demo-1ga5e6bh-9xy1",
       "title": "Middleware Required Demo",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/services/event-comment.api.ts",
@@ -747,7 +734,7 @@
     {
       "id": "demo-qg8dh3b1-9xy1",
       "title": "Server Routes slides",
-      "steps": [
+      "moves": [
         {
           "action": "snippet",
           "contentPath": ".demo/snippets/reset-view.json"
@@ -765,7 +752,7 @@
     {
       "id": "demo-1gadsfbh-9er1",
       "title": "Server Route Demo",
-      "steps": [
+      "moves": [
         {
           "action": "openWebsite",
           "url": "http://localhost:3000/api/demo/Leonardo",
@@ -788,7 +775,7 @@
     {
       "id": "demo-mgdojota-dh3a",
       "title": "Deployment Slide",
-      "steps": [
+      "moves": [
         {
           "action": "snippet",
           "contentPath": ".demo/snippets/reset-view.json"
@@ -806,7 +793,7 @@
     {
       "id": "demo-mgdd93ta-djs1",
       "title": "Deployment Demo",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "vite.config.ts",
@@ -818,7 +805,7 @@
     {
       "id": "demo-mgs83ksa-djs1",
       "title": "ConfHub Demo",
-      "steps": [
+      "moves": [
         {
           "action": "openWebsite",
           "url": "https://confhub.tech/",
@@ -829,7 +816,7 @@
     {
       "id": "demo-mgdojota-ya13",
       "title": "Unlimited Time Slide",
-      "steps": [
+      "moves": [
         {
           "action": "snippet",
           "contentPath": ".demo/snippets/reset-view.json"
@@ -847,7 +834,7 @@
     {
       "id": "demo-mgdj3dta-yav1",
       "title": "Query Preloading Demo",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/routes/communities/index.tsx",
@@ -859,7 +846,7 @@
     {
       "id": "demo-mgak2dta-p5v1",
       "title": "Dynamic SEO Demo",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/routes/communities/$communitySlug.tsx",
@@ -870,7 +857,7 @@
     {
       "id": "demo-mgdj3dta-p5v1",
       "title": "Protected Routes Demo",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/routes/profile.tsx",
@@ -882,7 +869,7 @@
     {
       "id": "demo-mgdj3dta-8f5h",
       "title": "AI Instructions Demo",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": ".github/copilot-instructions.md",
@@ -893,7 +880,7 @@
     {
       "id": "demo-mgdj3dta-1jd1",
       "title": "LLM Demo",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/services/ai.api.ts",
@@ -905,7 +892,7 @@
     {
       "id": "demo-mgdj3dta-1875",
       "title": "MCP Server Demo",
-      "steps": [
+      "moves": [
         {
           "action": "highlight",
           "path": "src/routes/api/mcp.ts",
@@ -916,7 +903,7 @@
     {
       "id": "demo-mgdojota-yt73",
       "title": "RSC Slide",
-      "steps": [
+      "moves": [
         {
           "action": "snippet",
           "contentPath": ".demo/snippets/reset-view.json"
@@ -934,7 +921,7 @@
     {
       "id": "demo-mgdojotb-yt73",
       "title": "Adoption Slide",
-      "steps": [
+      "moves": [
         {
           "action": "openSlide",
           "path": ".demo/slides/start/adoption.md"
@@ -948,7 +935,7 @@
     {
       "id": "demo-mgdojotb-1hd6",
       "title": "Get Started",
-      "steps": [
+      "moves": [
         {
           "action": "openSlide",
           "path": ".demo/slides/start/started.md"
@@ -962,7 +949,7 @@
     {
       "id": "demo-mgdojotb-dk36",
       "title": "Builder Demo Terminal",
-      "steps": [
+      "moves": [
         {
           "action": "snippet",
           "contentPath": ".demo/snippets/reset-view.json"
@@ -975,7 +962,7 @@
     {
       "id": "demo-mgdojotb-dk34",
       "title": "Builder Demo Command",
-      "steps": [
+      "moves": [
         {
           "action": "executeTerminalCommand",
           "command": "npx create-tsrouter-app@latest --ui",
@@ -987,7 +974,7 @@
     {
       "id": "demo-ajd83hsa-dk36",
       "title": "Builder Demo Browser",
-      "steps": [
+      "moves": [
         {
           "action": "snippet",
           "contentPath": ".demo/snippets/reset-view.json"
@@ -1002,7 +989,7 @@
     {
       "id": "demo-mgdojotc-yt73",
       "title": "Closing Slide",
-      "steps": [
+      "moves": [
         {
           "action": "snippet",
           "contentPath": ".demo/snippets/reset-view.json"

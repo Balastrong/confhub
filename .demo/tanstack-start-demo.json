@@ -370,9 +370,12 @@
       "title": "Context Demo My Events",
       "moves": [
         {
-          "action": "positionCursor",
-          "path": "src/routes/my-events.tsx",
-          "position": "22,17"
+          "action": "executeVSCodeCommand",
+          "command": "workbench.action.moveEditorToRightGroup"
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.action.focusRightGroup"
         },
         {
           "action": "highlight",
@@ -467,13 +470,14 @@
         },
         {
           "action": "executeVSCodeCommand",
-          "command": "workbench.action.splitEditorToRightGroup"
+          "command": "workbench.action.moveEditorToRightGroup"
         }
       ]
     },
     {
       "id": "demo-qgankfb1-aaa6",
       "title": "Loader Demo Stale",
+      "TODO": "Is still the best demo we can do on loader props?",
       "moves": [
         {
           "action": "insert",
@@ -636,7 +640,7 @@
       "moves": [
         {
           "action": "highlight",
-          "path": "src/services/demo.api.ts",
+          "path": "src/services/demo/api.ts",
           "position": "1:5",
           "highlightWholeLine": true
         }
@@ -648,7 +652,7 @@
       "moves": [
         {
           "action": "highlight",
-          "path": "src/services/demo.api.ts",
+          "path": "src/services/demo/api.ts",
           "position": "7:20",
           "highlightWholeLine": true
         }
@@ -660,7 +664,7 @@
       "moves": [
         {
           "action": "highlight",
-          "path": "src/services/demo.api.ts",
+          "path": "src/services/demo/api.ts",
           "position": "22:37",
           "highlightWholeLine": true
         }
@@ -690,8 +694,8 @@
       "moves": [
         {
           "action": "highlight",
-          "path": "src/services/auth.api.ts",
-          "position": "23:27",
+          "path": "src/services/auth/api.ts",
+          "position": "17:21",
           "highlightWholeLine": true
         }
       ]
@@ -702,9 +706,9 @@
       "moves": [
         {
           "action": "highlight",
-          "path": "src/services/event-request.api.ts",
-          "startPlaceholder": "export const createEventRequest",
-          "endPlaceholder": "userSession?.user?.id"
+          "path": "src/services/event-request/api.ts",
+          "position": "6:14",
+          "highlightWholeLine": true
         }
       ]
     },
@@ -714,8 +718,8 @@
       "moves": [
         {
           "action": "highlight",
-          "path": "src/services/auth.api.ts",
-          "position": "29:40",
+          "path": "src/services/auth/api.ts",
+          "position": "23:26",
           "highlightWholeLine": true
         }
       ]
@@ -726,8 +730,8 @@
       "moves": [
         {
           "action": "highlight",
-          "path": "src/services/event-comment.api.ts",
-          "position": "42:59",
+          "path": "src/services/event-comment/api.ts",
+          "position": "21:38",
           "highlightWholeLine": true
         }
       ]
@@ -761,12 +765,17 @@
         },
         {
           "action": "executeVSCodeCommand",
-          "command": "workbench.action.splitEditorToRightGroup"
+          "command": "workbench.action.moveEditorToRightGroup"
+        },
+        {
+          "action": "waitForTimeout",
+          "timeout": 300
         },
         {
           "action": "executeVSCodeCommand",
           "command": "workbench.action.focusLeftGroup"
         },
+
         {
           "action": "open",
           "path": "src/routes/api/demo.$name.ts"
@@ -798,7 +807,7 @@
         {
           "action": "highlight",
           "path": "vite.config.ts",
-          "position": "16",
+          "position": "17",
           "highlightWholeLine": true
         }
       ]
@@ -851,7 +860,7 @@
         {
           "action": "highlight",
           "path": "src/routes/communities/$communitySlug.tsx",
-          "position": "31:47"
+          "position": "32:48"
         }
       ]
     },
@@ -870,6 +879,7 @@
     {
       "id": "demo-mgdj3dta-8f5h",
       "title": "AI Instructions Demo",
+      "TODO:": "Add some instructions and skills, use context7, tanstack mcp, tanstack skill",
       "moves": [
         {
           "action": "highlight",
@@ -881,10 +891,11 @@
     {
       "id": "demo-mgdj3dta-1jd1",
       "title": "LLM Demo",
+      "TODO": "Show the full function, even better with tanstack AI",
       "moves": [
         {
           "action": "highlight",
-          "path": "src/services/ai.api.ts",
+          "path": "src/services/ai/api.ts",
           "startPlaceholder": "new OpenAI",
           "endPlaceholder": "new OpenAI"
         }
@@ -893,6 +904,7 @@
     {
       "id": "demo-mgdj3dta-1875",
       "title": "MCP Server Demo",
+      "TODO": "Decide if raw or use a library",
       "moves": [
         {
           "action": "highlight",
@@ -904,6 +916,7 @@
     {
       "id": "demo-mgdojota-yt73",
       "title": "RSC Slide",
+      "TODO": "Write a RSC demo and update the slides",
       "moves": [
         {
           "action": "snippet",
@@ -963,6 +976,7 @@
     {
       "id": "demo-mgdojotb-dk34",
       "title": "Builder Demo Command",
+      "TODO": "use tanstack create instead",
       "moves": [
         {
           "action": "executeTerminalCommand",

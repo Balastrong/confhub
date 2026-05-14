@@ -9,6 +9,7 @@ layout: section
 
 ---
 layout: quote
+TODO: Replace this with a mention of the jsday talk
 ---
 
 <h1 style="font-size: 2.5em">TypeScript isn't the same as type-safety. <br />

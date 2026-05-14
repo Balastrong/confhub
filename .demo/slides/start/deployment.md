@@ -9,6 +9,7 @@ layout: section
 
 ---
 layout: default
+TODO: Update if there are new sponsors
 ---
 
 # Hosting Adapters

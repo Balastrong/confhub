@@ -132,9 +132,10 @@ layout: two-columns
 ::right::
 # Leonardo Montini
 
-- Frontend Engineer & DevRel @ Claranet Italy
-- Open Source Maintainer (TanStack Form)
-- GitHub Star & Microsoft MVP
+- Software Engineer & DevRel @ Claranet Italy
+- Open Source Maintainer
+- GitHub Star (4x)
+- Microsoft MVP (3x)
 
 <br />
 
@@ -150,6 +151,5 @@ layout: two-columns
 
 </div>
 <div style="float: right; text-align: center;">
-    <img src=".demo/slides/img/qr-agenda.png" alt="Agenda QR Code" width="200" height="200" style="border-radius: 10px;"/>
-    <div style="font-weight: 600; margin-top: 5px">Share your feedback</div>
+    <img src=".demo/slides/img/qr-linkedin.png" alt="LinkedIn QR Code" width="200" height="200" style="border-radius: 10px;"/>
 </div>

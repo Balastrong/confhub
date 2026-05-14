@@ -17,7 +17,6 @@ export const myValidatedServerFunction = createServerFn()
   )
 
 // myValidatedServerFunction({ data: "Foo" })
-// myValidatedServerFunction({ data: "Foo" })
 myValidatedServerFunction({ data: 29 })
 
 import { z } from "zod"
@@ -30,9 +29,6 @@ export const myReallyCoolServerFunction = createServerFn({ method: "POST" })
     // You can safely access the database here
     return `Hello ${person.name} from the server! You are ${person.age} years old!`
   })
-
-// myReallyCoolServerFunction({ data: "Foo" })
-// myReallyCoolServerFunction({ data: 29 })
 
 // myReallyCoolServerFunction({ data: "Foo" })
 // myReallyCoolServerFunction({ data: 29 })

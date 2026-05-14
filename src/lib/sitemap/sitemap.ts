@@ -15,7 +15,7 @@ export const sitemap: Sitemap<TRoutes> = {
     "/": {
       lastModified: new Date(),
     },
-    "/communities": { lastModified: new Date() },
+    "/communities/": { lastModified: new Date() },
     "/calendar": { lastModified: new Date() },
     "/events/$eventSlug": async () => {
       // Upcoming + recently ended events (last 30 days)

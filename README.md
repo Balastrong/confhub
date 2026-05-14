@@ -20,7 +20,7 @@ What you can do:
 
 ConfHub is a web app built with TanStack Start, Vite, and React, featuring authentication, event submissions, RSVPs, comments, and powerful filters.
 
-ConfHub runs server-side on the edge (Netlify Edge target) and uses PostgreSQL with Drizzle ORM for a fast, modern developer experience.
+ConfHub runs server-side with TanStack Start on Netlify and uses PostgreSQL with Drizzle ORM for a fast, modern developer experience.
 
 - Powered by TanStack: Start, Router, Query, Form
 - React 19, Vite and TypeScript end-to-end
@@ -138,8 +138,10 @@ This project is configured for Netlify Edge through TanStack Start:
 - Vite plugin: `tanstackStart({ target: "netlify-edge", ... })`
 - Make sure your production `DATABASE_URL` and OAuth credentials are set in Netlify environment variables
 - Build command: `pnpm build`
+- Local production start: `pnpm start`
+- Netlify support is wired through `@netlify/vite-plugin-tanstack-start`
 
-After deploy, public assets and server output are placed in `.output` (handled by TanStack Start and Netlify adapter).
+After build, the generated server output is placed in `.output`.
 
 ## Project structure
 

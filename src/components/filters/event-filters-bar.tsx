@@ -211,7 +211,7 @@ export const EventFiltersBar = ({ filters, onSetFilters }: Props) => {
                           date ? formatDate(date) : undefined,
                         )
                       }
-                      initialFocus
+                      autoFocus
                       aria-label="Calendar to pick start date"
                     />
                   </PopoverContent>

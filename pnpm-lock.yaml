@@ -70,7 +70,7 @@ dependencies:
     version: 1.169.2
   better-auth:
     specifier: ^1.6.11
-    version: 1.6.11(@opentelemetry/api@1.9.0)(@tanstack/react-start@1.167.65)(drizzle-kit@0.31.10)(drizzle-orm@0.43.1)(pg@8.20.0)(react-dom@19.2.6)(react@19.2.6)
+    version: 1.6.11(@opentelemetry/api@1.9.0)(@tanstack/react-start@1.167.65)(drizzle-kit@0.31.10)(drizzle-orm@0.45.2)(pg@8.20.0)(react-dom@19.2.6)(react@19.2.6)
   class-variance-authority:
     specifier: ^0.7.1
     version: 0.7.1
@@ -84,11 +84,11 @@ dependencies:
     specifier: ^16.6.1
     version: 16.6.1
   drizzle-orm:
-    specifier: ^0.43.1
-    version: 0.43.1(@opentelemetry/api@1.9.0)(kysely@0.28.17)(pg@8.20.0)(postgres@3.4.9)
+    specifier: ^0.45.2
+    version: 0.45.2(@opentelemetry/api@1.9.0)(kysely@0.28.17)(pg@8.20.0)(postgres@3.4.9)
   drizzle-zod:
     specifier: ^0.8.3
-    version: 0.8.3(drizzle-orm@0.43.1)(zod@4.4.3)
+    version: 0.8.3(drizzle-orm@0.45.2)(zod@4.4.3)
   i18next:
     specifier: ^26.1.0
     version: 26.1.0(typescript@5.9.3)
@@ -99,8 +99,8 @@ dependencies:
     specifier: ^0.441.0
     version: 0.441.0(react@19.2.6)
   openai:
-    specifier: ^5.23.2
-    version: 5.23.2(zod@4.4.3)
+    specifier: ^6.37.0
+    version: 6.37.0(zod@4.4.3)
   pg:
     specifier: ^8.20.0
     version: 8.20.0
@@ -111,8 +111,8 @@ dependencies:
     specifier: ^19.2.6
     version: 19.2.6
   react-day-picker:
-    specifier: 8.10.1
-    version: 8.10.1(date-fns@4.1.0)(react@19.2.6)
+    specifier: 10.0.0
+    version: 10.0.0(react@19.2.6)
   react-dom:
     specifier: ^19.2.6
     version: 19.2.6(react@19.2.6)
@@ -138,8 +138,8 @@ dependencies:
     specifier: ^4.4.3
     version: 4.4.3
   zod-validation-error:
-    specifier: ^3.5.4
-    version: 3.5.4(zod@4.4.3)
+    specifier: ^5.0.0
+    version: 5.0.0(zod@4.4.3)
 
 devDependencies:
   '@netlify/vite-plugin-tanstack-start':
@@ -408,7 +408,7 @@ packages:
       zod: 4.4.3
     dev: false
 
-  /@better-auth/drizzle-adapter@1.6.11(@better-auth/core@1.6.11)(@better-auth/utils@0.4.0)(drizzle-orm@0.43.1):
+  /@better-auth/drizzle-adapter@1.6.11(@better-auth/core@1.6.11)(@better-auth/utils@0.4.0)(drizzle-orm@0.45.2):
     resolution: {integrity: sha512-4jpkETIGZOHCf7BK4jnu22fdN6jjomH0/HhEzkaWy3+Eppi5PYlHTF/460jrTmA3Xc+Vqwp9t282ymHiEPypGw==}
     peerDependencies:
       '@better-auth/core': ^1.6.11
@@ -420,7 +420,7 @@ packages:
     dependencies:
       '@better-auth/core': 1.6.11(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@opentelemetry/api@1.9.0)(better-call@1.3.5)(jose@6.2.3)(kysely@0.28.17)(nanostores@1.3.0)
       '@better-auth/utils': 0.4.0
-      drizzle-orm: 0.43.1(@opentelemetry/api@1.9.0)(kysely@0.28.17)(pg@8.20.0)(postgres@3.4.9)
+      drizzle-orm: 0.45.2(@opentelemetry/api@1.9.0)(kysely@0.28.17)(pg@8.20.0)(postgres@3.4.9)
     dev: false
 
   /@better-auth/kysely-adapter@1.6.11(@better-auth/core@1.6.11)(@better-auth/utils@0.4.0)(kysely@0.28.17):
@@ -513,6 +513,10 @@ packages:
       enabled: 2.0.0
       kuler: 2.0.0
     dev: true
+
+  /@date-fns/tz@1.4.1:
+    resolution: {integrity: sha512-P5LUNhtbj6YfI3iJjw5EL9eUAG6OitD0W3fWQcpQjDRc/QIsL0tRNuO1PcDvPccWL1fSTXXdE1ds+l95DV/OFA==}
+    dev: false
 
   /@dependents/detective-less@5.0.3:
     resolution: {integrity: sha512-v6oD9Ukp+N7V4n6p5I/+mM5fIohSfkrDSGlFm5w/pYmchvbk+sMIHsLxrFJ5Lnujewj1BzWL0K84d88lwZAMQA==}
@@ -4491,7 +4495,7 @@ packages:
       leven: 3.1.0
     dev: true
 
-  /better-auth@1.6.11(@opentelemetry/api@1.9.0)(@tanstack/react-start@1.167.65)(drizzle-kit@0.31.10)(drizzle-orm@0.43.1)(pg@8.20.0)(react-dom@19.2.6)(react@19.2.6):
+  /better-auth@1.6.11(@opentelemetry/api@1.9.0)(@tanstack/react-start@1.167.65)(drizzle-kit@0.31.10)(drizzle-orm@0.45.2)(pg@8.20.0)(react-dom@19.2.6)(react@19.2.6):
     resolution: {integrity: sha512-Wwt6+q07dwIhsp6XiM7L1qSXVUWBEtNl+eZvwM778CguFqDZFBN9Pt6LtFaHl55t8Z+Zc//5kxcbgDY8/79vFQ==}
     peerDependencies:
       '@lynx-js/react': '*'
@@ -4554,7 +4558,7 @@ packages:
         optional: true
     dependencies:
       '@better-auth/core': 1.6.11(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@opentelemetry/api@1.9.0)(better-call@1.3.5)(jose@6.2.3)(kysely@0.28.17)(nanostores@1.3.0)
-      '@better-auth/drizzle-adapter': 1.6.11(@better-auth/core@1.6.11)(@better-auth/utils@0.4.0)(drizzle-orm@0.43.1)
+      '@better-auth/drizzle-adapter': 1.6.11(@better-auth/core@1.6.11)(@better-auth/utils@0.4.0)(drizzle-orm@0.45.2)
       '@better-auth/kysely-adapter': 1.6.11(@better-auth/core@1.6.11)(@better-auth/utils@0.4.0)(kysely@0.28.17)
       '@better-auth/memory-adapter': 1.6.11(@better-auth/core@1.6.11)(@better-auth/utils@0.4.0)
       '@better-auth/mongo-adapter': 1.6.11(@better-auth/core@1.6.11)(@better-auth/utils@0.4.0)
@@ -4568,7 +4572,7 @@ packages:
       better-call: 1.3.5(zod@4.4.3)
       defu: 6.1.7
       drizzle-kit: 0.31.10
-      drizzle-orm: 0.43.1(@opentelemetry/api@1.9.0)(kysely@0.28.17)(pg@8.20.0)(postgres@3.4.9)
+      drizzle-orm: 0.45.2(@opentelemetry/api@1.9.0)(kysely@0.28.17)(pg@8.20.0)(postgres@3.4.9)
       jose: 6.2.3
       kysely: 0.28.17
       nanostores: 1.3.0
@@ -5237,8 +5241,8 @@ packages:
       esbuild: 0.25.12
       tsx: 4.22.0
 
-  /drizzle-orm@0.43.1(@opentelemetry/api@1.9.0)(kysely@0.28.17)(pg@8.20.0)(postgres@3.4.9):
-    resolution: {integrity: sha512-dUcDaZtE/zN4RV/xqGrVSMpnEczxd5cIaoDeor7Zst9wOe/HzC/7eAaulywWGYXdDEc9oBPMjayVEDg0ziTLJA==}
+  /drizzle-orm@0.45.2(@opentelemetry/api@1.9.0)(kysely@0.28.17)(pg@8.20.0)(postgres@3.4.9):
+    resolution: {integrity: sha512-kY0BSaTNYWnoDMVoyY8uxmyHjpJW1geOmBMdSSicKo9CIIWkSxMIj2rkeSR51b8KAPB7m+qysjuHme5nKP+E5Q==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=4'
@@ -5254,6 +5258,7 @@ packages:
       '@types/better-sqlite3': '*'
       '@types/pg': '*'
       '@types/sql.js': '*'
+      '@upstash/redis': '>=1.34.7'
       '@vercel/postgres': '>=0.8.0'
       '@xata.io/client': '*'
       better-sqlite3: '>=7'
@@ -5297,6 +5302,8 @@ packages:
         optional: true
       '@types/sql.js':
         optional: true
+      '@upstash/redis':
+        optional: true
       '@vercel/postgres':
         optional: true
       '@xata.io/client':
@@ -5332,13 +5339,13 @@ packages:
       postgres: 3.4.9
     dev: false
 
-  /drizzle-zod@0.8.3(drizzle-orm@0.43.1)(zod@4.4.3):
+  /drizzle-zod@0.8.3(drizzle-orm@0.45.2)(zod@4.4.3):
     resolution: {integrity: sha512-66yVOuvGhKJnTdiqj1/Xaaz9/qzOdRJADpDa68enqS6g3t0kpNkwNYjUuaeXgZfO/UWuIM9HIhSlJ6C5ZraMww==}
     peerDependencies:
       drizzle-orm: '>=0.36.0'
       zod: ^3.25.0 || ^4.0.0
     dependencies:
-      drizzle-orm: 0.43.1(@opentelemetry/api@1.9.0)(kysely@0.28.17)(pg@8.20.0)(postgres@3.4.9)
+      drizzle-orm: 0.45.2(@opentelemetry/api@1.9.0)(kysely@0.28.17)(pg@8.20.0)(postgres@3.4.9)
       zod: 4.4.3
     dev: false
 
@@ -7148,12 +7155,12 @@ packages:
       mimic-fn: 4.0.0
     dev: true
 
-  /openai@5.23.2(zod@4.4.3):
-    resolution: {integrity: sha512-MQBzmTulj+MM5O8SKEk/gL8a7s5mktS9zUtAkU257WjvobGc9nKcBuVwjyEEcb9SI8a8Y2G/mzn3vm9n1Jlleg==}
+  /openai@6.37.0(zod@4.4.3):
+    resolution: {integrity: sha512-0H5dEGFmmLv6KSd0W1w2nyL8WsLkX6yoLeQpU+dZAOuGcany5qkYQMmj35ZrKgb6yiyYqpUzFOpR8mZQkgqeEQ==}
     hasBin: true
     peerDependencies:
       ws: ^8.18.0
-      zod: ^3.23.8
+      zod: ^3.25 || ^4.0
     peerDependenciesMeta:
       ws:
         optional: true
@@ -7502,12 +7509,13 @@ packages:
     resolution: {integrity: sha512-b484I/7b8rDEdSDKckSSBA8knMpcdsXudlE/LNL639wFoHKwLbEkQFZHWEYwDC0wa0FKUcCY+GAF73Z7wxNVFA==}
     dev: true
 
-  /react-day-picker@8.10.1(date-fns@4.1.0)(react@19.2.6):
-    resolution: {integrity: sha512-TMx7fNbhLk15eqcMt+7Z7S2KF7mfTId/XJDjKE8f+IUcFn0l08/kI4FiYTL/0yuOLmEcbR4Fwe3GJf/NiiMnPA==}
+  /react-day-picker@10.0.0(react@19.2.6):
+    resolution: {integrity: sha512-lrEXo5wFPsq5LTcayelM3BPueD00v7zbdipAY+EIdPcseVykYwkOWx4Ujn/EtbBvpnp8ZPUHol17HXH6kVbZoA==}
+    engines: {node: '>=18'}
     peerDependencies:
-      date-fns: ^2.28.0 || ^3.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react: '>=16.8.0'
     dependencies:
+      '@date-fns/tz': 1.4.1
       date-fns: 4.1.0
       react: 19.2.6
     dev: false
@@ -8913,11 +8921,11 @@ packages:
       readable-stream: 4.7.0
     dev: true
 
-  /zod-validation-error@3.5.4(zod@4.4.3):
-    resolution: {integrity: sha512-+hEiRIiPobgyuFlEojnqjJnhFvg4r/i3cqgcm67eehZf/WBaK3g6cD02YU9mtdVxZjv8CzCA9n/Rhrs3yAAvAw==}
+  /zod-validation-error@5.0.0(zod@4.4.3):
+    resolution: {integrity: sha512-hmk+pkyKq7Q71PiWVSDUc3VfpzpvcRHZ3QPw9yEMVvmtCekaMeOHnbr3WbxfrgEnQTv6haGP4cmv0Ojmihzsxw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
-      zod: ^3.24.4
+      zod: ^3.25.0 || ^4.0.0
     dependencies:
       zod: 4.4.3
     dev: false

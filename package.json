@@ -51,7 +51,7 @@
     "dotenv": "^16.6.1",
     "drizzle-orm": "^0.43.1",
     "drizzle-zod": "^0.8.3",
-    "i18next": "^25.10.10",
+    "i18next": "^26.1.0",
     "i18next-browser-languagedetector": "^8.2.1",
     "lucide-react": "^0.441.0",
     "openai": "^5.23.2",

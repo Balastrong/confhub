@@ -7,7 +7,6 @@ import { Badge } from "../ui/badge"
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -31,7 +30,7 @@ export const EventCard = ({ event, highlightedTags = [] }: Props) => {
           <CardTitle className="text-lg sm:text-xl leading-snug transition-colors group-hover:text-foreground">
             {event.name}
           </CardTitle>
-          <CardDescription className="text-xs sm:text-sm text-muted-foreground">
+          <div className="text-xs sm:text-sm text-muted-foreground">
             {event.date ? (
               <div className="flex flex-col gap-2">
                 <span>
@@ -44,7 +43,7 @@ export const EventCard = ({ event, highlightedTags = [] }: Props) => {
                 </div>
               </div>
             ) : null}
-          </CardDescription>
+          </div>
         </CardHeader>
         <CardContent className="flex-1 pt-0 pb-3">
           <div className="space-y-2">

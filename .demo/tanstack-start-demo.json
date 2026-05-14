@@ -49,7 +49,7 @@
         },
         {
           "action": "open",
-          "path": "src/routes/hi.$name.$city.tsx"
+          "path": "src/routes/hi.$name.$country.tsx"
         },
         {
           "action": "waitForTimeout",
@@ -57,12 +57,13 @@
         },
         {
           "action": "openWebsite",
-          "url": "http://localhost:3000/hi/Leonardo/Verona",
+
+          "url": "http://localhost:3000/hi/Leonardo/Italy",
           "openInVSCode": true
         },
         {
           "action": "executeVSCodeCommand",
-          "command": "workbench.action.splitEditorToRightGroup"
+          "command": "workbench.action.moveEditorToRightGroup"
         },
         {
           "action": "executeVSCodeCommand",
@@ -100,7 +101,7 @@
       "moves": [
         {
           "action": "replace",
-          "path": "src/routes/hi.$name.$city.tsx",
+          "path": "src/routes/hi.$name.$country.tsx",
           "startPlaceholder": "return <div>",
           "endPlaceholder": "",
           "contentPath": ".demo/snippets/file-param.txt",
@@ -115,7 +116,7 @@
       "moves": [
         {
           "action": "positionCursor",
-          "path": "src/routes/hi.$name.$city.tsx",
+          "path": "src/routes/hi.$name.$country.tsx",
           "position": "8,8"
         },
         {

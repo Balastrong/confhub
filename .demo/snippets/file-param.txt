@@ -2,6 +2,6 @@
   return (
     <div className="text-3xl m-4 underline">
       <p>Hi, I'm {params.name}</p>
-      <p>Greetings from {params.city}!</p>
+      <p>Greetings from {params.country}!</p>
     </div>
   )

@@ -149,7 +149,7 @@ export interface FileRoutesByFullPath {
   '/demo/ssr': typeof DemoSsrRoute
   '/events/$eventSlug': typeof EventsEventSlugRoute
   '/events/submit': typeof EventsSubmitRoute
-  '/communities': typeof CommunitiesIndexRoute
+  '/communities/': typeof CommunitiesIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/demo/$name': typeof ApiDemoNameRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
@@ -218,7 +218,7 @@ export interface FileRouteTypes {
     | '/demo/ssr'
     | '/events/$eventSlug'
     | '/events/submit'
-    | '/communities'
+    | '/communities/'
     | '/api/auth/$'
     | '/api/demo/$name'
     | '/events/pro/$eventId'
@@ -339,7 +339,7 @@ declare module '@tanstack/react-router' {
     '/communities/': {
       id: '/communities/'
       path: '/communities'
-      fullPath: '/communities'
+      fullPath: '/communities/'
       preLoaderRoute: typeof CommunitiesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }

@@ -3,7 +3,7 @@ theme: monomi
 layout: default
 ---
 
-# TanStack Router does even more!
+# TanStack Router does even <span class="grad-green">more</span>!
 
 - Full type safety for routing, params, and search queries.
 - Powerful loader API for declarative data fetching.
@@ -22,6 +22,6 @@ layout: default
 layout: section
 ---
 
-# Keep it an SPA as long as you can
+# Keep it an <span class="grad-blue">SPA</span> as long as you can
 
-## If you don't need a full-stack framework, don't use it
+## If you don't need a <span class="grad-purple">full-stack framework</span>, don't use it

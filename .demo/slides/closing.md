@@ -4,7 +4,7 @@ layout: default
 ---
 
 
-# Want to learn more?
+# Want to learn <span class="grad-orange">more</span>?
 
 <div class="grid grid-2" style="margin-top:24px">
   <div class="card">
@@ -41,14 +41,14 @@ layout: default
 </div>
 
 <div class="callout callout-tip" style="margin-top:20px">
-  <p style="margin:0;font-size:1em">The docs site itself is also a TanStack Start app, which feels very on-brand.</p>
+  <p style="margin:0;font-size:1em">The docs site itself is also a TanStack Start app, which feels very <span class="grad-orange">on-brand</span>.</p>
 </div>
 
 ---
 layout: default
 ---
 
-# TanStack Start strengths
+# TanStack Start <span class="grad-blue">strengths</span>
 
 <div class="grid grid-auto" style="margin-top:16px">
   <div class="card card-sm">
@@ -64,7 +64,7 @@ layout: default
       <div class="icon icon-green">✅</div>
       <h3>Real type safety</h3>
     </div>
-    <p class="card-body">Strong guarantees without  you having to write types (thanks inference).</p>
+    <p class="card-body">Strong guarantees without you having to write types, thanks <span class="grad-blue">inference</span>.</p>
   </div>
 
   <div class="card card-sm">

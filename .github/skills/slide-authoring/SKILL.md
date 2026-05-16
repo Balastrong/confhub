@@ -248,13 +248,16 @@ All components are defined in `.demo/slides/theme.css`. Use these classes — ne
 
 ### Gradient Text
 
-Use on `<span>` elements to colour a single keyword. Semantic mapping:
+Use on `<span>` elements to colour a single keyword or short phrase. In this deck, colour is partly semantic and partly brand-driven:
 
-- `.grad-blue` — TypeScript, typesafety, inference (`#60a5fa → #818cf8`)
-- `.grad-yellow` — JavaScript, explicit (`#facc15 → #f59e0b`)
-- `.grad-green` — positive outcomes, inferred, tested (`#34d399 → #10b981`)
-- `.grad-purple` — library code, abstractions (`#c084fc → #818cf8`)
-- `.grad-lime` — open source, enabled, live (`#a3e635 → #34d399`)
+- `.grad-blue` — **TanStack Start** and Start-adjacent ideas: client-first, server capabilities, Start branding, plus type-safety/inference when that is the point (`#60a5fa → #818cf8`)
+- `.grad-green` — **TanStack Router**, routing concepts, positive outcomes, adoption confidence, "yes", simple, inferred (`#34d399 → #10b981`)
+- `.grad-orange` — framework/server/platform concepts and generic emphasis: SSR, isomorphic, HTTP endpoints, "internet", migration, early-adopter framing (`#fbbf24 → #f97316`)
+- `.grad-purple` — abstractions, architecture, shared state, dependency injection, conceptual framing (`#c084fc → #818cf8`)
+- `.grad-lime` — open source, enabled, live, coming soon (`#a3e635 → #34d399`)
+- `.grad-yellow` — JavaScript or explicit/manual concepts (`#eab308 → #d97706`)
+- `.grad-red` — warnings, danger, security-first moments (`#f87171 → #ef4444`)
+- `.grad-indigo` — available, but use sparingly; avoid defaulting to it when blue already carries the main product identity (`#a5b4fc → #6366f1`)
 
 ```html
 <span class="grad-blue">inference</span>
@@ -266,8 +269,10 @@ Use on `<span>` elements to colour a single keyword. Semantic mapping:
 **Rules:**
 
 - All three gradient properties (`background`, `-webkit-background-clip`, `-webkit-text-fill-color`) must live in the **same CSS rule** — splitting them into a shared selector + individual rule breaks `background-clip` in some renderers
-- Maximum **2 gradient words per slide** — don't dilute the effect
-- Use semantically: blue = TS concept, yellow = JS concept, green = good outcome
+- Use gradients on **message-bearing words only**, not as decoration for every noun
+- Prefer **1–2 highlights per slide**. `3` is acceptable on anchor slides where the contrast is the point; avoid going beyond that
+- In ConfHub specifically, preserve the product mapping: **Start = blue**, **Router = green**
+- If a slide already has strong blue branding, reach for **orange** or **purple** for generic emphasis before adding more blue
 - The cover `<h1>` uses a unique 3-stop inline gradient — that is the only allowed inline gradient
 
 ## Inline Style Exceptions
@@ -334,3 +339,5 @@ Before finishing a slide edit, verify:
 - **Badges replace labels.** Anywhere you'd write a small uppercase label (library name, event name), use a badge instead of inline styling.
 - **Tables are OK for recaps.** A pattern-recap table at the end of a section is good — it's scannable and acts as a visual anchor. Keep columns to 2–3.
 - **Gradient text is for the closing quote only.** Don't overuse the gradient text effect — it's reserved for the emotional peak near the end.
+- **Gradient text is allowed across the deck, but sparingly.** Use it to land the claim of the slide, not to decorate repeated terminology.
+- **Brand colours beat generic semantics.** In this deck, if the word refers to Start or Router, keep the product colour first and only then consider the generic semantic meaning.

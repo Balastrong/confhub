@@ -4,15 +4,15 @@ layout: section
 ---
 
 
-# Server Functions
+# <span class="grad-green">Server Functions</span>
 
-## A special implementation of an isomorphic function
+## A special implementation of an <span class="grad-orange">isomorphic</span> function
 
 ---
 layout: default
 ---
 
-# A Server Function
+# A <span class="grad-green">Server Function</span>
 
 <div class="grid grid-3" style="margin-top:20px">
   <div class="card">
@@ -35,7 +35,7 @@ layout: default
   <div class="card">
     <div class="card-header">
       <div class="icon icon-yellow">🔒</div>
-      <h3>Security first</h3>
+      <h3>Security <span class="grad-red">first</span></h3>
     </div>
     <p class="card-body">A natural place for secrets and database access.</p>
   </div>

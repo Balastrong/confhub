@@ -4,13 +4,13 @@ layout: section
 ---
 
 
-# Everything is isomorphic by default
+# Everything is <span class="grad-orange">isomorphic</span> by default
 
 ---
 layout: default
 ---
 
-# What does isomorphic mean here?
+# What does <span class="grad-orange">isomorphic</span> mean here?
 
 <div class="grid grid-3" style="margin-top:24px">
   <div class="card">

@@ -3,6 +3,6 @@ theme: monomi
 layout: section
 ---
 
-# Server Routes
+# <span class="grad-orange">Server Routes</span>
 
-## A stable server HTTP endpoint, living alongside your app routes
+## A stable server <span class="grad-orange">HTTP endpoint</span>, living alongside your app routes

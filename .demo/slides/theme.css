@@ -219,37 +219,70 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #c4b5fd;
   font-family:
-    ui-monospace, SFMono-Regular, SFMono-Regular, Menlo, Monaco, Consolas,
-    Liberation Mono, Courier New, monospace;
+    ui-monospace,
+    SFMono-Regular,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    Courier New,
+    monospace;
   font-size: 0.95em;
 }
 
 .grad-blue {
   background: linear-gradient(90deg, #60a5fa, #818cf8);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .grad-yellow {
-  background: linear-gradient(90deg, #facc15, #f59e0b);
+  background: linear-gradient(90deg, #eab308, #d97706);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .grad-green {
   background: linear-gradient(90deg, #34d399, #10b981);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .grad-purple {
   background: linear-gradient(90deg, #c084fc, #818cf8);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .grad-lime {
   background: linear-gradient(90deg, #a3e635, #34d399);
   -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.grad-orange {
+  background: linear-gradient(90deg, #fbbf24, #f97316);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.grad-red {
+  background: linear-gradient(90deg, #f87171, #ef4444);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.grad-indigo {
+  background: linear-gradient(90deg, #a5b4fc, #6366f1);
+  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }

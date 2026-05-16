@@ -4,13 +4,13 @@ layout: section
 ---
 
 
-# SSR with the benefits of SPA
+# <span class="grad-orange">SSR</span> with the benefits of <span class="grad-green">SPA</span>
 
 ---
 layout: default
 ---
 
-# Server Side Rendering in TanStack Start
+# Server Side Rendering in TanStack <span class="grad-blue">Start</span>
 
 <div class="grid grid-2" style="margin-top:24px">
   <div class="card">
@@ -51,5 +51,5 @@ layout: default
 </div>
 
 <div class="callout callout-info" style="margin-top:24px">
-  <p style="margin:0;font-size:1em">You can tune the SSR strategy per route instead of committing to one global mode.</p>
+  <p style="margin:0;font-size:1em">You can tune the SSR strategy per <span class="grad-purple">route</span> instead of committing to one global mode.</p>
 </div>

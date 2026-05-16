@@ -4,7 +4,7 @@ layout: default
 ---
 
 
-# At some point you might need...
+# At some point you might need <span class="grad-green">more</span>...
 
 <div class="grid grid-2" style="margin-top:24px">
   <div class="card">
@@ -26,7 +26,7 @@ layout: default
   <div class="card">
     <div class="card-header">
       <div class="icon icon-purple icon-lg">🔗</div>
-      <h3>End-to-end typesafety</h3>
+      <h3>End-to-end <span class="grad-blue">typesafety</span></h3>
     </div>
     <p class="card-body">Share types across client and server boundaries.</p>
   </div>
@@ -50,7 +50,7 @@ layout: default
 layout: default
 ---
 
-# Migration is simple
+# Migration is <span class="grad-orange">simple</span>
 
 <div class="grid grid-3" style="margin-top:24px">
   <div class="card">
@@ -95,4 +95,4 @@ export default defineConfig({
 layout: section
 ---
 
-# ...a full-stack framework literally inside a vite plugin
+# ...a <span class="grad-orange">full-stack framework</span> literally inside a vite plugin

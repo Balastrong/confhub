@@ -4,7 +4,7 @@ layout: section
 ---
 
 
-# Ok fine, but is this production ready?
+# Ok fine, but is this <span class="grad-green">production ready</span>?
 
 ## Talking about tech is cool, but we're here for the 💰💰💰
 
@@ -12,7 +12,7 @@ layout: section
 layout: default
 ---
 
-# TanStack Router: 100% YES! 
+# TanStack Router: 100% <span class="grad-green">YES!</span>
 
 <div class="grid grid-3" style="margin-top:20px">
   <div class="card">
@@ -51,7 +51,7 @@ TODO: This needs to be updated with the new stats
 layout: default
 ---
 
-# TanStack Start: You're an early adopter
+# <span class="grad-blue">TanStack Start</span>: You're an <span class="grad-orange">early adopter</span>
 
 <div class="grid grid-3" style="margin-top:24px">
   <div class="card">
@@ -80,5 +80,5 @@ layout: default
 </div>
 
 <div class="callout callout-tip" style="margin-top:24px">
-  <p style="margin:0;font-size:1em">Starting a new small or medium project? This is a very reasonable time to jump in.</p>
+  <p style="margin:0;font-size:1em">Starting a new small or medium project? This is a very reasonable time to <span class="grad-lime">jump in</span>.</p>
 </div>

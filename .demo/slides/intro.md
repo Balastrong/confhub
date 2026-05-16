@@ -4,15 +4,15 @@ layout: section
 ---
 
 
-# Did we really need another React framework?
+# Did we really need another React <span class="grad-orange">framework</span>?
 
 ---
 layout: section
 ---
 
-# Having multiple options/choices is usually good
+# Having multiple <span class="grad-green">options</span> is usually good
 
-## Next.js is server-first. TanStack Start stays client-first.
+## Next.js is <span class="grad-purple">server-first</span>. TanStack Start stays <span class="grad-blue">client-first</span>.
 
 ---
 layout: default
@@ -25,7 +25,7 @@ layout: default
 layout: default
 ---
 
-# TanStack Start strengths
+# TanStack Start <span class="grad-blue">strengths</span>
 
 <div class="grid grid-auto" style="margin-top:16px">
   <div class="card card-sm">
@@ -41,7 +41,7 @@ layout: default
       <div class="icon icon-green">✅</div>
       <h3>Real type safety</h3>
     </div>
-    <p class="card-body">Strong guarantees without  you having to write types (thanks inference).</p>
+    <p class="card-body">Strong guarantees without you having to write types, thanks <span class="grad-blue">inference</span>.</p>
   </div>
 
   <div class="card card-sm">
@@ -81,15 +81,15 @@ layout: default
 layout: section
 ---
 
-# Start = Router + Server Capabilities
+# <span class="grad-blue">Start</span> = <span class="grad-green">Router</span> + <span class="grad-blue">Server Capabilities</span>
 
-## TanStack Router covers ~80% of the functionalities
+## TanStack Router covers ~<span class="grad-yellow">80%</span> of the functionality
 
 ---
 layout: section
 ---
 
-# Picking a router means defining most of your app architecture
+# Picking a router means defining most of your app <span class="grad-purple">architecture</span>
 
 ---
 layout: default
@@ -137,6 +137,6 @@ Modern routers take care of a lot of things:
 layout: section
 ---
 
-# Let's see what Router can do
+# Let's see what <span class="grad-green">Router</span> can do
 
-## _Reminder: TanStack Start has all these features + server capabilities_
+## _Reminder: TanStack Start has all these features + <span class="grad-blue">server capabilities</span>_

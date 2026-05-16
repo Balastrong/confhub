@@ -4,7 +4,7 @@ layout: section
 ---
 
 
-# Typesafety on Search Params
+# <span class="grad-blue">Typesafety</span> on Search Params
 
 ## ...and there's even more
 
@@ -12,7 +12,7 @@ layout: section
 layout: default
 ---
 
-# The URL becomes shared state
+# The URL becomes <span class="grad-purple">shared state</span>
 
 <div class="grid grid-2" style="margin-top:20px">
   <div class="card">

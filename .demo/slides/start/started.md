@@ -4,7 +4,7 @@ layout: default
 ---
 
 
-# Getting Started with TanStack Start
+# Getting <span class="grad-blue">Started</span> with TanStack Start
 
 <div class="grid grid-2" style="margin-top:24px">
   <div class="card">

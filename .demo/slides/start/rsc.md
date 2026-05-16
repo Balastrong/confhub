@@ -5,7 +5,7 @@ TODO: We have to do this from scratch
 ---
 
 
-# What about React Server Components?
+# What about React <span class="grad-orange">Server Components</span>?
 
 ---
 layout: default
@@ -47,7 +47,7 @@ layout: default
 layout: default
 ---
 
-# RSCs are still data fetching
+# RSCs are still <span class="grad-blue">data fetching</span>
 
 <div class="card" style="margin-top:24px">
   <div class="card-header">
@@ -65,6 +65,6 @@ layout: default
 layout: section
 ---
 
-# RSC support in TanStack Start coming soon!
+# RSC support in <span class="grad-blue">TanStack Start</span> <span class="grad-lime">coming soon</span>!
 
-## ...as just another way of fetching data for a client-first app.
+## ...as just another way of fetching data for a <span class="grad-blue">client-first</span> app.

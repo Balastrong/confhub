@@ -4,7 +4,7 @@ layout: section
 ---
 
 
-# Let's put this on the internet!
+# Let's put this on the <span class="grad-orange">internet</span>!
 
 ## Where can I deploy a TanStack Start application?
 
@@ -13,7 +13,7 @@ layout: default
 TODO: Update if there are new sponsors
 ---
 
-# Official adapters
+# Official <span class="grad-green">adapters</span>
 
 <div class="grid grid-2" style="margin-top:20px">
   <div class="card">
@@ -41,7 +41,7 @@ TODO: Update if there are new sponsors
 layout: default
 ---
 
-# Nitro opens more targets
+# Nitro opens <span class="grad-purple">more targets</span>
 
 <div class="grid grid-auto" style="margin-top:20px">
   <div class="card card-sm">

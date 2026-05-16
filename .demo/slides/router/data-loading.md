@@ -4,15 +4,15 @@ layout: section
 ---
 
 
-# External data loading 🤝 routing
+# External data loading 🤝 <span class="grad-green">routing</span>
 
-## The two concerns are deeply connected
+## The two concerns are deeply <span class="grad-purple">connected</span>
 
 ---
 layout: default
 ---
 
-# When your router knows about data loading
+# When your router knows about <span class="grad-green">data loading</span>
 
 <div class="grid grid-2" style="margin-top:24px">
   <div class="card">
@@ -36,6 +36,6 @@ layout: default
       <div class="icon icon-indigo">🤝</div>
       <h3>Router + Query</h3>
     </div>
-    <p class="card-body">Navigation and caching line up without extra framework ceremony.</p>
+    <p class="card-body">Navigation and caching line up without extra framework <span class="grad-orange">ceremony</span>.</p>
   </div>
 </div>

@@ -4,15 +4,15 @@ layout: section
 ---
 
 
-# Server Functions work by exposing HTTP endpoints
+# Server Functions work by exposing <span class="grad-orange">HTTP endpoints</span>
 
-## You might want to protect them with authentication
+## You might want to protect them with <span class="grad-red">authentication</span>
 
 ---
 layout: section
 ---
 
-# Middlewares
+# <span class="grad-purple">Middlewares</span>
 
 ## Run logic before/after a server function or route
 

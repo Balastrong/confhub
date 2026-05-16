@@ -15,5 +15,6 @@
   "demoTime.previousEnabled": true,
   "demoTime.highlightBlur": 0.8,
   "demoTime.api.enabled": true,
-  "demoTime.slideHeaderTemplate": ".demo/slides/header.html"
+  "demoTime.slideHeaderTemplate": ".demo/slides/header.html",
+  "demoTime.customTheme": ".demo/slides/theme.css"
 }

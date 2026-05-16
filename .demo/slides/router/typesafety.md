@@ -3,16 +3,16 @@ theme: monomi
 layout: section
 ---
 
+
 # Type safety
 
 ## Everything is fully typed and automatically inferred
 
 ---
-layout: quote
+layout: section
 TODO: Replace this with a mention of the jsday talk
 ---
 
-<h1 style="font-size: 2.5em">TypeScript isn't the same as type-safety. <br />
-Real type-safety looks like JavaScript again.</h1>
+# TypeScript is not the goal
 
-&mdash; Tanner Linsley
+## Real type safety makes React feel simple again

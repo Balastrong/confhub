@@ -1,0 +1,255 @@
+.grid {
+  display: grid;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-auto {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.span-full {
+  grid-column: 1 / -1;
+}
+
+.card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.02)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 20px;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+}
+
+.card-sm {
+  padding: 16px;
+}
+
+.card-accent {
+  background: linear-gradient(
+    180deg,
+    rgba(59, 130, 246, 0.25),
+    rgba(59, 130, 246, 0.1)
+  );
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.card-header h3,
+.card h4 {
+  margin: 0;
+}
+
+.card-body {
+  margin: 0;
+  font-size: 0.95em;
+  line-height: 1.35;
+}
+
+.card a,
+.callout a {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+.icon,
+.step-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.icon-lg {
+  width: 40px;
+  height: 40px;
+  font-size: 22px;
+  border-radius: 10px;
+}
+
+.icon-blue,
+.badge-blue {
+  background: rgba(59, 130, 246, 0.15);
+  color: #93c5fd;
+}
+
+.icon-green,
+.badge-green {
+  background: rgba(16, 185, 129, 0.15);
+  color: #6ee7b7;
+}
+
+.icon-yellow {
+  background: rgba(234, 179, 8, 0.15);
+  color: #fde68a;
+}
+
+.icon-red {
+  background: rgba(244, 63, 94, 0.15);
+  color: #fca5a5;
+}
+
+.icon-purple {
+  background: rgba(139, 92, 246, 0.15);
+  color: #d8b4fe;
+}
+
+.icon-indigo {
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+}
+
+.badges {
+  display: inline-flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+.callout {
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.16);
+}
+
+.callout-tip {
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.12),
+    rgba(59, 130, 246, 0.12)
+  );
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.callout-info {
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.12),
+    rgba(59, 130, 246, 0.12)
+  );
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.callout-warn {
+  background: linear-gradient(
+    135deg,
+    rgba(234, 179, 8, 0.14),
+    rgba(244, 63, 94, 0.12)
+  );
+  border-color: rgba(234, 179, 8, 0.28);
+}
+
+.dot-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.dot-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+}
+
+.dot-green {
+  background: rgba(16, 185, 129, 0.8);
+}
+
+.dot-red {
+  background: rgba(244, 63, 94, 0.85);
+}
+
+.dot-blue {
+  background: rgba(59, 130, 246, 0.8);
+}
+
+.centered {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.inline-code {
+  display: inline-block;
+  padding: 0.12em 0.42em;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #c4b5fd;
+  font-family:
+    ui-monospace, SFMono-Regular, SFMono-Regular, Menlo, Monaco, Consolas,
+    Liberation Mono, Courier New, monospace;
+  font-size: 0.95em;
+}
+
+.grad-blue {
+  background: linear-gradient(90deg, #60a5fa, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.grad-yellow {
+  background: linear-gradient(90deg, #facc15, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.grad-green {
+  background: linear-gradient(90deg, #34d399, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.grad-purple {
+  background: linear-gradient(90deg, #c084fc, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.grad-lime {
+  background: linear-gradient(90deg, #a3e635, #34d399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

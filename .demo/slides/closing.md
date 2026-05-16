@@ -3,46 +3,45 @@ theme: monomi
 layout: default
 ---
 
+
 # Want to learn more?
 
-<div style="display:grid;grid-template-columns:repeat(2,minmax(280px,1fr));gap:20px;margin-top:24px;align-items:stretch">
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(59,130,246,.15);color:#93c5fd;font-size:22px">📚</div>
-      <h3 style="margin:0;font-size:1.1em">Official Documentation</h3>
+<div class="grid grid-2" style="margin-top:24px">
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-blue icon-lg">📚</div>
+      <h3>Official docs</h3>
     </div>
-    <p style="margin:0 0 8px 0;font-size:.95em">
-      <a href="https://tanstack.com" style="color:#93c5fd;text-decoration:underline" target="_blank" rel="noopener noreferrer">tanstack.com</a>
-    </p>
-    <p style="margin:0;font-size:.9em">It's also a TanStack Start application itself!</p>
+    <p class="card-body"><a href="https://tanstack.com" target="_blank" rel="noopener noreferrer">tanstack.com</a></p>
   </div>
 
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(16,185,129,.15);color:#6ee7b7;font-size:22px">⭐</div>
-      <h3 style="margin:0;font-size:1.1em">Awesome List</h3>
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-green icon-lg">⭐</div>
+      <h3>Awesome list</h3>
     </div>
-    <p style="margin:0 0 8px 0;font-size:.95em">
-      <a href="github.com/Balastrong/awesome-tanstack-start" style="color:#93c5fd;text-decoration:underline" target="_blank" rel="noopener noreferrer">github.com/Balastrong/awesome-tanstack-start</a>
-    </p>
-    <p style="margin:0;;font-size:.9em">Tutorials, examples, boilerplate & resources</p>
+    <p class="card-body"><a href="https://github.com/Balastrong/awesome-tanstack-start" target="_blank" rel="noopener noreferrer">github.com/Balastrong/awesome-tanstack-start</a></p>
   </div>
 
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(139,92,246,.15);color:#d8b4fe;font-size:22px">🐙</div>
-      <h3 style="margin:0;font-size:1.1em">GitHub Repos</h3>
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-purple icon-lg">🐙</div>
+      <h3>GitHub repos</h3>
     </div>
-    <p style="margin:0;;font-size:.95em">Start is a package in the TanStack/router repo</p>
+    <p class="card-body">Start is in the TanStack/router repo.</p>
   </div>
 
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(244,63,94,.15);color:#fca5a5;font-size:22px">💬</div>
-      <h3 style="margin:0;font-size:1.1em">TanStack Discord</h3>
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-red icon-lg">💬</div>
+      <h3>TanStack Discord</h3>
     </div>
-    <p style="margin:0;;font-size:.95em">Maintainers are very active and helpful</p>
+    <p class="card-body">Maintainers and users are active and helpful.</p>
   </div>
+</div>
+
+<div class="callout callout-tip" style="margin-top:20px">
+  <p style="margin:0;font-size:1em">The docs site itself is also a TanStack Start app, which feels very on-brand.</p>
 </div>
 
 ---
@@ -51,53 +50,53 @@ layout: default
 
 # TanStack Start strengths
 
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:12px;align-items:stretch">
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-      <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(99,102,241,.15);color:#a5b4fc;font-size:20px">🧭</div>
-      <h3 style="margin:0;font-size:1.05em">TanStack Router</h3>
+<div class="grid grid-auto" style="margin-top:16px">
+  <div class="card card-sm">
+    <div class="card-header">
+      <div class="icon icon-indigo">🧭</div>
+      <h3>TanStack Router</h3>
     </div>
-    <p style="margin:0;;font-size:.95em">The best routing library you've ever seen</p>
+    <p class="card-body">The best routing library as of today.</p>
   </div>
 
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-      <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(16,185,129,.15);color:#6ee7b7;font-size:20px">✅</div>
-      <h3 style="margin:0;font-size:1.05em">Real type-safety</h3>
+  <div class="card card-sm">
+    <div class="card-header">
+      <div class="icon icon-green">✅</div>
+      <h3>Real type safety</h3>
     </div>
-    <p style="margin:0;;font-size:.95em">Strong types without you having to write them</p>
+    <p class="card-body">Strong guarantees without  you having to write types (thanks inference).</p>
   </div>
 
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-      <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(59,130,246,.15);color:#93c5fd;font-size:20px">♻️</div>
-      <h3 style="margin:0;font-size:1.05em">Isomorphism</h3>
+  <div class="card card-sm">
+    <div class="card-header">
+      <div class="icon icon-blue">♻️</div>
+      <h3>Isomorphic by default</h3>
     </div>
-    <p style="margin:0;;font-size:.95em">SSR & server functions with a client-first approach</p>
+    <p class="card-body">SSR & server functions with a client-first approach.</p>
   </div>
 
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-      <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(234,179,8,.15);color:#fde68a;font-size:20px">🛠️</div>
-      <h3 style="margin:0;font-size:1.05em">Developer experience</h3>
+  <div class="card card-sm">
+    <div class="card-header">
+      <div class="icon icon-yellow">🛠️</div>
+      <h3>Developer experience</h3>
     </div>
-    <p style="margin:0;;font-size:.95em">The framework helps you, doesn't fight you</p>
+    <p class="card-body">The framework helps you, doesn't fight you.</p>
   </div>
 
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-      <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(244,63,94,.15);color:#fca5a5;font-size:20px">🚀</div>
-      <h3 style="margin:0;font-size:1.05em">Universal deployment</h3>
+  <div class="card card-sm">
+    <div class="card-header">
+      <div class="icon icon-red">🚀</div>
+      <h3>Universal deployment</h3>
     </div>
-    <p style="margin:0;;font-size:.95em">Powered by Vite ecosystem & adapters</p>
+    <p class="card-body">Vite and adapters keep hosting choices open.</p>
   </div>
 
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-      <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(139,92,246,.15);color:#d8b4fe;font-size:20px">🤝</div>
-      <h3 style="margin:0;font-size:1.05em">Community</h3>
+  <div class="card card-sm">
+    <div class="card-header">
+      <div class="icon icon-purple">🤝</div>
+      <h3>Fast-moving community</h3>
     </div>
-    <p style="margin:0;;font-size:.95em">Active & helpful, join the official Discord</p>
+    <p class="card-body">Maintainers are helpful and examples are easy to find.</p>
   </div>
 </div>
 
@@ -105,14 +104,14 @@ layout: default
 layout: default
 ---
 
-<div style="height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+<div class="centered">
 
-  <img src=".demo/slides/img/tanstack-banner.png" width="150" style="margin: 24px auto">
+  <img src=".demo/slides/img/tanstack-banner.png" width="150" style="margin:24px auto">
 
-  <span style="font-size: 4em; margin: 0 0 .25em 0; font-weight: 750; line-height: 1.25; text-align: center;">
+  <span style="font-size:4em;margin:0 0 .25em 0;font-weight:750;line-height:1.25;text-align:center">
     Let your
-    <span style="background: linear-gradient(90deg, #60a5fa, #818cf8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;"><i>typesafe</i></span>
-    <span style="background: linear-gradient(90deg, #34d399, #047857); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; text-decoration: underline; text-decoration-color: rgba(255,255,255,.85); text-underline-offset: 6px; text-decoration-thickness: 4px;">full-stack</span>
+    <span class="grad-blue" style="font-style:italic">typesafe</span>
+    <span class="grad-green">full-stack</span>
     adventure begin!
   </span>
 </div>
@@ -121,7 +120,7 @@ layout: default
 layout: section
 ---
 
-<h1 style="font-size: 5em">Thank you!</h1>
+<h1 style="font-size: 6em">Thank you!</h1>
 
 ---
 layout: two-columns

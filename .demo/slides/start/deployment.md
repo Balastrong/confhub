@@ -3,6 +3,7 @@ theme: monomi
 layout: section
 ---
 
+
 # Let's put this on the internet!
 
 ## Where can I deploy a TanStack Start application?
@@ -12,44 +13,78 @@ layout: default
 TODO: Update if there are new sponsors
 ---
 
-# Hosting Adapters
+# Official adapters
 
-<div style="margin-top:12px">
-  <h2 style="color:#60a5fa;margin-bottom:12px;font-size:1.2em">Recommended (Official Adapters)</h2>
-  <div style="display:grid;grid-template-columns:repeat(2,minmax(250px,1fr));gap:12px;margin-bottom:16px">
-    <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:14px;backdrop-filter:blur(2px);box-shadow:0 4px 14px rgba(0,0,0,.16)">
-      <div style="display:flex;align-items:center;gap:8px">
-        <div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(16,185,129,.15);color:#6ee7b7;font-size:18px">🌐</div>
-        <h3 style="margin:0;font-size:1em">Netlify</h3>
-      </div>
+<div class="grid grid-2" style="margin-top:20px">
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-green">🌐</div>
+      <h3>Netlify</h3>
     </div>
-    <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:14px;backdrop-filter:blur(2px);box-shadow:0 4px 14px rgba(0,0,0,.16)">
-      <div style="display:flex;align-items:center;gap:8px">
-        <div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(234,179,8,.15);color:#fde68a;font-size:18px">☁️</div>
-        <h3 style="margin:0;font-size:1em">Cloudflare</h3>
-      </div>
-    </div>
+    <p class="card-body">Official adapter, great default choice.</p>
   </div>
 
-  <h2 style="color:#60a5fa;margin-bottom:12px;font-size:1.2em">Using the Nitro Adapter</h2>
-  <div style="display:grid;grid-template-columns:repeat(3,minmax(200px,1fr));gap:10px">
-    <div style="background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px;backdrop-filter:blur(2px);box-shadow:0 2px 8px rgba(0,0,0,.12)">
-      <h4 style="margin:0;font-size:.95em">Vercel</h4>
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-yellow">☁️</div>
+      <h3>Cloudflare</h3>
     </div>
-    <div style="background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px;backdrop-filter:blur(2px);box-shadow:0 2px 8px rgba(0,0,0,.12)">
-      <h4 style="margin:0;font-size:.95em">Deno</h4>
-    </div>
-    <div style="background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px;backdrop-filter:blur(2px);box-shadow:0 2px 8px rgba(0,0,0,.12)">
-      <h4 style="margin:0;font-size:.95em">Node.js</h4>
-    </div>
-    <div style="background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px;backdrop-filter:blur(2px);box-shadow:0 2px 8px rgba(0,0,0,.12)">
-      <h4 style="margin:0;font-size:.95em">Docker</h4>
-    </div>
-    <div style="background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px;backdrop-filter:blur(2px);box-shadow:0 2px 8px rgba(0,0,0,.12)">
-      <h4 style="margin:0;font-size:.95em">Railway</h4>
-    </div>
-    <div style="margin-top:16px;font-size:.95em;font-style:italic;margin-left:6px">
-      ....anywhere, really
-    </div>
+    <p class="card-body">Official adapter for the edge-first crowd.</p>
   </div>
+</div>
+
+<div class="callout callout-tip" style="margin-top:20px">
+  <p style="margin:0;font-size:1em">If you want the happy path today, start with the official adapters.</p>
+</div>
+
+---
+layout: default
+---
+
+# Nitro opens more targets
+
+<div class="grid grid-auto" style="margin-top:20px">
+  <div class="card card-sm">
+    <div class="card-header">
+      <div class="icon icon-blue">▲</div>
+      <h3>Vercel</h3>
+    </div>
+    <p class="card-body">Nitro handles the hosting bridge.</p>
+  </div>
+
+  <div class="card card-sm">
+    <div class="card-header">
+      <div class="icon icon-green">🦕</div>
+      <h3>Deno</h3>
+    </div>
+    <p class="card-body">Another runtime already in the target list.</p>
+  </div>
+
+  <div class="card card-sm">
+    <div class="card-header">
+      <div class="icon icon-yellow">🟢</div>
+      <h3>Node.js</h3>
+    </div>
+    <p class="card-body">A solid fit when you want familiar infra.</p>
+  </div>
+
+  <div class="card card-sm">
+    <div class="card-header">
+      <div class="icon icon-red">🐳</div>
+      <h3>Docker</h3>
+    </div>
+    <p class="card-body">Ship it with the rest of your platform stack.</p>
+  </div>
+
+  <div class="card card-sm">
+    <div class="card-header">
+      <div class="icon icon-purple">🚆</div>
+      <h3>Railway</h3>
+    </div>
+    <p class="card-body">A good option when you want simple hosting.</p>
+  </div>
+</div>
+
+<div class="callout callout-info" style="margin-top:20px">
+  <p style="margin:0;font-size:1em">With Nitro in the mix, the real answer is “almost anywhere”.</p>
 </div>

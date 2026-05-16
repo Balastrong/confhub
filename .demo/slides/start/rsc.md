@@ -1,7 +1,9 @@
 ---
 theme: monomi
 layout: section
+TODO: We have to do this from scratch
 ---
+
 
 # What about React Server Components?
 
@@ -11,76 +13,52 @@ layout: default
 
 # RSCs in short
 
-<div style="display:grid;grid-template-columns:repeat(3,minmax(200px,1fr));gap:20px;margin-top:24px;align-items:stretch">
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(59,130,246,.15);color:#93c5fd;font-size:22px">⚡</div>
-      <h3 style="margin:0;font-size:1.1em">Server Execution</h3>
+<div class="grid grid-3" style="margin-top:24px">
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-blue icon-lg">⚡</div>
+      <h3>Server execution</h3>
     </div>
-    <p style="margin:0;;font-size:.95em">Asynchronous React components that run once on the server</p>
+    <p class="card-body">Async components that run once on the server.</p>
   </div>
 
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(16,185,129,.15);color:#6ee7b7;font-size:22px">🗄️</div>
-      <h3 style="margin:0;font-size:1.1em">Direct Data Access</h3>
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-green icon-lg">🗄️</div>
+      <h3>Direct data access</h3>
     </div>
-    <p style="margin:0;;font-size:.95em">Can fetch data, access databases, and call APIs directly</p>
+    <p class="card-body">They can talk to APIs and databases directly.</p>
   </div>
 
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(139,92,246,.15);color:#d8b4fe;font-size:22px">📦</div>
-      <h3 style="margin:0;font-size:1.1em">Serialized Output</h3>
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-purple icon-lg">📦</div>
+      <h3>Serialized output</h3>
     </div>
-    <p style="margin:0;;font-size:.95em">Returns serialized UI to the client with data baked in</p>
+    <p class="card-body">The client receives UI plus the data it needs.</p>
   </div>
 </div>
 
-<br />
-
-```tsx
-async function MyServerComponent() {
-  const data = await sql`SELECT title FROM posts WHERE id = 1`
-  return <div>{data.title}</div>
-}
-```
+<div class="callout callout-info" style="margin-top:20px">
+  <p style="margin:0;font-size:1em">RSCs are another delivery mechanism, not a replacement for thinking about data flow.</p>
+</div>
 
 ---
 layout: default
 ---
 
-# Just another way to fetch data in React
+# RSCs are still data fetching
 
-<div style="display:grid;grid-template-columns:1fr;gap:20px;margin-top:24px">
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:24px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(234,179,8,.15);color:#fde68a;font-size:22px">⚠️</div>
-      <h3 style="margin:0;font-size:1.2em">Same Old Challenges</h3>
-    </div>
-    <p style="margin:0 0 12px 0;;font-size:1em">Mixing UI with data means having to deal with the same issues as other data fetching strategies:</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:16px">
-      <div style="display:flex;align-items:center;gap:8px">
-        <div style="width:6px;height:6px;border-radius:50%;background:rgba(244,63,94,.8)"></div>
-        <span style=";font-size:.95em">Caching</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:8px">
-        <div style="width:6px;height:6px;border-radius:50%;background:rgba(244,63,94,.8)"></div>
-        <span style=";font-size:.95em">Staleness</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:8px">
-        <div style="width:6px;height:6px;border-radius:50%;background:rgba(244,63,94,.8)"></div>
-        <span style=";font-size:.95em">Error handling</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:8px">
-        <div style="width:6px;height:6px;border-radius:50%;background:rgba(244,63,94,.8)"></div>
-        <span style=";font-size:.95em">Loading states</span>
-      </div>
-    </div>
-    <div style="margin-top:20px;padding:16px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:10px;text-align:center">
-      <p style="margin:0;color:#60a5fa;font-size:1em;font-weight:500">...did anyone say "TanStack Query"?</p>
-    </div>
+<div class="card" style="margin-top:24px">
+  <div class="card-header">
+    <div class="icon icon-yellow icon-lg">⚠️</div>
+    <h3>The tradeoffs do not disappear</h3>
   </div>
+  <p class="card-body">Caching, staleness, errors, and loading still need a strategy.</p>
+</div>
+
+<div class="callout callout-tip" style="margin-top:20px">
+  <p style="margin:0;font-size:1em">That is exactly why TanStack Query still makes sense in a Start app.</p>
 </div>
 
 ---

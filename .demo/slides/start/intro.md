@@ -3,39 +3,40 @@ theme: monomi
 layout: default
 ---
 
+
 # At some point you might need...
 
-<div style="display:grid;grid-template-columns:repeat(2,minmax(250px,1fr));gap:18px;margin-top:24px;align-items:stretch">
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
-      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(59,130,246,.15);color:#93c5fd;font-size:22px">📄</div>
-      <h3 style="margin:0;font-size:1.1em">Full-document SSR</h3>
+<div class="grid grid-2" style="margin-top:24px">
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-blue icon-lg">📄</div>
+      <h3>Full-document SSR</h3>
     </div>
-    <p style="margin:0;font-size:.95em">Move some or all of your rendering to the server</p>
+    <p class="card-body">Render some or all of the page on the server.</p>
   </div>
 
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
-      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(16,185,129,.15);color:#6ee7b7;font-size:22px">⚙️</div>
-      <h3 style="margin:0;font-size:1.1em">Server Functions</h3>
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-green icon-lg">⚙️</div>
+      <h3>Server Functions</h3>
     </div>
-    <p style="margin:0;font-size:.95em">Backend logic in your frontend codebase</p>
+    <p class="card-body">Keep backend logic inside the same app codebase.</p>
   </div>
 
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
-      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(139,92,246,.15);color:#d8b4fe;font-size:22px">🔗</div>
-      <h3 style="margin:0;font-size:1.1em">End to end typesafety</h3>
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-purple icon-lg">🔗</div>
+      <h3>End-to-end typesafety</h3>
     </div>
-    <p style="margin:0;font-size:.95em">Shared types between client & server</p>
+    <p class="card-body">Share types across client and server boundaries.</p>
   </div>
 
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
-      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(234,179,8,.15);color:#fde68a;font-size:22px">🌐</div>
-      <h3 style="margin:0;font-size:1.1em">Public Endpoints</h3>
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-yellow icon-lg">🌐</div>
+      <h3>Public endpoints</h3>
     </div>
-    <p style="margin:0;font-size:.95em">API routes & external access</p>
+    <p class="card-body">Expose stable HTTP endpoints when external access matters.</p>
   </div>
 </div>
 
@@ -47,34 +48,33 @@ layout: default
 
 ---
 layout: default
-TODO: Check if Router is still with that plugin name/import
 ---
 
 # Migration is simple
 
-<div style="display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:18px;margin-top:24px;align-items:stretch;overflow-x:auto">
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(99,102,241,.15);color:#a5b4fc;font-size:22px;font-weight:bold">1</div>
-      <h3 style="margin:0;font-size:1.1em">Swap the Vite Plugin</h3>
+<div class="grid grid-3" style="margin-top:24px">
+  <div class="card">
+    <div class="card-header">
+      <div class="step-num icon-indigo">1</div>
+      <h3>Swap the plugin</h3>
     </div>
-    <p style="margin:0;font-size:.95em">Replace TanStack Router plugin with TanStack Start</p>
+    <p class="card-body">Replace the Router Vite plugin with Start.</p>
   </div>
 
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(16,185,129,.15);color:#6ee7b7;font-size:22px;font-weight:bold">2</div>
-      <h3 style="margin:0;font-size:1.1em">Move Router Setup</h3>
+  <div class="card">
+    <div class="card-header">
+      <div class="step-num icon-green">2</div>
+      <h3>Move router setup</h3>
     </div>
-    <p style="margin:0;font-size:.95em">Create a dedicated router.tsx file</p>
+    <p class="card-body">Give the router its own dedicated file.</p>
   </div>
 
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(234,179,8,.15);color:#fde68a;font-size:22px;font-weight:bold">3</div>
-      <h3 style="margin:0;font-size:1.1em">Update Root Component</h3>
+  <div class="card">
+    <div class="card-header">
+      <div class="step-num icon-yellow">3</div>
+      <h3>Touch the root</h3>
     </div>
-    <p style="margin:0;font-size:.95em">Minor changes in __root.tsx</p>
+    <p class="card-body">Make the small wiring changes in <code>__root.tsx</code>.</p>
   </div>
 </div>
 

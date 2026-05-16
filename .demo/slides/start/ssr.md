@@ -3,6 +3,7 @@ theme: monomi
 layout: section
 ---
 
+
 # SSR with the benefits of SPA
 
 ---
@@ -11,48 +12,44 @@ layout: default
 
 # Server Side Rendering in TanStack Start
 
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin-top:24px;align-items:stretch">
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(59,130,246,.15);color:#93c5fd;font-size:22px">🔄</div>
-      <h3 style="margin:0;font-size:1.1em">First Load (from outside)</h3>
+<div class="grid grid-2" style="margin-top:24px">
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-blue icon-lg">🔄</div>
+      <h3>First load</h3>
     </div>
-    <div style="margin-bottom:12px">
-      <p style="margin:0 0 8px 0;;font-size:.95em">By default the page is rendered on the server</p>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:6px">
-      <div style="display:flex;align-items:center;gap:8px">
-        <div style="width:6px;height:6px;border-radius:50%;background:rgba(16,185,129,.8)"></div>
-        <span style=";font-size:.9em">SEO friendly</span>
+    <p class="card-body">The initial request renders on the server.</p>
+    <div class="dot-list">
+      <div class="dot-item">
+        <span class="dot dot-green"></span>
+        <span>SEO-friendly HTML</span>
       </div>
-      <div style="display:flex;align-items:center;gap:8px">
-        <div style="width:6px;height:6px;border-radius:50%;background:rgba(16,185,129,.8)"></div>
-        <span style=";font-size:.9em">Supports streaming (also selective)</span>
+      <div class="dot-item">
+        <span class="dot dot-green"></span>
+        <span>Streaming when you need it</span>
       </div>
     </div>
   </div>
 
-  <div style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1x solid rgba(255,255,255,.12);border-radius:14px;padding:20px;backdrop-filter:blur(3px);box-shadow:0 8px 22px rgba(0,0,0,.18)">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-      <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(16,185,129,.15);color:#6ee7b7;font-size:22px">⚡</div>
-      <h3 style="margin:0;font-size:1.1em">Subsequent Navigations</h3>
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-green icon-lg">⚡</div>
+      <h3>Next navigations</h3>
     </div>
-    <div style="margin-bottom:12px">
-      <p style="margin:0 0 8px 0;;font-size:.95em">Within the app</p>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:6px">
-      <div style="display:flex;align-items:center;gap:8px">
-        <div style="width:6px;height:6px;border-radius:50%;background:rgba(16,185,129,.8)"></div>
-        <span style=";font-size:.9em">Client-side navigation</span>
+    <p class="card-body">Inside the app, navigation keeps the SPA feel.</p>
+    <div class="dot-list">
+      <div class="dot-item">
+        <span class="dot dot-green"></span>
+        <span>Client-side navigation</span>
       </div>
-      <div style="display:flex;align-items:center;gap:8px">
-        <div style="width:6px;height:6px;border-radius:50%;background:rgba(16,185,129,.8)"></div>
-        <span style=";font-size:.9em">Fast and smooth SPA feel</span>
+      <div class="dot-item">
+        <span class="dot dot-green"></span>
+        <span>Fast and smooth SPA feel</span>
       </div>
     </div>
   </div>
 </div>
 
-<div style="background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(59,130,246,.1));border:1px solid rgba(99,102,241,.3);border-radius:14px;padding:20px;margin-top:24px;text-align:center">
-  <p style="margin:0;font-style:italic;;font-size:1em">There are options to customize this behavior</p>
+<div class="callout callout-info" style="margin-top:24px">
+  <p style="margin:0;font-size:1em">You can tune the SSR strategy per route instead of committing to one global mode.</p>
 </div>

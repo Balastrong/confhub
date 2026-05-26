@@ -14,8 +14,11 @@ import { Route as SignInRouteImport } from './routes/sign-in'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as MyEventsRouteImport } from './routes/my-events'
 import { Route as CalendarRouteImport } from './routes/calendar'
+import { Route as FileConventionsRouteRouteImport } from './routes/file-conventions/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FileConventionsIndexRouteImport } from './routes/file-conventions/index'
 import { Route as CommunitiesIndexRouteImport } from './routes/communities/index'
+import { Route as FileConventionsEventSlugRouteImport } from './routes/file-conventions/$eventSlug'
 import { Route as EventsSubmitRouteImport } from './routes/events/submit'
 import { Route as EventsEventSlugRouteImport } from './routes/events/$eventSlug'
 import { Route as DemoSsrRouteImport } from './routes/demo/ssr'
@@ -25,10 +28,12 @@ import { Route as CommunitiesCreateRouteImport } from './routes/communities/crea
 import { Route as CommunitiesCommunitySlugRouteImport } from './routes/communities/$communitySlug'
 import { Route as ApiMcpRouteImport } from './routes/api/mcp'
 import { Route as DotwellKnownOpenidConfigurationRouteImport } from './routes/[.]well-known/openid-configuration'
+import { Route as FileConventionsLayoutRouteRouteImport } from './routes/file-conventions/_layout/route'
 import { Route as EventsProSubmitRouteImport } from './routes/events/pro.submit'
 import { Route as EventsProEventIdRouteImport } from './routes/events/pro.$eventId'
 import { Route as ApiDemoNameRouteImport } from './routes/api/demo.$name'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth.$'
+import { Route as FileConventionsOneTwoThreeRouteImport } from './routes/file-conventions/one.two.three'
 
 const SignUpRoute = SignUpRouteImport.update({
   id: '/sign-up',
@@ -55,16 +60,32 @@ const CalendarRoute = CalendarRouteImport.update({
   path: '/calendar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FileConventionsRouteRoute = FileConventionsRouteRouteImport.update({
+  id: '/file-conventions',
+  path: '/file-conventions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const FileConventionsIndexRoute = FileConventionsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => FileConventionsRouteRoute,
 } as any)
 const CommunitiesIndexRoute = CommunitiesIndexRouteImport.update({
   id: '/communities/',
   path: '/communities/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FileConventionsEventSlugRoute =
+  FileConventionsEventSlugRouteImport.update({
+    id: '/$eventSlug',
+    path: '/$eventSlug',
+    getParentRoute: () => FileConventionsRouteRoute,
+  } as any)
 const EventsSubmitRoute = EventsSubmitRouteImport.update({
   id: '/events/submit',
   path: '/events/submit',
@@ -112,6 +133,11 @@ const DotwellKnownOpenidConfigurationRoute =
     path: '/.well-known/openid-configuration',
     getParentRoute: () => rootRouteImport,
   } as any)
+const FileConventionsLayoutRouteRoute =
+  FileConventionsLayoutRouteRouteImport.update({
+    id: '/_layout',
+    getParentRoute: () => FileConventionsRouteRoute,
+  } as any)
 const EventsProSubmitRoute = EventsProSubmitRouteImport.update({
   id: '/events/pro/submit',
   path: '/events/pro/submit',
@@ -132,9 +158,16 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FileConventionsOneTwoThreeRoute =
+  FileConventionsOneTwoThreeRouteImport.update({
+    id: '/one/two/three',
+    path: '/one/two/three',
+    getParentRoute: () => FileConventionsRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/file-conventions': typeof FileConventionsLayoutRouteRoute
   '/calendar': typeof CalendarRoute
   '/my-events': typeof MyEventsRoute
   '/profile': typeof ProfileRoute
@@ -149,11 +182,14 @@ export interface FileRoutesByFullPath {
   '/demo/ssr': typeof DemoSsrRoute
   '/events/$eventSlug': typeof EventsEventSlugRoute
   '/events/submit': typeof EventsSubmitRoute
+  '/file-conventions/$eventSlug': typeof FileConventionsEventSlugRoute
   '/communities/': typeof CommunitiesIndexRoute
+  '/file-conventions/': typeof FileConventionsIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/demo/$name': typeof ApiDemoNameRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
   '/events/pro/submit': typeof EventsProSubmitRoute
+  '/file-conventions/one/two/three': typeof FileConventionsOneTwoThreeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -162,6 +198,7 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/file-conventions': typeof FileConventionsIndexRoute
   '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationRoute
   '/api/mcp': typeof ApiMcpRoute
   '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
@@ -171,20 +208,24 @@ export interface FileRoutesByTo {
   '/demo/ssr': typeof DemoSsrRoute
   '/events/$eventSlug': typeof EventsEventSlugRoute
   '/events/submit': typeof EventsSubmitRoute
+  '/file-conventions/$eventSlug': typeof FileConventionsEventSlugRoute
   '/communities': typeof CommunitiesIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/demo/$name': typeof ApiDemoNameRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
   '/events/pro/submit': typeof EventsProSubmitRoute
+  '/file-conventions/one/two/three': typeof FileConventionsOneTwoThreeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/file-conventions': typeof FileConventionsRouteRouteWithChildren
   '/calendar': typeof CalendarRoute
   '/my-events': typeof MyEventsRoute
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/file-conventions/_layout': typeof FileConventionsLayoutRouteRoute
   '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationRoute
   '/api/mcp': typeof ApiMcpRoute
   '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
@@ -194,16 +235,20 @@ export interface FileRoutesById {
   '/demo/ssr': typeof DemoSsrRoute
   '/events/$eventSlug': typeof EventsEventSlugRoute
   '/events/submit': typeof EventsSubmitRoute
+  '/file-conventions/$eventSlug': typeof FileConventionsEventSlugRoute
   '/communities/': typeof CommunitiesIndexRoute
+  '/file-conventions/': typeof FileConventionsIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/demo/$name': typeof ApiDemoNameRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
   '/events/pro/submit': typeof EventsProSubmitRoute
+  '/file-conventions/one/two/three': typeof FileConventionsOneTwoThreeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/file-conventions'
     | '/calendar'
     | '/my-events'
     | '/profile'
@@ -218,11 +263,14 @@ export interface FileRouteTypes {
     | '/demo/ssr'
     | '/events/$eventSlug'
     | '/events/submit'
+    | '/file-conventions/$eventSlug'
     | '/communities/'
+    | '/file-conventions/'
     | '/api/auth/$'
     | '/api/demo/$name'
     | '/events/pro/$eventId'
     | '/events/pro/submit'
+    | '/file-conventions/one/two/three'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -231,6 +279,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
+    | '/file-conventions'
     | '/.well-known/openid-configuration'
     | '/api/mcp'
     | '/communities/$communitySlug'
@@ -240,19 +289,23 @@ export interface FileRouteTypes {
     | '/demo/ssr'
     | '/events/$eventSlug'
     | '/events/submit'
+    | '/file-conventions/$eventSlug'
     | '/communities'
     | '/api/auth/$'
     | '/api/demo/$name'
     | '/events/pro/$eventId'
     | '/events/pro/submit'
+    | '/file-conventions/one/two/three'
   id:
     | '__root__'
     | '/'
+    | '/file-conventions'
     | '/calendar'
     | '/my-events'
     | '/profile'
     | '/sign-in'
     | '/sign-up'
+    | '/file-conventions/_layout'
     | '/.well-known/openid-configuration'
     | '/api/mcp'
     | '/communities/$communitySlug'
@@ -262,15 +315,19 @@ export interface FileRouteTypes {
     | '/demo/ssr'
     | '/events/$eventSlug'
     | '/events/submit'
+    | '/file-conventions/$eventSlug'
     | '/communities/'
+    | '/file-conventions/'
     | '/api/auth/$'
     | '/api/demo/$name'
     | '/events/pro/$eventId'
     | '/events/pro/submit'
+    | '/file-conventions/one/two/three'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FileConventionsRouteRoute: typeof FileConventionsRouteRouteWithChildren
   CalendarRoute: typeof CalendarRoute
   MyEventsRoute: typeof MyEventsRoute
   ProfileRoute: typeof ProfileRoute
@@ -329,6 +386,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CalendarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/file-conventions': {
+      id: '/file-conventions'
+      path: '/file-conventions'
+      fullPath: '/file-conventions'
+      preLoaderRoute: typeof FileConventionsRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -336,12 +400,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/file-conventions/': {
+      id: '/file-conventions/'
+      path: '/'
+      fullPath: '/file-conventions/'
+      preLoaderRoute: typeof FileConventionsIndexRouteImport
+      parentRoute: typeof FileConventionsRouteRoute
+    }
     '/communities/': {
       id: '/communities/'
       path: '/communities'
       fullPath: '/communities/'
       preLoaderRoute: typeof CommunitiesIndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/file-conventions/$eventSlug': {
+      id: '/file-conventions/$eventSlug'
+      path: '/$eventSlug'
+      fullPath: '/file-conventions/$eventSlug'
+      preLoaderRoute: typeof FileConventionsEventSlugRouteImport
+      parentRoute: typeof FileConventionsRouteRoute
     }
     '/events/submit': {
       id: '/events/submit'
@@ -406,6 +484,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DotwellKnownOpenidConfigurationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/file-conventions/_layout': {
+      id: '/file-conventions/_layout'
+      path: ''
+      fullPath: '/file-conventions'
+      preLoaderRoute: typeof FileConventionsLayoutRouteRouteImport
+      parentRoute: typeof FileConventionsRouteRoute
+    }
     '/events/pro/submit': {
       id: '/events/pro/submit'
       path: '/events/pro/submit'
@@ -434,11 +519,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/file-conventions/one/two/three': {
+      id: '/file-conventions/one/two/three'
+      path: '/one/two/three'
+      fullPath: '/file-conventions/one/two/three'
+      preLoaderRoute: typeof FileConventionsOneTwoThreeRouteImport
+      parentRoute: typeof FileConventionsRouteRoute
+    }
   }
 }
 
+interface FileConventionsRouteRouteChildren {
+  FileConventionsLayoutRouteRoute: typeof FileConventionsLayoutRouteRoute
+  FileConventionsEventSlugRoute: typeof FileConventionsEventSlugRoute
+  FileConventionsIndexRoute: typeof FileConventionsIndexRoute
+  FileConventionsOneTwoThreeRoute: typeof FileConventionsOneTwoThreeRoute
+}
+
+const FileConventionsRouteRouteChildren: FileConventionsRouteRouteChildren = {
+  FileConventionsLayoutRouteRoute: FileConventionsLayoutRouteRoute,
+  FileConventionsEventSlugRoute: FileConventionsEventSlugRoute,
+  FileConventionsIndexRoute: FileConventionsIndexRoute,
+  FileConventionsOneTwoThreeRoute: FileConventionsOneTwoThreeRoute,
+}
+
+const FileConventionsRouteRouteWithChildren =
+  FileConventionsRouteRoute._addFileChildren(FileConventionsRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FileConventionsRouteRoute: FileConventionsRouteRouteWithChildren,
   CalendarRoute: CalendarRoute,
   MyEventsRoute: MyEventsRoute,
   ProfileRoute: ProfileRoute,

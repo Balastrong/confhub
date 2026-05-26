@@ -5,6 +5,7 @@ Based on the current order in `.demo/tanstack-start-demo.json`.
 1. Framing the talk: why TanStack Start exists, and the client-first vs server-first positioning.
 2. Router fundamentals kickoff: typed path params with a live route example.
 3. Type inference proof: hover-driven type safety for route params.
+11. (DONE) File-based routing: naming conventions, generated behavior, and what the filesystem model unlocks.
 4. Typesafe navigation: links enforce required params and guide autocomplete.
 5. Search state management: moving filters from local React state into validated router search params.
 6. (NEW?) Advanced search params: custom serialization, stripping defaults, and making URL state cleaner without losing type safety.
@@ -12,7 +13,6 @@ Based on the current order in `.demo/tanstack-start-demo.json`.
 8. Data loading: loaders, typed loader results, caching with `staleTime`, and route preloading.
 9. (DONE) TanStack Query integration: query prefetching and cache hydration with loaders and server functions. TODO: Add a demo?
 10. (NEW?) Navigation blocking: guarding route transitions when local form state is dirty.
-11. (NEW) File-based routing: naming conventions, generated behavior, and what the filesystem model unlocks.
 12. Router recap: TanStack Router already covers a large part of app architecture.
 13. Start expansion: TanStack Start adds server capabilities on top of the router model.
 14. SSR: full-document server rendering as an opt-in extension of the same app model.

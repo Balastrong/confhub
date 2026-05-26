@@ -131,6 +131,49 @@
     },
     {
       "id": "demo-mgankfbh-9xy0",
+      "title": "File naming slide",
+      "moves": [
+        {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
+        {
+          "action": "openSlide",
+          "path": ".demo/slides/router/file-naming.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
+    },
+    {
+      "id": "demo-mgankfbh-filetree",
+      "title": "File naming examples",
+      "moves": [
+        {
+          "action": "closeAll"
+        },
+        {
+          "action": "open",
+          "path": "src/routes/file-conventions/one.two.three.tsx"
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "revealInExplorer"
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.explorer.fileView.focus"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
+    },
+    {
+      "id": "demo-mgankfbh-typesafe",
       "title": "Typesafe slide",
       "moves": [
         {

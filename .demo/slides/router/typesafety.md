@@ -3,7 +3,6 @@ theme: monomi
 layout: section
 ---
 
-
 # <span class="grad-blue">Type safety</span>
 
 ## Everything is fully typed and automatically <span class="grad-green">inferred</span>

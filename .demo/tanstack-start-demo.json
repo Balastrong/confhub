@@ -505,6 +505,85 @@
       ]
     },
     {
+      "id": "demo-qgankfb1-qry1",
+      "title": "Query Integration Slide",
+      "moves": [
+        {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
+        {
+          "action": "openSlide",
+          "path": ".demo/slides/router/query-integration.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
+    },
+    {
+      "id": "demo-qgankfb1-qry2",
+      "title": "Query Client in Router Context",
+      "moves": [
+        {
+          "action": "highlight",
+          "path": "src/router.tsx",
+          "position": "9:17",
+          "highlightWholeLine": true
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdj3dta-yav1",
+      "title": "Query Preloading Loader",
+      "moves": [
+        {
+          "action": "highlight",
+          "path": "src/routes/communities/index.tsx",
+          "position": "13:15",
+          "highlightWholeLine": true
+        },
+        {
+          "action": "positionCursor",
+          "path": "src/routes/communities/index.tsx",
+          "position": "13,13"
+        },
+        {
+          "action": "waitForTimeout",
+          "timeout": 300
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "editor.action.showHover"
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdj3dta-yav3",
+      "title": "Query Preloading Read",
+      "moves": [
+        {
+          "action": "highlight",
+          "path": "src/routes/communities/index.tsx",
+          "position": "40:50",
+          "highlightWholeLine": true
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdj3dta-yav2",
+      "title": "Query Preloading Suspense Boundary",
+      "moves": [
+        {
+          "action": "highlight",
+          "path": "src/routes/communities/index.tsx",
+          "position": "32:41",
+          "highlightWholeLine": true
+        }
+      ]
+    },
+    {
       "id": "demo-qgankfb1-9dr1",
       "title": "Router outro slide",
       "moves": [
@@ -840,18 +919,6 @@
         "start": "vm",
         "end": "vm-active"
       }
-    },
-    {
-      "id": "demo-mgdj3dta-yav1",
-      "title": "Query Preloading Demo",
-      "moves": [
-        {
-          "action": "highlight",
-          "path": "src/routes/communities/index.tsx",
-          "startPlaceholder": "export const Route",
-          "endPlaceholder": "},"
-        }
-      ]
     },
     {
       "id": "demo-mgak2dta-p5v1",

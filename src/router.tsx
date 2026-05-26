@@ -1,7 +1,4 @@
-import {
-  createRouter as createTanStackRouter,
-  ErrorComponent,
-} from "@tanstack/react-router"
+import { createRouter, ErrorComponent } from "@tanstack/react-router"
 import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query"
 import { routeTree } from "./routeTree.gen"
 import { createQueryClient } from "./lib/tanstack-query"
@@ -11,7 +8,7 @@ import { NotFoundComponent } from "./components/not-found"
 export function getRouter() {
   const queryClient = createQueryClient()
 
-  const router = createTanStackRouter({
+  const router = createRouter({
     routeTree,
     defaultPreload: false,
     defaultErrorComponent: ErrorComponent,

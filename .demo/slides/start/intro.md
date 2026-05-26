@@ -10,9 +10,9 @@ layout: default
   <div class="card">
     <div class="card-header">
       <div class="icon icon-blue icon-lg">📄</div>
-      <h3>Full-document SSR</h3>
+      <h3>SSR + streaming</h3>
     </div>
-    <p class="card-body">Render some or all of the page on the server.</p>
+    <p class="card-body">Render the document early, then stream data progressively.</p>
   </div>
 
   <div class="card">
@@ -20,23 +20,23 @@ layout: default
       <div class="icon icon-green icon-lg">⚙️</div>
       <h3>Server Functions</h3>
     </div>
-    <p class="card-body">Keep backend logic inside the same app codebase.</p>
+    <p class="card-body">Call validated server code with end-to-end types.</p>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <div class="icon icon-purple icon-lg">🔗</div>
-      <h3>End-to-end <span class="grad-blue">typesafety</span></h3>
+      <div class="icon icon-purple icon-lg">🌐</div>
+      <h3>Server routes</h3>
     </div>
-    <p class="card-body">Share types across client and server boundaries.</p>
+    <p class="card-body">Expose HTTP endpoints for webhooks, feeds, and integrations.</p>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <div class="icon icon-yellow icon-lg">🌐</div>
-      <h3>Public endpoints</h3>
+      <div class="icon icon-yellow icon-lg">🛡️</div>
+      <h3>Middleware</h3>
     </div>
-    <p class="card-body">Expose stable HTTP endpoints when external access matters.</p>
+    <p class="card-body">Run auth, logging, and context around server work.</p>
   </div>
 </div>
 

@@ -9,9 +9,15 @@ layout: section
 
 ---
 layout: section
-TODO: Replace this with a mention of the jsday talk
 ---
 
-# <span class="grad-blue">TypeScript</span> is not the goal
+# Real <span class="grad-blue">Type safety</span> should<br/>look like <span class="grad-yellow">JavaScript</span>
 
-## Real <span class="grad-blue">type safety</span> makes React feel <span class="grad-green">simple</span> again
+---
+layout: default
+---
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; justify-items: center; height: 100%; max-width: 1060px; margin: 0 auto;">
+	<img src=".demo/slides/img/jsday_1.jpg" alt="JSDay talk slide about type safety" style="width: auto; max-width: 100%; height: 53vh; object-fit: contain; border-radius: 8px;" />
+	<img src=".demo/slides/img/jsday_2.jpg" alt="JSDay talk slide about type safety" style="width: auto; max-width: 100%; height: 53vh; object-fit: contain; border-radius: 8px;" />
+</div>

@@ -10,7 +10,7 @@ Based on the current order in `.demo/tanstack-start-demo.json`.
 6. (NEW?) Advanced search params: custom serialization, stripping defaults, and making URL state cleaner without losing type safety.
 7. Route context: passing typed context from the root route into child routes.
 8. Data loading: loaders, typed loader results, caching with `staleTime`, and route preloading.
-9. (NEW) TanStack Query integration: query prefetching and cache hydration with loaders and server functions.
+9. (DONE) TanStack Query integration: query prefetching and cache hydration with loaders and server functions. TODO: Add a demo?
 10. (NEW?) Navigation blocking: guarding route transitions when local form state is dirty.
 11. (NEW) File-based routing: naming conventions, generated behavior, and what the filesystem model unlocks.
 12. Router recap: TanStack Router already covers a large part of app architecture.

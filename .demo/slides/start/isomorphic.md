@@ -42,9 +42,9 @@ layout: default
 
 ```tsx
 export const Route = createFileRoute("/items")({
-  ssr: true, // Default true, can also be false or 'data-only'
   loader: () => {
-    // ✅ This can run on BOTH server and client
+    // ✅ This is isomorphic code
+    // Runs on the server if it's the initial request, or on the client for navigation
   },
   component: RouteComponent,
 })

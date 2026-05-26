@@ -630,6 +630,24 @@
       }
     },
     {
+      "id": "demo-qgad1fb1-ssr-false",
+      "title": "SSR can be disabled per route",
+      "moves": [
+        {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
+        {
+          "action": "open",
+          "path": "src/routes/demo/ssr.tsx"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
+    },
+    {
       "id": "demo-qgad1fb1-5xy1",
       "title": "Start isomorphic slide",
       "moves": [

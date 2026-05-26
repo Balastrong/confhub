@@ -7,11 +7,11 @@ Based on the current order in `.demo/tanstack-start-demo.json`.
 3. Type inference proof: hover-driven type safety for route params.
 4. Typesafe navigation: links enforce required params and guide autocomplete.
 5. Search state management: moving filters from local React state into validated router search params.
-6. (NEW) Advanced search params: custom serialization, stripping defaults, and making URL state cleaner without losing type safety.
+6. (NEW?) Advanced search params: custom serialization, stripping defaults, and making URL state cleaner without losing type safety.
 7. Route context: passing typed context from the root route into child routes.
 8. Data loading: loaders, typed loader results, caching with `staleTime`, and route preloading.
 9. (NEW) TanStack Query integration: query prefetching and cache hydration with loaders and server functions.
-10. (NEW) Navigation blocking: guarding route transitions when local form state is dirty.
+10. (NEW?) Navigation blocking: guarding route transitions when local form state is dirty.
 11. (NEW) File-based routing: naming conventions, generated behavior, and what the filesystem model unlocks.
 12. Router recap: TanStack Router already covers a large part of app architecture.
 13. Start expansion: TanStack Start adds server capabilities on top of the router model.

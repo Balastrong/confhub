@@ -18,7 +18,7 @@ Based on the current order in `.demo/tanstack-start-demo.json`.
 14. SSR: full-document server rendering as an opt-in extension of the same app model.
 15. (NEW) Streaming SSR: make the server-rendering story concrete with partial rendering and progressive reveal.
 16. Isomorphic code: shared logic that works cleanly across client and server boundaries.
-17. (NEW) Environment functions and import protection: explaining client/server boundaries without accidental cross-imports.
+17. (DONE) Import protection: `.server.ts` modules make server-only boundaries explicit and catch accidental client imports.
 18. Server functions: colocated backend logic with end-to-end type safety.
 19. Middleware: reusable auth and request pipeline composition for server functions.
 20. Server routes: exposing public endpoints from the same codebase.

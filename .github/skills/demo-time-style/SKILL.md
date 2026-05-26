@@ -41,6 +41,7 @@ Follow these constraints unless the user explicitly asks for a different present
 - Treat `5` moves as a hard ceiling for a normal code beat
 - Keep the visible code fragment very small because the screen shows about `18` lines max
 - Each move should communicate one thing only
+- Do not put two `highlight` moves in the same scene; split them into separate scenes, or use a single `open` move when the whole file is the point
 - Prefer tiny highlights over broad ranges
 - Prefer one short beat per title rather than one overloaded demo
 - Keep setup moves separate from explanation moves when possible

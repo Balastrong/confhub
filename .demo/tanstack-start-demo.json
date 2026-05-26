@@ -757,6 +757,16 @@
       ]
     },
     {
+      "id": "demo-import-protection-server-file",
+      "title": "Import Protection Demo",
+      "moves": [
+        {
+          "action": "open",
+          "path": "src/services/demo/import-protection.server.ts"
+        }
+      ]
+    },
+    {
       "id": "demo-qg5d3fb1-9xy1",
       "title": "Server fn intro slide",
       "moves": [

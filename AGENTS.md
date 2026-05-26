@@ -25,9 +25,11 @@ Every beat should make that promise visible in the editor or browser: routing st
 The presentation is built with **[Demo Time](https://marketplace.visualstudio.com/items?itemName=eliostruyf.vscode-demo-time)** (`eliostruyf.vscode-demo-time`), a VS Code extension that scripts coding demos and presents slides directly inside the editor. Docs: [demotime.show](https://demotime.show/).
 
 Key concepts:
+
 - **Play** → the full `.demo` folder. **Act** → a single `*.yml` or `*.json` file per topic. **Scene** → one beat in the talk. **Move** → one atomic action inside a scene.
 - Supported actions include `open`, `highlight`, `replace`, `snippet`, `openSlide`, browser actions, terminal actions, and arbitrary VS Code commands.
 - Slides are presented inside VS Code, and most code beats are editor-first with small, focused highlights.
+- Do not put two `highlight` moves in the same Demo Time scene. Split multiple highlights into separate scenes, or use a single `open` move when showing the whole file is enough.
 
 ## Canonical Workflow
 

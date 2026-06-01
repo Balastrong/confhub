@@ -1100,7 +1100,22 @@
     },
     {
       "id": "demo-mgdojotb-dk36",
-      "title": "Builder Demo Terminal",
+      "title": "TanStack Builder",
+      "moves": [
+        {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
+        {
+          "action": "openWebsite",
+          "url": "https://tanstack.com/builder",
+          "openInVSCode": true
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdojotb-dk37",
+      "title": "CLI Demo Terminal",
       "moves": [
         {
           "action": "snippet",
@@ -1112,30 +1127,26 @@
       ]
     },
     {
-      "id": "demo-mgdojotb-dk34",
-      "title": "Builder Demo Command",
-      "TODO": "use tanstack create instead",
+      "id": "demo-mgdojotb-dk38",
+      "title": "CLI Demo Command",
       "moves": [
         {
           "action": "executeTerminalCommand",
-          "command": "npx create-tsrouter-app@latest --ui",
+          "command": "npx @tanstack/cli@latest create",
           "insertTypingMode": "character-by-character",
           "insertTypingSpeed": 50
         }
       ]
     },
     {
-      "id": "demo-ajd83hsa-dk36",
-      "title": "Builder Demo Browser",
+      "id": "demo-mgdojotb-dk39",
+      "title": "CLI Demo Dev Server",
       "moves": [
         {
-          "action": "snippet",
-          "contentPath": ".demo/snippets/reset-view.json"
-        },
-        {
-          "action": "openWebsite",
-          "url": "http://localhost:8080",
-          "openInVSCode": true
+          "action": "executeTerminalCommand",
+          "command": "cd ../start-cli-demo && pnpm run dev",
+          "insertTypingMode": "character-by-character",
+          "insertTypingSpeed": 50
         }
       ]
     },

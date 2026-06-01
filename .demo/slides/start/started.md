@@ -10,17 +10,17 @@ layout: default
   <div class="card">
     <div class="card-header">
       <div class="icon icon-green icon-lg">⚡</div>
-      <h3>Quick CLI setup</h3>
+      <h3>CLI setup</h3>
     </div>
-    <p class="card-body"><code>npm create @tanstack/start@latest</code></p>
+    <p class="card-body"><code>npx @tanstack/cli@latest create</code></p>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <div class="icon icon-blue icon-lg">🎨</div>
-      <h3>Visual builder</h3>
+      <div class="icon icon-blue icon-lg">🤖</div>
+      <h3>TanStack Builder</h3>
     </div>
-    <p class="card-body"><code>npx create-tsrouter-app@latest --ui</code></p>
+    <p class="card-body">Pick your stack, get an AI prompt ready to scaffold your project.</p>
   </div>
 
   <div class="card">

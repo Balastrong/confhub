@@ -16,7 +16,7 @@ Based on the current order in `.demo/tanstack-start-demo.json`.
 12. Router recap: TanStack Router already covers a large part of app architecture.
 13. Start expansion: TanStack Start adds server capabilities on top of the router model.
 14. SSR: full-document server rendering as an opt-in extension of the same app model.
-15. (NEW) Streaming SSR: make the server-rendering story concrete with partial rendering and progressive reveal.
+15. (NEW?) Streaming SSR: make the server-rendering story concrete with partial rendering and progressive reveal.
 16. Isomorphic code: shared logic that works cleanly across client and server boundaries.
 17. (DONE) Import protection: `.server.ts` modules make server-only boundaries explicit and catch accidental client imports.
 18. Server functions: colocated backend logic with end-to-end type safety.

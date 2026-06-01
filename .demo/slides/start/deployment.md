@@ -10,38 +10,45 @@ layout: section
 
 ---
 layout: default
-TODO: Update if there are new sponsors
 ---
 
-# Official <span class="grad-green">adapters</span>
+# Official <span class="grad-green">Hosting Partners</span>
 
-<div class="grid grid-2" style="margin-top:20px">
-  <div class="card">
-    <div class="card-header">
-      <div class="icon icon-green">🌐</div>
-      <h3>Netlify</h3>
-    </div>
-    <p class="card-body">Official adapter, great default choice.</p>
-  </div>
-
+<div class="grid grid-3" style="margin-top:20px">
   <div class="card">
     <div class="card-header">
       <div class="icon icon-yellow">☁️</div>
       <h3>Cloudflare</h3>
     </div>
-    <p class="card-body">Official adapter for the edge-first crowd.</p>
+    <p class="card-body">Edge-first with a dedicated Vite plugin.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-green">🌐</div>
+      <h3>Netlify</h3>
+    </div>
+    <p class="card-body">One-click deploy with a dedicated plugin.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-purple">🚆</div>
+      <h3>Railway</h3>
+    </div>
+    <p class="card-body">Zero-config deploys, built-in databases.</p>
   </div>
 </div>
 
 <div class="callout callout-tip" style="margin-top:20px">
-  <p style="margin:0;font-size:1em">If you want the happy path today, start with the official adapters.</p>
+  <p style="margin:0;font-size:1em">If you want the happy path today, start with an Official Hosting Partner.</p>
 </div>
 
 ---
 layout: default
 ---
 
-# Nitro opens <span class="grad-purple">more targets</span>
+# The <span class="grad-purple">Nitro</span> adapter unlocks more targets
 
 <div class="grid grid-auto" style="margin-top:20px">
   <div class="card card-sm">
@@ -49,15 +56,7 @@ layout: default
       <div class="icon icon-blue">▲</div>
       <h3>Vercel</h3>
     </div>
-    <p class="card-body">Nitro handles the hosting bridge.</p>
-  </div>
-
-  <div class="card card-sm">
-    <div class="card-header">
-      <div class="icon icon-green">🦕</div>
-      <h3>Deno</h3>
-    </div>
-    <p class="card-body">Another runtime already in the target list.</p>
+    <p class="card-body">One-click deploy via Nitro.</p>
   </div>
 
   <div class="card card-sm">
@@ -65,7 +64,7 @@ layout: default
       <div class="icon icon-yellow">🟢</div>
       <h3>Node.js</h3>
     </div>
-    <p class="card-body">A solid fit when you want familiar infra.</p>
+    <p class="card-body">Familiar infra, solid default.</p>
   </div>
 
   <div class="card card-sm">
@@ -73,15 +72,31 @@ layout: default
       <div class="icon icon-red">🐳</div>
       <h3>Docker</h3>
     </div>
-    <p class="card-body">Ship it with the rest of your platform stack.</p>
+    <p class="card-body">Ship it with your platform stack.</p>
   </div>
 
   <div class="card card-sm">
     <div class="card-header">
-      <div class="icon icon-purple">🚆</div>
-      <h3>Railway</h3>
+      <div class="icon icon-orange">🥟</div>
+      <h3>Bun</h3>
     </div>
-    <p class="card-body">A good option when you want simple hosting.</p>
+    <p class="card-body">Native runtime with a custom server.</p>
+  </div>
+
+  <div class="card card-sm">
+    <div class="card-header">
+      <div class="icon icon-pink">🚀</div>
+      <h3>Appwrite</h3>
+    </div>
+    <p class="card-body">Connect a repo, auto-detected.</p>
+  </div>
+
+  <div class="card card-sm">
+    <div class="card-header">
+      <div class="icon icon-green">🦕</div>
+      <h3>Deno</h3>
+    </div>
+    <p class="card-body">Another runtime in the Nitro target list.</p>
   </div>
 </div>
 

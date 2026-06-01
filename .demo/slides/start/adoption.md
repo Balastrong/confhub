@@ -42,10 +42,30 @@ layout: default
 
 ---
 layout: default
-TODO: This needs to be updated with the new stats
 ---
 
-<img src=".demo/slides/img/router-npm.png" alt="TanStack Router Stats" style="margin:10px auto" />
+# <span class="grad-green">TanStack Router</span> npm installs
+
+<img src=".demo/slides/img/router-npm.png" alt="TanStack Router Stats" style="margin:25px auto" />
+
+---
+layout: default
+---
+
+# <span class="grad-green">TanStack Router</span> npm installs (April 2026)
+
+
+<img src=".demo/slides/img/router-npm-2.png" alt="TanStack Router Stats" style="margin:25px auto" />
+
+
+---
+layout: default
+---
+
+# <span class="grad-blue">TanStack Start</span> is built on top of <span class="grad-green">TanStack Router</span>
+
+<img src=".demo/slides/img/router-npm-lovable.png" alt="TanStack Router Stats" style="margin:25px auto" />
+
 
 ---
 layout: default
@@ -80,5 +100,5 @@ layout: default
 </div>
 
 <div class="callout callout-tip" style="margin-top:24px">
-  <p style="margin:0;font-size:1em">Starting a new small or medium project? This is a very reasonable time to <span class="grad-lime">jump in</span>.</p>
+  <p style="margin:0;font-size:1em">Starting a new project? This is a very reasonable time to <span class="grad-lime">jump in</span>.</p>
 </div>

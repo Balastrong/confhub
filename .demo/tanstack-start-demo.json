@@ -933,6 +933,24 @@
       ]
     },
     {
+      "id": "demo-mgdojota-hd73",
+      "title": "AI Coding",
+      "moves": [
+        {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
+        {
+          "action": "openSlide",
+          "path": ".demo/slides/start/ai-coding.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
+    },
+    {
       "id": "demo-mgdojota-dh3a",
       "title": "Deployment Slide",
       "moves": [
@@ -1011,18 +1029,6 @@
           "path": "src/routes/profile.tsx",
           "startPlaceholder": "export const Route",
           "endPlaceholder": "},"
-        }
-      ]
-    },
-    {
-      "id": "demo-mgdj3dta-8f5h",
-      "title": "AI Instructions Demo",
-      "TODO:": "Add some instructions and skills, use context7, tanstack mcp, tanstack skill",
-      "moves": [
-        {
-          "action": "highlight",
-          "path": ".github/copilot-instructions.md",
-          "position": "25:43"
         }
       ]
     },

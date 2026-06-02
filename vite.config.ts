@@ -2,6 +2,7 @@ import netlify from "@netlify/vite-plugin-tanstack-start"
 import { tanstackStart } from "@tanstack/react-start/plugin/vite"
 import tailwindcss from "@tailwindcss/vite"
 import viteReact from "@vitejs/plugin-react"
+import rsc from "@vitejs/plugin-rsc"
 import { defineConfig } from "vite"
 
 export default defineConfig({
@@ -13,7 +14,12 @@ export default defineConfig({
   },
   plugins: [
     tailwindcss(),
-    tanstackStart(),
+    tanstackStart({
+      rsc: {
+        enabled: true,
+      },
+    }),
+    rsc(),
     netlify({ edgeSSR: true }),
     viteReact(),
   ],

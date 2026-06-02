@@ -44,6 +44,7 @@
     "@tanstack/react-router-ssr-query": "^1.166.12",
     "@tanstack/react-start": "^1.167.65",
     "@tanstack/router-core": "^1.169.2",
+    "@vitejs/plugin-rsc": "^0.5.27",
     "better-auth": "^1.6.11",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

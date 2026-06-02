@@ -65,6 +65,46 @@ layout: default
 layout: section
 ---
 
-# RSC support in <span class="grad-blue">TanStack Start</span> <span class="grad-lime">coming soon</span>!
+# RSC is <span class="grad-lime">now available</span> in TanStack Start
 
-## ...as just another way of fetching data for a <span class="grad-blue">client-first</span> app.
+## Just another way to fetch data for a <span class="grad-blue">client-first</span> app.
+
+---
+layout: default
+---
+
+# RSC in one file
+
+<div class="grid grid-2" style="margin-top:24px">
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-blue icon-lg">🖥️</div>
+      <h3>Server component</h3>
+    </div>
+    <p class="card-body">An async component rendered inside a <code>createServerFn</code>.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-green icon-lg">📡</div>
+      <h3><code>renderServerComponent</code></h3>
+    </div>
+    <p class="card-body">Converts JSX to an RSC flight stream, returned from the loader.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-purple icon-lg">⚛️</div>
+      <h3>Client renders it</h3>
+    </div>
+    <p class="card-body"><code>useLoaderData()</code> returns a renderable value — drop it in JSX.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="icon icon-yellow icon-lg">🔒</div>
+      <h3>Server-only code</h3>
+    </div>
+    <p class="card-body">The async component has full access to DB, secrets, and Node.js APIs.</p>
+  </div>
+</div>

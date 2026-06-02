@@ -935,7 +935,6 @@
     {
       "id": "demo-mgdojota-yt73",
       "title": "RSC Slide",
-      "TODO": "Write a RSC demo and update the slides",
       "moves": [
         {
           "action": "snippet",
@@ -950,6 +949,138 @@
         "start": "vm",
         "end": "vm-active"
       }
+    },
+    {
+      "id": "demo-mgdojota-rsc1",
+      "title": "RSC: The Server Component",
+      "moves": [
+        {
+          "action": "highlight",
+          "path": "src/routes/demo/rsc.tsx",
+          "position": "6:19",
+          "highlightWholeLine": true
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdojota-rsc2",
+      "title": "RSC: renderServerComponent",
+      "moves": [
+        {
+          "action": "highlight",
+          "path": "src/routes/demo/rsc.tsx",
+          "position": "21:23",
+          "highlightWholeLine": true
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdojota-rsc3",
+      "title": "RSC: Client renders the result",
+      "moves": [
+        {
+          "action": "highlight",
+          "path": "src/routes/demo/rsc.tsx",
+          "position": "30:37",
+          "highlightWholeLine": true
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdojota-rsc4",
+      "title": "RSC: Browser Demo",
+      "moves": [
+        {
+          "action": "openWebsite",
+          "url": "http://localhost:3000/demo/rsc",
+          "openInVSCode": true
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.action.moveEditorToRightGroup"
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdojota-rscq1",
+      "title": "RSC + Query: props",
+      "moves": [
+        {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
+        {
+          "action": "highlight",
+          "path": "src/routes/demo/rsc-query.$id.tsx",
+          "startPlaceholder": "async function ServerPerson",
+          "endPlaceholder": "}) {",
+          "highlightWholeLine": true
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdojota-rscq2",
+      "title": "RSC + Query: loader Function",
+      "moves": [
+        {
+          "action": "highlight",
+          "path": "src/routes/demo/rsc-query.$id.tsx",
+          "position": "55:61",
+          "highlightWholeLine": true
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdojota-rscq3",
+      "title": "RSC + Query: loader",
+      "moves": [
+        {
+          "action": "highlight",
+          "path": "src/routes/demo/rsc-query.$id.tsx",
+          "position": "63:74",
+          "highlightWholeLine": true
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdojota-rscq4",
+      "title": "RSC + Query: useSuspenseQuery",
+      "moves": [
+        {
+          "action": "highlight",
+          "path": "src/routes/demo/rsc-query.$id.tsx",
+          "position": "87:94",
+          "highlightWholeLine": true
+        },
+        {
+          "action": "positionCursor",
+          "path": "src/routes/demo/rsc-query.$id.tsx",
+          "position": "94,7"
+        },
+        {
+          "action": "waitForTimeout",
+          "timeout": 2000
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "editor.action.showHover"
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdojota-rscq5",
+      "title": "RSC + Query: Browser Demo",
+      "moves": [
+        {
+          "action": "openWebsite",
+          "url": "http://localhost:3000/demo/rsc-query/1",
+          "openInVSCode": true
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.action.moveEditorToRightGroup"
+        }
+      ]
     },
     {
       "id": "demo-mgdojota-hd73",

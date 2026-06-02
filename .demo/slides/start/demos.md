@@ -1,7 +1,6 @@
 ---
 theme: monomi
 layout: section
-TODO: Find the right wording here
 ---
 
 # Less <span class="grad-blue">framework</span>, more <span class="grad-purple">product</span>

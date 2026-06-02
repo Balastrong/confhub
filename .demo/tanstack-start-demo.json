@@ -933,6 +933,25 @@
       ]
     },
     {
+      "id": "demo-mgdojota-yt73",
+      "title": "RSC Slide",
+      "TODO": "Write a RSC demo and update the slides",
+      "moves": [
+        {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
+        {
+          "action": "openSlide",
+          "path": ".demo/slides/start/rsc.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
+    },
+    {
       "id": "demo-mgdojota-hd73",
       "title": "AI Coding",
       "moves": [
@@ -1082,25 +1101,6 @@
           "position": "216:227"
         }
       ]
-    },
-    {
-      "id": "demo-mgdojota-yt73",
-      "title": "RSC Slide",
-      "TODO": "Write a RSC demo and update the slides",
-      "moves": [
-        {
-          "action": "snippet",
-          "contentPath": ".demo/snippets/reset-view.json"
-        },
-        {
-          "action": "openSlide",
-          "path": ".demo/slides/start/rsc.md"
-        }
-      ],
-      "icons": {
-        "start": "vm",
-        "end": "vm-active"
-      }
     },
     {
       "id": "demo-mgdojotb-yt73",

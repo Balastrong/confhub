@@ -4,6 +4,6 @@ layout: section
 TODO: Find the right wording here
 ---
 
-# Some <span class="grad-purple">cool features</span> you can do
+# Less <span class="grad-blue">framework</span>, more <span class="grad-purple">product</span>
 
-## A glimpse into some real-world use cases made easy by TanStack Start
+## Some extra examples of what TanStack Start makes <span class="grad-green">simple</span>

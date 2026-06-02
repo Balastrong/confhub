@@ -1039,29 +1039,47 @@
     {
       "id": "demo-mgdj3dta-1jd1",
       "title": "LLM Demo",
-      "TODO": "Show the full function, even better with tanstack AI",
+      "TODO": "Would be cool to also implement a simple stream response and show the code",
       "moves": [
         {
           "action": "snippet",
           "contentPath": ".demo/snippets/reset-view.json"
         },
         {
-          "action": "highlight",
-          "path": "src/services/ai/api.ts",
-          "startPlaceholder": "new OpenAI",
-          "endPlaceholder": "new OpenAI"
+          "action": "openTerminal"
+        },
+        {
+          "action": "executeTerminalCommand",
+          "command": "cd ../tanstack-start-ai-demo && pnpm run dev",
+          "insertTypingMode": "character-by-character",
+          "insertTypingSpeed": 50
+        },
+        {
+          "action": "openWebsite",
+          "url": "http://localhost:3049/demo/ai-chat",
+          "openInVSCode": true
         }
       ]
     },
     {
       "id": "demo-mgdj3dta-1875",
       "title": "MCP Server Demo",
-      "TODO": "Decide if raw or use a library",
       "moves": [
         {
           "action": "highlight",
           "path": "src/routes/api/mcp.ts",
           "position": "286:303"
+        }
+      ]
+    },
+    {
+      "id": "demo-mgdj3dta-1254",
+      "title": "MCP Server Auth Tool Demo",
+      "moves": [
+        {
+          "action": "highlight",
+          "path": "src/routes/api/mcp.ts",
+          "position": "216:227"
         }
       ]
     },

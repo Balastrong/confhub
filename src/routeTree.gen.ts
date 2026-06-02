@@ -29,8 +29,11 @@ import { Route as CommunitiesCommunitySlugRouteImport } from './routes/communiti
 import { Route as ApiMcpRouteImport } from './routes/api/mcp'
 import { Route as DotwellKnownOpenidConfigurationRouteImport } from './routes/[.]well-known/openid-configuration'
 import { Route as FileConventionsLayoutRouteRouteImport } from './routes/file-conventions/_layout/route'
+import { Route as DemoauthenticatedRouteRouteImport } from './routes/demo/(authenticated)/route'
 import { Route as EventsProSubmitRouteImport } from './routes/events/pro.submit'
 import { Route as EventsProEventIdRouteImport } from './routes/events/pro.$eventId'
+import { Route as DemoauthenticatedSettingsRouteImport } from './routes/demo/(authenticated)/settings'
+import { Route as DemoauthenticatedDashboardRouteImport } from './routes/demo/(authenticated)/dashboard'
 import { Route as ApiDemoNameRouteImport } from './routes/api/demo.$name'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth.$'
 import { Route as FileConventionsOneTwoThreeRouteImport } from './routes/file-conventions/one.two.three'
@@ -138,6 +141,11 @@ const FileConventionsLayoutRouteRoute =
     id: '/_layout',
     getParentRoute: () => FileConventionsRouteRoute,
   } as any)
+const DemoauthenticatedRouteRoute = DemoauthenticatedRouteRouteImport.update({
+  id: '/demo/(authenticated)',
+  path: '/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EventsProSubmitRoute = EventsProSubmitRouteImport.update({
   id: '/events/pro/submit',
   path: '/events/pro/submit',
@@ -148,6 +156,18 @@ const EventsProEventIdRoute = EventsProEventIdRouteImport.update({
   path: '/events/pro/$eventId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DemoauthenticatedSettingsRoute =
+  DemoauthenticatedSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => DemoauthenticatedRouteRoute,
+  } as any)
+const DemoauthenticatedDashboardRoute =
+  DemoauthenticatedDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => DemoauthenticatedRouteRoute,
+  } as any)
 const ApiDemoNameRoute = ApiDemoNameRouteImport.update({
   id: '/api/demo/$name',
   path: '/api/demo/$name',
@@ -173,6 +193,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/demo': typeof DemoauthenticatedRouteRouteWithChildren
   '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationRoute
   '/api/mcp': typeof ApiMcpRoute
   '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
@@ -187,6 +208,8 @@ export interface FileRoutesByFullPath {
   '/file-conventions/': typeof FileConventionsIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/demo/$name': typeof ApiDemoNameRoute
+  '/demo/dashboard': typeof DemoauthenticatedDashboardRoute
+  '/demo/settings': typeof DemoauthenticatedSettingsRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
   '/events/pro/submit': typeof EventsProSubmitRoute
   '/file-conventions/one/two/three': typeof FileConventionsOneTwoThreeRoute
@@ -198,6 +221,7 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/demo': typeof DemoauthenticatedRouteRouteWithChildren
   '/file-conventions': typeof FileConventionsIndexRoute
   '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationRoute
   '/api/mcp': typeof ApiMcpRoute
@@ -212,6 +236,8 @@ export interface FileRoutesByTo {
   '/communities': typeof CommunitiesIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/demo/$name': typeof ApiDemoNameRoute
+  '/demo/dashboard': typeof DemoauthenticatedDashboardRoute
+  '/demo/settings': typeof DemoauthenticatedSettingsRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
   '/events/pro/submit': typeof EventsProSubmitRoute
   '/file-conventions/one/two/three': typeof FileConventionsOneTwoThreeRoute
@@ -225,6 +251,7 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/sign-in': typeof SignInRoute
   '/sign-up': typeof SignUpRoute
+  '/demo/(authenticated)': typeof DemoauthenticatedRouteRouteWithChildren
   '/file-conventions/_layout': typeof FileConventionsLayoutRouteRoute
   '/.well-known/openid-configuration': typeof DotwellKnownOpenidConfigurationRoute
   '/api/mcp': typeof ApiMcpRoute
@@ -240,6 +267,8 @@ export interface FileRoutesById {
   '/file-conventions/': typeof FileConventionsIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/demo/$name': typeof ApiDemoNameRoute
+  '/demo/(authenticated)/dashboard': typeof DemoauthenticatedDashboardRoute
+  '/demo/(authenticated)/settings': typeof DemoauthenticatedSettingsRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
   '/events/pro/submit': typeof EventsProSubmitRoute
   '/file-conventions/one/two/three': typeof FileConventionsOneTwoThreeRoute
@@ -254,6 +283,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
+    | '/demo'
     | '/.well-known/openid-configuration'
     | '/api/mcp'
     | '/communities/$communitySlug'
@@ -268,6 +298,8 @@ export interface FileRouteTypes {
     | '/file-conventions/'
     | '/api/auth/$'
     | '/api/demo/$name'
+    | '/demo/dashboard'
+    | '/demo/settings'
     | '/events/pro/$eventId'
     | '/events/pro/submit'
     | '/file-conventions/one/two/three'
@@ -279,6 +311,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
+    | '/demo'
     | '/file-conventions'
     | '/.well-known/openid-configuration'
     | '/api/mcp'
@@ -293,6 +326,8 @@ export interface FileRouteTypes {
     | '/communities'
     | '/api/auth/$'
     | '/api/demo/$name'
+    | '/demo/dashboard'
+    | '/demo/settings'
     | '/events/pro/$eventId'
     | '/events/pro/submit'
     | '/file-conventions/one/two/three'
@@ -305,6 +340,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sign-in'
     | '/sign-up'
+    | '/demo/(authenticated)'
     | '/file-conventions/_layout'
     | '/.well-known/openid-configuration'
     | '/api/mcp'
@@ -320,6 +356,8 @@ export interface FileRouteTypes {
     | '/file-conventions/'
     | '/api/auth/$'
     | '/api/demo/$name'
+    | '/demo/(authenticated)/dashboard'
+    | '/demo/(authenticated)/settings'
     | '/events/pro/$eventId'
     | '/events/pro/submit'
     | '/file-conventions/one/two/three'
@@ -333,6 +371,7 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   SignInRoute: typeof SignInRoute
   SignUpRoute: typeof SignUpRoute
+  DemoauthenticatedRouteRoute: typeof DemoauthenticatedRouteRouteWithChildren
   DotwellKnownOpenidConfigurationRoute: typeof DotwellKnownOpenidConfigurationRoute
   ApiMcpRoute: typeof ApiMcpRoute
   CommunitiesCommunitySlugRoute: typeof CommunitiesCommunitySlugRoute
@@ -491,6 +530,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FileConventionsLayoutRouteRouteImport
       parentRoute: typeof FileConventionsRouteRoute
     }
+    '/demo/(authenticated)': {
+      id: '/demo/(authenticated)'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoauthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/events/pro/submit': {
       id: '/events/pro/submit'
       path: '/events/pro/submit'
@@ -504,6 +550,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/events/pro/$eventId'
       preLoaderRoute: typeof EventsProEventIdRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/demo/(authenticated)/settings': {
+      id: '/demo/(authenticated)/settings'
+      path: '/settings'
+      fullPath: '/demo/settings'
+      preLoaderRoute: typeof DemoauthenticatedSettingsRouteImport
+      parentRoute: typeof DemoauthenticatedRouteRoute
+    }
+    '/demo/(authenticated)/dashboard': {
+      id: '/demo/(authenticated)/dashboard'
+      path: '/dashboard'
+      fullPath: '/demo/dashboard'
+      preLoaderRoute: typeof DemoauthenticatedDashboardRouteImport
+      parentRoute: typeof DemoauthenticatedRouteRoute
     }
     '/api/demo/$name': {
       id: '/api/demo/$name'
@@ -546,6 +606,22 @@ const FileConventionsRouteRouteChildren: FileConventionsRouteRouteChildren = {
 const FileConventionsRouteRouteWithChildren =
   FileConventionsRouteRoute._addFileChildren(FileConventionsRouteRouteChildren)
 
+interface DemoauthenticatedRouteRouteChildren {
+  DemoauthenticatedDashboardRoute: typeof DemoauthenticatedDashboardRoute
+  DemoauthenticatedSettingsRoute: typeof DemoauthenticatedSettingsRoute
+}
+
+const DemoauthenticatedRouteRouteChildren: DemoauthenticatedRouteRouteChildren =
+  {
+    DemoauthenticatedDashboardRoute: DemoauthenticatedDashboardRoute,
+    DemoauthenticatedSettingsRoute: DemoauthenticatedSettingsRoute,
+  }
+
+const DemoauthenticatedRouteRouteWithChildren =
+  DemoauthenticatedRouteRoute._addFileChildren(
+    DemoauthenticatedRouteRouteChildren,
+  )
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FileConventionsRouteRoute: FileConventionsRouteRouteWithChildren,
@@ -554,6 +630,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   SignInRoute: SignInRoute,
   SignUpRoute: SignUpRoute,
+  DemoauthenticatedRouteRoute: DemoauthenticatedRouteRouteWithChildren,
   DotwellKnownOpenidConfigurationRoute: DotwellKnownOpenidConfigurationRoute,
   ApiMcpRoute: ApiMcpRoute,
   CommunitiesCommunitySlugRoute: CommunitiesCommunitySlugRoute,

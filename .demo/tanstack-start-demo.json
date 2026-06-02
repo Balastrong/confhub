@@ -993,7 +993,7 @@
     },
     {
       "id": "demo-mgdojota-ya13",
-      "title": "Unlimited Time Slide",
+      "title": "Cool tricks",
       "moves": [
         {
           "action": "snippet",
@@ -1022,13 +1022,17 @@
     },
     {
       "id": "demo-mgdj3dta-p5v1",
-      "title": "Protected Routes Demo",
+      "title": "Nested Protected Routes Demo",
       "moves": [
         {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.explorer.fileView.focus"
+        },
+        {
           "action": "highlight",
-          "path": "src/routes/profile.tsx",
-          "startPlaceholder": "export const Route",
-          "endPlaceholder": "},"
+          "path": "src/routes/demo/(authenticated)/route.tsx",
+          "startPlaceholder": "export const",
+          "endPlaceholder": ")"
         }
       ]
     },
@@ -1037,6 +1041,10 @@
       "title": "LLM Demo",
       "TODO": "Show the full function, even better with tanstack AI",
       "moves": [
+        {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
         {
           "action": "highlight",
           "path": "src/services/ai/api.ts",

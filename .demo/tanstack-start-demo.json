@@ -981,7 +981,7 @@
         {
           "action": "highlight",
           "path": "src/routes/demo/rsc.tsx",
-          "position": "30:37",
+          "position": "25:37",
           "highlightWholeLine": true
         }
       ]

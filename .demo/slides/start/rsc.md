@@ -5,7 +5,9 @@ TODO: We have to do this from scratch
 ---
 
 
-# What about React <span class="grad-orange">Server Components</span>?
+# What about <span class="grad-orange">RSC?</span>
+
+## (React Server Components)
 
 ---
 layout: default
@@ -47,7 +49,7 @@ layout: default
 layout: default
 ---
 
-# RSCs are still <span class="grad-blue">data fetching</span>
+# RSCs are still kind of a <span class="grad-blue">data fetching</span> primitive
 
 <div class="card" style="margin-top:24px">
   <div class="card-header">
@@ -65,46 +67,44 @@ layout: default
 layout: section
 ---
 
-# RSC is <span class="grad-lime">now available</span> in TanStack Start
-
-## Just another way to fetch data for a <span class="grad-blue">client-first</span> app.
+# <span class="grad-blue">TanStack Start</span> brings its own<br/>RSC Flavour!
 
 ---
 layout: default
 ---
 
-# RSC in one file
+# RSC in Start
 
 <div class="grid grid-2" style="margin-top:24px">
   <div class="card">
     <div class="card-header">
       <div class="icon icon-blue icon-lg">🖥️</div>
-      <h3>Server component</h3>
+      <h3>Rendered on the server</h3>
     </div>
-    <p class="card-body">An async component rendered inside a <code>createServerFn</code>.</p>
+    <p class="card-body">The component is rendered in a server function.</p>
   </div>
 
   <div class="card">
     <div class="card-header">
       <div class="icon icon-green icon-lg">📡</div>
-      <h3><code>renderServerComponent</code></h3>
+      <h3>Returned through the loader</h3>
     </div>
-    <p class="card-body">Converts JSX to an RSC flight stream, returned from the loader.</p>
+    <p class="card-body">The loader returns it with the rest of the route data.</p>
   </div>
 
   <div class="card">
     <div class="card-header">
       <div class="icon icon-purple icon-lg">⚛️</div>
-      <h3>Client renders it</h3>
+      <h3>Streamed into the page</h3>
     </div>
-    <p class="card-body"><code>useLoaderData()</code> returns a renderable value — drop it in JSX.</p>
+    <p class="card-body">React receives it and renders it into the page.</p>
   </div>
 
   <div class="card">
     <div class="card-header">
       <div class="icon icon-yellow icon-lg">🔒</div>
-      <h3>Server-only code</h3>
+      <h3>Server logic stays server-side</h3>
     </div>
-    <p class="card-body">The async component has full access to DB, secrets, and Node.js APIs.</p>
+    <p class="card-body">Data, secrets, and heavy code stay off the client.</p>
   </div>
 </div>

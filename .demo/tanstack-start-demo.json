@@ -956,8 +956,8 @@
       "moves": [
         {
           "action": "highlight",
-          "path": "src/routes/demo/rsc.tsx",
-          "position": "6:19",
+          "path": "src/routes/demo/rsc.$id.tsx",
+          "position": "8:27",
           "highlightWholeLine": true
         }
       ]
@@ -968,8 +968,8 @@
       "moves": [
         {
           "action": "highlight",
-          "path": "src/routes/demo/rsc.tsx",
-          "position": "21:23",
+          "path": "src/routes/demo/rsc.$id.tsx",
+          "position": "29:33",
           "highlightWholeLine": true
         }
       ]
@@ -980,8 +980,8 @@
       "moves": [
         {
           "action": "highlight",
-          "path": "src/routes/demo/rsc.tsx",
-          "position": "25:37",
+          "path": "src/routes/demo/rsc.$id.tsx",
+          "position": "35:48",
           "highlightWholeLine": true
         }
       ]
@@ -992,7 +992,7 @@
       "moves": [
         {
           "action": "openWebsite",
-          "url": "http://localhost:3000/demo/rsc",
+          "url": "http://localhost:3000/demo/rsc/1",
           "openInVSCode": true
         },
         {
@@ -1002,30 +1002,43 @@
       ]
     },
     {
-      "id": "demo-mgdojota-rscq1",
-      "title": "RSC + Query: props",
+      "id": "demo-mgdojota-rsc-transition",
+      "title": "RSC + Query Transition",
       "moves": [
         {
           "action": "snippet",
           "contentPath": ".demo/snippets/reset-view.json"
         },
         {
+          "action": "openSlide",
+          "path": ".demo/slides/start/rsc-query-transition.md"
+        }
+      ],
+      "icons": {
+        "start": "vm",
+        "end": "vm-active"
+      }
+    },
+    {
+      "id": "demo-mgdojota-rscq1",
+      "title": "RSC + Query: server component",
+      "moves": [
+        {
           "action": "highlight",
-          "path": "src/routes/demo/rsc-query.$id.tsx",
-          "startPlaceholder": "async function ServerPerson",
-          "endPlaceholder": "}) {",
+          "path": "src/routes/demo/rsc-query.tsx",
+          "position": "12:26",
           "highlightWholeLine": true
         }
       ]
     },
     {
       "id": "demo-mgdojota-rscq2",
-      "title": "RSC + Query: loader Function",
+      "title": "RSC + Query: server function",
       "moves": [
         {
           "action": "highlight",
-          "path": "src/routes/demo/rsc-query.$id.tsx",
-          "position": "55:61",
+          "path": "src/routes/demo/rsc-query.tsx",
+          "position": "28:30",
           "highlightWholeLine": true
         }
       ]
@@ -1036,8 +1049,8 @@
       "moves": [
         {
           "action": "highlight",
-          "path": "src/routes/demo/rsc-query.$id.tsx",
-          "position": "63:74",
+          "path": "src/routes/demo/rsc-query.tsx",
+          "position": "32:43",
           "highlightWholeLine": true
         }
       ]
@@ -1048,14 +1061,14 @@
       "moves": [
         {
           "action": "highlight",
-          "path": "src/routes/demo/rsc-query.$id.tsx",
-          "position": "87:94",
+          "path": "src/routes/demo/rsc-query.tsx",
+          "position": "45:67",
           "highlightWholeLine": true
         },
         {
           "action": "positionCursor",
-          "path": "src/routes/demo/rsc-query.$id.tsx",
-          "position": "94,7"
+          "path": "src/routes/demo/rsc-query.tsx",
+          "position": "58,50"
         },
         {
           "action": "waitForTimeout",
@@ -1073,7 +1086,7 @@
       "moves": [
         {
           "action": "openWebsite",
-          "url": "http://localhost:3000/demo/rsc-query/1",
+          "url": "http://localhost:3000/demo/rsc-query",
           "openInVSCode": true
         },
         {

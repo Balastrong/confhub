@@ -23,7 +23,7 @@ import { Route as EventsSubmitRouteImport } from './routes/events/submit'
 import { Route as EventsEventSlugRouteImport } from './routes/events/$eventSlug'
 import { Route as DemoSsrRouteImport } from './routes/demo/ssr'
 import { Route as DemoSearchRouteImport } from './routes/demo/search'
-import { Route as DemoRscRouteImport } from './routes/demo/rsc'
+import { Route as DemoRscQueryRouteImport } from './routes/demo/rsc-query'
 import { Route as DemoLoadersRouteImport } from './routes/demo/loaders'
 import { Route as CommunitiesCreateRouteImport } from './routes/communities/create'
 import { Route as CommunitiesCommunitySlugRouteImport } from './routes/communities/$communitySlug'
@@ -33,7 +33,7 @@ import { Route as FileConventionsLayoutRouteRouteImport } from './routes/file-co
 import { Route as DemoauthenticatedRouteRouteImport } from './routes/demo/(authenticated)/route'
 import { Route as EventsProSubmitRouteImport } from './routes/events/pro.submit'
 import { Route as EventsProEventIdRouteImport } from './routes/events/pro.$eventId'
-import { Route as DemoRscQueryIdRouteImport } from './routes/demo/rsc-query.$id'
+import { Route as DemoRscIdRouteImport } from './routes/demo/rsc.$id'
 import { Route as DemoauthenticatedSettingsRouteImport } from './routes/demo/(authenticated)/settings'
 import { Route as DemoauthenticatedDashboardRouteImport } from './routes/demo/(authenticated)/dashboard'
 import { Route as ApiDemoNameRouteImport } from './routes/api/demo.$name'
@@ -111,9 +111,9 @@ const DemoSearchRoute = DemoSearchRouteImport.update({
   path: '/demo/search',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoRscRoute = DemoRscRouteImport.update({
-  id: '/demo/rsc',
-  path: '/demo/rsc',
+const DemoRscQueryRoute = DemoRscQueryRouteImport.update({
+  id: '/demo/rsc-query',
+  path: '/demo/rsc-query',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoLoadersRoute = DemoLoadersRouteImport.update({
@@ -163,9 +163,9 @@ const EventsProEventIdRoute = EventsProEventIdRouteImport.update({
   path: '/events/pro/$eventId',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoRscQueryIdRoute = DemoRscQueryIdRouteImport.update({
-  id: '/demo/rsc-query/$id',
-  path: '/demo/rsc-query/$id',
+const DemoRscIdRoute = DemoRscIdRouteImport.update({
+  id: '/demo/rsc/$id',
+  path: '/demo/rsc/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoauthenticatedSettingsRoute =
@@ -211,7 +211,7 @@ export interface FileRoutesByFullPath {
   '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
   '/communities/create': typeof CommunitiesCreateRoute
   '/demo/loaders': typeof DemoLoadersRoute
-  '/demo/rsc': typeof DemoRscRoute
+  '/demo/rsc-query': typeof DemoRscQueryRoute
   '/demo/search': typeof DemoSearchRoute
   '/demo/ssr': typeof DemoSsrRoute
   '/events/$eventSlug': typeof EventsEventSlugRoute
@@ -223,7 +223,7 @@ export interface FileRoutesByFullPath {
   '/api/demo/$name': typeof ApiDemoNameRoute
   '/demo/dashboard': typeof DemoauthenticatedDashboardRoute
   '/demo/settings': typeof DemoauthenticatedSettingsRoute
-  '/demo/rsc-query/$id': typeof DemoRscQueryIdRoute
+  '/demo/rsc/$id': typeof DemoRscIdRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
   '/events/pro/submit': typeof EventsProSubmitRoute
   '/file-conventions/one/two/three': typeof FileConventionsOneTwoThreeRoute
@@ -242,7 +242,7 @@ export interface FileRoutesByTo {
   '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
   '/communities/create': typeof CommunitiesCreateRoute
   '/demo/loaders': typeof DemoLoadersRoute
-  '/demo/rsc': typeof DemoRscRoute
+  '/demo/rsc-query': typeof DemoRscQueryRoute
   '/demo/search': typeof DemoSearchRoute
   '/demo/ssr': typeof DemoSsrRoute
   '/events/$eventSlug': typeof EventsEventSlugRoute
@@ -253,7 +253,7 @@ export interface FileRoutesByTo {
   '/api/demo/$name': typeof ApiDemoNameRoute
   '/demo/dashboard': typeof DemoauthenticatedDashboardRoute
   '/demo/settings': typeof DemoauthenticatedSettingsRoute
-  '/demo/rsc-query/$id': typeof DemoRscQueryIdRoute
+  '/demo/rsc/$id': typeof DemoRscIdRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
   '/events/pro/submit': typeof EventsProSubmitRoute
   '/file-conventions/one/two/three': typeof FileConventionsOneTwoThreeRoute
@@ -274,7 +274,7 @@ export interface FileRoutesById {
   '/communities/$communitySlug': typeof CommunitiesCommunitySlugRoute
   '/communities/create': typeof CommunitiesCreateRoute
   '/demo/loaders': typeof DemoLoadersRoute
-  '/demo/rsc': typeof DemoRscRoute
+  '/demo/rsc-query': typeof DemoRscQueryRoute
   '/demo/search': typeof DemoSearchRoute
   '/demo/ssr': typeof DemoSsrRoute
   '/events/$eventSlug': typeof EventsEventSlugRoute
@@ -286,7 +286,7 @@ export interface FileRoutesById {
   '/api/demo/$name': typeof ApiDemoNameRoute
   '/demo/(authenticated)/dashboard': typeof DemoauthenticatedDashboardRoute
   '/demo/(authenticated)/settings': typeof DemoauthenticatedSettingsRoute
-  '/demo/rsc-query/$id': typeof DemoRscQueryIdRoute
+  '/demo/rsc/$id': typeof DemoRscIdRoute
   '/events/pro/$eventId': typeof EventsProEventIdRoute
   '/events/pro/submit': typeof EventsProSubmitRoute
   '/file-conventions/one/two/three': typeof FileConventionsOneTwoThreeRoute
@@ -307,7 +307,7 @@ export interface FileRouteTypes {
     | '/communities/$communitySlug'
     | '/communities/create'
     | '/demo/loaders'
-    | '/demo/rsc'
+    | '/demo/rsc-query'
     | '/demo/search'
     | '/demo/ssr'
     | '/events/$eventSlug'
@@ -319,7 +319,7 @@ export interface FileRouteTypes {
     | '/api/demo/$name'
     | '/demo/dashboard'
     | '/demo/settings'
-    | '/demo/rsc-query/$id'
+    | '/demo/rsc/$id'
     | '/events/pro/$eventId'
     | '/events/pro/submit'
     | '/file-conventions/one/two/three'
@@ -338,7 +338,7 @@ export interface FileRouteTypes {
     | '/communities/$communitySlug'
     | '/communities/create'
     | '/demo/loaders'
-    | '/demo/rsc'
+    | '/demo/rsc-query'
     | '/demo/search'
     | '/demo/ssr'
     | '/events/$eventSlug'
@@ -349,7 +349,7 @@ export interface FileRouteTypes {
     | '/api/demo/$name'
     | '/demo/dashboard'
     | '/demo/settings'
-    | '/demo/rsc-query/$id'
+    | '/demo/rsc/$id'
     | '/events/pro/$eventId'
     | '/events/pro/submit'
     | '/file-conventions/one/two/three'
@@ -369,7 +369,7 @@ export interface FileRouteTypes {
     | '/communities/$communitySlug'
     | '/communities/create'
     | '/demo/loaders'
-    | '/demo/rsc'
+    | '/demo/rsc-query'
     | '/demo/search'
     | '/demo/ssr'
     | '/events/$eventSlug'
@@ -381,7 +381,7 @@ export interface FileRouteTypes {
     | '/api/demo/$name'
     | '/demo/(authenticated)/dashboard'
     | '/demo/(authenticated)/settings'
-    | '/demo/rsc-query/$id'
+    | '/demo/rsc/$id'
     | '/events/pro/$eventId'
     | '/events/pro/submit'
     | '/file-conventions/one/two/three'
@@ -401,7 +401,7 @@ export interface RootRouteChildren {
   CommunitiesCommunitySlugRoute: typeof CommunitiesCommunitySlugRoute
   CommunitiesCreateRoute: typeof CommunitiesCreateRoute
   DemoLoadersRoute: typeof DemoLoadersRoute
-  DemoRscRoute: typeof DemoRscRoute
+  DemoRscQueryRoute: typeof DemoRscQueryRoute
   DemoSearchRoute: typeof DemoSearchRoute
   DemoSsrRoute: typeof DemoSsrRoute
   EventsEventSlugRoute: typeof EventsEventSlugRoute
@@ -409,7 +409,7 @@ export interface RootRouteChildren {
   CommunitiesIndexRoute: typeof CommunitiesIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiDemoNameRoute: typeof ApiDemoNameRoute
-  DemoRscQueryIdRoute: typeof DemoRscQueryIdRoute
+  DemoRscIdRoute: typeof DemoRscIdRoute
   EventsProEventIdRoute: typeof EventsProEventIdRoute
   EventsProSubmitRoute: typeof EventsProSubmitRoute
 }
@@ -514,11 +514,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoSearchRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/rsc': {
-      id: '/demo/rsc'
-      path: '/demo/rsc'
-      fullPath: '/demo/rsc'
-      preLoaderRoute: typeof DemoRscRouteImport
+    '/demo/rsc-query': {
+      id: '/demo/rsc-query'
+      path: '/demo/rsc-query'
+      fullPath: '/demo/rsc-query'
+      preLoaderRoute: typeof DemoRscQueryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo/loaders': {
@@ -584,11 +584,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsProEventIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/rsc-query/$id': {
-      id: '/demo/rsc-query/$id'
-      path: '/demo/rsc-query/$id'
-      fullPath: '/demo/rsc-query/$id'
-      preLoaderRoute: typeof DemoRscQueryIdRouteImport
+    '/demo/rsc/$id': {
+      id: '/demo/rsc/$id'
+      path: '/demo/rsc/$id'
+      fullPath: '/demo/rsc/$id'
+      preLoaderRoute: typeof DemoRscIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo/(authenticated)/settings': {
@@ -676,7 +676,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommunitiesCommunitySlugRoute: CommunitiesCommunitySlugRoute,
   CommunitiesCreateRoute: CommunitiesCreateRoute,
   DemoLoadersRoute: DemoLoadersRoute,
-  DemoRscRoute: DemoRscRoute,
+  DemoRscQueryRoute: DemoRscQueryRoute,
   DemoSearchRoute: DemoSearchRoute,
   DemoSsrRoute: DemoSsrRoute,
   EventsEventSlugRoute: EventsEventSlugRoute,
@@ -684,7 +684,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommunitiesIndexRoute: CommunitiesIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiDemoNameRoute: ApiDemoNameRoute,
-  DemoRscQueryIdRoute: DemoRscQueryIdRoute,
+  DemoRscIdRoute: DemoRscIdRoute,
   EventsProEventIdRoute: EventsProEventIdRoute,
   EventsProSubmitRoute: EventsProSubmitRoute,
 }

@@ -1,7 +1,6 @@
 ---
 theme: monomi
 layout: section
-TODO: We have to do this from scratch
 ---
 
 

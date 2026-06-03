@@ -26,7 +26,7 @@ Based on the current order in `.demo/tanstack-start-demo.json`.
 22. Real app validation: ConfHub as the production-style example.
 23. Extra full-stack demos: query preloading, dynamic SEO, protected routes, AI instructions, LLM integration, and MCP server support.
 24. Future-facing topic: React Server Components.
-25. (NEW) RSC live example: go beyond the slide with a minimal server-components example that feels concrete, not speculative.
+25. (DONE) RSC live example: go beyond the slide with a minimal server-components example that feels concrete, not speculative.
 26. Adoption and migration: how to get started and how incremental the move can be.
 27. Builder workflow: scaffolding a new app with `create-tsrouter-app` and previewing the result.
 28. Closing.

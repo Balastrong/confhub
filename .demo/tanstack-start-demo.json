@@ -463,7 +463,7 @@
         {
           "action": "highlight",
           "path": "src/routes/demo/loaders.jsx",
-          "position": "4:11"
+          "position": "5:12"
         }
       ]
     },
@@ -474,7 +474,7 @@
         {
           "action": "highlight",
           "path": "src/routes/demo/loaders.jsx",
-          "position": "13:17"
+          "position": "14:19"
         }
       ]
     },
@@ -485,12 +485,12 @@
         {
           "action": "highlight",
           "path": "src/routes/demo/loaders.jsx",
-          "position": "20:29"
+          "position": "21:33"
         },
         {
           "action": "positionCursor",
           "path": "src/routes/demo/loaders.jsx",
-          "position": "21,8"
+          "position": "22,8"
         },
         {
           "action": "waitForTimeout",
@@ -520,14 +520,13 @@
     {
       "id": "demo-qgankfb1-aaa6",
       "title": "Loader Demo Stale",
-      "TODO": "Is still the best demo we can do on loader props?",
       "moves": [
         {
           "action": "insert",
-          "position": "16",
-          "content": "  staleTime: 10000, // Default is 0\n",
+          "position": "18",
+          "content": "  staleTime: 10000, // Default is 0\n})",
           "path": "src/routes/demo/loaders.jsx",
-          "insertTypingMode": "instant"
+          "insertTypingMode": "character-by-character"
         },
         {
           "action": "save"

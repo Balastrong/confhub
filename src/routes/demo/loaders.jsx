@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { format } from "date-fns"
+import { LoaderCircle } from "lucide-react"
 
 export async function getSlowData() {
   await new Promise((resolve) => setTimeout(resolve, 2000))
@@ -13,17 +14,18 @@ export async function getSlowData() {
 export const Route = createFileRoute("/demo/loaders")({
   component: RouteComponent,
   loader: getSlowData,
-  pendingComponent: () => <div>Loading...</div>,
   pendingMs: 0,
 })
 
 function RouteComponent() {
   const loaderData = Route.useLoaderData()
+  const { isFetching } = Route.useMatch()
 
   return (
-    <div className="text-2xl m-4">
+    <div className="m-4 text-2xl flex gap-1 items-center">
       The answer is: <strong>{loaderData.theAnswer}</strong> at{" "}
       <strong>{loaderData.time}</strong>
+      {isFetching && <LoaderCircle className="size-6 animate-spin" />}
     </div>
   )
 }

@@ -395,13 +395,7 @@
           "path": "src/routes/__root.tsx",
           "startPlaceholder": "export const Route = createRootRouteWithContext<{",
           "endPlaceholder": "},"
-        }
-      ]
-    },
-    {
-      "id": "demo-mgadkfbh-9xy2",
-      "title": "Context Demo Root Higlight",
-      "moves": [
+        },
         {
           "action": "executeVSCodeCommand",
           "command": "editor.action.showHover"
@@ -413,25 +407,23 @@
       "title": "Context Demo My Events",
       "moves": [
         {
-          "action": "executeVSCodeCommand",
-          "command": "workbench.action.moveEditorToRightGroup"
+          "action": "open",
+          "path": "src/routes/my-events.tsx"
+        },
+        {
+          "action": "waitForTimeout",
+          "timeout": 200
         },
         {
           "action": "executeVSCodeCommand",
-          "command": "workbench.action.focusRightGroup"
+          "command": "workbench.action.moveEditorToRightGroup"
         },
         {
           "action": "highlight",
           "path": "src/routes/my-events.tsx",
           "startPlaceholder": "export const Route",
           "endPlaceholder": "},"
-        }
-      ]
-    },
-    {
-      "id": "demo-mgadkfbh-9xy4",
-      "title": "Context Demo Events Higlight",
-      "moves": [
+        },
         {
           "action": "executeVSCodeCommand",
           "command": "editor.action.showHover"

@@ -34,5 +34,5 @@ layout: default
 </div>
 
 <div class="callout callout-tip" style="margin-top:24px; margin-left: auto; margin-right: auto; width: fit-content">
-  <p style="margin:0;font-size:1em">...or a mix of both!</p>
+  <p style="margin:0;font-size:1em">All Context Engineering practices are perfectly fine here</p>
 </div>

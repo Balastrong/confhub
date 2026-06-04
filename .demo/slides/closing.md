@@ -12,7 +12,7 @@ layout: default
       <div class="icon icon-blue icon-lg">📚</div>
       <h3>Official docs</h3>
     </div>
-    <p class="card-body"><a href="https://tanstack.com" target="_blank" rel="noopener noreferrer">tanstack.com</a></p>
+    <p class="card-body"><a href="https://tanstack.com" target="_blank" rel="noopener noreferrer">tanstack.com</a><br/>(which is obviously built with TanStack Start)</p>
   </div>
 
   <div class="card">
@@ -20,7 +20,7 @@ layout: default
       <div class="icon icon-green icon-lg">⭐</div>
       <h3>Awesome list</h3>
     </div>
-    <p class="card-body"><a href="https://github.com/Balastrong/awesome-tanstack-start" target="_blank" rel="noopener noreferrer">github.com/Balastrong/awesome-tanstack-start</a></p>
+    <p class="card-body"><a href="https://github.com/Balastrong/awesome-tanstack-start" target="_blank" rel="noopener noreferrer">github.com/Balastrong/awesome-tanstack-start</a><br/>(curated list of TanStack Start resources)</p>
   </div>
 
   <div class="card">
@@ -38,10 +38,6 @@ layout: default
     </div>
     <p class="card-body">Maintainers and users are active and helpful.</p>
   </div>
-</div>
-
-<div class="callout callout-tip" style="margin-top:20px">
-  <p style="margin:0;font-size:1em">The docs site itself is also a TanStack Start app.</p>
 </div>
 
 ---

@@ -41,7 +41,7 @@ layout: default
 </div>
 
 <div class="callout callout-tip" style="margin-top:20px">
-  <p style="margin:0;font-size:1em">If you want the happy path today, start with an Official Hosting Partner.</p>
+  <p style="margin:0;font-size:1em">Going through an Official Hosting Partner makes it easier.</p>
 </div>
 
 ---
@@ -53,34 +53,18 @@ layout: default
 <div class="grid grid-auto" style="margin-top:20px">
   <div class="card card-sm">
     <div class="card-header">
+      <div class="icon icon-green">🧑‍🚀</div>
+      <h3>AWS</h3>
+    </div>
+    <p class="card-body">Lambda, EC2, Amplify, you choose!</p>
+  </div>
+
+  <div class="card card-sm">
+    <div class="card-header">
       <div class="icon icon-blue">▲</div>
       <h3>Vercel</h3>
     </div>
     <p class="card-body">One-click deploy via Nitro.</p>
-  </div>
-
-  <div class="card card-sm">
-    <div class="card-header">
-      <div class="icon icon-yellow">🟢</div>
-      <h3>Node.js</h3>
-    </div>
-    <p class="card-body">Familiar infra, solid default.</p>
-  </div>
-
-  <div class="card card-sm">
-    <div class="card-header">
-      <div class="icon icon-red">🐳</div>
-      <h3>Docker</h3>
-    </div>
-    <p class="card-body">Ship it with your platform stack.</p>
-  </div>
-
-  <div class="card card-sm">
-    <div class="card-header">
-      <div class="icon icon-orange">🥟</div>
-      <h3>Bun</h3>
-    </div>
-    <p class="card-body">Native runtime with a custom server.</p>
   </div>
 
   <div class="card card-sm">
@@ -93,10 +77,26 @@ layout: default
 
   <div class="card card-sm">
     <div class="card-header">
-      <div class="icon icon-green">🦕</div>
-      <h3>Deno</h3>
+      <div class="icon icon-red">🐳</div>
+      <h3>Docker</h3>
     </div>
-    <p class="card-body">Another runtime in the Nitro target list.</p>
+    <p class="card-body">Ship it with your platform stack.</p>
+  </div>
+
+  <div class="card card-sm">
+    <div class="card-header">
+      <div class="icon icon-yellow">🟢</div>
+      <h3>Node.js</h3>
+    </div>
+    <p class="card-body">Familiar infra, solid default.</p>
+  </div>
+
+  <div class="card card-sm">
+    <div class="card-header">
+      <div class="icon icon-orange">🥟</div>
+      <h3>Bun</h3>
+    </div>
+    <p class="card-body">Native runtime with a custom server.</p>
   </div>
 </div>
 

@@ -80,7 +80,7 @@ layout: default
 layout: default
 ---
 
-<img src=".demo/slides/img/router-npm-lovable.png" alt="TanStack Start in Lovable" style="margin:25px auto; width:100%" />
+<img src=".demo/slides/img/router-npm-lovable.png" alt="TanStack Start in Lovable" style="margin:25px auto; width:80%" />
 
 ---
 layout: default

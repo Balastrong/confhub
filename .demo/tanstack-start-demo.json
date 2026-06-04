@@ -1136,17 +1136,6 @@
       ]
     },
     {
-      "id": "demo-mgs83ksa-djs1",
-      "title": "ConfHub Demo",
-      "moves": [
-        {
-          "action": "openWebsite",
-          "url": "https://confhub.tech/",
-          "openInVSCode": true
-        }
-      ]
-    },
-    {
       "id": "demo-mgdojota-ya13",
       "title": "Cool tricks",
       "moves": [

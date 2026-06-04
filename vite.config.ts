@@ -20,7 +20,7 @@ export default defineConfig({
       },
     }),
     rsc(),
-    netlify({ edgeSSR: true }),
+    netlify(),
     viteReact(),
   ],
 })

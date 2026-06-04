@@ -3,6 +3,7 @@
   "title": "TanStack Start: a fresh take on React full-stack applications",
   "description": "A client-first tour of TanStack Start showing colocated server logic, SSR, and SPA-style workflows without clunky full-stack mental models.",
   "version": 3,
+  "timer": 35,
   "scenes": [
     {
       "id": "demo-k345vfbh-9uv0",
@@ -57,7 +58,6 @@
         },
         {
           "action": "openWebsite",
-
           "url": "http://localhost:3000/hi/Leonardo/Italy",
           "openInVSCode": true
         },
@@ -619,18 +619,6 @@
       ]
     },
     {
-      "id": "demo-mgdj3dta-yav2",
-      "title": "Query Preloading Suspense Boundary",
-      "moves": [
-        {
-          "action": "highlight",
-          "path": "src/routes/communities/index.tsx",
-          "position": "32:41",
-          "highlightWholeLine": true
-        }
-      ]
-    },
-    {
       "id": "demo-qgankfb1-9dr1",
       "title": "Router outro slide",
       "moves": [
@@ -929,7 +917,6 @@
           "action": "executeVSCodeCommand",
           "command": "workbench.action.focusLeftGroup"
         },
-
         {
           "action": "open",
           "path": "src/routes/api/demo.$name.ts"
@@ -1066,13 +1053,14 @@
         {
           "action": "highlight",
           "path": "src/routes/demo/rsc-query.tsx",
-          "position": "45:67",
+          "position": "45:68",
           "highlightWholeLine": true
         },
         {
           "action": "positionCursor",
           "path": "src/routes/demo/rsc-query.tsx",
-          "position": "58,50"
+          "position": "59,50",
+          "highlightWholeLine": true
         },
         {
           "action": "waitForTimeout",
@@ -1206,7 +1194,6 @@
     {
       "id": "demo-mgdj3dta-1jd1",
       "title": "LLM Demo",
-      "TODO": "Would be cool to also implement a simple stream response and show the code",
       "moves": [
         {
           "action": "snippet",
@@ -1348,6 +1335,5 @@
         "end": "vm-active"
       }
     }
-  ],
-  "timer": 35
+  ]
 }

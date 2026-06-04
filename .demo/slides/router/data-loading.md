@@ -40,6 +40,6 @@ layout: default
   </div>
 </div>
 
-<div class="callout callout-tip" style="margin-top:18px;">
+<div class="callout callout-tip" style="margin-top:18px;width:fit-content;margin:auto">
   <p style="margin:0">This works great when data is bound to a specific route.</p>
 </div>

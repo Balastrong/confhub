@@ -44,7 +44,8 @@ export const Route = createFileRoute("/demo/rsc-query")({
 
 function RscQueryPage() {
   const queryClient = useQueryClient()
-  const { data } = useSuspenseQuery(componentQuery())
+  // const content = Route.useLoaderData() // <= This was the previous example, from the route loader
+  const { data: content } = useSuspenseQuery(componentQuery())
 
   const reload = () => {
     queryClient.invalidateQueries({
@@ -55,7 +56,7 @@ function RscQueryPage() {
   return (
     <div className="p-8 max-w-lg space-y-6">
       <h1 className="text-3xl font-bold">RSC + TanStack Query</h1>
-      <div className="border border-red-400 p-2">{data}</div>
+      <div className="border border-red-400 p-2">{content}</div>
       <button
         className="cursor-pointer px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90"
         onClick={reload}

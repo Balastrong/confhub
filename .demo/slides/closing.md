@@ -41,7 +41,7 @@ layout: default
 </div>
 
 <div class="callout callout-tip" style="margin-top:20px">
-  <p style="margin:0;font-size:1em">The docs site itself is also a TanStack Start app, which feels very <span class="grad-orange">on-brand</span>.</p>
+  <p style="margin:0;font-size:1em">The docs site itself is also a TanStack Start app.</p>
 </div>
 
 ---

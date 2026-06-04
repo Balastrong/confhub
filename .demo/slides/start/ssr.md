@@ -16,7 +16,7 @@ layout: default
   <div class="card">
     <div class="card-header">
       <div class="icon icon-blue icon-lg">🔄</div>
-      <h3>First load</h3>
+      <h3>First load - Server</h3>
     </div>
     <p class="card-body">The initial request renders on the server.</p>
     <div class="dot-list">
@@ -34,7 +34,7 @@ layout: default
   <div class="card">
     <div class="card-header">
       <div class="icon icon-green icon-lg">⚡</div>
-      <h3>Next navigations</h3>
+      <h3>Next navigations - Client</h3>
     </div>
     <p class="card-body">Inside the app, navigation keeps the SPA feel.</p>
     <div class="dot-list">

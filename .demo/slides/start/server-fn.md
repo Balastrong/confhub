@@ -3,6 +3,11 @@ theme: monomi
 layout: section
 ---
 
+# How can I call <span class="grad-green">server code</span> from the client <span class="grad-red">without writing an API</span>?
+
+---
+layout: section
+---
 
 # <span class="grad-green">Server Functions</span>
 

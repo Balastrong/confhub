@@ -1129,7 +1129,7 @@
         {
           "action": "highlight",
           "path": "vite.config.ts",
-          "position": "17",
+          "position": "23",
           "highlightWholeLine": true
         }
       ]

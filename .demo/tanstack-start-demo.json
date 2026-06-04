@@ -1205,6 +1205,65 @@
       ]
     },
     {
+      "id": "demo-stream-9xy1",
+      "title": "Streaming Demo: open file + browser",
+      "moves": [
+        {
+          "action": "snippet",
+          "contentPath": ".demo/snippets/reset-view.json"
+        },
+        {
+          "action": "open",
+          "path": "src/routes/demo/streaming.tsx"
+        },
+        {
+          "action": "waitForTimeout",
+          "timeout": 300
+        },
+        {
+          "action": "openWebsite",
+          "url": "http://localhost:3000/demo/streaming",
+          "openInVSCode": true
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.action.moveEditorToRightGroup"
+        },
+        {
+          "action": "waitForTimeout",
+          "timeout": 500
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.action.focusLeftGroup"
+        }
+      ]
+    },
+    {
+      "id": "demo-stream-9xy2",
+      "title": "Streaming Demo: server fn generator",
+      "moves": [
+        {
+          "action": "highlight",
+          "path": "src/routes/demo/streaming.tsx",
+          "highlightWholeLine": true,
+          "position": "6:15"
+        }
+      ]
+    },
+    {
+      "id": "demo-stream-9xy3",
+      "title": "Streaming Demo: client for-await",
+      "moves": [
+        {
+          "action": "highlight",
+          "path": "src/routes/demo/streaming.tsx",
+          "position": "25:33",
+          "highlightWholeLine": true
+        }
+      ]
+    },
+    {
       "id": "demo-mgdj3dta-1875",
       "title": "MCP Server Demo",
       "moves": [

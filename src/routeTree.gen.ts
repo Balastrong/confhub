@@ -21,6 +21,7 @@ import { Route as CommunitiesIndexRouteImport } from './routes/communities/index
 import { Route as FileConventionsEventSlugRouteImport } from './routes/file-conventions/$eventSlug'
 import { Route as EventsSubmitRouteImport } from './routes/events/submit'
 import { Route as EventsEventSlugRouteImport } from './routes/events/$eventSlug'
+import { Route as DemoStreamingRouteImport } from './routes/demo/streaming'
 import { Route as DemoSsrRouteImport } from './routes/demo/ssr'
 import { Route as DemoSearchRouteImport } from './routes/demo/search'
 import { Route as DemoRscQueryRouteImport } from './routes/demo/rsc-query'
@@ -99,6 +100,11 @@ const EventsSubmitRoute = EventsSubmitRouteImport.update({
 const EventsEventSlugRoute = EventsEventSlugRouteImport.update({
   id: '/events/$eventSlug',
   path: '/events/$eventSlug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoStreamingRoute = DemoStreamingRouteImport.update({
+  id: '/demo/streaming',
+  path: '/demo/streaming',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoSsrRoute = DemoSsrRouteImport.update({
@@ -214,6 +220,7 @@ export interface FileRoutesByFullPath {
   '/demo/rsc-query': typeof DemoRscQueryRoute
   '/demo/search': typeof DemoSearchRoute
   '/demo/ssr': typeof DemoSsrRoute
+  '/demo/streaming': typeof DemoStreamingRoute
   '/events/$eventSlug': typeof EventsEventSlugRoute
   '/events/submit': typeof EventsSubmitRoute
   '/file-conventions/$eventSlug': typeof FileConventionsEventSlugRoute
@@ -245,6 +252,7 @@ export interface FileRoutesByTo {
   '/demo/rsc-query': typeof DemoRscQueryRoute
   '/demo/search': typeof DemoSearchRoute
   '/demo/ssr': typeof DemoSsrRoute
+  '/demo/streaming': typeof DemoStreamingRoute
   '/events/$eventSlug': typeof EventsEventSlugRoute
   '/events/submit': typeof EventsSubmitRoute
   '/file-conventions/$eventSlug': typeof FileConventionsEventSlugRoute
@@ -277,6 +285,7 @@ export interface FileRoutesById {
   '/demo/rsc-query': typeof DemoRscQueryRoute
   '/demo/search': typeof DemoSearchRoute
   '/demo/ssr': typeof DemoSsrRoute
+  '/demo/streaming': typeof DemoStreamingRoute
   '/events/$eventSlug': typeof EventsEventSlugRoute
   '/events/submit': typeof EventsSubmitRoute
   '/file-conventions/$eventSlug': typeof FileConventionsEventSlugRoute
@@ -310,6 +319,7 @@ export interface FileRouteTypes {
     | '/demo/rsc-query'
     | '/demo/search'
     | '/demo/ssr'
+    | '/demo/streaming'
     | '/events/$eventSlug'
     | '/events/submit'
     | '/file-conventions/$eventSlug'
@@ -341,6 +351,7 @@ export interface FileRouteTypes {
     | '/demo/rsc-query'
     | '/demo/search'
     | '/demo/ssr'
+    | '/demo/streaming'
     | '/events/$eventSlug'
     | '/events/submit'
     | '/file-conventions/$eventSlug'
@@ -372,6 +383,7 @@ export interface FileRouteTypes {
     | '/demo/rsc-query'
     | '/demo/search'
     | '/demo/ssr'
+    | '/demo/streaming'
     | '/events/$eventSlug'
     | '/events/submit'
     | '/file-conventions/$eventSlug'
@@ -404,6 +416,7 @@ export interface RootRouteChildren {
   DemoRscQueryRoute: typeof DemoRscQueryRoute
   DemoSearchRoute: typeof DemoSearchRoute
   DemoSsrRoute: typeof DemoSsrRoute
+  DemoStreamingRoute: typeof DemoStreamingRoute
   EventsEventSlugRoute: typeof EventsEventSlugRoute
   EventsSubmitRoute: typeof EventsSubmitRoute
   CommunitiesIndexRoute: typeof CommunitiesIndexRoute
@@ -498,6 +511,13 @@ declare module '@tanstack/react-router' {
       path: '/events/$eventSlug'
       fullPath: '/events/$eventSlug'
       preLoaderRoute: typeof EventsEventSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo/streaming': {
+      id: '/demo/streaming'
+      path: '/demo/streaming'
+      fullPath: '/demo/streaming'
+      preLoaderRoute: typeof DemoStreamingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo/ssr': {
@@ -679,6 +699,7 @@ const rootRouteChildren: RootRouteChildren = {
   DemoRscQueryRoute: DemoRscQueryRoute,
   DemoSearchRoute: DemoSearchRoute,
   DemoSsrRoute: DemoSsrRoute,
+  DemoStreamingRoute: DemoStreamingRoute,
   EventsEventSlugRoute: EventsEventSlugRoute,
   EventsSubmitRoute: EventsSubmitRoute,
   CommunitiesIndexRoute: CommunitiesIndexRoute,

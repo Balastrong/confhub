@@ -10,7 +10,7 @@ layout: section
 layout: section
 ---
 
-# Having multiple <span class="grad-green">options</span> is usually good
+# Having multiple <span class="grad-green">options</span><br/>is usually good
 
 ## Next.js is <span class="grad-purple">server-first</span>. TanStack Start stays <span class="grad-blue">client-first</span>.
 
@@ -19,7 +19,6 @@ layout: default
 ---
 
 <img src=".demo/slides/img/start.png" alt="TanStack Start" style="width: 100%; height: auto; object-fit: contain;" />
-
 
 ---
 layout: default
@@ -83,13 +82,18 @@ layout: section
 
 # <span class="grad-blue">Start</span> = <span class="grad-green">Router</span> + <span class="grad-blue">Server Capabilities</span>
 
-## TanStack Router covers ~<span class="grad-yellow">80%</span> of the functionality
+## TanStack Router covers ~<span class="grad-yellow">80%</span> of the functionalities
 
+---
+layout: default
+---
+
+<img src=".demo/slides/img/router.png" alt="TanStack Router" style="width: 100%; height: auto; object-fit: contain;" />
 ---
 layout: section
 ---
 
-# Picking a router means defining most of your app <span class="grad-purple">architecture</span>
+# Picking a <span class="grad-green">modern router</span> means defining most of your app <span class="grad-purple">architecture</span>
 
 ---
 layout: default
@@ -137,6 +141,4 @@ Modern routers take care of a lot of things:
 layout: section
 ---
 
-# Let's see what <span class="grad-green">Router</span> can do
-
-## _Reminder: TanStack Start has all these features + <span class="grad-blue">server capabilities</span>_
+# Let's look at some <span class="grad-orange">code</span>!

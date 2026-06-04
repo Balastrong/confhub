@@ -4,19 +4,19 @@ layout: intro
 ---
 
 
-<div class="centered">
+<div class="centered" style="text-align:center;width:min(90%,860px)">
 
-<h1 style="font-size:3.4em;margin:0 0 .25em 0;font-weight:750;line-height:1.05;background:linear-gradient(90deg,#f8fafc 0%,#93c5fd 55%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent">TanStack Start</h1>
-<h2 style="margin:.1em 0 .6em 0;font-weight:600;opacity:.9">A fresh take on React full-stack applications</h2>
+<h1 style="font-size:3.3em;font-weight:750;background:linear-gradient(90deg,#f8fafc 0%,#93c5fd 55%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent">TanStack Start</h1>
+<h2 style="max-width:680px;font-weight:600;">A fresh take on React full-stack applications</h2>
 
-<img src=".demo/slides/img/tanstack-banner.png" width="150" style="margin:16px auto">
+<img src=".demo/slides/img/tanstack-banner.png" width="150" style="margin:22px auto 14px">
 
 <div class="badges" style="margin-top:8px">
-  <span class="badge badge-blue">ReactJSDay 2025</span>
-  <span class="badge badge-green">Verona</span>
+  <span class="badge badge-blue">ElevateDev '26</span>
 </div>
 
-<div style="margin-top:18px;opacity:.9">
-  <strong>Leonardo Montini</strong> • DevRel @ Claranet Italy
+<div style="margin-top:22px;line-height:1.5">
+  <div style="font-weight:700">Leonardo Montini</div>
+  <div style="opacity:.90">DevRel & Software Engineer @ Claranet Italy</div>
 </div>
 </div>

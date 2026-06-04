@@ -35,3 +35,7 @@ layout: default
 		<p class="card-body">Colocate files without generating routes.</p>
 	</div>
 </div>
+
+<div class="callout callout-tip" style="margin-top:18px; width:fit-content; margin:auto;">
+  <p style="margin:0">All possible options are in the doc anyway</p>
+</div>

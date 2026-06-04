@@ -44,34 +44,7 @@ layout: default
 layout: default
 ---
 
-# <span class="grad-green">TanStack Router</span> npm installs
-
-<img src=".demo/slides/img/router-npm.png" alt="TanStack Router Stats" style="margin:25px auto" />
-
----
-layout: default
----
-
-# <span class="grad-green">TanStack Router</span> npm installs (April 2026)
-
-
-<img src=".demo/slides/img/router-npm-2.png" alt="TanStack Router Stats" style="margin:25px auto" />
-
-
----
-layout: default
----
-
-# <span class="grad-blue">TanStack Start</span> is built on top of <span class="grad-green">TanStack Router</span>
-
-<img src=".demo/slides/img/router-npm-lovable.png" alt="TanStack Router Stats" style="margin:25px auto" />
-
-
----
-layout: default
----
-
-# <span class="grad-blue">TanStack Start</span>: You're an <span class="grad-orange">early adopter</span>
+# <span class="grad-blue">TanStack Start</span>: safe, but still an <span class="grad-orange">early adopter</span>
 
 <div class="grid grid-3" style="margin-top:24px">
   <div class="card">
@@ -102,3 +75,17 @@ layout: default
 <div class="callout callout-tip" style="margin-top:24px">
   <p style="margin:0;font-size:1em">Starting a new project? This is a very reasonable time to <span class="grad-lime">jump in</span>.</p>
 </div>
+
+---
+layout: default
+---
+
+<img src=".demo/slides/img/router-npm-lovable.png" alt="TanStack Start in Lovable" style="margin:25px auto; width:100%" />
+
+---
+layout: default
+---
+
+# <span class="grad-blue">TanStack Start</span> npm installs
+
+<img src=".demo/slides/img/start-npm.png" alt="TanStack Start Stats" style="margin:25px auto; width:100%" />

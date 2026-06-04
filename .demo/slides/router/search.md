@@ -3,16 +3,13 @@ theme: monomi
 layout: section
 ---
 
-
-# <span class="grad-blue">Typesafety</span> on Search Params
-
-## ...and there's even more
+# <span class="grad-blue">Typesafety</span> is also on Search Params
 
 ---
 layout: default
 ---
 
-# The URL becomes <span class="grad-purple">shared state</span>
+# The URL can safely become <span class="grad-purple">shared state</span>
 
 <div class="grid grid-2" style="margin-top:20px">
   <div class="card">

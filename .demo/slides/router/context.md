@@ -3,6 +3,14 @@ theme: monomi
 layout: section
 ---
 
-# Global context with <span class="grad-purple">Dependency Injection</span>
+# Search params are perfect for<br/><span class="grad-orange">URL state</span>
 
-## Let your context <span class="grad-orange">flow</span> down the route tree
+## But what about data every route needs?
+
+---
+layout: section
+---
+
+# Share route context through<br/><span class="grad-purple">Dependency Injection</span>
+
+## Define it once, consume it anywhere in the route tree

@@ -44,7 +44,7 @@ layout: default
 layout: default
 ---
 
-# <span class="grad-blue">TanStack Start</span>: safe, but still an <span class="grad-orange">early adopter</span>
+# <span class="grad-blue">TanStack Start</span>: early adopter, but <span class="grad-orange">safe to use</span>
 
 <div class="grid grid-3" style="margin-top:24px">
   <div class="card">

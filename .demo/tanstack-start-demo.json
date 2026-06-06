@@ -861,7 +861,7 @@
         {
           "action": "highlight",
           "path": "src/services/auth/api.ts",
-          "position": "23:26",
+          "position": "23:34",
           "highlightWholeLine": true
         }
       ]

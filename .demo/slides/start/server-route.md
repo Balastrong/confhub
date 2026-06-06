@@ -5,7 +5,7 @@ layout: section
 
 # Can I expose a good old<br/><span class="grad-orange">HTTP endpoint</span>?
 
-## Server Functions are for internal use only
+## _As Server Functions are for internal use only_
 
 ---
 layout: section

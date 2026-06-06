@@ -18,12 +18,6 @@ layout: section
 layout: default
 ---
 
-<img src=".demo/slides/img/start.png" alt="TanStack Start" style="width: 100%; height: auto; object-fit: contain;" />
-
----
-layout: default
----
-
 # TanStack Start <span class="grad-blue">strengths</span>
 
 <div class="grid grid-auto" style="margin-top:16px">
@@ -142,3 +136,5 @@ layout: section
 ---
 
 # Let's look at some <span class="grad-orange">code</span>!
+
+## _These slides are inside VSCode for a reason_

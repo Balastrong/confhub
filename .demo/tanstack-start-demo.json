@@ -131,7 +131,7 @@
     },
     {
       "id": "demo-mgankfbh-9xy0",
-      "title": "File naming slide",
+      "title": "Route definition slide",
       "moves": [
         {
           "action": "snippet",
@@ -139,7 +139,7 @@
         },
         {
           "action": "openSlide",
-          "path": ".demo/slides/router/file-naming.md"
+          "path": ".demo/slides/router/route-definition.md"
         }
       ],
       "icons": {
@@ -156,7 +156,7 @@
         },
         {
           "action": "open",
-          "path": "src/routes/file-conventions/one.two.three.tsx"
+          "path": "src/routes/file-conventions/route.tsx"
         },
         {
           "action": "executeVSCodeCommand",

@@ -5,6 +5,8 @@ layout: section
 
 # <span class="grad-blue">Typesafety</span> is also on Search Params
 
+## No more guessing or manual parsing, <span class="grad-green">typed</span> access to your params
+
 ---
 layout: default
 ---

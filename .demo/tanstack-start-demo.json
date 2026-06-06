@@ -508,21 +508,6 @@
       ]
     },
     {
-      "id": "demo-qgankfb1-aaa4",
-      "title": "Loader Demo Browser",
-      "moves": [
-        {
-          "action": "openWebsite",
-          "url": "http://localhost:3000/",
-          "openInVSCode": true
-        },
-        {
-          "action": "executeVSCodeCommand",
-          "command": "workbench.action.moveEditorToRightGroup"
-        }
-      ]
-    },
-    {
       "id": "demo-qgankfb1-aaa6",
       "title": "Loader Demo Stale",
       "moves": [
@@ -535,6 +520,21 @@
         },
         {
           "action": "save"
+        }
+      ]
+    },
+    {
+      "id": "demo-qgankfb1-aaa4",
+      "title": "Loader Demo Browser",
+      "moves": [
+        {
+          "action": "openWebsite",
+          "url": "http://localhost:3000/",
+          "openInVSCode": true
+        },
+        {
+          "action": "executeVSCodeCommand",
+          "command": "workbench.action.moveEditorToRightGroup"
         }
       ]
     },

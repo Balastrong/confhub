@@ -24,6 +24,17 @@
       }
     },
     {
+      "id": "demo-kfj398s-dj3i",
+      "title": "Tanstack.com",
+      "moves": [
+        {
+          "action": "openWebsite",
+          "url": "https://tanstack.com",
+          "openInVSCode": true
+        }
+      ]
+    },
+    {
       "id": "demo-1s2dkfbh-9xe0",
       "title": "Introduction",
       "moves": [
